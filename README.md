@@ -14,4 +14,4 @@
   * 2.3.-npm install
   * 2.4.-php artisan key:generate
   * 2.5.-php artisan serve
-  * 2.6.-abrir explorador y ejecutar proyecto colocando localhost:8000 en barra de navegación
+  * 2.6.-abrir explorador y ejecutar proyecto colocando localhost:8000 en barra de navegación //el puerto (8000) depende de cada uno
