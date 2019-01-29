@@ -1,0 +1,86 @@
+.fondoizq{
+    background-color: rgb(34, 34, 34);
+    height: 33rem;
+}
+.fondocentro{
+    background-color: rgb(76, 191, 220);
+    height: 33rem;
+}
+.fondoder{
+    background-color: rgb(34, 34, 34);
+    padding-bottom: 1.23rem;
+    height: 33rem;
+}
+.containerPri1{
+  height: 26rem;
+}
+.containerPri2{
+  height: 7rem;
+}
+.colorToggle {
+  color: rgb(76, 191, 220);
+}
+.colorHeaderToggle {
+  font-weight: bold;
+  text-transform: uppercase;
+  color: rgb(255, 255, 255);
+}
+/* CUSTOMIZE THE CAROUSEL
+-------------------------------------------------- */
+
+/* Carousel base class */
+.carousel {
+    background-color: rgba(76, 191, 220, 0.144);
+    height: 26rem;
+  }
+  /* Since positioning the image, we need to help out the caption */
+  .carousel-caption {
+    bottom: 3rem;
+    z-index: 10;
+  }
+  
+  /* Declare heights because of positioning of img element */
+  .carousel-item {
+    height: 26rem;
+  }
+  .carousel-control-prev,
+  .carousel-control-next{
+      height: 26rem;
+  }
+
+  /*imagen desplegable por iconos*/
+  .imagen{
+    height: 26rem;
+    align-content: center;
+  }
+  /*contenido de carousel*/
+  .imagen1{
+    width: 100%;
+    height: 26rem;
+    padding-left: 15%;
+    padding-right:15%; 
+    align-content: center;
+  }
+  /*iconos*/
+  .imagen2{
+    width: 5rem;
+    height: 5rem;
+    align-content: center;
+  }
+  /*logoNav*/
+  .logo{
+    width: 90%;
+    height: 4rem;
+    align-content: center;
+  }
+  
+  /* RESPONSIVE CSS
+  -------------------------------------------------- */
+  @media (min-width: 40em) {
+    /* Bump up size of carousel content */
+    .carousel-caption p {
+      margin-bottom: 1.25rem;
+      font-size: 1.25rem;
+      line-height: 1.4;
+    }
+  }
