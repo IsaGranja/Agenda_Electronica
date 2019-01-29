@@ -11,6 +11,7 @@
 # Instalar:
 * Node.js (https://nodejs.org/es/)
 * Visual Studio Code (https://code.visualstudio.com/) o Git (https://gitforwindows.org/) como terminal de comandos
+* PostgreSQL y pgAdmin (https://www.youtube.com/watch?v=e1MwsT5FJRQ&vl=es) 
 # --------------ADVERTENCIA:--------------
 # Al descargar/clonar el proyecto no se suben todos los archivos que se requieren para ejecutar el proyecto, es por esto que se necesita:
 # 1.-Añadir manualmente el archivo .env que se encuentra en el repositorio dentro de la carpeta del proyecto cambiando la configuración para poder acceder a la base de datos local (Host, puerto, nombre de la base, usuario, contraseña). 
