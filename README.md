@@ -4,4 +4,4 @@
 # Recomendamos utilizar Visual Studio Code y basarse en este video
 * https://www.youtube.com/watch?v=jPQQISFOkRE&t=167s
 # Y además,el script de creación de la base de datos en Postgres y una carpeta con el proyecto base que les permita seguir haciendo sus entregables.
-Estamos trabajando con Laravel y Bootstrap 4.
+# Estamos trabajando con Laravel y Bootstrap 4.
