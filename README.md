@@ -8,7 +8,7 @@
 # ADVERTENCIA:
 # Al descargar/clonar el proyecto no se suben todos los archivos que se requieren para ejecutar el proyecto, es por esto que se necesita:
 # 1.-Añadir manualmente el archivo .env que se encuentra en el repositorio dentro de la carpeta del proyecto. 
-# 2.-Entrar en la ruta de la carpeta del proyecto usando GIT o visual studio conde(con terminal de comandos) y colocar:
+# 2.-Entrar en la ruta de la carpeta del proyecto usando GIT o visual studio code(con terminal de comandos) y colocar:
   * 2.1.-composer update
   * 2.2.-composer install
   * 2.3.-npm install
