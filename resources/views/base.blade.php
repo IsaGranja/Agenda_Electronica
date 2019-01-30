@@ -6,7 +6,7 @@
     <base href="{{ URL::asset('/') }}" target="_top">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="{{ url('css/bootstrap.min.css') }}" />
-    <link rel="stylesheet" type="text/css" media="screen" href="{{ url('css/Proyecto_AgendaElectronica-style.css') }}" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ url('css/Ayudantes_AgendaElectronica-style.css') }}" />
     <script src="{{ url('js/jquery-3.3.1.min.js') }}"></script>
     <link rel="stylesheet" type="text/css" media="screen" href="{{ url('js/jquery-3.3.1.slim.min.js') }}" />
     <link rel="stylesheet" type="text/css" media="screen" href="{{ url('js/popper.min.js') }}" />
@@ -32,15 +32,15 @@
                     <a class="dropdown-item" href="{{ url('/pagSedes') }}">Sedes</a>
                     <a class="dropdown-item" href="{{ url('/pagPeriodos') }}">Períodos</a>
                     <a class="dropdown-item" href="{{ url('/pagFacultades') }}">Facultades</a>
-                    <a class="dropdown-item" href="{{ url('/pagFacxSed') }}">Facultades por sedes</a>
+                    <a class="dropdown-item" href="{{ url('/pagFacultadesxSede') }}">Facultades por sedes</a>
                     <a class="dropdown-item" href="{{ url('/pagEscuelas') }}">Escuelas</a>
                     <a class="dropdown-item" href="{{ url('/pagCarreras') }}">Carreras</a>
                     <a class="dropdown-item" href="{{ url('/pagEstudiantes') }}">Estudiantes</a>
                     <a class="dropdown-item" href="{{ url('/pagEstudiantesExcel') }}">Estudiantes (Excel)</a>
                     <a class="dropdown-item" href="{{ url('/pagProfesores') }}">Profesores</a>
                     <a class="dropdown-item" href="{{ url('/pagAsignaturas') }}">Asignaturas</a>
-                    <a class="dropdown-item" href="{{ url('/pagAsigxEstu') }}">Asignaturas por estudiante</a>
-                    <a class="dropdown-item" href="{{ url('/pagAsigxProf') }}">Asignaturas por profesor</a>
+                    <a class="dropdown-item" href="{{ url('/pagAsignaturasxEstudiante') }}">Asignaturas por estudiante</a>
+                    <a class="dropdown-item" href="{{ url('/pagAsignaturasxProfesor') }}">Asignaturas por profesor</a>
                     <a class="dropdown-item" href="{{ url('/pagUnidades') }}">Unidades</a>
                     <a class="dropdown-item" href="{{ url('/pagTemas') }}">Temas</a>
                     <a class="dropdown-item" href="{{ url('/pagTalleres') }}">Talleres</a>
@@ -63,12 +63,12 @@
         <div class="col-12">@yield('content')</div>
     </div> 
     {{-- Footer --}}
-    <div class="col-12 colorPUCE">
+    <footer class="col-12 colorPUCE">
         <div class="card-body text-center">
 			<p class="micro legible center mb-0">CENTRO DE EDUCACIÓN VIRTUAL Y TECNOLOGÍA EDUCATIVA - CEVTE <br>
              Para soporte comunicarse: <br> Teléfono: (+593) 299 1700 ext. 1509 / 1845 / 1127 
              <br> Correo electrónico: cevte@puce.edu.ec</p>
-    </div>
+    </footer>
     <script src="{{ url('js/bootstrap.min.js') }}"></script>
 </body>
 </html>
