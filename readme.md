@@ -1,69 +1,34 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+Hola Chicos! Presten atención a las siguientes indicaciones :)
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+# Instalar:
+* Node.js (https://nodejs.org/es/)
+* Composer (https://getcomposer.org/)
+* Laravel  (https://laravel.com/docs/5.7/installation)
+* Visual Studio Code (https://code.visualstudio.com/) o Git (https://gitforwindows.org/) como terminal de comandos
+* PostgreSQL y pgAdmin 4 (https://www.youtube.com/watch?v=e1MwsT5FJRQ&vl=es) 
 
-## About Laravel
+# --------------1ra opción para manejo de repositorios: Recomendamos utilizar Visual Studio Code en base a este video y esta guía:---------
+* http://www.mclibre.org/consultar/informatica/lecciones/vsc-git-repositorio.html
+* https://www.youtube.com/watch?v=jPQQISFOkRE&t=167s
+# --------------2da opción para manejo de repositorios: Trabajar con GIT - guía de Git y de GitHub:--------------
+* http://rogerdudler.github.io/git-guide/index.es.html?fbclid=IwAR2iVy1qknix0buF3JRn7WzUjXQnJ-i-yOTgGsSOZMAlvAGzQnvlCwSFPm0
+* https://www.youtube.com/watch?v=3XlZWpLwvvo
+# --------------En el repositorio se encuentra el script de creación de la base de datos en Postgres y una carpeta con el proyecto base que les permita seguir haciendo sus entregables.--------------
+# --------------Estamos trabajando con Laravel y Bootstrap 4:--------------
+# --------------Los tutoriales para usar Bootstrap 4 con Laravel son los siguientes:--------------
+*https://www.youtube.com/watch?v=-83eiJ9EaD4
+*https://www.youtube.com/watch?v=U3rPtLW5iuI
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
-
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
-
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications.
-
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of any modern web application framework, making it a breeze to get started learning the framework.
-
-If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 1100 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for helping fund on-going Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell):
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+# --------------ADVERTENCIA:--------------
+# Al descargar/clonar el proyecto no se suben todos los archivos que se requieren para ejecutar el proyecto, es por esto que se necesita:
+# 1.-Añadir manualmente el archivo .env que se encuentra en el repositorio dentro de la carpeta del proyecto cambiando la configuración para poder acceder a la base de datos local (Host, puerto, nombre de la base, usuario, contraseña). 
+# 2.-Entrar en la ruta de la carpeta del proyecto usando GIT o visual studio code(con terminal de comandos) y colocar:
+  * 2.1.-composer update
+  * 2.2.-composer install
+  * 2.3.-npm install //(para que se ejecute esta línea de comando se requiere que esté instalado Node.js)
+  * 2.4.-php artisan key:generate
+  * 2.5.-php artisan serve
+  * 2.6.-abrir explorador y ejecutar proyecto colocando localhost:8000 en barra de navegación //el puerto (8000) depende de cada uno
+# --------------Si tienen alguna pregunta no duden en contactarnos:--------------
+* Jose Salgado: 0994241512 - josesalgado7@hotmail.com
+* Isabel Granja: 0984483181 - maisa_178@hotmail.com
