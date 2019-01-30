@@ -2,6 +2,8 @@ Hola Chicos! Presten atención a las siguientes indicaciones :)
 
 # Instalar:
 * Node.js (https://nodejs.org/es/)
+* Composer (https://getcomposer.org/)
+* Laravel  (https://laravel.com/docs/5.7/installation)
 * Visual Studio Code (https://code.visualstudio.com/) o Git (https://gitforwindows.org/) como terminal de comandos
 * PostgreSQL y pgAdmin 4 (https://www.youtube.com/watch?v=e1MwsT5FJRQ&vl=es) 
 
