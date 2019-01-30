@@ -11,15 +11,15 @@
     <link rel="stylesheet" type="text/css" media="screen" href="{{ url('js/jquery-3.3.1.slim.min.js') }}" />
     <link rel="stylesheet" type="text/css" media="screen" href="{{ url('js/popper.min.js') }}" />
 </head>
-<body>
+<body class="col-12">
     {{-- Navbar --}}
-    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: rgb(76, 191, 220);">
-        <a class="navbar-brand" href='http://www.puce.edu.ec' style="background-color: rgb(76, 191, 220);"><img class="logo" src="{{ url('img/puceLogo.jpg') }}"></a>
+    <nav class="navbar navbar-expand-lg col-12 navbar-light colorPUCE">
+        <a class="navbar-brand" href='http://www.puce.edu.ec'><img class="logo" src="{{ url('img/puceLogo.jpg') }}"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent" style="background-color: rgb(76, 191, 220);">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -36,7 +36,7 @@
                     <a class="dropdown-item" href="{{ url('/pagEscuelas') }}">Escuelas</a>
                     <a class="dropdown-item" href="{{ url('/pagCarreras') }}">Carreras</a>
                     <a class="dropdown-item" href="{{ url('/pagEstudiantes') }}">Estudiantes</a>
-                    <a class="dropdown-item" href="{{ url('/pagEstudiantes-excel') }}">Estudiantes (Excel)</a>
+                    <a class="dropdown-item" href="{{ url('/pagEstudiantesExcel') }}">Estudiantes (Excel)</a>
                     <a class="dropdown-item" href="{{ url('/pagProfesores') }}">Profesores</a>
                     <a class="dropdown-item" href="{{ url('/pagAsignaturas') }}">Asignaturas</a>
                     <a class="dropdown-item" href="{{ url('/pagAsigxEstu') }}">Asignaturas por estudiante</a>
@@ -66,7 +66,7 @@
         <div class="col-12">@yield('content')</div>
     </div> 
     {{-- Footer --}}
-    <div class="card">
+    <div class="col-12 colorPUCE">
         <div class="card-body text-center">
 			<p class="micro legible center mb-0">CENTRO DE EDUCACIÓN VIRTUAL Y TECNOLOGÍA EDUCATIVA - CEVTE <br>
              Para soporte comunicarse: <br> Teléfono: (+593) 299 1700 ext. 1509 / 1845 / 1127 

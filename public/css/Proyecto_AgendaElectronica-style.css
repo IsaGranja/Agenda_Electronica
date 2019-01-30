@@ -25,12 +25,15 @@
   text-transform: uppercase;
   color: rgb(255, 255, 255);
 }
+.colorPUCE{
+  background-color: rgb(76, 191, 220);
+}
 /* CUSTOMIZE THE CAROUSEL
 -------------------------------------------------- */
 
 /* Carousel base class */
 .carousel {
-    background-color: rgba(76, 191, 220, 0.144);
+    background-color: rgba(255, 255, 255, 0.144);
     height: 26rem;
   }
   /* Since positioning the image, we need to help out the caption */

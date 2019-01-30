@@ -3,5 +3,5 @@
 @section('content')
     <p>CONTENIDO</p>
 
-
+    
 @endsection
