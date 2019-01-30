@@ -21,6 +21,36 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Opciones
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{{ url('/pagProvincias') }}">Provincias</a>
+                        <a class="dropdown-item" href="{{ url('/pagCiudades') }}">Ciudades</a>
+                        <a class="dropdown-item" href="{{ url('/pagUniversidades') }}">Universidades</a>
+                        <a class="dropdown-item" href="{{ url('/pagSedes') }}">Sedes</a>
+                        <a class="dropdown-item" href="{{ url('/pagPeriodos') }}">Períodos</a>
+                        <a class="dropdown-item" href="{{ url('/pagFacultades') }}">Facultades</a>
+                        <a class="dropdown-item" href="{{ url('/pagFacultadesxSede') }}">Facultades por sedes</a>
+                        <a class="dropdown-item" href="{{ url('/pagEscuelas') }}">Escuelas</a>
+                        <a class="dropdown-item" href="{{ url('/pagCarreras') }}">Carreras</a>
+                        <a class="dropdown-item" href="{{ url('/pagEstudiantes') }}">Estudiantes</a>
+                        <a class="dropdown-item" href="{{ url('/pagEstudiantesExcel') }}">Estudiantes (Excel)</a>
+                        <a class="dropdown-item" href="{{ url('/pagProfesores') }}">Profesores</a>
+                        <a class="dropdown-item" href="{{ url('/pagAsignaturas') }}">Asignaturas</a>
+                        <a class="dropdown-item" href="{{ url('/pagAsignaturasxEstudiante') }}">Asignaturas por estudiante</a>
+                        <a class="dropdown-item" href="{{ url('/pagAsignaturasxProfesor') }}">Asignaturas por profesor</a>
+                        <a class="dropdown-item" href="{{ url('/pagUnidades') }}">Unidades</a>
+                        <a class="dropdown-item" href="{{ url('/pagTemas') }}">Temas</a>
+                        <a class="dropdown-item" href="{{ url('/pagTalleres') }}">Talleres</a>
+                        <a class="dropdown-item" href="{{ url('/pagEvaluaciones') }}">Evaluaciones</a>
+                        <a class="dropdown-item" href="{{ url('/pagGlosarios') }}">Glosario</a>
+                        <a class="dropdown-item" href="{{ url('/pagContenidos') }}">Contenidos</a>
+                    </div>
+                </li>
+            </ul>
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
                     <a class="nav-link" href="{{ url('/') }}">Descargar SCORM <span class="sr-only">(current)</span></a>
@@ -40,7 +70,7 @@
             <center>
             <table border="0">
                 <tr class="containerPri1">
-                    <td colspan=5">
+                    <td colspan="6">
                     <center>@yield('content')
                     </td>
                 </tr>
@@ -133,6 +163,23 @@
                                 </div>
                             </div> 
                     </td>
+                    <td>
+                        <center>
+                            <img class="image-responsive imagen2" id="glosario" src="{{ url('img/glosario.ico') }}">
+                            <div id="mimodal6" class="modal fade" role="dialog">
+                                <div id="mimodal" class="modal-dialog imagen">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1>glosario</h1>    
+                                            <button class="close" data-dismiss="modal">&times;</button>                                                
+                                        </div>
+                                        <div class="modal-body">
+                                            <img src="" class="recibir-glosario" width="100%" height="100%">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> 
+                    </td>
                     <script type="text/javascript">
                     $(document).ready(function()
                     {
@@ -160,7 +207,10 @@
                                     $('#mimodal4').modal();  
                                 }else if(imagenID=="informacion_adicional"){
                                     $('.recibir-info').attr('src',"{{ url('img/info.ico') }}"); //aqui se coloca la infoAdicional que desea cargar
-                                    $('#mimodal5').modal();  
+                                    $('#mimodal5').modal();
+                                }else if(imagenID=="glosario"){
+                                    $('.recibir-glosario').attr('src',"{{ url('img/glosario.ico') }}"); //aqui se coloca la infoAdicional que desea cargar
+                                    $('#mimodal6').modal();  
                                 }
                             }                                
                         });
