@@ -1,17 +1,46 @@
-/* CSS Principal
--------------------------------------------------- */
+html{
+  position:absolute;
+  top:0;
+  left:0;
+  margin:0;
+}
+body{
+  margin: none;
+  padding: none;
+}
+section{
+  margin: none;
+  padding: none;
+}
+footer{
+  margin: none;
+  padding: none;
+}
+table{
+  margin: none;
+  padding: none;
+}
+textarea{
+  font-size: 30px;
+}
 .fondoizq{
-    background-color: rgb(34, 34, 34);
-    height: 33rem;
+  background-color: rgb(34, 34, 34);
+  max-height: 33rem;
+  margin: none;
+  overflow-x: scroll;
+  overflow-y: scroll;
 }
 .fondocentro{
-    background-color: rgb(76, 191, 220);
+    background-color: rgb(87, 136, 205);
     height: 33rem;
+    margin: none;
 }
 .fondoder{
     background-color: rgb(34, 34, 34);
-    padding-bottom: 1.23rem;
-    height: 33rem;
+    max-height: 33rem;
+    margin: none;
+    overflow-x: scroll;
+    overflow-y: scroll;
 }
 .containerPri1{
   height: 26rem;
@@ -30,6 +59,13 @@
 .colorPUCE{
   background-color: rgb(76, 191, 220);
 }
+.colorFondoIconos{
+  background-color: rgba(108, 108, 110, 0.144);
+}
+.scroll{
+  overflow-x: scroll;
+  overflow-y: scroll;
+}
 /* CUSTOMIZE THE CAROUSEL
 -------------------------------------------------- */
 
@@ -37,6 +73,8 @@
 .carousel {
     background-color: rgba(255, 255, 255, 0.144);
     height: 26rem;
+    margin: none;
+    padding: none;
   }
   /* Since positioning the image, we need to help out the caption */
   .carousel-caption {
@@ -52,12 +90,17 @@
   .carousel-control-next{
       height: 26rem;
   }
-
   /*imagen desplegable por iconos*/
-  .imagen{
+  .imagen{  
     height: 26rem;
+    z-index: 0;
     align-content: center;
+    /*margin-left: 30%;
+    margin-top: 6%;*/
+    margin-left: auto;
+    margin-right: auto;  
   }
+
   /*contenido de carousel*/
   .imagen1{
     width: 100%;
@@ -71,6 +114,9 @@
     width: 5rem;
     height: 5rem;
     align-content: center;
+  }
+  .imagen2:hover{
+    cursor:pointer;
   }
   /*logoNav*/
   .logo{

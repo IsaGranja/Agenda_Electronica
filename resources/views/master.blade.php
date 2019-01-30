@@ -12,28 +12,18 @@
     <link rel="stylesheet" type="text/css" media="screen" href="{{ url('js/jquery-3.3.1.slim.min.js') }}" />
     <link rel="stylesheet" type="text/css" media="screen" href="{{ url('js/popper.min.js') }}" />
 </head>
-<body>
+<body class="col-12 colorPUCE">
     {{-- Navbar --}}
-    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: rgb(76, 191, 220);">
-        <a class="navbar-brand" href='http://www.puce.edu.ec' style="background-color: rgb(76, 191, 220);"><img class="logo" src="{{ url('img/puceLogo.jpg') }}"></a>
+    <nav class="navbar navbar-expand-lg col-12 navbar-light colorPUCE">
+        <a class="navbar-brand" href='http://www.puce.edu.ec'><img class="logo" src="{{ url('img/puceLogo.jpg') }}"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent" style="background-color: rgb(76, 191, 220);">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Opciones Multimedia
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="{{ url('/pagAudio') }}">Audio</a>
-                    <a class="dropdown-item" href="{{ url('/pagVideo') }}">Video</a>
-                    <a class="dropdown-item" href="{{ url('/pagImagen') }}">Imagen</a>
-                    </div>
-                </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="{{ url('/') }}">Refrescar <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="{{ url('/') }}">Descargar SCORM <span class="sr-only">(current)</span></a>
                 </li>
             </ul>
             <ul class="navbar-nav">
@@ -44,7 +34,7 @@
         </div>
     </nav>
     {{-- Body --}}
-    <div class="row">
+    <section class="row">
         <div class="col-md-3 col-lg-2 d-none d-md-block fondoizq">@yield('content-izq')</div>
         <div class="col-sm-6 col-md-5 col-lg-7 fondocentro">
             <center>
@@ -54,24 +44,140 @@
                     <center>@yield('content')
                     </td>
                 </tr>
-                <tr class="containerPri2">
+                <tr class="containerPri2 colorFondoIconos">
                     <center>
-                    <td><center><img class="imagen2" src="{{ url('img/photo.ico') }}"></td>
-                    <td><center><img class="imagen2" src="{{ url('img/Music.ico') }}"></td>
-                    <td><center><img class="imagen2" src="{{ url('img/Video.ico') }}"></td>
-                    <td><center><img class="imagen2" src="{{ url('img/Question_mark.ico') }}"></td>
-                    <td><center><img class="imagen2" src="{{ url('img/info.ico') }}"></td>
+                    <td>
+                        <center>
+                            <img class="image-responsive imagen2" id="imagen" src="{{ url('img/photo.ico') }}">
+                            <div id="mimodal" class="modal fade" role="dialog">
+                                <div id="mimodal" class="modal-dialog imagen">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1>imagen</h1>    
+                                            <button class="close" data-dismiss="modal">&times;</button>                                            
+                                        </div>
+                                        <div class="modal-body">
+                                         <img src="" class="recibir-imagen" width="100%" height="100%">
+                                        </div>
+                                    </div>                            
+                                </div>
+                            </div>                    
+                    </td>
+                    <td>
+                        <center>
+                            <img class="image-responsive imagen2" id="audio" src="{{ url('img/Music.ico') }}">
+                            <div id="mimodal2" class="modal fade" role="dialog">
+                                <div id="mimodal" class="modal-dialog imagen">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1>audio</h1>    
+                                            <button class="close" data-dismiss="modal">&times;</button>                                                
+                                        </div>
+                                        <div class="modal-body">
+                                            <audio controls>
+                                            <source src="" class="recibir-audio" type="audio/mpeg">
+                                            </audio>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>                    
+                    </td>
+                    <td>
+                        <center>
+                            <img class="image-responsive imagen2" id="video" src="{{ url('img/Video.ico') }}">
+                            <div id="mimodal3" class="modal fade" role="dialog">
+                                <div id="mimodal" class="modal-dialog imagen">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1>video</h1>    
+                                            <button class="close" data-dismiss="modal">&times;</button>                                                
+                                        </div>
+                                        <div class="modal-body">
+                                            <img src="" class="recibir-video" width="100%" height="100%">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>  
+                    </td>
+                    <td>
+                        <center>
+                            <img class="image-responsive imagen2" id="evaluaciones" src="{{ url('img/Question_mark.ico') }}">
+                            <div id="mimodal4" class="modal fade" role="dialog">
+                                <div id="mimodal" class="modal-dialog imagen">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1>evaluaciones</h1>    
+                                            <button class="close" data-dismiss="modal">&times;</button>                                                
+                                        </div>
+                                        <div class="modal-body">
+                                            <img src="" class="recibir-evaluaciones" width="100%" height="100%">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>   
+                    </td>
+                    <td>
+                        <center>
+                            <img class="image-responsive imagen2" id="informacion_adicional" src="{{ url('img/info.ico') }}">
+                            <div id="mimodal5" class="modal fade" role="dialog">
+                                <div id="mimodal" class="modal-dialog imagen">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1>informacion adicional</h1>    
+                                            <button class="close" data-dismiss="modal">&times;</button>                                                
+                                        </div>
+                                        <div class="modal-body">
+                                            <img src="" class="recibir-info" width="100%" height="100%">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> 
+                    </td>
+                    <script type="text/javascript">
+                    $(document).ready(function()
+                    {
+                        $('.imagen2').click(function(){
+                                var imagenT=$(this).attr('src');
+                                var imagenID=$(this).attr('id'); 
+                                $(this).removeData();                            
+                            if(imagenT==""){
+                                $('.recibir-imagen').attr('src',"{{ url('img/Image-not-found.gif') }}");
+                                $('#mimodal').modal();
+                            }else{
+                                if(imagenID=="imagen")
+                                {
+                                    $('.recibir-imagen').attr('src',"{{ url('img/beagle.jpg') }}"); //aqui se coloca la imagen que desea cargar
+                                    $('#mimodal').modal();     
+                                }else if(imagenID=="audio"){
+                                    $('.recibir-audio').attr('src',"{{ url('img/avicii_levels.mp3') }}"); //aqui se coloca el audio que desea cargar
+                                    $('.recibir-audio').attr('type',"audio/mpeg");
+                                    $('#mimodal2').modal();  
+                                }else if(imagenID=="video"){
+                                    $('.recibir-video').attr('src',"{{ url('img/Video.ico') }}"); //aqui se coloca el video que desea cargar
+                                    $('#mimodal3').modal();  
+                                }else if(imagenID=="evaluaciones"){
+                                    $('.recibir-evaluaciones').attr('src',"{{ url('img/Question_mark.ico') }}"); //aqui se coloca la evaluacion que desea cargar
+                                    $('#mimodal4').modal();  
+                                }else if(imagenID=="informacion_adicional"){
+                                    $('.recibir-info').attr('src',"{{ url('img/info.ico') }}"); //aqui se coloca la infoAdicional que desea cargar
+                                    $('#mimodal5').modal();  
+                                }
+                            }                                
+                        });
+                    });
+                    </script>
                 </tr>
             </table>
         </div>
-        <div class="form-group sidenav col-sm-6 col-md-4 col-lg-3 fondoder"><center>@yield('content-der')</div>
-    </div>       
+        <div class="col-sm-6 col-md-4 col-lg-3 fondoder"><center>@yield('content-der')</div>
+</section>       
     {{-- Footer --}}
-    <div class="card">
+    <footer class="col-12 colorPUCE">
         <div class="card-body text-center">
-            This is my footer
-        </div>
-    </div>
+			<p class="micro legible center mb-0">CENTRO DE EDUCACIÓN VIRTUAL Y TECNOLOGÍA EDUCATIVA - CEVTE <br>
+             Para soporte comunicarse: <br> Teléfono: (+593) 299 1700 ext. 1509 / 1845 / 1127 
+             <br> Correo electrónico: cevte@puce.edu.ec</p>
+    </footer>
     <script src="{{ url('js/bootstrap.min.js') }}"></script>
 </body>
 </html>
