@@ -6,6 +6,7 @@
     <title>Principal</title>
     <base href="{{ URL::asset('/') }}" target="_top">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ url('css/glyphicon.css') }}" />
     <link rel="stylesheet" type="text/css" media="screen" href="{{ url('css/bootstrap.min.css') }}" />
     <link rel="stylesheet" type="text/css" media="screen" href="{{ url('css/Proyecto_AgendaElectronica-style.css') }}" />
     <script src="{{ url('js/jquery-3.3.1.min.js') }}"></script>
@@ -14,6 +15,7 @@
 </head>
 <body class="col-12 colorPUCE">
     {{-- Navbar --}}
+
     <nav class="navbar navbar-expand-lg col-12 navbar-light colorPUCE">
         <a class="navbar-brand" href='http://www.puce.edu.ec'><img class="logo" src="{{ url('img/puceLogo.jpg') }}"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -114,6 +116,7 @@
                     </td>
                     <td>
                         <center>
+
                             <img class="image-responsive imagen2" id="video" src="{{ url('img/Video.ico') }}">
                             <div id="mimodal3" class="modal fade" role="dialog">
                                 <div id="mimodal" class="modal-dialog imagen">
