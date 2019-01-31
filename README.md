@@ -1,10 +1,11 @@
 Hola Chicos! Presten atención a las siguientes indicaciones :)
 
 # Instalar:
+* Git (https://gitforwindows.org/) 
 * Node.js (https://nodejs.org/es/)
 * Composer (https://getcomposer.org/)
 * Laravel  (https://laravel.com/docs/5.7/installation)
-* Visual Studio Code (https://code.visualstudio.com/) o Git (https://gitforwindows.org/) como terminal de comandos
+* Visual Studio Code (https://code.visualstudio.com/)
 * PostgreSQL y pgAdmin 4 (https://www.youtube.com/watch?v=e1MwsT5FJRQ&vl=es) 
 
 # --------------1ra opción para manejo de repositorios: Recomendamos utilizar Visual Studio Code en base a este video y esta guía:---------
