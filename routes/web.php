@@ -24,7 +24,8 @@ Route::get('/pagAudio','HomeController@audioFunc');
 Route::get('/pagVideo','HomeController@videoFunc');
 Route::get('/pagImagen','HomeController@imagenFunc');
 
-Route::view('/pagProvincias','provincias');
+Route::resource('/pagProvincias','ProvinciaController');
+//Route::get('/pagProvincias','ProvinciaController@index');
 Route::view('/pagCiudades','ciudades');
 Route::view('/pagUniversidades','universidades');
 Route::view('/pagSedes','sedes');
