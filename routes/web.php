@@ -24,8 +24,14 @@ Route::get('/pagAudio','HomeController@audioFunc');
 Route::get('/pagVideo','HomeController@videoFunc');
 Route::get('/pagImagen','HomeController@imagenFunc');
 
-Route::resource('/pagProvincias','ProvinciaController');
-//Route::get('/pagProvincias','ProvinciaController@index');
+
+Route::get('/pagProvincias','ProvinciaController@index');
+Route::get('/pagProvincias/crear','ProvinciaController@create');
+Route::post('/pagProvincias/crear','ProvinciaController@store');
+Route::get('/pagProvincias/editar/{codprovincia}','ProvinciaController@edit');
+Route::post('/pagProvincias/editar/{codprovincia}','ProvinciaController@update');
+Route::get('/pagProvincias/{codprovincia}','ProvinciaController@destroy');
+
 Route::view('/pagCiudades','ciudades');
 Route::view('/pagUniversidades','universidades');
 Route::view('/pagSedes','sedes');

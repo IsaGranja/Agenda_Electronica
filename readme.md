@@ -1,10 +1,11 @@
 Hola Chicos! Presten atención a las siguientes indicaciones :)
 
 # Instalar:
+* Git (https://gitforwindows.org/) 
 * Node.js (https://nodejs.org/es/)
 * Composer (https://getcomposer.org/)
 * Laravel  (https://laravel.com/docs/5.7/installation)
-* Visual Studio Code (https://code.visualstudio.com/) o Git (https://gitforwindows.org/) como terminal de comandos
+* Visual Studio Code (https://code.visualstudio.com/)
 * PostgreSQL y pgAdmin 4 (https://www.youtube.com/watch?v=e1MwsT5FJRQ&vl=es) 
 
 # --------------1ra opción para manejo de repositorios: Recomendamos utilizar Visual Studio Code en base a este video y esta guía:---------
@@ -32,3 +33,41 @@ Hola Chicos! Presten atención a las siguientes indicaciones :)
 # --------------Si tienen alguna pregunta no duden en contactarnos:--------------
 * Jose Salgado: 0994241512 - josesalgado7@hotmail.com
 * Isabel Granja: 0984483181 - maisa_178@hotmail.com
+# ----------Conexión Laravel - PostgreSQL
+* Cambiar en el archivo .env de acuerdo a sus propios datos como el puerto, el nombre de la base, el usuario y la contraseña:
+DB_CONNECTION=pgsql
+DB_HOST=127.0.0.1
+DB_PORT=5433
+DB_DATABASE=Cuaderno_Estudiantil
+DB_USERNAME=postgres
+DB_PASSWORD=admin
+* Cambiar el archivo database.php que se encuentra ubicado en la carpeta config:
+ Poner en default a postreSQL:
+'default' => env('DB_CONNECTION', 'pgsql'),
+* Cambiar en la parte que dice 'pgsql' lo siguiente de acuerdo a sus propios datos como el puerto, el nombre de la base, el usuario y la contraseña:
+'pgsql' => [
+            'driver' => 'pgsql',
+            'host' => env('DB_HOST', '127.0.0.1'),
+            'port' => env('DB_PORT', '5433'),
+            'database' => env('DB_DATABASE', 'Cuaderno_Estudiantil'),
+            'username' => env('DB_USERNAME', 'postgres'),
+            'password' => env('DB_PASSWORD', 'admin'),
+            'charset' => 'utf8',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'schema' => 'public',
+            'sslmode' => 'prefer',
+        ],
+ * Luego, en el archivo php.ini descomentar estas líneas eliminando el punto y coma ;
+ ;extension=php_pgsql.dll
+ ;extension=php_pdo_pgsql.dll
+ Debe quedar así:
+ extension=php_pgsql.dll
+ extension=php_pdo_pgsql.dll
+ *Luego por comandos limpiar el caché:
+php artisan cache:clear
+php artisan config:clear
+
+#----Nota importante-----
+Al hacer push no enviar el archivo .env y el de database.php ya que cada uno lo tiene de diferente forma
+ 
