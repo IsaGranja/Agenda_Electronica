@@ -13,9 +13,8 @@
     <link rel="stylesheet" type="text/css" media="screen" href="{{ url('js/jquery-3.3.1.slim.min.js') }}" />
     <link rel="stylesheet" type="text/css" media="screen" href="{{ url('js/popper.min.js') }}" />
 </head>
-<body class="col-12 colorPUCE">
+<body class="col-12 colorPUCE">   
     {{-- Navbar --}}
-
     <nav class="navbar navbar-expand-lg col-12 navbar-light colorPUCE">
         <a class="navbar-brand" href='http://www.puce.edu.ec'><img class="logo" src="{{ url('img/puceLogo.jpg') }}"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -55,7 +54,7 @@
             </ul>
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="{{ url('/') }}">Descargar SCORM <span class="sr-only">(current)</span></a>
+                    <a class="nav-link"  href="{{ url('/') }}">Descargar SCORM <span class="sr-only">(current)</span></a>
                 </li>
             </ul>
             <ul class="navbar-nav">
@@ -68,11 +67,11 @@
     {{-- Body --}}
     <section class="row">
         <div class="col-md-3 col-lg-2 d-none d-md-block fondoizq">@yield('content-izq')</div>
-        <div class="col-sm-6 col-md-5 col-lg-7 fondocentro">
+        <div class="col-sm-6 col-md-5 col-lg-8 fondocentro">
             <center>
-            <table border="0">
+            <table border="0 cuerpo">
                 <tr class="containerPri1">
-                    <td colspan="6">
+                    <td class="cuerpo" colspan="12">
                     <center>@yield('content')
                     </td>
                 </tr>
@@ -80,7 +79,7 @@
                     <center>
                     <td>
                         <center>
-                            <img class="image-responsive imagen2" id="imagen" src="{{ url('img/photo.ico') }}">
+                            <img class="image-responsive imagen2" title="Imagen" id="imagen" src="{{ url('img/photo.ico') }}">
                             <div id="mimodal" class="modal fade" role="dialog">
                                 <div id="mimodal" class="modal-dialog imagen">
                                     <div class="modal-content">
@@ -89,7 +88,7 @@
                                             <button class="close" data-dismiss="modal">&times;</button>                                            
                                         </div>
                                         <div class="modal-body">
-                                         <img src="" class="recibir-imagen" width="100%" height="100%">
+                                         <img src="" class="recibir-imagen" width="100%" height="100%">                                            
                                         </div>
                                     </div>                            
                                 </div>
@@ -97,7 +96,7 @@
                     </td>
                     <td>
                         <center>
-                            <img class="image-responsive imagen2" id="audio" src="{{ url('img/Music.ico') }}">
+                            <img class="image-responsive imagen2" title="Audio" id="audio" src="{{ url('img/Music.ico') }}">
                             <div id="mimodal2" class="modal fade" role="dialog">
                                 <div id="mimodal" class="modal-dialog imagen">
                                     <div class="modal-content">
@@ -117,7 +116,7 @@
                     <td>
                         <center>
 
-                            <img class="image-responsive imagen2" id="video" src="{{ url('img/Video.ico') }}">
+                            <img class="image-responsive imagen2" title="Video" id="video" src="{{ url('img/Video.ico') }}">
                             <div id="mimodal3" class="modal fade" role="dialog">
                                 <div id="mimodal" class="modal-dialog imagen">
                                     <div class="modal-content">
@@ -134,7 +133,7 @@
                     </td>
                     <td>
                         <center>
-                            <img class="image-responsive imagen2" id="evaluaciones" src="{{ url('img/Question_mark.ico') }}">
+                            <img class="image-responsive imagen2" title="Evaluaciones" id="evaluaciones" src="{{ url('img/Question_mark.ico') }}">
                             <div id="mimodal4" class="modal fade" role="dialog">
                                 <div id="mimodal" class="modal-dialog imagen">
                                     <div class="modal-content">
@@ -151,7 +150,7 @@
                     </td>
                     <td>
                         <center>
-                            <img class="image-responsive imagen2" id="informacion_adicional" src="{{ url('img/info.ico') }}">
+                            <img class="image-responsive imagen2" title="Informacion Adicional" id="informacion_adicional" src="{{ url('img/info.ico') }}">
                             <div id="mimodal5" class="modal fade" role="dialog">
                                 <div id="mimodal" class="modal-dialog imagen">
                                     <div class="modal-content">
@@ -168,7 +167,7 @@
                     </td>
                     <td>
                         <center>
-                            <img class="image-responsive imagen2" id="glosario" src="{{ url('img/glosario.ico') }}">
+                            <img class="image-responsive imagen2" title="Glosario" id="glosario" src="{{ url('img/glosario.ico') }}">
                             <div id="mimodal6" class="modal fade" role="dialog">
                                 <div id="mimodal" class="modal-dialog imagen">
                                     <div class="modal-content">
@@ -222,7 +221,7 @@
                 </tr>
             </table>
         </div>
-        <div class="col-sm-6 col-md-4 col-lg-3 fondoder"><center>@yield('content-der')</div>
+        <div class="col-sm-6 col-md-4 col-lg-2 fondoder"><center>@yield('content-der')</div>
 </section>       
     {{-- Footer --}}
     <footer class="col-12 colorPUCE">

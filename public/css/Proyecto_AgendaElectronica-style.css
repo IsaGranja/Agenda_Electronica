@@ -34,6 +34,7 @@ textarea{
     background-color: rgb(87, 136, 205);
     height: 33rem;
     margin: none;
+    width: 100%;
 }
 .fondoder{
     background-color: rgb(34, 34, 34);
@@ -47,6 +48,14 @@ textarea{
 }
 .containerPri2{
   height: 7rem;
+}
+.containerDer1{
+  height: 16.5rem;
+  width: 100%;
+}
+.containerDer2{
+  height: 16.5rem;
+  width: 100%;
 }
 .colorToggle {
   color: rgb(76, 191, 220);
@@ -65,6 +74,13 @@ textarea{
 .scroll{
   overflow-x: scroll;
   overflow-y: scroll;
+}
+.form-control{
+  height: 16.5rem;
+  max-height: 16.5rem;
+}
+.cuerpo{
+  width: 100%;
 }
 /* CUSTOMIZE THE CAROUSEL
 -------------------------------------------------- */
@@ -85,10 +101,12 @@ textarea{
   /* Declare heights because of positioning of img element */
   .carousel-item {
     height: 26rem;
+    width: 100%;
   }
   .carousel-control-prev,
   .carousel-control-next{
       height: 26rem;
+      width: 15%;
   }
   /*imagen desplegable por iconos*/
   .imagen{  
