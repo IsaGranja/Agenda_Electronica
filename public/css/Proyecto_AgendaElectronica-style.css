@@ -67,6 +67,7 @@ textarea{
 }
 .colorPUCE{
   background-color: rgb(76, 191, 220);
+  height: 50%;
 }
 .colorFondoIconos{
   background-color: rgba(108, 108, 110, 0.144);
@@ -128,8 +129,8 @@ textarea{
   }
   /*iconos*/
   .imagen2{
-    width: 5rem;
-    height: 5rem;
+    width: 5.5rem;
+    height: 5.5rem;
     align-content: center;
     background:  rgb(226, 217, 195);
     border-radius: 50%;
@@ -165,3 +166,25 @@ textarea{
   .static:hover {
     opacity:0;
   }
+
+   /* TEXTAREA ANOTACIONES
+  -------------------------------------------------- */ 
+input {
+  box-sizing: border-box;
+  margin: 5px 0 15px 0;
+  padding: 5px;
+  width: 100%;
+}
+textarea {
+  font: 12px arial;
+  margin: 5px 0 15px 0;
+  padding: 5px 2px;
+  width: 100%;  
+}
+.borderojo {
+  outline: none;
+  border: 1px solid #f00;
+}
+.bordegris { 
+  border: 1px solid rgb(73, 72, 72);
+}

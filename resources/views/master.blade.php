@@ -10,8 +10,10 @@
     <link rel="stylesheet" type="text/css" media="screen" href="{{ url('css/bootstrap.min.css') }}" />
     <link rel="stylesheet" type="text/css" media="screen" href="{{ url('css/Proyecto_AgendaElectronica-style.css') }}" />
     <script src="{{ url('js/jquery-3.3.1.min.js') }}"></script>
+    <script src="{{ url('js/Proyecto.js') }}"></script>
     <link rel="stylesheet" type="text/css" media="screen" href="{{ url('js/jquery-3.3.1.slim.min.js') }}" />
     <link rel="stylesheet" type="text/css" media="screen" href="{{ url('js/popper.min.js') }}" />
+    
 </head>
 <body class="col-12 colorPUCE" onload="InitThis();">   
     {{-- Navbar --}}

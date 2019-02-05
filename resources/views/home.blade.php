@@ -35,38 +35,9 @@
     <tr class="containerDer1">
       <td>
         <div class="colorHeaderToggle" style="font-size:14px">
-            <label for="comment">Anotaciones del Estudiante: </label>
-            <textarea class="form-control bordegris" maxlength="500" style="margin-bottom: 1rem;" name="anotaciones" id="comentarioEstudiante" rows="19" autofocus></textarea>
+            <label for="comment">Anotaciones: </label><br>
             <label> Caracteres restantes: <span style="color: white;">500</span></label>
-            <script>
-              var inputs = "textarea[maxlength]";
-              $(document).on('keyup', "[maxlength]", function (e) {
-                  var este = $(this),
-                      maxlength = este.attr('maxlength'),
-                      maxlengthint = parseInt(maxlength),
-                      textoActual = este.val(),
-                      currentCharacters = este.val().length;
-                      remainingCharacters = maxlengthint - currentCharacters,
-                      espan = este.prev('label').find('span');            
-                      // Detectamos si es IE9 y si hemos llegado al final, convertir el -1 en 0 - bug ie9 porq. no coge directamente el atributo 'maxlength' de HTML5
-                      if (document.addEventListener && !window.requestAnimationFrame) {
-                          if (remainingCharacters <= -1) {
-                              remainingCharacters = 0;            
-                          }
-                      }
-                      espan.html(remainingCharacters);
-                      if (!!maxlength) {
-                          var texto = este.val(); 
-                          if (texto.length >= maxlength) {
-                              este.val(text.substring(0, maxlength));
-                              e.preventDefault();
-                          }
-                          else if (texto.length < maxlength) {
-                              //lols
-                          }   
-                      }   
-                 });
-            </script>
+            <textarea maxlength="500" class="form-control bordegris" style="margin-bottom: 1rem;" name="anotaciones" id="comentarioEstudiante" rows="19" autofocus></textarea>
         </div>
       </td>
     <tr>
