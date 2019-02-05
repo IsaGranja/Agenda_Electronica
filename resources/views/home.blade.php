@@ -1,3 +1,4 @@
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 @extends('master')
 {{-- Body --}}
 @section('content-izq')
@@ -31,7 +32,7 @@
 @endsection
 
 @section('content-der')
-  <table border='0' style="width: 100%;">
+    <table border='0' style="width: 100%;">
     <tr class="containerDer1">
       <td>
         <div class="colorHeaderToggle" style="font-size:14px">
@@ -74,91 +75,39 @@
               </td>              
             </tr>
             <tr>
-              <td colspan="2"><center><button onclick="javascript:clearArea();return false;">Limpiar Contenido</button></td>
+              <td colspan="2"><center><button onclick="javascript:clearArea();return false;">Limpiar</button></td>
             </tr>
             <tr>
             <td>
                 <center>  
-                <button onclick="javascript:LoadImage();return false;">Cargar Imagen</button>
+                <button onclick="javascript:LoadImage();return false;">Cargar</button>
               </td>
               <td>
                 <center>
-                <button onclick="#">Guardar Imagen</button>
+                <button onclick="javascript:guardar();return false;">Guardar</button>
+                <script>
+                          function guardar(){
+                            var canvas = document.getElementById("myCanvas");
+                            var dataURL = canvas.toDataURL();    
+                            $.ajax({
+                            type: "POST",
+                            url: "{{ url('img/script.php') }}",
+                            data: { 
+                                imgBase64: dataURL
+                            }
+                            }).done(function(o) {
+                            console.log('saved'); 
+                            // If you want the file to be visible in the browser 
+                            // - please modify the callback in javascript. All you
+                            // need is to return the url to the file, you just saved 
+                            // and than put the image in your browser.
+                            });
+                        }
+                </script>                
               </td>
             </tr>
           </table>
-        <script>
-        var mousePressed = false;
-        var lastX, lastY;
-        var ctx;
-        var canvas;
-        var contL;
-        function InitThis() {
-            canvas = document.getElementById("myCanvas");
-            ctx = document.getElementById('myCanvas').getContext("2d");             
-            //contL = document.getElementById('contenedorG');
-            // parseInt(paint_style.getPropertyValue('height'))---window.innerHeight()
-            ctx.canvas.width = 323;
-            ctx.canvas.height = 161;           
-            $('#myCanvas').mousedown(function (e) {
-                mousePressed = true;
-                Draw(e.pageX - $(this).offset().left, e.pageY - $(this).offset().top, false);
-                
-            });
-
-            $('#myCanvas').mousemove(function (e) {
-                if (mousePressed) {
-                    Draw(e.pageX - $(this).offset().left, e.pageY - $(this).offset().top, true);
-                }
-            });
-
-            $('#myCanvas').mouseup(function (e) {
-                mousePressed = false;
-            });
-                $('#myCanvas').mouseleave(function (e) {
-                mousePressed = false;
-            });
-            ctx.fillStyle = 'rgba(255,255,255)';
-            ctx.fillRect(0,0,window.innerWidth,window.innerHeight);
-        }
-
-        function Draw(x, y, isDown) {
-            if (isDown) {
-                ctx.beginPath();
-                ctx.strokeStyle = $('#selColor').val();
-                ctx.lineWidth = $('#selWidth').val();
-                ctx.lineJoin = "round";
-                ctx.moveTo(lastX, lastY);
-                ctx.lineTo(x, y);
-                ctx.closePath();
-                ctx.stroke();
-            }
-            lastX = x; lastY = y;
-        }
-            
-        function clearArea() {
-            // Use the identity matrix while clearing the canvas
-            ctx.setTransform(1, 0, 0, 1, 0, 0);
-            ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-            ctx.fillStyle = 'rgba(255,255,255)';
-            ctx.fillRect(0,0,window.innerWidth,window.innerHeight);
-        }
-        /*function LoadImage() {
-            if (canvas != null) {
-                if (canvas.getContext) {
-                    var context = canvas.getContext('2d');
-                    var img = new Image();
-                    img.src = "{{ url('img/photo.ico') }}";  //moved up for cosmetics
-                    img.onload = function () {
-                        context.drawImage(img, 15, 15, 620, 475);
-                        ***DrawMarkedItems();***
-                    }                    
-                }
-            }
-        }*/
-        </script>
       </td>
     </tr>
   </table>
-    
 @endsection

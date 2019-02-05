@@ -69,7 +69,7 @@
     {{-- Body --}}
     <section class="row">
         <div class="col-md-3 col-lg-2 d-none d-md-block fondoizq">@yield('content-izq')</div>
-        <div class="col-sm-6 col-md-5 col-lg-7 fondocentro">
+        <div class="col-sm-6 col-md-5 col-lg-8 fondocentro">
             <center>
             <table border="0 cuerpo">
                 <tr class="containerPri1">
@@ -102,7 +102,7 @@
                             <img class="image-responsive imagen2 static" title="Audio" id="audio" src="{{ url('img/iconos/customize/static.png') }}">
                             <img class="image-responsive imagen2" title="Audio" id="audio" src="{{ url('img/iconos/customize/animat-customize-color.gif') }}">
                             <div id="mimodal2" class="modal fade" role="dialog">
-                                <div id="mimodal" class="modal-dialog imagen">
+                                <div id="mimodal2" class="modal-dialog imagen">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h1>audio</h1>    
@@ -110,8 +110,9 @@
                                         </div>
                                         <div class="modal-body">
                                             <audio controls>
-                                            <source src="" class="recibir-audio" type="audio/mpeg">
-                                            </audio>
+                                                <source src="" class="recibir-audio" type="audio/mpeg">
+                                                <source src="" class="recibir-audio" type="audio/ogg">
+                                                <!--https://developer.mozilla.org/en-US/docs/Web/Apps/Fundamentals/Audio_and_video_delivery/Cross-browser_audio_basics-->
                                         </div>
                                     </div>
                                 </div>
@@ -122,14 +123,18 @@
                         <img class="image-responsive imagen2 static" title="Video" id="video" src="{{ url('img/iconos/video/static.png') }}">
                             <img class="image-responsive imagen2" title="Video" id="video" src="{{ url('img/iconos/video/animat-video-color.gif') }}">
                             <div id="mimodal3" class="modal fade" role="dialog">
-                                <div id="mimodal" class="modal-dialog imagen">
+                                <div id="mimodal3" class="modal-dialog imagen">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h1>video</h1>    
                                             <button class="close" data-dismiss="modal">&times;</button>                                                
                                         </div>
                                         <div class="modal-body">
-                                            <img src="" class="recibir-video" width="100%" height="100%">
+                                            <video controls width="100%" height="100%>
+                                                <source src="" class="recibir-video" type="video/mp4" />
+                                                <source src="" class="recibir-video" type="video/ogg" />
+                                                <source src="" class="recibir-video" type="video/webm" />
+                                            </video>                                            
                                         </div>
                                     </div>
                                 </div>
@@ -140,7 +145,7 @@
                         <img class="image-responsive imagen2 static" title="Evaluaciones" id="evaluaciones" src="{{ url('img/iconos/evaluacion/evaluacion.png') }}">
                             <img class="image-responsive imagen2" title="Evaluaciones" id="evaluaciones" src="{{ url('img/iconos/evaluacion/evaluacion.gif') }}">
                             <div id="mimodal4" class="modal fade" role="dialog">
-                                <div id="mimodal" class="modal-dialog imagen">
+                                <div id="mimodal4" class="modal-dialog imagen">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h1>evaluaciones</h1>    
@@ -158,7 +163,7 @@
                         <img class="image-responsive imagen2 static" title="Informacion Adicional" id="informacion_adicional" src="{{ url('img/iconos/lightbulb/static.png') }}">
                             <img class="image-responsive imagen2" title="Informacion Adicional" id="informacion_adicional" src="{{ url('img/iconos/lightbulb/animat-lightbulb-color.gif') }}">
                             <div id="mimodal5" class="modal fade" role="dialog">
-                                <div id="mimodal" class="modal-dialog imagen">
+                                <div id="mimodal5" class="modal-dialog imagen">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h1>informacion adicional</h1>    
@@ -176,7 +181,7 @@
                         <img class="image-responsive imagen2 static" title="Glosario" id="glosario" src="{{ url('img/iconos/search/static.png') }}">
                             <img class="image-responsive imagen2" title="Glosario" id="glosario" src="{{ url('img/iconos/search/animat-search-color.gif') }}">
                             <div id="mimodal6" class="modal fade" role="dialog">
-                                <div id="mimodal" class="modal-dialog imagen">
+                                <div id="mimodal6" class="modal-dialog imagen">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h1>glosario</h1>    
@@ -193,15 +198,15 @@
                         <center>
                         <img class="image-responsive imagen2 static" title="Talleres" id="talleres" src="{{ url('img/iconos/pencil/static.png') }}">
                             <img class="image-responsive imagen2" title="Talleres" id="talleres" src="{{ url('img/iconos/pencil/animat-pencil-color.gif') }}">
-                            <div id="mimodal6" class="modal fade" role="dialog">
-                                <div id="mimodal" class="modal-dialog imagen">
+                            <div id="mimodal7" class="modal fade" role="dialog">
+                                <div id="mimodal7" class="modal-dialog imagen">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h1>Talleres</h1>    
                                             <button class="close" data-dismiss="modal">&times;</button>                                                
                                         </div>
                                         <div class="modal-body">
-                                            <img src="" class="recibir-glosario" width="100%" height="100%">
+                                            <img src="" class="recibir-talleres" width="100%" height="100%">
                                         </div>
                                     </div>
                                 </div>
@@ -224,10 +229,11 @@
                                     $('#mimodal').modal();     
                                 }else if(imagenID=="audio"){
                                     $('.recibir-audio').attr('src',"{{ url('img/avicii_levels.mp3') }}"); //aqui se coloca el audio que desea cargar
-                                    $('.recibir-audio').attr('type',"audio/mpeg");
+                                    //$('.recibir-audio').attr('type',"audio/mpeg");
+                                    //$('.recibir-audio').attr('type',"audio/ogg");
                                     $('#mimodal2').modal();  
                                 }else if(imagenID=="video"){
-                                    $('.recibir-video').attr('src',"{{ url('img/Video.ico') }}"); //aqui se coloca el video que desea cargar
+                                    $('.recibir-video').attr('src',"{{ url('img/mundos.mp4') }}"); //aqui se coloca el video que desea cargar
                                     $('#mimodal3').modal();  
                                 }else if(imagenID=="evaluaciones"){
                                     $('.recibir-evaluaciones').attr('src',"{{ url('img/Question_mark.ico') }}"); //aqui se coloca la evaluacion que desea cargar
@@ -238,6 +244,9 @@
                                 }else if(imagenID=="glosario"){
                                     $('.recibir-glosario').attr('src',"{{ url('img/glosario.ico') }}"); //aqui se coloca la infoAdicional que desea cargar
                                     $('#mimodal6').modal();  
+                                }else if(imagenID=="talleres"){
+                                    $('.recibir-talleres').attr('src',"{{ url('img/puceLogo.jpg') }}"); //aqui se coloca la infoAdicional que desea cargar
+                                    $('#mimodal7').modal();  
                                 }
                             }                                
                         });
@@ -246,7 +255,7 @@
                 </tr>
             </table>
         </div>
-        <div class="col-sm-6 col-md-4 col-lg-3 fondoder"><center>@yield('content-der')</div>
+        <div class="col-sm-6 col-md-4 col-lg-2 fondoder"><center>@yield('content-der')</div>
 </section>       
     {{-- Footer --}}
     <footer class="col-12 colorPUCE">

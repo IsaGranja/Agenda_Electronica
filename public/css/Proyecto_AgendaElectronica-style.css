@@ -188,3 +188,10 @@ textarea {
 .bordegris { 
   border: 1px solid rgb(73, 72, 72);
 }
+.derT{
+  resize: both;
+  overflow: auto;
+  border: 2px solid;
+  padding: 20px;
+  width:300px;
+}
