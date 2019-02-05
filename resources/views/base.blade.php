@@ -66,9 +66,8 @@
     {{-- Footer --}}
     <footer class="col-12 colorPUCE">
         <div class="card-body text-center">
-			<p class="micro legible center mb-0">CENTRO DE EDUCACIÓN VIRTUAL Y TECNOLOGÍA EDUCATIVA - CEVTE <br>
-             Para soporte comunicarse: <br> Teléfono: (+593) 299 1700 ext. 1509 / 1845 / 1127 
-             <br> Correo electrónico: cevte@puce.edu.ec</p>
+			<p class="micro legible center mb-0">LABORATORIO DE TECNOLOGÍAS DE LA INFORMACIÓN - Facultad de Ingeniería - Escuela de Sistemas
+            <br> Teléfono: (+593)  ext.  /  /  - Correo electrónico: @puce.edu.ec</p>
     </footer>
     <script src="{{ url('js/bootstrap.min.js') }}"></script>
 </body>

@@ -133,6 +133,8 @@ textarea{
     width: 5rem;
     height: 5rem;
     align-content: center;
+    background:  rgb(87, 136, 205);
+    border-radius: 50%;
   }
   .imagen2:hover{
     cursor:pointer;
@@ -153,4 +155,13 @@ textarea{
       font-size: 1.25rem;
       line-height: 1.4;
     }
+  }
+
+  .static {
+    position:absolute;
+    background:  rgb(87, 136, 205);
+  }
+  
+  .static:hover {
+    opacity:0;
   }

@@ -54,12 +54,12 @@
             </ul>
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link"  href="{{ url('/') }}">Descargar SCORM <span class="sr-only">(current)</span></a>
+                    <a class="nav-link"  href="{{ url('/') }}">Descargar <span class="sr-only">(current)</span></a>
                 </li>
             </ul>
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url('/pagLogin') }}">Cerrar Sesion <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="{{ url('/pagLogin') }}">Cerrar Sesión <span class="sr-only">(current)</span></a>
                 </li>
             </ul>
         </div>
@@ -79,7 +79,8 @@
                     <center>
                     <td>
                         <center>
-                            <img class="image-responsive imagen2" title="Imagen" id="imagen" src="{{ url('img/photo.ico') }}">
+                            <img class="image-responsive imagen2 static" title="Imagen" id="imagen" src="{{ url('img/animaticons/image/static.png') }}">
+                            <img class="image-responsive imagen2" title="Imagen" id="imagen" src="{{ url('img/animaticons/image/animat-image-color.gif') }}">
                             <div id="mimodal" class="modal fade" role="dialog">
                                 <div id="mimodal" class="modal-dialog imagen">
                                     <div class="modal-content">
@@ -96,7 +97,8 @@
                     </td>
                     <td>
                         <center>
-                            <img class="image-responsive imagen2" title="Audio" id="audio" src="{{ url('img/Music.ico') }}">
+                            <img class="image-responsive imagen2 static" title="Audio" id="audio" src="{{ url('img/animaticons/customize/static.png') }}">
+                            <img class="image-responsive imagen2" title="Audio" id="audio" src="{{ url('img/animaticons/customize/animat-customize-color.gif') }}">
                             <div id="mimodal2" class="modal fade" role="dialog">
                                 <div id="mimodal" class="modal-dialog imagen">
                                     <div class="modal-content">
@@ -115,8 +117,8 @@
                     </td>
                     <td>
                         <center>
-
-                            <img class="image-responsive imagen2" title="Video" id="video" src="{{ url('img/Video.ico') }}">
+                        <img class="image-responsive imagen2 static" title="Video" id="video" src="{{ url('img/animaticons/video/static.png') }}">
+                            <img class="image-responsive imagen2" title="Video" id="video" src="{{ url('img/animaticons/video/animat-video-color.gif') }}">
                             <div id="mimodal3" class="modal fade" role="dialog">
                                 <div id="mimodal" class="modal-dialog imagen">
                                     <div class="modal-content">
@@ -133,7 +135,8 @@
                     </td>
                     <td>
                         <center>
-                            <img class="image-responsive imagen2" title="Evaluaciones" id="evaluaciones" src="{{ url('img/Question_mark.ico') }}">
+                        <img class="image-responsive imagen2 static" title="Evaluaciones" id="evaluaciones" src="{{ url('img/animaticons/pencil/static.png') }}">
+                            <img class="image-responsive imagen2" title="Evaluaciones" id="evaluaciones" src="{{ url('img/animaticons/pencil/animat-pencil-color.gif') }}">
                             <div id="mimodal4" class="modal fade" role="dialog">
                                 <div id="mimodal" class="modal-dialog imagen">
                                     <div class="modal-content">
@@ -150,7 +153,8 @@
                     </td>
                     <td>
                         <center>
-                            <img class="image-responsive imagen2" title="Informacion Adicional" id="informacion_adicional" src="{{ url('img/info.ico') }}">
+                        <img class="image-responsive imagen2 static" title="Informacion Adicional" id="informacion_adicional" src="{{ url('img/animaticons/lightbulb/static.png') }}">
+                            <img class="image-responsive imagen2" title="Informacion Adicional" id="informacion_adicional" src="{{ url('img/animaticons/lightbulb/animat-lightbulb-color.gif') }}">
                             <div id="mimodal5" class="modal fade" role="dialog">
                                 <div id="mimodal" class="modal-dialog imagen">
                                     <div class="modal-content">
@@ -167,12 +171,31 @@
                     </td>
                     <td>
                         <center>
-                            <img class="image-responsive imagen2" title="Glosario" id="glosario" src="{{ url('img/glosario.ico') }}">
+                        <img class="image-responsive imagen2 static" title="Glosario" id="glosario" src="{{ url('img/animaticons/search/static.png') }}">
+                            <img class="image-responsive imagen2" title="Glosario" id="glosario" src="{{ url('img/animaticons/search/animat-search-color.gif') }}">
                             <div id="mimodal6" class="modal fade" role="dialog">
                                 <div id="mimodal" class="modal-dialog imagen">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h1>glosario</h1>    
+                                            <button class="close" data-dismiss="modal">&times;</button>                                                
+                                        </div>
+                                        <div class="modal-body">
+                                            <img src="" class="recibir-glosario" width="100%" height="100%">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </td>
+                    <td>
+                        <center>
+                        <img class="image-responsive imagen2 static" title="Talleres" id="talleres" src="{{ url('img/animaticons/search/static.png') }}">
+                            <img class="image-responsive imagen2" title="Talleres" id="talleres" src="{{ url('img/animaticons/search/animat-search-color.gif') }}">
+                            <div id="mimodal6" class="modal fade" role="dialog">
+                                <div id="mimodal" class="modal-dialog imagen">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1>Talleres</h1>    
                                             <button class="close" data-dismiss="modal">&times;</button>                                                
                                         </div>
                                         <div class="modal-body">
@@ -226,9 +249,8 @@
     {{-- Footer --}}
     <footer class="col-12 colorPUCE">
         <div class="card-body text-center">
-			<p class="micro legible center mb-0">CENTRO DE EDUCACIÓN VIRTUAL Y TECNOLOGÍA EDUCATIVA - CEVTE <br>
-             Para soporte comunicarse: <br> Teléfono: (+593) 299 1700 ext. 1509 / 1845 / 1127 
-             <br> Correo electrónico: cevte@puce.edu.ec</p>
+        <p class="micro legible center mb-0">LABORATORIO DE TECNOLOGÍAS DE LA INFORMACIÓN - Facultad de Ingeniería - Escuela de Sistemas
+        <br> Teléfono: (+593)  ext.  /  /  - Correo electrónico: @puce.edu.ec</p>
     </footer>
     <script src="{{ url('js/bootstrap.min.js') }}"></script>
 </body>
