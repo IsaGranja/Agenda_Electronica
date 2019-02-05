@@ -36,9 +36,9 @@
     <tr class="containerDer1">
       <td>
         <div class="colorHeaderToggle" style="font-size:14px">
-            <label for="comment">Anotaciones: </label><br>
-            <label> Caracteres restantes: <span style="color: white;">500</span></label>
-            <textarea maxlength="500" class="form-control bordegris" style="margin-bottom: 1rem;" name="anotaciones" id="comentarioEstudiante" rows="19" autofocus></textarea>
+            <center><label for="comment">Anotaciones: </label><br>
+            <label class="labelC" style="font-size:9px">Caracteres restantes: <span style="color: white;">500</span></label>
+            <textarea maxlength="500" class="form-control" style="margin-bottom: 1rem;" name="anotaciones" id="comentarioEstudiante" rows="19" autofocus></textarea>
         </div>
       </td>
     <tr>
@@ -84,25 +84,17 @@
               </td>
               <td>
                 <center>
-                <button onclick="javascript:guardar();return false;">Guardar</button>
+                <button onclick="javascript:download();return false;">Guardar</button><br>
+                <a hidden style="color: white;" id="downloadLnk" download="PruebaT.jpg">Download as image</a>
                 <script>
-                          function guardar(){
+                        function download() {
                             var canvas = document.getElementById("myCanvas");
-                            var dataURL = canvas.toDataURL();    
-                            $.ajax({
-                            type: "POST",
-                            url: "{{ url('img/script.php') }}",
-                            data: { 
-                                imgBase64: dataURL
-                            }
-                            }).done(function(o) {
-                            console.log('saved'); 
-                            // If you want the file to be visible in the browser 
-                            // - please modify the callback in javascript. All you
-                            // need is to return the url to the file, you just saved 
-                            // and than put the image in your browser.
-                            });
-                        }
+                            var dt = canvas.toDataURL("{{ url('img/fotos') }}");
+                            this.href = dt;
+                            downloadLnk.style.visibility = "visible";
+                            downloadLnk.addEventListener('click', download, false);                            
+                        };
+                        
                 </script>                
               </td>
             </tr>

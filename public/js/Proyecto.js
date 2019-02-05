@@ -28,7 +28,7 @@ $(document).on('keyup', "[maxlength]", function (e) {
                 e.preventDefault();
             }
             else if (texto.length < maxlength) {
-                este.removeClass().addClass("bordegris");
+                este.removeClass().addClass("form-control");
             }   
         }   
     });
@@ -83,6 +83,7 @@ $(document).on('keyup', "[maxlength]", function (e) {
         ctx.fillStyle = 'rgba(255,255,255)';
         ctx.fillRect(0,0,window.innerWidth,window.innerHeight);
     }
+    /////////
     function LoadImage() {
         if (canvas != null) {
             if (canvas.getContext) {
