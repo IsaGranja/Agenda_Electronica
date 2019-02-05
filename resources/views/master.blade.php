@@ -13,7 +13,7 @@
     <link rel="stylesheet" type="text/css" media="screen" href="{{ url('js/jquery-3.3.1.slim.min.js') }}" />
     <link rel="stylesheet" type="text/css" media="screen" href="{{ url('js/popper.min.js') }}" />
 </head>
-<body class="col-12 colorPUCE">   
+<body class="col-12 colorPUCE" onload="InitThis();">   
     {{-- Navbar --}}
     <nav class="navbar navbar-expand-lg col-12 navbar-light colorPUCE">
         <a class="navbar-brand" href='http://www.puce.edu.ec'><img class="logo" src="{{ url('img/puceLogo.jpg') }}"></a>
@@ -67,7 +67,7 @@
     {{-- Body --}}
     <section class="row">
         <div class="col-md-3 col-lg-2 d-none d-md-block fondoizq">@yield('content-izq')</div>
-        <div class="col-sm-6 col-md-5 col-lg-8 fondocentro">
+        <div class="col-sm-6 col-md-5 col-lg-7 fondocentro">
             <center>
             <table border="0 cuerpo">
                 <tr class="containerPri1">
@@ -221,7 +221,7 @@
                 </tr>
             </table>
         </div>
-        <div class="col-sm-6 col-md-4 col-lg-2 fondoder"><center>@yield('content-der')</div>
+        <div class="col-sm-6 col-md-4 col-lg-3 fondoder"><center>@yield('content-der')</div>
 </section>       
     {{-- Footer --}}
     <footer class="col-12 colorPUCE">
