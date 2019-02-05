@@ -81,8 +81,8 @@
                     <center>
                     <td>
                         <center>
-                            <img class="image-responsive imagen2 static" title="Imagen" id="imagen" src="{{ url('img/animaticons/image/static.png') }}">
-                            <img class="image-responsive imagen2" title="Imagen" id="imagen" src="{{ url('img/animaticons/image/animat-image-color.gif') }}">
+                            <img class="image-responsive imagen2 static" title="Imagen" id="imagen" src="{{ url('img/iconos/image/static.png') }}">
+                            <img class="image-responsive imagen2" title="Imagen" id="imagen" src="{{ url('img/iconos/image/animat-image-color.gif') }}">
                             <div id="mimodal" class="modal fade" role="dialog">
                                 <div id="mimodal" class="modal-dialog imagen">
                                     <div class="modal-content">
@@ -99,8 +99,8 @@
                     </td>
                     <td>
                         <center>
-                            <img class="image-responsive imagen2 static" title="Audio" id="audio" src="{{ url('img/animaticons/customize/static.png') }}">
-                            <img class="image-responsive imagen2" title="Audio" id="audio" src="{{ url('img/animaticons/customize/animat-customize-color.gif') }}">
+                            <img class="image-responsive imagen2 static" title="Audio" id="audio" src="{{ url('img/iconos/customize/static.png') }}">
+                            <img class="image-responsive imagen2" title="Audio" id="audio" src="{{ url('img/iconos/customize/animat-customize-color.gif') }}">
                             <div id="mimodal2" class="modal fade" role="dialog">
                                 <div id="mimodal" class="modal-dialog imagen">
                                     <div class="modal-content">
@@ -119,8 +119,8 @@
                     </td>
                     <td>
                         <center>
-                        <img class="image-responsive imagen2 static" title="Video" id="video" src="{{ url('img/animaticons/video/static.png') }}">
-                            <img class="image-responsive imagen2" title="Video" id="video" src="{{ url('img/animaticons/video/animat-video-color.gif') }}">
+                        <img class="image-responsive imagen2 static" title="Video" id="video" src="{{ url('img/iconos/video/static.png') }}">
+                            <img class="image-responsive imagen2" title="Video" id="video" src="{{ url('img/iconos/video/animat-video-color.gif') }}">
                             <div id="mimodal3" class="modal fade" role="dialog">
                                 <div id="mimodal" class="modal-dialog imagen">
                                     <div class="modal-content">
@@ -137,8 +137,8 @@
                     </td>
                     <td>
                         <center>
-                        <img class="image-responsive imagen2 static" title="Evaluaciones" id="evaluaciones" src="{{ url('img/animaticons/pencil/static.png') }}">
-                            <img class="image-responsive imagen2" title="Evaluaciones" id="evaluaciones" src="{{ url('img/animaticons/pencil/animat-pencil-color.gif') }}">
+                        <img class="image-responsive imagen2 static" title="Evaluaciones" id="evaluaciones" src="{{ url('img/iconos/evaluacion/evaluacion.png') }}">
+                            <img class="image-responsive imagen2" title="Evaluaciones" id="evaluaciones" src="{{ url('img/iconos/evaluacion/evaluacion.gif') }}">
                             <div id="mimodal4" class="modal fade" role="dialog">
                                 <div id="mimodal" class="modal-dialog imagen">
                                     <div class="modal-content">
@@ -155,8 +155,8 @@
                     </td>
                     <td>
                         <center>
-                        <img class="image-responsive imagen2 static" title="Informacion Adicional" id="informacion_adicional" src="{{ url('img/animaticons/lightbulb/static.png') }}">
-                            <img class="image-responsive imagen2" title="Informacion Adicional" id="informacion_adicional" src="{{ url('img/animaticons/lightbulb/animat-lightbulb-color.gif') }}">
+                        <img class="image-responsive imagen2 static" title="Informacion Adicional" id="informacion_adicional" src="{{ url('img/iconos/lightbulb/static.png') }}">
+                            <img class="image-responsive imagen2" title="Informacion Adicional" id="informacion_adicional" src="{{ url('img/iconos/lightbulb/animat-lightbulb-color.gif') }}">
                             <div id="mimodal5" class="modal fade" role="dialog">
                                 <div id="mimodal" class="modal-dialog imagen">
                                     <div class="modal-content">
@@ -173,8 +173,8 @@
                     </td>
                     <td>
                         <center>
-                        <img class="image-responsive imagen2 static" title="Glosario" id="glosario" src="{{ url('img/animaticons/search/static.png') }}">
-                            <img class="image-responsive imagen2" title="Glosario" id="glosario" src="{{ url('img/animaticons/search/animat-search-color.gif') }}">
+                        <img class="image-responsive imagen2 static" title="Glosario" id="glosario" src="{{ url('img/iconos/search/static.png') }}">
+                            <img class="image-responsive imagen2" title="Glosario" id="glosario" src="{{ url('img/iconos/search/animat-search-color.gif') }}">
                             <div id="mimodal6" class="modal fade" role="dialog">
                                 <div id="mimodal" class="modal-dialog imagen">
                                     <div class="modal-content">
@@ -191,8 +191,8 @@
                     </td>
                     <td>
                         <center>
-                        <img class="image-responsive imagen2 static" title="Talleres" id="talleres" src="{{ url('img/animaticons/search/static.png') }}">
-                            <img class="image-responsive imagen2" title="Talleres" id="talleres" src="{{ url('img/animaticons/search/animat-search-color.gif') }}">
+                        <img class="image-responsive imagen2 static" title="Talleres" id="talleres" src="{{ url('img/iconos/pencil/static.png') }}">
+                            <img class="image-responsive imagen2" title="Talleres" id="talleres" src="{{ url('img/iconos/pencil/animat-pencil-color.gif') }}">
                             <div id="mimodal6" class="modal fade" role="dialog">
                                 <div id="mimodal" class="modal-dialog imagen">
                                     <div class="modal-content">
