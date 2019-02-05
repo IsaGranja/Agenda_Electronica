@@ -85,14 +85,15 @@
               <td>
                 <center>
                 <button onclick="javascript:download();return false;">Guardar</button><br>
-                <a hidden style="color: white;" id="downloadLnk" download="PruebaT.jpg">Download as image</a>
+                <a style="color: white;" id="downloadLnk" download="PruebaT.jpg">Download as image</a>
                 <script>
                         function download() {
                             var canvas = document.getElementById("myCanvas");
+                            var link = document.getElementById("downloadLnk");
                             var dt = canvas.toDataURL("{{ url('img/fotos') }}");
                             this.href = dt;
-                            downloadLnk.style.visibility = "visible";
-                            downloadLnk.addEventListener('click', download, false);                            
+                            link.style.visibility = "visible";
+                            //downloadLnk.addEventListener('click', download, false);                            
                         };
                         
                 </script>                

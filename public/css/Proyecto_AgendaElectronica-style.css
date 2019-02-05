@@ -104,7 +104,13 @@ textarea{
   height:y; 
   text-align:right;
 }
-
+#downloadLnk {
+  visibility:hidden;
+  position: fixed;
+  width: 48px;
+  top: 0px;
+  color:white;
+}
 /* CUSTOMIZE THE CAROUSEL
 -------------------------------------------------- */
 
