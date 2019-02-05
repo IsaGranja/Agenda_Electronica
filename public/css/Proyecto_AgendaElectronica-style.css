@@ -131,7 +131,7 @@ textarea{
     width: 5rem;
     height: 5rem;
     align-content: center;
-    background:  rgb(87, 136, 205);
+    background:  rgb(226, 217, 195);
     border-radius: 50%;
   }
   .imagen2:hover{
@@ -159,10 +159,9 @@ textarea{
   -------------------------------------------------- */ 
   .static {
     position:absolute;
-    background:  rgb(87, 136, 205);
+    background:  rgb(139, 169, 211);
   }
   
   .static:hover {
     opacity:0;
-    background:  rgb(0,0,0);
   }
