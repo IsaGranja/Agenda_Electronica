@@ -18,8 +18,9 @@
 
 */
 
-Route::get('/','HomeController@homeFunc');
+Route::get('/','HomeController@loginFunc');
 Route::get('/pagLogin','HomeController@loginFunc');
+Route::get('/pagHome','HomeController@homeFunc');
 Route::get('/pagAudio','HomeController@audioFunc');
 Route::get('/pagVideo','HomeController@videoFunc');
 Route::get('/pagImagen','HomeController@imagenFunc');

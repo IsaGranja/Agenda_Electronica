@@ -36,7 +36,7 @@
     <tr class="containerDer1">
       <td>
         <div class="colorHeaderToggle" style="font-size:14px">
-            <center><label for="comment">Anotaciones: </label><br>
+            <label for="comment">Anotaciones: </label><br>
             <label class="labelC" style="font-size:9px">Caracteres restantes: <span style="color: white;">500</span></label>
             <textarea maxlength="500" class="form-control" style="margin-bottom: 1rem;" name="anotaciones" id="comentarioEstudiante" rows="19" autofocus></textarea>
         </div>
@@ -44,7 +44,7 @@
     <tr>
     <tr id="contenedorG" class="containerDer2">
       <td>
-          <table align="center">
+          <table align="center" style="width: 100%;">
             <tr>
               <td colspan="5"><center><canvas id="myCanvas" style="border:2px solid gray;"></canvas> </td>
             </tr>
@@ -62,41 +62,35 @@
                 </select>
               </td>
               <td>
-              <center> 
-              <label style="color: white;">Color: </label>
-               <select id="selColor">
-                <option value="black">Negro</option>
-                <option value="blue" selected="selected">Azul</option>
-                <option value="red">Rojo</option>
-                <option value="green">Verde</option>
-                <option value="yellow">Amarillo</option>
-                <option value="gray">Gris</option>
-                </select> 
+             <label style="color: white;">Color: </label>
+                <select id="selColor">
+                  <option value="black">Negro</option>
+                  <option value="blue" selected="selected">Azul</option>
+                  <option value="red">Rojo</option>
+                  <option value="green">Verde</option>
+                  <option value="yellow">Amarillo</option>
+                  <option value="gray">Gris</option>
+                </select>
               </td>              
             </tr>
             <tr>
-              <td colspan="2"><center><button onclick="javascript:clearArea();return false;">Limpiar</button></td>
+              <td colspan="2"><center><button style="width: 100%;" type="button" class="btn btn-primary" onclick="javascript:clearArea();return false;">Limpiar</button></td>
             </tr>
             <tr>
             <td>
                 <center>  
-                <button onclick="javascript:LoadImage();return false;">Cargar</button>
+                <button style="width: 100%;" type="button" class="btn btn-warning" onclick="javascript:LoadImage();return false;">Cargar</button>
+                <form>
+                <div class="form-group">
+                  <label for="exampleFormControlFile1">Example file input</label>
+                  <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                </div>
+              </form>
               </td>
-              <td>
+              <td width="10px">
                 <center>
-                <button onclick="javascript:download();return false;">Guardar</button><br>
-                <a style="color: white;" id="downloadLnk" download="PruebaT.jpg">Download as image</a>
-                <script>
-                        function download() {
-                            var canvas = document.getElementById("myCanvas");
-                            var link = document.getElementById("downloadLnk");
-                            var dt = canvas.toDataURL("{{ url('img/fotos') }}");
-                            this.href = dt;
-                            link.style.visibility = "visible";
-                            //downloadLnk.addEventListener('click', download, false);                            
-                        };
-                        
-                </script>                
+                <button type="button" class="btn btn-success" onclick="javascript:download();return false;">Guardar</button>
+                <a  id="downloadLnk" onclick="hide()" download="PruebaT.jpg">Descargar Imagen</a>             
               </td>
             </tr>
           </table>

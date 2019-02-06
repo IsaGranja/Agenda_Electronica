@@ -115,5 +115,19 @@ $(document).on('keyup', "[maxlength]", function (e) {
         
         baseImage.src = image64;
       }
+      //////
+      function download() {
+        var canvas = document.getElementById("myCanvas");
+        var link = document.getElementById("downloadLnk");
+        var dt = canvas.toDataURL();
+        this.href = dt;
+        link.style.visibility = "visible";
+        downloadLnk.addEventListener('click', download, false);                          
+    };
+    function hide(){
+      var link = document.getElementById("downloadLnk");
+      link.style.visibility = "hidden";
+    };
+
 
       
