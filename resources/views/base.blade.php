@@ -45,7 +45,7 @@
                     <a class="dropdown-item" href="{{ url('/pagEscuelas') }}">Escuelas</a>
                     <a class="dropdown-item" href="{{ url('/pagCarreras') }}">Carreras</a>
                     <a class="dropdown-item" href="{{ url('/pagEstudiantes') }}">Estudiantes</a>
-                    <a class="dropdown-item" href="{{ url('/pagEstudiantesExcel') }}">Estudiantes (Excel)</a>
+                    <a class="dropdown-item" href="{{ url('/pagEstudiantesExcel/create') }}">Estudiantes (Excel)</a>
                     <a class="dropdown-item" href="{{ url('/pagProfesores') }}">Profesores</a>
                     <a class="dropdown-item" href="{{ url('/pagAsignaturas') }}">Asignaturas</a>
                     <a class="dropdown-item" href="{{ url('/pagAsignaturasxEstudiante') }}">Asignaturas por estudiante</a>
