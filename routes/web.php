@@ -57,3 +57,14 @@ Route::resource('talleres', 'TalleresController');
 Route::resource('pagAsigxEstu','AsignaturaXEstudianteController');
 Route::post('actualizarAsigxestu', 'AsignaturaXEstudianteController@update');
 //Route::post('contenidos', 'ContenidosController@validarImagen');
+
+Route::resource('pagEstudiantes-excel','EstudianteExcelController');
+
+Route::resource('pagAsigxProf','AsignaturaXProfesorController');
+Route::post('actualizarAsigxprof', 'AsignaturaXProfesorController@update');
+
+Route::resource('pagAsignaturas','AsignaturaController');
+Route::post('actualizarAsignatura', 'AsignaturaController@update');
+
+
+Route::post('import', 'EstudianteExcelController@estudianteImport')->name('estudiante.import');
