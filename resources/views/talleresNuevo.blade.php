@@ -1,7 +1,6 @@
 @extends('base')
 @section('content')
 
-
     <div  style="margin-top:80px" id="showcase">
 
     <h1><b>Talleres</b></h1>
@@ -51,18 +50,12 @@
         </select>
             </div>
     </div>
-
+  
 
   
     <div class="form-group" style="width:800px; margin-left: 1%;">
     <h6>Archivo de taller</h6>
         {{ csrf_field() }}
-        @foreach($datos as $dato)
-        @if($dato->archivotaller != "")
-        <a href="/taller/{{$dato->archivotaller}}" width="300">Descargar: {{$dato->archivotaller}}</a>
-        <br/>
-        @endif
-        @endforeach
         <div class="form-group">
         <table class="table">
         <tr>
@@ -76,14 +69,8 @@
     </div>
 
     <div class="form-group" style="width:800px; margin-left: 1%;">
-    <h6>Archivo de solucion</h6>
+    <h6>Archivo de solución</h6>
         {{ csrf_field() }}
-        @foreach($datos as $dato)
-        @if($dato->archivosolucion != "")
-        <a href="/soluciones/{{$dato->archivosolucion}}" width="300">Descargar: {{$dato->archivosolucion}}</a>
-        <br/>
-        @endif
-        @endforeach
         <div class="form-group">
         <table class="table">
         <tr>
@@ -104,8 +91,12 @@
           </div>
         </div>
 
-
 </form>
+
+
+
+
+
 
 
 @stop

@@ -7,7 +7,7 @@
 @endsection
 
 @section('content')
-  <div id="carouselExampleFade" class="carousel slide carousel-fade" data-interval="false">
+  <div id="carouselExampleFade" class="carousel slide carousel-fade">
     <div class="carousel-inner">
       <div class="carousel-item active">
         <img class="imagen1" src="https://mdbootstrap.com/img/Photos/Slides/img%20(15).jpg" alt="First slide">
@@ -31,8 +31,8 @@
 @endsection
 
 @section('content-der')
-    <div class="colorHeaderToggle" style="font-size:14px">
+    <div class="imagen colorHeaderToggle" style="font-size:14px">
       <label for="comment">Anotaciones del Estudiante: </label>
-      <textarea class="form-control" style="margin-bottom: 1rem;" name="anotaciones" id="comentarioEstudiante" rows="19" autofocus></textarea>
+      <textarea class="form-control" name="anotaciones" id="comment" rows="19" autofocus></textarea>
     </div>
 @endsection
