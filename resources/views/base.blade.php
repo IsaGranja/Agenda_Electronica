@@ -36,27 +36,26 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="{{ url('/pagProvincias') }}">Provincias</a>
-                    <a class="dropdown-item" href="{{ url('/pagCiudades') }}">Ciudades</a>
-                    <a class="dropdown-item" href="{{ url('/pagUniversidades') }}">Universidades</a>
-                    <a class="dropdown-item" href="{{ url('/pagSedes') }}">Sedes</a>
-                    <a class="dropdown-item" href="{{ url('/pagPeriodos') }}">Períodos</a>
-                    <a class="dropdown-item" href="{{ url('/pagFacultades') }}">Facultades</a>
-                    <a class="dropdown-item" href="{{ url('/pagFacultadesxSede') }}">Facultades por sedes</a>
-                    <a class="dropdown-item" href="{{ url('/pagEscuelas') }}">Escuelas</a>
-                    <a class="dropdown-item" href="{{ url('/pagCarreras') }}">Carreras</a>
-                    <a class="dropdown-item" href="{{ url('/pagEstudiantes') }}">Estudiantes</a>
-                    <a class="dropdown-item" href="{{ url('/pagEstudiantesExcel/create') }}">Estudiantes (Excel)</a>
-                    <a class="dropdown-item" href="{{ url('/pagProfesores') }}">Profesores</a>
-                    <a class="dropdown-item" href="{{ url('/pagAsignaturas') }}">Asignaturas</a>
-                    <a class="dropdown-item" href="{{ url('/pagAsignaturasxEstudiante') }}">Asignaturas por estudiante</a>
-                    <a class="dropdown-item" href="{{ url('/pagAsignaturasxProfesor') }}">Asignaturas por profesor</a>
-                    <a class="dropdown-item" href="{{ url('/pagUnidades') }}">Unidades</a>
-                    <a class="dropdown-item" href="{{ url('/pagTemas') }}">Temas</a>
-                    <a class="dropdown-item" href="{{ url('/pagTalleres') }}">Talleres</a>
-                    <a class="dropdown-item" href="{{ url('/pagEvaluaciones') }}">Evaluaciones</a>
-                    <a class="dropdown-item" href="{{ url('/pagGlosarios') }}">Glosario</a>
-                    <a class="dropdown-item" href="{{ url('/pagContenidos') }}">Contenidos</a>
-
+                        <a class="dropdown-item" href="{{ url('/pagCiudades') }}">Ciudades</a>
+                        <a class="dropdown-item" href="{{ url('/pagUniversidades') }}">Universidades</a>
+                        <a class="dropdown-item" href="{{ url('/pagSedes') }}">Sedes</a>
+                        <a class="dropdown-item" href="{{ url('/pagPeriodos') }}">Períodos</a>
+                        <a class="dropdown-item" href="{{ url('/pagFacultades') }}">Facultades</a>
+                        <a class="dropdown-item" href="{{ url('/pagFacultadesxSede') }}">Facultades por sedes</a>
+                        <a class="dropdown-item" href="{{ url('/pagEscuelas') }}">Escuelas</a>
+                        <a class="dropdown-item" href="{{ url('/pagCarreras') }}">Carreras</a>
+                        <a class="dropdown-item" href="{{ url('/pagEstudiantes') }}">Estudiantes</a>
+                        <a class="dropdown-item" href="{{ url('/pagEstudiantes-excel/create') }}">Estudiantes (Excel)</a>
+                        <a class="dropdown-item" href="{{ url('/pagProfesores') }}">Profesores</a>
+                        <a class="dropdown-item" href="{{ url('/pagAsignaturas') }}">Asignaturas</a>
+                        <a class="dropdown-item" href="{{ url('/pagAsigxEstu') }}">Asignaturas por estudiante</a>
+                        <a class="dropdown-item" href="{{ url('/pagAsigxProf') }}">Asignaturas por profesor</a>
+                        <a class="dropdown-item" href="{{ url('/pagUnidades') }}">Unidades</a>
+                        <a class="dropdown-item" href="{{ url('/pagTemas') }}">Temas</a>
+                        <a class="dropdown-item" href="{{ url('/talleres') }}">Talleres</a>
+                        <a class="dropdown-item" href="{{ url('/pagEvaluaciones') }}">Evaluaciones</a>
+                        <a class="dropdown-item" href="{{ url('/pagGlosarios') }}">Glosario</a>
+                        <a class="dropdown-item" href="{{ url('/contenidos') }}">Contenidos</a>
                     </div>
                 </li>
                 <li class="nav-item active">
