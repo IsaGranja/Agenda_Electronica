@@ -13,26 +13,18 @@
 
 /*Route::get('/', function () {
     return view('welcome');
-});
-
-
-*/
-
+});*/
 Route::get('/','HomeController@homeFunc');
 Route::get('/pagLogin','HomeController@loginFunc');
 Route::get('/pagAudio','HomeController@audioFunc');
 Route::get('/pagVideo','HomeController@videoFunc');
 Route::get('/pagImagen','HomeController@imagenFunc');
-
-Route::resource('pagAnotaciones', 'AnotacionesController');
-
 Route::get('/pagProvincias','ProvinciaController@index');
 Route::get('/pagProvincias/crear','ProvinciaController@create');
 Route::post('/pagProvincias/crear','ProvinciaController@store');
 Route::get('/pagProvincias/editar/{codprovincia}','ProvinciaController@edit');
 Route::post('/pagProvincias/editar/{codprovincia}','ProvinciaController@update');
 Route::get('/pagProvincias/{codprovincia}','ProvinciaController@destroy');
-
 Route::view('/pagCiudades','ciudades');
 Route::view('/pagUniversidades','universidades');
 Route::view('/pagSedes','sedes');
@@ -54,3 +46,25 @@ Route::view('/pagTalleres','talleres');
 Route::view('/pagEvaluaciones','evaluaciones');
 Route::view('/pagGlosarios','glosarios');
 //Route::view('/pagAnotaciones','anotaciones');
+
+//Route::resource('asignaturasestu', 'AsignaturasxEstudiantesController');
+Route::resource('contenidos', 'ContenidosController');
+
+Route::resource('talleres', 'TalleresController');
+//Route::get('eliminarTaller/{archivotaller}', 'TalleresController@destroy');
+//Route::get('guardarTaller', 'TalleresController@store');
+
+Route::resource('pagAsigxEstu','AsignaturaXEstudianteController');
+Route::post('actualizarAsigxestu', 'AsignaturaXEstudianteController@update');
+//Route::post('contenidos', 'ContenidosController@validarImagen');
+
+Route::resource('pagEstudiantes-excel','EstudianteExcelController');
+
+Route::resource('pagAsigxProf','AsignaturaXProfesorController');
+Route::post('actualizarAsigxprof', 'AsignaturaXProfesorController@update');
+
+Route::resource('pagAsignaturas','AsignaturaController');
+Route::post('actualizarAsignatura', 'AsignaturaController@update');
+
+
+Route::post('import', 'EstudianteExcelController@estudianteImport')->name('estudiante.import');
