@@ -27,10 +27,10 @@
             <ul class="navbar-nav">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Opciones
+                    Opciones 
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ url('/pagProvincias') }}">Provincias</a>
+                    <a class="dropdown-item" href="{{ url('/pagProvincias') }}">Provincias</a>
                         <a class="dropdown-item" href="{{ url('/pagCiudades') }}">Ciudades</a>
                         <a class="dropdown-item" href="{{ url('/pagUniversidades') }}">Universidades</a>
                         <a class="dropdown-item" href="{{ url('/pagSedes') }}">Sedes</a>
@@ -53,13 +53,11 @@
                         <a class="dropdown-item" href="{{ url('/pagContenidos') }}">Contenidos</a>
                     </div>
                 </li>
-            </ul>
-            <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
                     <a class="nav-link"  href="{{ url('/') }}">Descargar <span class="sr-only">(current)</span></a>
                 </li>
-            </ul>
-            <ul class="navbar-nav">
+                </ul>
+            <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('/pagLogin') }}">Cerrar Sesión <span class="sr-only">(current)</span></a>
                 </li>

@@ -8,7 +8,7 @@
 @endsection
 
 @section('content')
-  <div id="carouselExampleFade" class="carousel slide carousel-fade" data-interval="false">
+<div id="carouselExampleFade" class="carousel slide carousel-fade" data-interval="false">
     <div class="carousel-inner">
       <div class="carousel-item active">
         <img class="imagen1" src="https://mdbootstrap.com/img/Photos/Slides/img%20(15).jpg" alt="First slide">

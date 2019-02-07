@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,7 +12,14 @@
     <script src="{{ url('js/jquery-3.3.1.min.js') }}"></script>
     <link rel="stylesheet" type="text/css" media="screen" href="{{ url('js/jquery-3.3.1.slim.min.js') }}" />
     <link rel="stylesheet" type="text/css" media="screen" href="{{ url('js/popper.min.js') }}" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css"></script>
 </head>
+
 <body class="col-12">
     {{-- Navbar --}}
     <nav class="navbar navbar-expand-lg col-12 navbar-light colorPUCE">
@@ -23,7 +31,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Opciones
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -37,7 +45,7 @@
                     <a class="dropdown-item" href="{{ url('/pagEscuelas') }}">Escuelas</a>
                     <a class="dropdown-item" href="{{ url('/pagCarreras') }}">Carreras</a>
                     <a class="dropdown-item" href="{{ url('/pagEstudiantes') }}">Estudiantes</a>
-                    <a class="dropdown-item" href="{{ url('/pagEstudiantesExcel') }}">Estudiantes (Excel)</a>
+                    <a class="dropdown-item" href="{{ url('/pagEstudiantesExcel/create') }}">Estudiantes (Excel)</a>
                     <a class="dropdown-item" href="{{ url('/pagProfesores') }}">Profesores</a>
                     <a class="dropdown-item" href="{{ url('/pagAsignaturas') }}">Asignaturas</a>
                     <a class="dropdown-item" href="{{ url('/pagAsignaturasxEstudiante') }}">Asignaturas por estudiante</a>
@@ -48,13 +56,16 @@
                     <a class="dropdown-item" href="{{ url('/pagEvaluaciones') }}">Evaluaciones</a>
                     <a class="dropdown-item" href="{{ url('/pagGlosarios') }}">Glosario</a>
                     <a class="dropdown-item" href="{{ url('/pagContenidos') }}">Contenidos</a>
-                    
+
                     </div>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ url('/') }}">Refrescar <span class="sr-only">(current)</span></a>
                 </li>
             </ul>
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url('/pagLogin') }}">Cerrar Sesión <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="{{ url('/pagLogin') }}">Cerrar Sesión <span class="sr-only">(current)</span></a>
                 </li>
             </ul>
         </div>
@@ -62,7 +73,7 @@
     {{-- Body --}}
     <div class="row">
         <div class="col-12">@yield('content')</div>
-    </div> 
+    </div>
     {{-- Footer --}}
     <footer class="col-12 colorPUCE">
         <div class="card-body text-center">
@@ -71,4 +82,5 @@
     </footer>
     <script src="{{ url('js/bootstrap.min.js') }}"></script>
 </body>
+
 </html>
