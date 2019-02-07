@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\anotaciones;
 
-class AnotacionesDP extends Controller
+class AnotacionesController extends Controller
 {
     public function index()//GET
 	{
