@@ -1,7 +1,27 @@
 /* CSS AYUDANTES
 -------------------------------------------------- */
-
-
 .colorPUCE{
   background-color: rgb(76, 191, 220);
+}
+#alert,#register-box,#forgot-box{
+  display:none;
+}
+html,
+body {
+   margin:0;
+   padding:0;
+   height:100%;
+}
+body {
+   padding:10px;
+   padding-bottom:50px;   /* Height of the footer */
+}
+#footer1{
+  margin: none;
+  padding: none;
+  position:fixed;
+  left:0px;
+  bottom:0px;
+  width:100%;
+  font-size: 60%;
 }
