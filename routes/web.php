@@ -24,6 +24,7 @@ Route::get('/pagAudio','HomeController@audioFunc');
 Route::get('/pagVideo','HomeController@videoFunc');
 Route::get('/pagImagen','HomeController@imagenFunc');
 
+Route::resource('pagAnotaciones', 'AnotacionesController');
 
 Route::get('/pagProvincias','ProvinciaController@index');
 Route::get('/pagProvincias/crear','ProvinciaController@create');

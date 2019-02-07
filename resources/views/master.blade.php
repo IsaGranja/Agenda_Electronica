@@ -17,40 +17,79 @@
 </head>
 <body class="col-12 colorPUCE" onload="InitThis();">   
     {{-- Navbar --}}
+
     <nav class="navbar navbar-expand-lg col-12 navbar-light colorPUCE">
         <a class="navbar-brand" href='http://www.puce.edu.ec'><img class="logo" src="{{ url('img/puceLogo.jpg') }}"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+<!--
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
 
+    </ul>
+
+  </div>
+--->
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Opciones
                     </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ url('/pagProvincias') }}">Provincias</a>
-                        <a class="dropdown-item" href="{{ url('/pagCiudades') }}">Ciudades</a>
-                        <a class="dropdown-item" href="{{ url('/pagUniversidades') }}">Universidades</a>
-                        <a class="dropdown-item" href="{{ url('/pagSedes') }}">Sedes</a>
-                        <a class="dropdown-item" href="{{ url('/pagPeriodos') }}">Períodos</a>
-                        <a class="dropdown-item" href="{{ url('/pagFacultades') }}">Facultades</a>
-                        <a class="dropdown-item" href="{{ url('/pagFacultadesxSede') }}">Facultades por sedes</a>
-                        <a class="dropdown-item" href="{{ url('/pagEscuelas') }}">Escuelas</a>
-                        <a class="dropdown-item" href="{{ url('/pagCarreras') }}">Carreras</a>
-                        <a class="dropdown-item" href="{{ url('/pagEstudiantes') }}">Estudiantes</a>
-                        <a class="dropdown-item" href="{{ url('/pagEstudiantesExcel') }}">Estudiantes (Excel)</a>
-                        <a class="dropdown-item" href="{{ url('/pagProfesores') }}">Profesores</a>
-                        <a class="dropdown-item" href="{{ url('/pagAsignaturas') }}">Asignaturas</a>
-                        <a class="dropdown-item" href="{{ url('/pagAsignaturasxEstudiante') }}">Asignaturas por estudiante</a>
-                        <a class="dropdown-item" href="{{ url('/pagAsignaturasxProfesor') }}">Asignaturas por profesor</a>
-                        <a class="dropdown-item" href="{{ url('/pagUnidades') }}">Unidades</a>
-                        <a class="dropdown-item" href="{{ url('/pagTemas') }}">Temas</a>
-                        <a class="dropdown-item" href="{{ url('/pagTalleres') }}">Talleres</a>
-                        <a class="dropdown-item" href="{{ url('/pagEvaluaciones') }}">Evaluaciones</a>
-                        <a class="dropdown-item" href="{{ url('/pagGlosarios') }}">Glosario</a>
-                        <a class="dropdown-item" href="{{ url('/pagContenidos') }}">Contenidos</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="{{ url('/pagProvincias') }}">Provincias</a></li>
+                        <li><a class="dropdown-item" href="{{ url('/pagCiudades') }}">Ciudades</a></li>
+                        <li><a class="dropdown-item" href="{{ url('/pagUniversidades') }}">Universidades</a></li>
+                        <li><a class="dropdown-item" href="{{ url('/pagSedes') }}">Sedes</a></li>
+                        <li><a class="dropdown-item" href="{{ url('/pagPeriodos') }}">Períodos</a></li>
+                        <li><a class="dropdown-item" href="{{ url('/pagFacultades') }}">Facultades</a></li>
+                        <li><a class="dropdown-item" href="{{ url('/pagFacultadesxSede') }}">Facultades por sedes</a></li>
+                        <li><a class="dropdown-item" href="{{ url('/pagEscuelas') }}">Escuelas</a></li>
+                        <li><a class="dropdown-item" href="{{ url('/pagCarreras') }}">Carreras</a></li>
+                        <li><a class="dropdown-item" href="{{ url('/pagEstudiantes') }}">Estudiantes</a></li>
+                        <li><a class="dropdown-item" href="{{ url('/pagEstudiantesExcel') }}">Estudiantes (Excel)</a></li>
+                        <!--
+                        <li>
+                            <ul class="navbar-nav collapse navbar-collapse" id="navbarSupportedContent">
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Opciones
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <li><a class="dropdown-item" href="{{ url('/pagProvincias') }}">Provincias</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>--->
+
+                        <li><a class="dropdown-item" href="{{ url('/pagProfesores') }}">Profesores</a></li>
+                        <li><a class="dropdown-item" href="{{ url('/pagAsignaturas') }}">Asignaturas</a></li>
+                        <li><a class="dropdown-item" href="{{ url('/pagAsignaturasxEstudiante') }}">Asignaturas por estudiante</a></li>
+                        <li><a class="dropdown-item" href="{{ url('/pagAsignaturasxProfesor') }}">Asignaturas por profesor</a></li>
+                        <li><a class="dropdown-item" href="{{ url('/pagUnidades') }}">Unidades</a></li>
+                        <li><a class="dropdown-item" href="{{ url('/pagTemas') }}">Temas</a></li>
+                        <li><a class="dropdown-item" href="{{ url('/pagTalleres') }}">Talleres</a></li>
+                        <li><a class="dropdown-item" href="{{ url('/pagEvaluaciones') }}">Evaluaciones</a></li>
+                        <li><a class="dropdown-item" href="{{ url('/pagGlosarios') }}">Glosario</a></li>
+                        <li><a class="dropdown-item" href="{{ url('/pagContenidos') }}">Contenidos</a></li>
                     </div>
                 </li>
             </ul>
@@ -68,8 +107,8 @@
     </nav>
     {{-- Body --}}
     <section class="row">
-        <div class="col-md-3 col-lg-2 d-none d-md-block fondoizq">@yield('content-izq')</div>
-        <div class="col-sm-6 col-md-5 col-lg-7 fondocentro">
+        <div class="col-lg-2 fondoizq">@yield('content-izq')</div>
+        <div class="col-md-12 col-lg-7 fondocentro">
             <center>
             <table border="0 cuerpo">
                 <tr class="containerPri1">
@@ -255,7 +294,7 @@
                 </tr>
             </table>
         </div>
-        <div class="col-sm-6 col-md-4 col-lg-3 fondoder"><center>@yield('content-der')</div>
+        <div class="col-lg-3 fondoder"><center>@yield('content-der')</div>
 </section>       
     {{-- Footer --}}
     <footer class="col-12 colorPUCE">
