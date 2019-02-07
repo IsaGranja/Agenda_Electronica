@@ -70,6 +70,6 @@ php artisan cache:clear
 php artisan config:clear
 
 # ----Nota importante-----
-Instalar en terminal: 
+Escribir en el terminal: 
 composer require maatwebsite/excel
  
