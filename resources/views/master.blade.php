@@ -282,8 +282,7 @@
     {{-- Footer --}}
     <footer class="col-12 colorPUCE">
         <div class="card-body text-center">
-        <p class="micro legible center mb-0">LABORATORIO DE TECNOLOGÍAS DE LA INFORMACIÓN - Facultad de Ingeniería - Escuela de Sistemas
-        <br> Teléfono: (+593)  ext.  /  /  - Correo electrónico: @puce.edu.ec</p>
+        <p class="micro legible center mb-0">Laboratorios de Tecnologías de Información y Comunicación - Facultad de Ingeniería - Escuela de Sistemas</p>
     </footer>
     <script src="{{ url('js/bootstrap.min.js') }}"></script>
 </body>

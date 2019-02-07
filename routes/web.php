@@ -20,7 +20,7 @@
 
 Route::get('/','HomeController@loginFunc');
 Route::get('/pagLogin','HomeController@loginFunc');
-Route::get('/pagHome','HomeController@homeFunc');
+//Route::get('pagHome','HomeController@homeFunc');
 Route::get('/pagAudio','HomeController@audioFunc');
 Route::get('/pagVideo','HomeController@videoFunc');
 Route::get('/pagImagen','HomeController@imagenFunc');
@@ -30,6 +30,8 @@ Route::post('/pagProvincias/crear','ProvinciaController@store');
 Route::get('/pagProvincias/editar/{codprovincia}','ProvinciaController@edit');
 Route::post('/pagProvincias/editar/{codprovincia}','ProvinciaController@update');
 Route::get('/pagProvincias/{codprovincia}','ProvinciaController@destroy');
+
+Route::view('/pagHome','home');
 Route::view('/pagCiudades','ciudades');
 Route::view('/pagUniversidades','universidades');
 Route::view('/pagSedes','sedes');
@@ -53,6 +55,8 @@ Route::view('/pagTemas','temas');
 Route::view('/pagTalleres','talleres');
 Route::view('/pagEvaluaciones','evaluaciones');
 Route::view('/pagGlosarios','glosarios');
+
+//Route::resource('pagHome', 'HomeController');
 //Route::view('/pagAnotaciones','anotaciones');
 
 //Route::resource('asignaturasestu', 'AsignaturasxEstudiantesController');

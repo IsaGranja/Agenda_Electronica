@@ -7,10 +7,16 @@ use App\anotaciones;
 
 class AnotacionesController extends Controller
 {
+	public function index()
+    {
+        $periodos = DB::table('periodos')->where('periodos.estperiodo', '=', 'A')->get();
+        return view('home',['periodos'=>$periodos]);
+	}
+	/*
     public function index()//GET
 	{
 		return \App\anotaciones::all();
-	}
+	}*/
     public function show($id)//GET
 	{
 		return \App\anotaciones::find($id);
