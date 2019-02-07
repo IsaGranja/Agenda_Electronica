@@ -30,7 +30,6 @@ Route::post('/pagProvincias/crear','ProvinciaController@store');
 Route::get('/pagProvincias/editar/{codprovincia}','ProvinciaController@edit');
 Route::post('/pagProvincias/editar/{codprovincia}','ProvinciaController@update');
 Route::get('/pagProvincias/{codprovincia}','ProvinciaController@destroy');
-Route::view('/pagCiudades','ciudades');
 Route::view('/pagUniversidades','universidades');
 Route::view('/pagSedes','sedes');
 Route::view('/pagPeriodos','periodos');
@@ -38,9 +37,7 @@ Route::view('/pagFacultades','facultades');
 Route::view('/pagFacultadesxSede','facultadesxSede');
 Route::view('/pagEscuelas','escuelas');
 Route::view('/pagCarreras','carreras');
-Route::view('/pagEstudiantes','estudiantes');
 Route::view('/pagEstudiantesExcel','estudiantesExcel');
-Route::view('/pagProfesores','profesores');
 Route::view('/pagAsignaturas','asignaturas');
 Route::view('/pagAsignaturasxEstudiante','asignaturasxEstudiante');
 Route::view('/pagAsignaturasxProfesor','asignaturasxProfesor');
@@ -74,5 +71,25 @@ Route::post('actualizarAsigxprof', 'AsignaturaXProfesorController@update');
 Route::resource('pagAsignaturas','AsignaturaController');
 Route::post('actualizarAsignatura', 'AsignaturaController@update');
 
+Route::get('/pagCiudades','CiudadController@index');
+Route::get('/pagCiudades/crear','CiudadController@create');
+Route::post('/pagCiudades/crear','CiudadController@store');
+Route::get('/pagCiudades/editar/{id}','CiudadController@edit');
+Route::post('/pagCiudades/editar/{id}','CiudadController@update');
+Route::post('/pagCiudades/{id}','CiudadController@destroy');
+
+Route::get('/pagEstudiantes','EstudianteController@index');
+Route::get('/pagEstudiantes/crear','EstudianteController@create');
+Route::post('/pagEstudiantes/crear','EstudianteController@store');
+Route::get('/pagEstudiantes/editar/{id}','EstudianteController@edit');
+Route::post('/pagEstudiantes/editar/{id}','EstudianteController@update');
+Route::post('/pagEstudiantes/{id}','EstudianteController@destroy');
+
+Route::get('/pagProfesores','ProfesorController@index');
+Route::get('/pagProfesores/crear','ProfesorController@create');
+Route::post('/pagProfesores/crear','ProfesorController@store');
+Route::get('/pagProfesores/editar/{id}','ProfesorController@edit');
+Route::post('/pagProfesores/editar/{id}','ProfesorController@update');
+Route::post('/pagProfesores/{id}','ProfesorController@destroy');
 
 Route::post('import', 'EstudianteExcelController@estudianteImport')->name('estudiante.import');
