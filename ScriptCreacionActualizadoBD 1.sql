@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      PostgreSQL 8                                 */
-/* Created on:     29/1/2019 14:43:19                           */
+/* Created on:     4/2/2019 11:44:35                            */
 /*==============================================================*/
 
 
@@ -144,7 +144,8 @@ drop table UNIVERSIDADES;
 create table ANOTACIONES_ESTUDIANTE (
    CEDESTUDIANTE        CHAR(10)             not null,
    CODCONTENIDO         VARCHAR(18)          null,
-   ANOTESTUDIANTE       VARCHAR(500)         null
+   ANOTESTUDIANTE       VARCHAR(500)         null,
+   IMGESTUDIANTE        VARCHAR(22)          null
 );
 
 comment on table ANOTACIONES_ESTUDIANTE is
@@ -158,6 +159,9 @@ comment on column ANOTACIONES_ESTUDIANTE.CODCONTENIDO is
 
 comment on column ANOTACIONES_ESTUDIANTE.ANOTESTUDIANTE is
 'Texto de las anotaciones realizadas por un estudiante';
+
+comment on column ANOTACIONES_ESTUDIANTE.IMGESTUDIANTE is
+'numero autoincremental + codigo de contenidos + .jpg';
 
 /*==============================================================*/
 /* Index: ANOTREALESTU_FK                                       */
@@ -182,9 +186,9 @@ create table ASIGNATURAS (
    DESCASIGNATURA       VARCHAR(50)          not null,
    CREDASIGNATURA       INT2                 not null,
    NIVELASIGNATURA      INT4                 not null,
-   OBJEASIGNATURA       VARCHAR(500)         null,
-   RESULAPREASIGNATURA  VARCHAR(500)         null,
-   CARACAPREASIGNATURA  VARCHAR(500)         null,
+   OBJEASIGNATURA       VARCHAR(800)         null,
+   RESULAPREASIGNATURA  VARCHAR(800)         null,
+   CARACAPREASIGNATURA  VARCHAR(800)         null,
    constraint PK_ASIGNATURAS primary key (CODASIGNATURA)
 );
 
@@ -234,7 +238,7 @@ create table ASIGNATURASXESTUDIANTES (
    CODASIGNATURA        VARCHAR(6)           not null,
    CEDPROFESOR          CHAR(10)             not null,
    CODPERIODO           VARCHAR(7)           not null,
-   constraint PK_ASIGNATURASXESTUDIANTES primary key (CODASIGNATURA, CEDPROFESOR)
+   constraint PK_ASIGNATURASXESTUDIANTES primary key (CEDESTUDIANTE, CODASIGNATURA, CEDPROFESOR)
 );
 
 comment on table ASIGNATURASXESTUDIANTES is
@@ -256,6 +260,7 @@ comment on column ASIGNATURASXESTUDIANTES.CODPERIODO is
 /* Index: ASIGNATURASXESTUDIANTES_PK                            */
 /*==============================================================*/
 create unique index ASIGNATURASXESTUDIANTES_PK on ASIGNATURASXESTUDIANTES (
+CEDESTUDIANTE,
 CODASIGNATURA,
 CEDPROFESOR
 );
@@ -292,10 +297,10 @@ CODPERIODO
 /* Table: ASIGNATURASXPROFESOR                                  */
 /*==============================================================*/
 create table ASIGNATURASXPROFESOR (
-   CODASIGNATURA        VARCHAR(4)           not null,
+   CODASIGNATURA        VARCHAR(5)           not null,
    CEDPROFESOR          CHAR(10)             not null,
    CODPERIODO           VARCHAR(7)           not null,
-   constraint PK_ASIGNATURASXPROFESOR primary key (CODASIGNATURA)
+   constraint PK_ASIGNATURASXPROFESOR primary key (CODASIGNATURA, CEDPROFESOR)
 );
 
 comment on table ASIGNATURASXPROFESOR is
@@ -314,7 +319,8 @@ comment on column ASIGNATURASXPROFESOR.CODPERIODO is
 /* Index: ASIGNATURASXPROFESOR_PK                               */
 /*==============================================================*/
 create unique index ASIGNATURASXPROFESOR_PK on ASIGNATURASXPROFESOR (
-CODASIGNATURA
+CODASIGNATURA,
+CEDPROFESOR
 );
 
 /*==============================================================*/
@@ -410,7 +416,7 @@ CODPROVINCIA
 create table CONTENIDOS (
    CODCONTENIDO         VARCHAR(18)          not null,
    CODTEMA              VARCHAR(13)          not null,
-   CODASIGNATURA        VARCHAR(4)           not null,
+   CODASIGNATURA        VARCHAR(5)           not null,
    TEXTOCONTENIDO       VARCHAR(500)         not null,
    IMAGENCONTENIDO      VARCHAR(20)          null,
    VIDEOCONTENIDO       VARCHAR(20)          null,
@@ -653,8 +659,8 @@ CODSEDE
 /*==============================================================*/
 create table GLOSARIOS (
    CODGLOSARIO          VARCHAR(22)          not null,
-   CODCONTENIDO         VARCHAR(6)           not null,
-   PALABRAGLOSARIO      VARCHAR(10)          not null,
+   CODCONTENIDO         VARCHAR(18)          not null,
+   PALABRAGLOSARIO      VARCHAR(20)          not null,
    DEFGLOSARIO          VARCHAR(200)         not null,
    constraint PK_GLOSARIOS primary key (CODGLOSARIO)
 );
@@ -838,7 +844,7 @@ CODCIUDAD
 /* Table: TALLERES                                              */
 /*==============================================================*/
 create table TALLERES (
-   CODTALLER            VARCHAR(6)           not null,
+   CODTALLER            VARCHAR(13)          not null,
    CODTEMA              VARCHAR(13)          not null,
    ARCHIVOTALLER        VARCHAR(20)          not null,
    ARCHIVOSOLUCION      VARCHAR(20)          null,
@@ -877,12 +883,13 @@ CODTEMA
 /* Table: TEMAS_ESTUDIO                                         */
 /*==============================================================*/
 create table TEMAS_ESTUDIO (
-   CODASIGNATURA        VARCHAR(4)           not null,
-   CODUNIDAD            VARCHAR(6)           not null,
+   CODASIGNATURA        VARCHAR(5)           not null,
+   CODUNIDAD            VARCHAR(8)           not null,
    CODTEMA              VARCHAR(13)          not null,
    DESCTEMA             VARCHAR(100)         not null,
    NUMTEMA              INT4                 not null,
    COMENTEMA            VARCHAR(100)         null,
+   ESTTEMA              CHAR(1)              not null,
    constraint PK_TEMAS_ESTUDIO primary key (CODTEMA)
 );
 
@@ -903,6 +910,9 @@ comment on column TEMAS_ESTUDIO.NUMTEMA is
 
 comment on column TEMAS_ESTUDIO.COMENTEMA is
 'Comentario de tema con longitud variable de 100 caracteres';
+
+comment on column TEMAS_ESTUDIO.ESTTEMA is
+'Estado del tema que permite determinar el progreso del estudiante con respecto al mismo, atributo del caracter de tipo char de longitud 1; el mensaje guardado es ''E'' para: en progreso e ''T'' para: terminado. ';
 
 /*==============================================================*/
 /* Index: TEMAS_ESTUDIO_PK                                      */
@@ -929,7 +939,7 @@ CODUNIDAD
 /* Table: UNIDADES_ESTUDIO                                      */
 /*==============================================================*/
 create table UNIDADES_ESTUDIO (
-   CODASIGNATURA        VARCHAR(4)           not null,
+   CODASIGNATURA        VARCHAR(5)           not null,
    CODUNIDAD            VARCHAR(9)           not null,
    DESCUNIDAD           VARCHAR(50)          not null,
    NUMUNIDAD            INT4                 not null,
