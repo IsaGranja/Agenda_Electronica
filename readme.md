@@ -68,6 +68,6 @@ DB_PASSWORD=admin
 php artisan cache:clear
 php artisan config:clear
 
-#----Nota importante-----
+# ----Nota importante-----
 Al hacer push no enviar el archivo .env y el de database.php ya que cada uno lo tiene de diferente forma
  
