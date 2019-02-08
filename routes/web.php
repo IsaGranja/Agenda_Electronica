@@ -33,7 +33,9 @@ Route::get('/pagProvincias/{codprovincia}','ProvinciaController@destroy');
 
 Route::view('/pagHome','home');
 Route::view('/pagCiudades','ciudades');
-Route::view('/pagUniversidades','universidades');
+Route::get('/pagUniversidades','UniversidadesController@index');
+Route::get('/pagUniversidades/crear','UniversidadesController@create');
+Route::post('/pagUniversidades/crear','UniversidadesController@store');
 Route::view('/pagSedes','sedes');
 Route::view('/pagPeriodos','periodos');
 Route::view('/pagFacultades','facultades');
