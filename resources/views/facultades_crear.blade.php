@@ -23,35 +23,35 @@
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Codigo</label>
                     <div class="col-sm-2">
-                        <input type="text" class="form-control" name="codfacultad" >
+                        {{$codigo}}
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Descripción</label>
                     <div class="col-sm-2">
-                        <input type="text" class="form-control" name="descfacultad" >
+                        <input type="text" class="form-control" name="descfacultad" maxlength="10">
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Decano</label>
                     <div class="col-sm-2">
-                        <input type="text" class="form-control" name="decafacultad" >
+                        <input type="text" class="form-control" name="decafacultad" maxlength="10">
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Subdecano</label>
                     <div class="col-sm-2">
-                        <input type="text" class="form-control" name="subdecfacultad" >
+                        <input type="text" class="form-control" name="subdecfacultad" maxlength="10">
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Secretario Abogado</label>
                     <div class="col-sm-2">
-                        <input type="text" class="form-control" name="secreabogfacultad" >
+                        <input type="text" class="form-control" name="secreabogfacultad" maxlength="10">
                     </div>
                 </div>
 
