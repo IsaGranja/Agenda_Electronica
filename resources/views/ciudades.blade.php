@@ -34,7 +34,7 @@
 
             <div class="table-container">
 
-                <table id="mytable" class="table table-bordred table-striped">
+                <table id="myTable" class="table table-bordred table-striped">
                     <thead>
                         <th></th>
                         <th></th>
