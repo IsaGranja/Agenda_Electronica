@@ -24,7 +24,7 @@ class FacultadController extends Controller
             return view('profesores',compact('profesores'));
         }
         */
-        if($request->get('busquedaDesc')!="")
+        /*if($request->get('busquedaDesc')!="")
         {
             $facus=DB::table('facultades')->where('facus.descfacultades','LIKE','%'.$request->get('busquedaDesc').'%')->paginate();
             return view('facultades',compact('facus'));
@@ -33,7 +33,9 @@ class FacultadController extends Controller
         {
             $facus = Facultad::all()->sortBy('descfacultad');
             return view('facultades',compact('facus'));
-        }
+        }*/
+        $facus = Facultad::all()->sortBy('descfacultad');
+            return view('facultades',compact('facus'));
         
     }
     public function create()
