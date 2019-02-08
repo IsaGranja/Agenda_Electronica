@@ -64,17 +64,17 @@
                         <a class="dropdown-item" href="{{ url('/pagEscuelas') }}">Escuelas</a>
                         <a class="dropdown-item" href="{{ url('/pagCarreras') }}">Carreras</a>
                         <a class="dropdown-item" href="{{ url('/pagEstudiantes') }}">Estudiantes</a>
-                        <a class="dropdown-item" href="{{ url('/pagEstudiantesExcel') }}">Estudiantes (Excel)</a>
+                        <a class="dropdown-item" href="{{ url('/pagEstudiantes-excel/create') }}">Estudiantes (Excel)</a>
                         <a class="dropdown-item" href="{{ url('/pagProfesores') }}">Profesores</a>
                         <a class="dropdown-item" href="{{ url('/pagAsignaturas') }}">Asignaturas</a>
-                        <a class="dropdown-item" href="{{ url('/pagAsignaturasxEstudiante') }}">Asignaturas por estudiante</a>
-                        <a class="dropdown-item" href="{{ url('/pagAsignaturasxProfesor') }}">Asignaturas por profesor</a>
+                        <a class="dropdown-item" href="{{ url('/pagAsigxEstu') }}">Asignaturas por estudiante</a>
+                        <a class="dropdown-item" href="{{ url('/pagAsigxProf') }}">Asignaturas por profesor</a>
                         <a class="dropdown-item" href="{{ url('/pagUnidades') }}">Unidades</a>
                         <a class="dropdown-item" href="{{ url('/pagTemas') }}">Temas</a>
-                        <a class="dropdown-item" href="{{ url('/pagTalleres') }}">Talleres</a>
+                        <a class="dropdown-item" href="{{ url('/talleres') }}">Talleres</a>
                         <a class="dropdown-item" href="{{ url('/pagEvaluaciones') }}">Evaluaciones</a>
                         <a class="dropdown-item" href="{{ url('/pagGlosarios') }}">Glosario</a>
-                        <a class="dropdown-item" href="{{ url('/pagContenidos') }}">Contenidos</a>
+                        <a class="dropdown-item" href="{{ url('/contenidos') }}">Contenidos</a>
                     </div>
                 </li>
                 <li class="nav-item active">
@@ -282,8 +282,7 @@
     {{-- Footer --}}
     <footer class="col-12 colorPUCE">
         <div class="card-body text-center">
-        <p class="micro legible center mb-0">LABORATORIO DE TECNOLOGÍAS DE LA INFORMACIÓN - Facultad de Ingeniería - Escuela de Sistemas
-        <br> Teléfono: (+593)  ext.  /  /  - Correo electrónico: @puce.edu.ec</p>
+        <p class="micro legible center mb-0">Laboratorios de Tecnologías de Información y Comunicación - Facultad de Ingeniería - Escuela de Sistemas</p>
     </footer>
     <script src="{{ url('js/bootstrap.min.js') }}"></script>
 </body>
