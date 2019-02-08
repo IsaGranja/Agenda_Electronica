@@ -7,7 +7,7 @@ use App\Provincia;
 class ProvinciaController extends Controller
 {
     public function index(){
-        $provincias = Provincia::all();
+        $provincias = Provincia::all()->sortBy('codprovincia');
         return view('provincias',compact('provincias')); 
        //return view('provincias');
     }

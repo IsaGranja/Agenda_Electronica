@@ -18,20 +18,18 @@
 
 */
 
-Route::get('/','HomeController@homeFunc');
+Route::get('/','HomeController@loginFunc');
 Route::get('/pagLogin','HomeController@loginFunc');
+Route::get('/pagHome','HomeController@homeFunc');
 Route::get('/pagAudio','HomeController@audioFunc');
 Route::get('/pagVideo','HomeController@videoFunc');
 Route::get('/pagImagen','HomeController@imagenFunc');
-
-
 Route::get('/pagProvincias','ProvinciaController@index');
 Route::get('/pagProvincias/crear','ProvinciaController@create');
 Route::post('/pagProvincias/crear','ProvinciaController@store');
 Route::get('/pagProvincias/editar/{codprovincia}','ProvinciaController@edit');
 Route::post('/pagProvincias/editar/{codprovincia}','ProvinciaController@update');
 Route::get('/pagProvincias/{codprovincia}','ProvinciaController@destroy');
-
 Route::view('/pagCiudades','ciudades');
 Route::get('/pagUniversidades','UniversidadesController@index');
 Route::get('/pagUniversidades/crear','UniversidadesController@create');
@@ -49,9 +47,34 @@ Route::view('/pagAsignaturas','asignaturas');
 Route::view('/pagAsignaturasxEstudiante','asignaturasxEstudiante');
 Route::view('/pagAsignaturasxProfesor','asignaturasxProfesor');
 Route::view('/pagContenidos','contenidos');
-Route::view('/pagUnidades','unidades');
+
+Route::get('/pagUnidades','UnidadesController@index');
+Route::get('/pagUnidades/{id}','UnidadesController@byAsignatura');
+
 Route::view('/pagTemas','temas');
 Route::view('/pagTalleres','talleres');
 Route::view('/pagEvaluaciones','evaluaciones');
 Route::view('/pagGlosarios','glosarios');
 //Route::view('/pagAnotaciones','anotaciones');
+
+//Route::resource('asignaturasestu', 'AsignaturasxEstudiantesController');
+Route::resource('contenidos', 'ContenidosController');
+
+Route::resource('talleres', 'TalleresController');
+//Route::get('eliminarTaller/{archivotaller}', 'TalleresController@destroy');
+//Route::get('guardarTaller', 'TalleresController@store');
+
+Route::resource('pagAsigxEstu','AsignaturaXEstudianteController');
+Route::post('actualizarAsigxestu', 'AsignaturaXEstudianteController@update');
+//Route::post('contenidos', 'ContenidosController@validarImagen');
+
+Route::resource('pagEstudiantes-excel','EstudianteExcelController');
+
+Route::resource('pagAsigxProf','AsignaturaXProfesorController');
+Route::post('actualizarAsigxprof', 'AsignaturaXProfesorController@update');
+
+Route::resource('pagAsignaturas','AsignaturaController');
+Route::post('actualizarAsignatura', 'AsignaturaController@update');
+
+
+Route::post('import', 'EstudianteExcelController@estudianteImport')->name('estudiante.import');

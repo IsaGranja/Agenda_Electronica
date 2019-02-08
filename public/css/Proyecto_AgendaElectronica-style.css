@@ -15,13 +15,17 @@ section{
 footer{
   margin: none;
   padding: none;
+  position:absolute;
+  bottom:0;
+  width:100%;
+  height:50%;
 }
 table{
   margin: none;
   padding: none;
 }
 textarea{
-  font-size: 30px;
+  font-size: 33px;
 }
 .fondoizq{
   background-color: rgb(34, 34, 34);
@@ -29,11 +33,13 @@ textarea{
   margin: none;
   overflow-x: scroll;
   overflow-y: scroll;
+  float:left;
 }
 .fondocentro{
     background-color: rgb(87, 136, 205);
     height: 33rem;
     margin: none;
+    width: 100%;
 }
 .fondoder{
     background-color: rgb(34, 34, 34);
@@ -41,12 +47,21 @@ textarea{
     margin: none;
     overflow-x: scroll;
     overflow-y: scroll;
+    float:right;
 }
 .containerPri1{
   height: 26rem;
 }
 .containerPri2{
   height: 7rem;
+}
+.containerDer1{
+  height: 16.5rem;
+  width: 100%;
+}
+.containerDer2{
+  height: 16.5rem;
+  width: 100%;
 }
 .colorToggle {
   color: rgb(76, 191, 220);
@@ -66,12 +81,51 @@ textarea{
   overflow-x: scroll;
   overflow-y: scroll;
 }
+.form-control{
+  font-size: 25px;
+  height: 16.5rem;
+  max-height: 16.5rem;
+  border-color:gray;
+  color: #495057;
+}
+.borderojo{
+  display: block;
+  height: calc(2.25rem + 2px);
+  font-size: 25px;
+  height: 16.5rem;
+  max-height: 16.5rem;
+  width: 100%;
+  border: 1px solid red;
+  padding: 0.375rem 0.75rem;
+  color: #495057;
+  line-height: 1.5;
+}
+.cuerpo{
+  width: 100%;
+}
+.labelC {
+  display:block; 
+  width:x; 
+  height:y; 
+  text-align:right;
+}
+#downloadLnk {
+  visibility: hidden;
+  position: relative;
+  width: 48px;
+  top: 0px;
+  color:white;
+  font-size: 10px;
+  text-decoration: underline;
+  cursor:pointer;
+}
 /* CUSTOMIZE THE CAROUSEL
 -------------------------------------------------- */
 
 /* Carousel base class */
 .carousel {
     background-color: rgba(255, 255, 255, 0.144);
+    width:100%;
     height: 26rem;
     margin: none;
     padding: none;
@@ -85,35 +139,40 @@ textarea{
   /* Declare heights because of positioning of img element */
   .carousel-item {
     height: 26rem;
+    width: 100%;
+
   }
   .carousel-control-prev,
   .carousel-control-next{
       height: 26rem;
+      width: 5%;
   }
   /*imagen desplegable por iconos*/
   .imagen{  
     height: 26rem;
     z-index: 0;
     align-content: center;
-    /*margin-left: 30%;
-    margin-top: 6%;*/
-    margin-left: auto;
-    margin-right: auto;  
+    width:100%;
+    position:relative;
   }
 
   /*contenido de carousel*/
   .imagen1{
     width: 100%;
     height: 26rem;
-    padding-left: 15%;
-    padding-right:15%; 
+    padding: 5%;
+    margin-top:1%; 
     align-content: center;
+    text-align: center;
+    position:relative;
   }
   /*iconos*/
   .imagen2{
-    width: 5rem;
-    height: 5rem;
+    width: 5.5rem;
+    height: 5.5rem;
     align-content: center;
+    background:  rgb(226, 217, 195);
+    border-radius: 50%;
   }
   .imagen2:hover{
     cursor:pointer;
@@ -135,3 +194,50 @@ textarea{
       line-height: 1.4;
     }
   }
+
+   /* ICONOS
+  -------------------------------------------------- */ 
+  .static {
+    position:absolute;
+    background:  rgb(139, 169, 211);
+  }
+  
+  .static:hover {
+    opacity:0;
+  }
+
+   /* TEXTAREA ANOTACIONES
+  -------------------------------------------------- */ 
+input {
+  box-sizing: border-box;
+  margin: 5px 0 15px 0;
+  padding: 5px;
+  width: 100%;
+}
+
+.derT{
+  resize: both;
+  overflow: auto;
+  border: 2px solid;
+  padding: 20px;
+  width:300px;
+}
+   /* Menu - submenu
+  -------------------------------------------------- */ 
+.dropdown-submenu {
+  position: relative;
+}
+
+.dropdown-submenu a::after {
+  transform: rotate(-90deg);
+  position: absolute;
+  right: 6px;
+  top: .8em;
+}
+
+.dropdown-submenu .dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-left: .1rem;
+  margin-right: .1rem;
+}

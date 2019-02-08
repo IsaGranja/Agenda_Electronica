@@ -1,10 +1,9 @@
-@extends('base') {{-- Hereda el header y el footer de la view base --}}
+@extends('base')
 
 @section('content')
-    
-    <body>
+<body>
         <div>
-            
+
             <div class="row">
 
                 <div class="col-sm-3">
@@ -51,7 +50,7 @@
                                 <td><a href="pagProvincias/editar/{{$provincia->codprovincia}}"><button class='btn btn-warning-glyphicon glyphicon-pencil'></button></a></td>
                                 <td>{{$provincia->codprovincia}}</td>
                                 <td>{{$provincia->desprovincia}}</td>
-                                                                    
+
                                 </td>
                             </tr>
                             @endforeach 
@@ -77,6 +76,5 @@
             </script>
         </div>
     </body>
-
 
 @endsection
