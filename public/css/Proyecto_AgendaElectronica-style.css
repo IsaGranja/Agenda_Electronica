@@ -15,13 +15,17 @@ section{
 footer{
   margin: none;
   padding: none;
+  position:absolute;
+  bottom:0;
+  width:100%;
+  height:0%;
 }
 table{
   margin: none;
   padding: none;
 }
 textarea{
-  font-size: 33px;
+  font-size: 10px;
 }
 .fondoizq{
   background-color: rgb(34, 34, 34);
@@ -29,6 +33,7 @@ textarea{
   margin: none;
   overflow-x: scroll;
   overflow-y: scroll;
+  float:left;
 }
 .fondocentro{
     background-color: rgb(87, 136, 205);
@@ -42,6 +47,7 @@ textarea{
     margin: none;
     overflow-x: scroll;
     overflow-y: scroll;
+    float:right;
 }
 .containerPri1{
   height: 26rem;
@@ -67,7 +73,6 @@ textarea{
 }
 .colorPUCE{
   background-color: rgb(76, 191, 220);
-  height: 50%;
 }
 .colorFondoIconos{
   background-color: rgba(108, 108, 110, 0.144);
@@ -105,11 +110,14 @@ textarea{
   text-align:right;
 }
 #downloadLnk {
-  visibility:hidden;
-  position: fixed;
+  visibility: hidden;
+  position: relative;
   width: 48px;
   top: 0px;
   color:white;
+  font-size: 10px;
+  text-decoration: underline;
+  cursor:pointer;
 }
 /* CUSTOMIZE THE CAROUSEL
 -------------------------------------------------- */
@@ -117,6 +125,7 @@ textarea{
 /* Carousel base class */
 .carousel {
     background-color: rgba(255, 255, 255, 0.144);
+    width:100%;
     height: 26rem;
     margin: none;
     padding: none;
@@ -131,11 +140,11 @@ textarea{
   .carousel-item {
     height: 26rem;
     width: 100%;
+
   }
   .carousel-control-prev,
   .carousel-control-next{
       height: 26rem;
-      /*width: 15%;*/
       width: 5%;
   }
   /*imagen desplegable por iconos*/
@@ -144,21 +153,23 @@ textarea{
     z-index: 0;
     align-content: center;
     width:100%;
+    position:relative;
   }
 
   /*contenido de carousel*/
   .imagen1{
     width: 100%;
     height: 26rem;
-    padding-left: 5%;
-    padding-right:5%; 
+    padding-left: 4%;
+    padding-right: 4%;
     align-content: center;
-    margin-top:1%;  
+    text-align: center;
+    position: relative;
   }
   /*iconos*/
   .imagen2{
     width: 5.5rem;
-    height: 5.5rem;
+    height: 5rem;
     align-content: center;
     background:  rgb(226, 217, 195);
     border-radius: 50%;
@@ -169,7 +180,7 @@ textarea{
   /*logoNav*/
   .logo{
     width: 90%;
-    height: 4rem;
+    height: 2.5rem;
     align-content: center;
   }
   
@@ -202,6 +213,7 @@ input {
   margin: 5px 0 15px 0;
   padding: 5px;
   width: 100%;
+  font-size: 15px;
 }
 
 .derT{
@@ -210,4 +222,23 @@ input {
   border: 2px solid;
   padding: 20px;
   width:300px;
+}
+   /* Menu - submenu
+  -------------------------------------------------- */ 
+.dropdown-submenu {
+  position: relative;
+}
+
+.dropdown-submenu a::after {
+  transform: rotate(-90deg);
+  position: absolute;
+  right: 6px;
+  top: .8em;
+}
+
+.dropdown-submenu .dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-left: .1rem;
+  margin-right: .1rem;
 }

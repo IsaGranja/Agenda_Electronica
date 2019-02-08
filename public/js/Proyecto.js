@@ -83,14 +83,26 @@ $(document).on('keyup', "[maxlength]", function (e) {
         ctx.fillStyle = 'rgba(255,255,255)';
         ctx.fillRect(0,0,window.innerWidth,window.innerHeight);
     }
-    /////////
+   /*
     function LoadImage() {
         if (canvas != null) {
             if (canvas.getContext) {
                 var img = new Image();
                 img.src = "{{ url('img/beagle.jpg') }}";  //moved up for cosmetics
                 img.onload = function () {
-                    ctx.drawImage(img, 15, 15, 620, 475);                    
+                    canvas.drawImage(img, 15, 15, 620, 475);                    
+                }                    
+            }
+        }
+    }*/
+
+    function LoadImage() {
+        if (canvas != null) {
+            if (canvas.getContext) {
+                var img = new Image();
+                img.src = "{{ url('img/beagle.jpg') }}";  //moved up for cosmetics
+                img.onload = function () {
+                    canvas.drawImage(img, 15, 15, 620, 475);                    
                 }                    
             }
         }
@@ -115,5 +127,19 @@ $(document).on('keyup', "[maxlength]", function (e) {
         
         baseImage.src = image64;
       }
+      //////
+      function download() {
+        var canvas = document.getElementById("myCanvas");
+        var link = document.getElementById("downloadLnk");
+        var dt = canvas.toDataURL();
+        this.href = dt;
+        link.style.visibility = "visible";
+        downloadLnk.addEventListener('click', download, false);                          
+    };
+    function hide(){
+      var link = document.getElementById("downloadLnk");
+      link.style.visibility = "hidden";
+    };
+
 
       
