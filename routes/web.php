@@ -37,7 +37,14 @@ Route::view('/pagCiudades','ciudades');
 Route::view('/pagUniversidades','universidades');
 Route::view('/pagSedes','sedes');
 Route::view('/pagPeriodos','periodos');
-Route::view('/pagFacultades','facultades');
+
+Route::get('/pagFacultades','FacultadController@index');
+Route::get('/pagFacultades/crear','FacultadController@create');
+Route::post('/pagFacultades/crear','FacultadController@store');
+Route::get('/pagFacultades/editar/{id}', 'FacultadController@edit');
+Route::post('/pagFacultades/editar/{id}', 'FacultadController@update');
+Route::get('/pagFacultades/{id}','FacultadController@destroy');
+
 Route::view('/pagFacultadesxSede','facultadesxSede');
 Route::view('/pagEscuelas','escuelas');
 Route::view('/pagCarreras','carreras');

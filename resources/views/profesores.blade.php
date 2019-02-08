@@ -20,17 +20,17 @@
             </div>
         </form>
 
-        </div>
+</div>
         <div class="col-md-2"></div>  
         <div class="col-md-6">
-            <a href="pagProfesores/crear"><button type="submit" class="btn btn-primary">Nuevo</button></a>
+                <a href="pagProfesores/crear"><button type="submit" class="btn btn-primary">Nuevo</button></a>
+            </div>
+            <div class = "col-md-1">
+            <a href="/"><button type="submit" class="btn btn-primary">Salir</button></a>
+            </div>
         </div>
-        <div class = "col-md-1">
-        <a href="/"><button type="submit" class="btn btn-primary">Salir</button></a>
-        </div>
-    </div>
-    <div>
-        <table id="myTable" class="table order-list">
+    <div id= "prueba">
+        <table class="table order-list">
         <thead class="thead-light">
             <tr>
                 <th></th>

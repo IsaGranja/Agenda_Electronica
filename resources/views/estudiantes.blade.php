@@ -23,8 +23,8 @@
         </div>
     </div>
     <div>
-        <table id="myTable" class="table order-list">
-        <thead class="thead-light">
+        <table  class="table table-bordred table-striped">
+        <thead >
             <tr>
                 <th></th>
                 <th ></th>
@@ -34,7 +34,7 @@
                 <th >e-mail</th>
                 <th>Carrera</th>
 
-            </tr>
+            </tr>   
         </thead>
         <tbody>
             @if($estudiantes->count())  
