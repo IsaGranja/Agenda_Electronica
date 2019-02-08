@@ -1,11 +1,8 @@
 @extends('base') {{-- Hereda el header y el footer de la view base --}}
 
 @section('content')
-<<<<<<< HEAD
-=======
    
 
->>>>>>> 00caf605bbfce38df440aa745899e4f038f1fd39
     
     <body>
         <div>
