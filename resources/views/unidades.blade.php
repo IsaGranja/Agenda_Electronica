@@ -1,9 +1,9 @@
-@extends('base') {{-- Hereda el header y el footer de la view base --}}
+@extends('base')
 
 @section('content')
-<br>
-    <body>
+<body>
         <div>
+
             <div class="row">
 
                 <div class="col-sm-3">
@@ -11,7 +11,7 @@
                         <input type="text" class="form-control" placeholder="Código del informe"/>
                         <span class="input-group-btn">
                             <button type="button" class="btn btn-info">
-                                <span class="glyphicon glyphicon-search"></span>
+                                Buscar
                             </button>
                         </span>
                     </div>
@@ -20,9 +20,7 @@
                 <div class="col-md-2"></div>  
 
                 <div class="col-md-6">
-                    <input type="button"  class="btn btn-primary" id="addrow" value="Nuevo"/>
-                    <input type="button"  class="btn btn-primary" value="Guardar"/>
-                    <input type="button"  class="btn btn-primary" value="Borrar"/>
+                    <a href="/pagUnidades/crear"><button type="submit" class="btn btn-primary">Nuevo</button></a>
                 </div>
 
                 <div class = "col-md-1">
@@ -30,56 +28,59 @@
                 </div>
 
             </div>
-            
-            <br>
 
-            <div class = "col-md-8">
-            
-                <div class="form-group row">
-                    <label>Universidad-Carrera<span style="color:red;font-weight:bold">*</span></label>
-                    <div class="col-sm-10">
-                        <select class="form-control" id="carrera" >
-                            @foreach($test as $t)                      
-                                <option value="{{$t->codcarrera}}">{{$t->descuniversidad}}-{{$t->descsede}}-{{$t->descfacultad}}-{{$t->descescuela}}-{{$t->desccarrera}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
+            <div class="table-container">
 
-                <div class="form-group row">
-                    <label>Asignatura<span style="color:red;font-weight:bold">*</span></label>
-                    <div class="col-sm-10">
-                        <select class="form-control" id="codasignatura" >                    
-                                <option ></option>
-                        </select>
-                    </div>
-                </div>
+                <table id="mytable" class="table table-bordred table-striped">
+                    <thead>
+                        <th></th>
+                        <th></th>
+                        <th>Universidad-Carrera</th>
+                        <th>Asignatura</th>
+                        <th># de Unidad</th>
+                        <th>Unidad</th>
 
-                <div class="form-group row">
-                    <label># de Unidad<span style="color:red;font-weight:bold">*</span></label>
-                    <div class="col-sm-5">
-                        <input type="text" class="form-control" id="">
-                    </div>
-                </div>
+                        <tbody>
+                            @if($unidades->count())  
+                            @foreach($unidades as $unidad)  
+                            <tr>     
 
-                <div class="form-group row">
-                    <label>Unidad<span style="color:red;font-weight:bold">*</span></label>
-                    <div class="col-sm-6">
-                        <input type="text" class="form-control" id="">
-                    </div>
-                </div>
+                                <form action="{{action('UnidadesController@destroy', $unidad->codunidad)}}" method="GET" onsubmit="return ConfirmDelete()">
+                                    @csrf
+                                    <input name="_method" type="hidden" value="DELETE">
+                                    <td><button class='btn btn-danger-glyphicon glyphicon glyphicon-trash'></button></td>
+                                </form>
+                                
+                                <td><a href="/pagUnidades/editar/{{$unidad->codunidad}}"><button class='btn btn-warning-glyphicon glyphicon-pencil'></button></a></td>
+                                <td>{{$unidad->descuniversidad}}-{{$unidad->descsede}}-{{$unidad->descfacultad}}-{{$unidad->descescuela}}-{{$unidad->desccarrera}}</td>
+                                <td>{{$unidad->descasignatura}}</td>
+                                <td>{{$unidad->descunidad}}</td>
+                                <td>{{$unidad->numunidad}}</td>
+
+                                </td>
+                            </tr>
+                            @endforeach 
+                            @else
+                            <tr>
+                                <td colspan="8">No hay registro !!</td>
+                            </tr>
+                            @endif
+                        </tbody>
+
+                    </thead>           
+                </table>   
+
             </div>
-
+            <script>
+                function ConfirmDelete(){
+                    var x = confirm("¿Esta seguro que desea eliminar este registro?");
+                    if (x)
+                        return true;
+                    else
+                        return false;
+                }
+            </script>
         </div>
-
-        <script>
-            $(document).ready(function(){
-                var carrera = $('')
-                
-
-            });
-        </script>
-
     </body>
-   
+
 @endsection
