@@ -9,13 +9,11 @@
 
                 <div class="col-sm-3">
                     <div class= "input-group">
-                        <input type="text" class="form-control" name="busquedaDesc" id="busquedaDesc" placeholder="Busqueda por Descripción"/>
+                        <input type="text" class="form-control" placeholder="Busqueda por Descripción"/>
                         <span class="input-group-btn">
-                            <a href="pagFacultades">
                             <button type="button" class="btn btn-info">
                                 Buscar
                             </button>
-                            </a>
                         </span>
                     </div>
                 </div>

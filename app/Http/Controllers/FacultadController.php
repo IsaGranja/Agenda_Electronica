@@ -8,34 +8,10 @@ use DB;
 
 class FacultadController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
-        
-
-        /*
-        if($request->get('cedula')!= ""){
-        $profesores = DB::table('profesores')->join('carreras','carreras.codcarrera','=','profesores.codcarrera')->where('profesores.cedprofesor','LIKE','%'.$request->get('cedula').'%')->paginate();
-        //dd($profesores);
-        return view('profesores',compact('profesores'));
-        }
-        else{
-            $profesores = DB::table('profesores')->join('carreras','carreras.codcarrera','=','profesores.codcarrera')->paginate();
-            //dd($profesores);
-            return view('profesores',compact('profesores'));
-        }
-        */
-        /*if($request->get('busquedaDesc')!="")
-        {
-            $facus=DB::table('facultades')->where('facus.descfacultades','LIKE','%'.$request->get('busquedaDesc').'%')->paginate();
-            return view('facultades',compact('facus'));
-        }
-        else
-        {
-            $facus = Facultad::all()->sortBy('descfacultad');
-            return view('facultades',compact('facus'));
-        }*/
         $facus = Facultad::all()->sortBy('descfacultad');
-            return view('facultades',compact('facus'));
+        return view('facultades',compact('facus'));
         
     }
     public function create()

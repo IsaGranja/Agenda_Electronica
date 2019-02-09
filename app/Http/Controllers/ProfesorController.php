@@ -11,12 +11,12 @@ class ProfesorController extends Controller
     {
      // dd($request->get('cedula'));
      if($request->get('cedula')!= ""){
-        $profesores = DB::table('profesores')->join('carreras','carreras.codcarrera','=','profesores.codcarrera')->where('profesores.cedprofesor','LIKE','%'.$request->get('cedula').'%')->paginate();
+        $profesores = DB::table('profesores')->join('carreras','carreras.codcarrera','=','profesores.codcarrera')->where('profesores.cedprofesor','LIKE','%'.$request->get('cedula').'%')->paginate(10);
         //dd($profesores);
         return view('profesores',compact('profesores'));
      }
      else{
-        $profesores = DB::table('profesores')->join('carreras','carreras.codcarrera','=','profesores.codcarrera')->paginate();
+        $profesores = DB::table('profesores')->join('carreras','carreras.codcarrera','=','profesores.codcarrera')->paginate(10);
         //dd($profesores);
         return view('profesores',compact('profesores'));
      }
@@ -45,7 +45,7 @@ class ProfesorController extends Controller
             $profesor->celuprofesor = $request->input('celuprofesor');
             $profesor->save();
             $request->flash('alert-success', 'Profesor fue ingresado'); 
-            return redirect('pagProfesores')->action('ProfesorController@index') ->with('message','No Ingresado');
+            return redirect('pagProfesores');
         }
         else{
             
@@ -92,7 +92,7 @@ class ProfesorController extends Controller
         }
         else{
            
-            return redirect()->back() ->with(['success' => 'Profesor no se pudo eliminar']);
+            return redirect()->back() ->with(['success' => 'No se puede eliminar el profesor. Está encargado de una asignatura']);
         }
 
     }
