@@ -33,7 +33,7 @@
     +                       <option value="{{$carrera->codcarrera}}">{{$carrera->descuniversidad}} -  {{$carrera->descsede}} -  {{$carrera->descfacultad}} -  {{$carrera->descescuela}}
                            -  {{$carrera->desccarrera}}</option>
     +                   @endforeach
-                    </select>
+                </select>
                 </div>
                     
                 </div>

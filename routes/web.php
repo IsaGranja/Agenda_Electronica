@@ -24,6 +24,7 @@ Route::get('/pagLogin','HomeController@loginFunc');
 Route::get('/pagAudio','HomeController@audioFunc');
 Route::get('/pagVideo','HomeController@videoFunc');
 Route::get('/pagImagen','HomeController@imagenFunc');
+
 Route::get('/pagProvincias','ProvinciaController@index');
 Route::get('/pagProvincias/crear','ProvinciaController@create');
 Route::post('/pagProvincias/crear','ProvinciaController@store');
@@ -54,7 +55,13 @@ Route::view('/pagAsignaturasxProfesor','asignaturasxProfesor');
 Route::view('/pagContenidos','contenidos');
 
 Route::get('/pagUnidades','UnidadesController@index');
-Route::get('/pagUnidades/{id}','UnidadesController@byAsignatura');
+Route::get('/pagUnidades/crear','UnidadesController@create');
+Route::post('pagUnidades/crear/fetch','UnidadesController@fetch')->name('pagUnidades.fetch');
+Route::post('/pagUnidades/crear','UnidadesController@store');
+Route::get('/pagUnidades/editar/{codunidad}','UnidadesController@edit');
+Route::post('pagUnidades/editar/fetch','UnidadesController@fetch')->name('pagUnidades.fetch');
+Route::post('/pagUnidades/editar/{codunidad}','UnidadesController@update');
+Route::get('/pagUnidades/{codunidad}','UnidadesController@destroy');
 
 Route::view('/pagTemas','temas');
 Route::view('/pagTalleres','talleres');
