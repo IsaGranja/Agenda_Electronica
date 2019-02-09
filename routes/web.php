@@ -45,7 +45,14 @@ Route::get('/pagFacultades/editar/{id}', 'FacultadController@edit');
 Route::post('/pagFacultades/editar/{id}', 'FacultadController@update');
 Route::get('/pagFacultades/{id}','FacultadController@destroy');
 
-Route::view('/pagFacultadesxSede','facultadesxSede');
+Route::get('/pagFacultadesxSede','FacultadxSedeController@index');
+Route::get('/pagFacultadesxSede/crear','FacultadxSedeController@create');
+Route::post('/pagFacultadesxSede/crear','FacultadxSedeController@store');
+Route::get('/pagFacultadesxSede/editar/{id}', 'FacultadxSedeController@edit');
+Route::post('/pagFacultadesxSede/editar/{id}', 'FacultadxSedeController@update');
+Route::get('/pagFacultadesxSede/{id}','FacultadxSedeController@destroy'); 
+
+
 Route::view('/pagEscuelas','escuelas');
 Route::view('/pagCarreras','carreras');
 Route::view('/pagEstudiantesExcel','estudiantesExcel');
