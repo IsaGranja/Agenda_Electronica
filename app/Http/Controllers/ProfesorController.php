@@ -26,7 +26,12 @@ class ProfesorController extends Controller
     {
        $carreras = DB::select('SELECT carreras.codcarrera, carreras.desccarrera, escuelas.descescuela, facultades.descfacultad, sedes.descsede, universidades.descuniversidad
                     FROM carreras natural join escuelas natural join facultades natural join facultadesxsedes natural join sedes natural join universidades;');
+                    
+       //$facultades = DB::select('SELECT facultades.codfacultad, facultades.descfacultad, sedes.descsede, universidades.descuniversidad
+       //FROM facultades natural join facultadesxsedes natural join sedes natural join universidades;');
                    // dd($carreras);
+        //return view('escuelas_crear', compact('facultades'));
+
         return view('profesores_crear', compact('carreras'));
     }
 
