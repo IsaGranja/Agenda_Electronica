@@ -36,7 +36,6 @@
                 <table id="mytable" class="table table-bordred table-striped">
                     <thead>
                         <th></th>
-                        <th></th>
                         <th>Universidad</th>
                         <th>Sede</th>
                         <th>Facultad</th>                        
@@ -49,9 +48,6 @@
                                             <input name="_method" type="hidden" value="DELETE">
                                             <td><button class='btn btn-danger-glyphicon glyphicon glyphicon-trash'></button></td>
                                         </form>
-
-                                        <td><a href = "pagFacultadesxSede/editar/{{$facu->codfacultad}}"><button class='btn btn-warning-glyphicon glyphicon-pencil'></button></a></td>
-
 
                                         <td>{{$facu->descuniversidad}}</td>
                                         <td>{{$facu->descsede}}</td>
