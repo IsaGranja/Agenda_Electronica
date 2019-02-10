@@ -63,7 +63,18 @@ Route::post('pagUnidades/editar/fetch','UnidadesController@fetch')->name('pagUni
 Route::post('/pagUnidades/editar/{codunidad}','UnidadesController@update');
 Route::get('/pagUnidades/{codunidad}','UnidadesController@destroy');
 
-Route::view('/pagTemas','temas');
+Route::get('/pagTemas','TemasController@index');
+Route::get('/pagTemas/crear','TemasController@create');
+Route::post('pagTemas/crear/byAsignatura','TemasController@byAsignatura')->name('pagTemas.byAsignatura');
+Route::post('pagTemas/crear/byUnidad','TemasController@byUnidad')->name('pagTemas.byUnidad');
+Route::post('/pagTemas/crear','TemasController@store');
+Route::get('/pagTemas/editar/{codtema}/{codunidad}','TemasController@edit');
+Route::post('pagTemas/editar/fetch','TemasController@byAsignatura')->name('pagTemas.byAsignatura');
+Route::post('pagTemas/crear/fetch','TemasController@byUnidad')->name('pagTemas.byUnidad');
+Route::post('/pagTemas/editar/{codtema}/{codunidad}','TemasController@update');
+Route::get('/pagTemas/{codtema}','TemasController@destroy');
+
+
 Route::view('/pagTalleres','talleres');
 Route::view('/pagEvaluaciones','evaluaciones');
 Route::view('/pagGlosarios','glosarios');
