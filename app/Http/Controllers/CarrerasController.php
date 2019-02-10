@@ -8,18 +8,41 @@ use DB;
 
 class CarrerasController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $carreras = DB::table('carreras')
+        if($request->get('buscarcarrera')!= ""){
+            $carreras = DB::table('carreras')
+            ->join('escuelas','escuelas.codescuela','=','carreras.codescuela')
+            ->join('facultades','facultades.codfacultad','=','escuelas.codfacultad')
+            ->join('facultadesxsedes','facultadesxsedes.codfacultad','=','facultades.codfacultad')
+            ->join('sedes','sedes.codsede','=','facultadesxsedes.codsede')
+            ->join('universidades','universidades.coduniversidad','=','sedes.coduniversidad')
+            ->where('carreras.desccarrera','LIKE','%'.$request->get('buscarcarrera').'%')->paginate(10);
+
+            
+            //return view('carreras',compact('carreras'));
+        }
+        else{
+            $carreras = DB::table('carreras')
+            ->join('escuelas','escuelas.codescuela','=','carreras.codescuela')
+            ->join('facultades','facultades.codfacultad','=','escuelas.codfacultad')
+            ->join('facultadesxsedes','facultadesxsedes.codfacultad','=','facultades.codfacultad')
+            ->join('sedes','sedes.codsede','=','facultadesxsedes.codsede')
+            ->join('universidades','universidades.coduniversidad','=','sedes.coduniversidad')
+            ->paginate(10);; 
+    
+            //return view('carreras',compact('carreras'));
+        }
+        
+        /*$carreras = DB::table('carreras')
         ->join('escuelas','escuelas.codescuela','=','carreras.codescuela')
         ->join('facultades','facultades.codfacultad','=','escuelas.codfacultad')
         ->join('facultadesxsedes','facultadesxsedes.codfacultad','=','facultades.codfacultad')
         ->join('sedes','sedes.codsede','=','facultadesxsedes.codsede')
         ->join('universidades','universidades.coduniversidad','=','sedes.coduniversidad')
-        ->orderBy('codcarrera')->get(); 
+        ->orderBy('codcarrera')->get(); */
   
         return view('carreras',compact('carreras'));
-        
     }
     public function create()
     {

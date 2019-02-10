@@ -8,14 +8,16 @@
             <div class="row">
 
                 <div class="col-sm-3">
+                <form  action="/pagCarreras" method="GET" class="navbar-form navbar-left" role="search">
                     <div class= "input-group">
-                        <input type="text" class="form-control" placeholder="Busqueda por Descripción"/>
+                        <input type="text" class="form-control"name="buscarcarrera" id="buscarcarrera"placeholder="Buscar por Carrera"/>
                         <span class="input-group-btn">
-                            <button type="button" class="btn btn-info">
+                            <button type="submit" class="btn btn-info">
                                 Buscar
                             </button>
                         </span>
                     </div>
+                </form>
                 </div>
 
                 <div class="col-md-2"></div>  
