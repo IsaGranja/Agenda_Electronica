@@ -14,8 +14,7 @@
                 </div>
             </div>   
 
-            <br>
-  
+            <br>  
 
             <form method="post" action = "pagEscuelas/editar/{id}"> 
                 {{ csrf_field() }}
@@ -29,7 +28,7 @@
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Universidad-Sede-Facultad</label>
                     <select class="form-control" id="codfacultad" name="codfacultad"  style="width:470px">
-                        @foreach ($facultades as $facu)
+    +                   @foreach ($facultades as $facu)
     +                       <option value="{{$facu->codfacultad}}">{{$facu->descuniversidad}}-{{$facu->descsede}}-{{$facu->descfacultad}} </option>
     +                   @endforeach
                     </select>

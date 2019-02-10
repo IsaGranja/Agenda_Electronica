@@ -41,27 +41,34 @@ Route::view('/pagPeriodos','periodos');
 Route::get('/pagFacultades','FacultadController@index');
 Route::get('/pagFacultades/crear','FacultadController@create');
 Route::post('/pagFacultades/crear','FacultadController@store');
-Route::get('/pagFacultades/editar/{id}', 'FacultadController@edit');
-Route::post('/pagFacultades/editar/{id}', 'FacultadController@update');
+Route::get('/pagFacultades/editar/{id}','FacultadController@edit');
+Route::post('/pagFacultades/editar/{id}','FacultadController@update');
 Route::get('/pagFacultades/{id}','FacultadController@destroy');
 
 Route::get('/pagFacultadesxSede','FacultadxSedeController@index');
 Route::get('/pagFacultadesxSede/crear','FacultadxSedeController@create');
 Route::post('/pagFacultadesxSede/crear','FacultadxSedeController@store');
-Route::get('/pagFacultadesxSede/editar/{id}', 'FacultadxSedeController@edit');
-Route::post('/pagFacultadesxSede/editar/{id}', 'FacultadxSedeController@update');
+Route::get('/pagFacultadesxSede/editar/{id}','FacultadxSedeController@edit');
+Route::post('/pagFacultadesxSede/editar/{id}','FacultadxSedeController@update');
 Route::get('/pagFacultadesxSede/{id}','FacultadxSedeController@destroy'); 
 
 
 Route::get('/pagEscuelas','EscuelasController@index');
 Route::get('/pagEscuelas/crear','EscuelasController@create');
 Route::post('/pagEscuelas/crear','EscuelasController@store');
-Route::get('/pagEscuelas/editar/{id}', 'EscuelasController@edit');
-Route::post('/pagEscuelas/editar/{id}', 'EscuelasController@update');
+Route::get('/pagEscuelas/editar/{id}','EscuelasController@edit');
+Route::post('/pagEscuelas/editar/{id}','EscuelasController@update');
 Route::get('/pagEscuelas/{id}','EscuelasController@destroy');
 
 
-Route::view('/pagCarreras','carreras');
+Route::get('/pagCarreras','CarrerasController@index');
+Route::get('/pagCarreras/crear','CarrerasController@create');
+Route::post('/pagCarreras/crear','CarrerasController@store');
+Route::get('/pagCarreras/editar/{id}','CarrerasController@edit');
+Route::post('/pagCarreras/editar/{id}','CarrerasController@update');
+Route::get('/pagCarreras/{id}','CarrerasController@destroy');
+
+
 Route::view('/pagEstudiantesExcel','estudiantesExcel');
 Route::view('/pagAsignaturas','asignaturas');
 Route::view('/pagAsignaturasxEstudiante','asignaturasxEstudiante');
