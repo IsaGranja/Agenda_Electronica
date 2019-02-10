@@ -7,5 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Periodos extends Model
 {
     protected $table = 'periodos';
-	public $timestamps = false;
+    protected $primaryKey = 'codperiodo';
+    public $timestamps = false;
+    protected $fillable = ['codperiodo','codsede','fecinicioperiodo','fecfinalperiodo','estperiodo'];
+    public $incrementing = false;
+    
+    
+    
 }

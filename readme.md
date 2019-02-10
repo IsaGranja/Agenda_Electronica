@@ -28,8 +28,9 @@ Hola Chicos! Presten atención a las siguientes indicaciones :)
   * 2.2.-composer install
   * 2.3.-npm install //(para que se ejecute esta línea de comando se requiere que esté instalado Node.js)
   * 2.4.-php artisan key:generate
-  * 2.5.-php artisan serve
-  * 2.6.-abrir explorador y ejecutar proyecto colocando localhost:8000 en barra de navegación //el puerto (8000) depende de cada uno
+  * 2.5.-composer require maatwebsite/excel
+  * 2.6.-php artisan serve
+  * 2.7.-abrir explorador y ejecutar proyecto colocando localhost:8000 en barra de navegación //el puerto (8000) depende de cada uno
 # --------------Si tienen alguna pregunta no duden en contactarnos:--------------
 * Jose Salgado: 0994241512 - josesalgado7@hotmail.com
 * Isabel Granja: 0984483181 - maisa_178@hotmail.com
@@ -69,5 +70,6 @@ php artisan cache:clear
 php artisan config:clear
 
 # ----Nota importante-----
-Al hacer push no enviar el archivo .env y el de database.php ya que cada uno lo tiene de diferente forma
+Escribir en el terminal: 
+composer require maatwebsite/excel
  

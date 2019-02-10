@@ -53,11 +53,16 @@
                         <tbody>
                             @if($universidades->count())  
                             @foreach($universidades as $universidad)  
-                            <tr>     
+                            <tr>
+                                <form action="{{action('UniversidadesController@destroy', $universidad->coduniversidad)}}" method="GET" onsubmit="return ConfirmDelete()">
+                                    @csrf
+                                    <input name="_method" type="hidden" value="DELETE">
+                                    <td><button class='btn btn-danger-glyphicon glyphicon glyphicon-trash'></button></td>
+                                </form>
                                 
-                                <td><button class='btn btn-danger-glyphicon glyphicon glyphicon-trash'></button></td>
                                 
-                                <td><a><button class='btn btn-warning-glyphicon glyphicon-pencil'></button></a></td>
+                                
+                                <td><a href="pagUniversidades/editar/{{$universidad->coduniversidad}}"><button class='btn btn-warning-glyphicon glyphicon-pencil'></button></a></td>
                                 <!--<td>{{$universidad->coduniversidad}}</td>-->
                                 <td>{{$universidad->descuniversidad}}</td>
                                 <td>{{$universidad->categuniversidad}}</td>
@@ -66,7 +71,7 @@
                                 <td>{{$universidad->numdiruniversidad}}</td>
                                 <td>{{$universidad->tipouniversidad}}</td>
                                 <td>{{$universidad->rectuniversidad}}</td>
-                                <td>{{$universidad->viserecuniviersidad}}</td>
+                                <td>{{$universidad->viserecuniversidad}}</td>
                                 <td>{{$universidad->secregenuniversidad}}</td>
                                 <td>{{$universidad->rucuniversidad}}</td>
                                                                     
