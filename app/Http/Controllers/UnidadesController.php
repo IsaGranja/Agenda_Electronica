@@ -87,7 +87,7 @@ class UnidadesController extends Controller
         ->join('asignaturas','asignaturas.codasignatura','=','unidades_estudio.codasignatura')
         ->where('codunidad','=',$codunidad)->first();
 
-        return view('unidades_editar',compact('test','actual','univexcarrera','asigxunidad'));
+        return view('unidades_editar',compact('test','univexcarrera','asigxunidad'));
         //return view('unidades_editar',compact('test','actual','univexcarrera','asigxunidad'));
     }
 
