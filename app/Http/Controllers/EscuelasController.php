@@ -72,8 +72,7 @@ class EscuelasController extends Controller
         $data=array(
             'codfacultad'=>$request->input('codfacultad'),
             'descescuela'=> $request->input('descescuela'),
-            'directorescuela'=> $request->input('directorescuela'),    
-        );          
+            'directorescuela'=> $request->input('directorescuela') );          
   
         Escuelas::where('codescuela','=',$request->codescuela)->update($data);        
         return redirect("pagEscuelas");
