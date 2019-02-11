@@ -10,6 +10,10 @@ class EstudianteExcelController extends Controller
 
     public function create()
     {
+        try {
+        $carreras = DB::select('SELECT carreras.codcarrera, carreras.desccarrera, escuelas.descescuela, facultades.descfacultad, sedes.descsede, universidades.descuniversidad
+                    FROM carreras natural join escuelas natural join facultades natural join facultadesxsedes natural join sedes natural join universidades;');
+                   // dd($carreras);
         $datos = DB::table('escuelas')
         ->join('facultadesxsedes', 'escuelas.codfacultad', '=', 'facultadesxsedes.codfacultad')
         ->join('sedes', 'facultadesxsedes.codsede', '=', 'sedes.codsede')
@@ -19,13 +23,18 @@ class EstudianteExcelController extends Controller
         ->join('periodos', 'periodos.codsede', '=', 'sedes.codsede')
         ->where('periodos.estperiodo', '=', 'A')
         ->get();
-
+        
+        $asignaturas = DB::table('asignaturas')->get();
         $periodos = DB::table('periodos')->where('periodos.estperiodo', '=', 'A')->get();
-        return view('EstudiantesExcel',['periodos'=>$periodos,'datos'=>$datos]);
+        } catch (\Exception $exception) {
+            return back()->withError($exception->getMessage());
+        }
+        return view('EstudiantesExcel',['periodos'=>$periodos,'datos'=>$datos,'carreras'=>$carreras,'asignaturas'=>$asignaturas]);
     }
 
     public function estudianteImport(Request $request)
     {
+        try {
         if($request->hasFile('file')){
             $path = $request->file('file')->getRealPath();
             $data = Excel::load($path, function($reader){})->get();
@@ -33,18 +42,11 @@ class EstudianteExcelController extends Controller
                {
                    $cedprofesor = $request->get('cedprofesor');
                    $codperiodo = $request->get('codperiodo');
-                   $carreras= DB::table('profesores')->select('codcarrera')->where('cedprofesor','=',$cedprofesor)->get();
-                   $codcarrera;
-                   foreach ($carreras as $car){
-                       $codcarrera = $car->codcarrera;
-                   }
+                   $codcarrera = $request->get('unies');
 
-                   $descasignatura = $request->get('asignatura');
-                   $asignaturas= DB::table('asignaturas')->select('codasignatura')->where('descasignatura','=',$descasignatura)->get();
-                   $codasignatura;
-                   foreach ($asignaturas as $asig){
-                       $codasignatura = $asig->codasignatura;
-                   }
+                   $codasignatura = $request->get('asignatura');
+                   
+                   
                    
 
                    foreach($data as $key => $value)
@@ -67,6 +69,9 @@ class EstudianteExcelController extends Controller
 
                }
                 
+        }
+        } catch (\Exception $exception) {
+            return back()->withError($exception->getMessage());
         }
         return redirect('pagEstudiantes-excel/create')->with('success', 'Se añadio correctamente');
         
