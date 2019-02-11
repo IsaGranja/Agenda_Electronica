@@ -10,14 +10,16 @@
                     <h2>Escuelas</h2>
                 </div>
                 <div class="col-sm-3">
+                <form  action="/pagEscuelas" method="GET" class="navbar-form navbar-left" role="search">
                     <div class= "input-group">
-                        <input type="text" class="form-control" placeholder="Busqueda Rapida"/>
+                        <input type="text" class="form-control"name="escuelabuscar" id="escuelabuscar"placeholder="Buscar por Escuela"/>
                         <span class="input-group-btn">
-                            <button type="button" class="btn btn-info">
+                            <button type="submit" class="btn btn-info">
                                 Buscar
                             </button>
                         </span>
                     </div>
+                </form>
                 </div>
 
                 <div class="col-md-2"></div>  

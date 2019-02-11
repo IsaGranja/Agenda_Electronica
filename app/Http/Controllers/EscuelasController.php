@@ -8,14 +8,35 @@ use App\Escuelas;
 
 class EscuelasController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $escuelas = DB::table('escuelas')
+        /*$escuelas = DB::table('escuelas')
         ->join('facultades','facultades.codfacultad','=','escuelas.codfacultad')
         ->join('facultadesxsedes','facultadesxsedes.codfacultad','=','facultades.codfacultad')
         ->join('sedes','sedes.codsede','=','facultadesxsedes.codsede')
         ->join('universidades','universidades.coduniversidad','=','sedes.coduniversidad')
-        ->orderBy('codescuela')->get();
+        ->orderBy('codescuela')->get();*/
+
+        if($request->get('escuelabuscar')!= ""){
+            $escuelas = DB::table('escuelas')
+            ->join('facultades','facultades.codfacultad','=','escuelas.codfacultad')
+            ->join('facultadesxsedes','facultadesxsedes.codfacultad','=','facultades.codfacultad')
+            ->join('sedes','sedes.codsede','=','facultadesxsedes.codsede')
+            ->join('universidades','universidades.coduniversidad','=','sedes.coduniversidad')
+            ->where('escuelas.descescuela','LIKE','%'.$request->get('escuelabuscar').'%')
+            ->paginate(10);
+            
+         }
+         else{
+            $escuelas = DB::table('escuelas')
+            ->join('facultades','facultades.codfacultad','=','escuelas.codfacultad')
+            ->join('facultadesxsedes','facultadesxsedes.codfacultad','=','facultades.codfacultad')
+            ->join('sedes','sedes.codsede','=','facultadesxsedes.codsede')
+            ->join('universidades','universidades.coduniversidad','=','sedes.coduniversidad')
+            ->paginate(10);
+
+         }
+
         return view('escuelas',compact('escuelas'));
     }
 

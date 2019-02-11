@@ -6,7 +6,9 @@
         <div>
             
             <div class="row">
-
+                <div class="col-sm-11">
+                    <h2>Carreras</h2>
+                </div>
                 <div class="col-sm-3">
                 <form  action="/pagCarreras" method="GET" class="navbar-form navbar-left" role="search">
                     <div class= "input-group">
