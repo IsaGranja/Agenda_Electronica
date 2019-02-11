@@ -8,13 +8,29 @@ use DB;
 
 class FacultadxSedeController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $facus = DB::table('facultades')
+        if($request->get('sedebuscar')!= ""){
+            $facus = DB::table('facultades')
+            ->join('facultadesxsedes','facultadesxsedes.codfacultad','=','facultades.codfacultad')
+            ->join('sedes','sedes.codsede','=','facultadesxsedes.codsede')
+            ->join('universidades','universidades.coduniversidad','=','sedes.coduniversidad')
+            ->where('sedes.descsede','LIKE','%'.$request->get('sedebuscar').'%')
+            ->paginate(10);
+         }
+         else{
+            $facus = DB::table('facultades')
+            ->join('facultadesxsedes','facultadesxsedes.codfacultad','=','facultades.codfacultad')
+            ->join('sedes','sedes.codsede','=','facultadesxsedes.codsede')
+            ->join('universidades','universidades.coduniversidad','=','sedes.coduniversidad')
+            ->paginate(10);
+         }
+
+        /*$facus = DB::table('facultades')
         ->join('facultadesxsedes','facultadesxsedes.codfacultad','=','facultades.codfacultad')
         ->join('sedes','sedes.codsede','=','facultadesxsedes.codsede')
         ->join('universidades','universidades.coduniversidad','=','sedes.coduniversidad')
-        ->orderBy('descuniversidad')->get();
+        ->orderBy('descuniversidad')->get();*/
 
         return view('facultadesxsede',compact('facus'));
     }

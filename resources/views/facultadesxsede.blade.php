@@ -6,16 +6,20 @@
         <div>
             
             <div class="row">
-
+                <div class="col-sm-11">
+                    <h2 >Facultades por Sede</h2>
+                </div>
                 <div class="col-sm-3">
-                    <div class= "input-group">
-                        <input type="text" class="form-control" placeholder="Busqueda por Descripción"/>
-                        <span class="input-group-btn">
-                            <button type="button" class="btn btn-info">
-                                Buscar
-                            </button>
-                        </span>
-                    </div>
+                    <form  action="/pagFacultadesxSede" method="GET" class="navbar-form navbar-left" role="search">
+                        <div class= "input-group">
+                            <input type="text" class="form-control"name="sedebuscar" id="sedebuscar"placeholder="Buscar por Sede"/>
+                            <span class="input-group-btn">
+                                <button type="submit" class="btn btn-info">
+                                    Buscar
+                                </button>
+                            </span>
+                        </div>
+                    </form>
                 </div>
 
                 <div class="col-md-2"></div>  
