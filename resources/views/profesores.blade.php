@@ -1,26 +1,16 @@
 @extends('base') {{-- Hereda el header y el footer de la view base --}}
 
 @section('content')
-    @if (Session::has('success'))
-                    <div class="alert alert-success alert-block">
+    @if (Session::has('error'))
+                    <div class="alert alert-danger alert-block">
                         <button type="button" class="close" data-dismiss="alert">×</button>
-                            <strong>{{ Session::get('success') }}</strong>
+                            <strong>{{ Session::get('error') }}</strong>
                     </div>
                     @endif
 <div class="row"style="    margin-bottom: 1%;  margin-top: 1%; margin-left: 1%">
         <div class="col-sm-3">
-        <form  action="/pagProfesores" method="GET" class="navbar-form navbar-left" role="search">
-            <div class= "input-group">
-                <input type="text" class="form-control"name="cedula" id="cedula"placeholder="Buscar Cédula"/>
-                <span class="input-group-btn">
-                    <button type="submit" class="btn btn-info">
-                        Buscar
-                    </button>
-                </span>
-            </div>
-        </form>
-
-</div>
+            <h1>PROFESORES</h1>
+        </div>
         <div class="col-md-2"></div>  
         <div class="col-md-6">
                 <a href="pagProfesores/crear"><button type="submit" class="btn btn-primary">Nuevo</button></a>
@@ -29,8 +19,8 @@
             <a href="/"><button type="submit" class="btn btn-primary">Salir</button></a>
             </div>
         </div>
-    <div id= "prueba">
-        <table class="table order-list">
+    <div class="table-container">
+        <table id="myTable" class="table table-hover "  style="width:100%; margin-top:10px">
         <thead class="thead-light">
             <tr>
                 <th></th>
@@ -89,8 +79,15 @@
     <script>
         $(document).ready(function () {
             $('#myTable').DataTable({
-                "language": {
-                    "url": "/json/Spanish.json"
+                "paging": false, 
+            "info": false,
+            "autoWidth": true,
+            "searching": true, // Search box and search function will be actived
+            "dom": '<"top"f>rt<"bottom"ilp><"clear">',
+            "language": {
+            "zeroRecords": "No existe registros",
+            "infoEmpty": "No se econtró ningún registro",
+            "sSearch": "Buscar:   "
                 }
             });
         });

@@ -9,12 +9,12 @@ class EstudianteController extends Controller
     public function index(Request $request)
     {
         if($request->get('cedula')!= ""){
-            $estudiantes = DB::table('estudiantes')->join('carreras','carreras.codcarrera','=','estudiantes.codcarrera')->where('estudiantes.cedestudiante','LIKE','%'.$request->get('cedula').'%')->paginate();
+            $estudiantes = DB::table('estudiantes')->join('carreras','carreras.codcarrera','=','estudiantes.codcarrera')->where('estudiantes.cedestudiante','LIKE','%'.$request->get('cedula').'%')->paginate(10);
             //dd($estudiantes);
             return view('estudiantes',compact('estudiantes'));
          }
          else{
-            $estudiantes = DB::table('estudiantes')->join('carreras','carreras.codcarrera','=','estudiantes.codcarrera')->paginate();
+            $estudiantes = DB::table('estudiantes')->join('carreras','carreras.codcarrera','=','estudiantes.codcarrera')->paginate(10);
             //dd($estudiantes);
             return view('estudiantes',compact('estudiantes'));
          }
@@ -29,8 +29,9 @@ class EstudianteController extends Controller
     }
 
     public function store(Request $request)
-    {
-
+    {   $buscar = Estudiante::where('cedestudiante', $request->input('cedestudiante'))->first();
+        if($buscar == null)
+        {  
         $estudiante = new Estudiante();
         $estudiante->cedestudiante = $request->input('cedestudiante');
         $estudiante->codcarrera = $request->input('codcarrera');
@@ -40,6 +41,11 @@ class EstudianteController extends Controller
         $estudiante->save();
         
         return redirect('pagEstudiantes');
+        }
+        else{
+            
+            return redirect()->back() ->with(['error' => 'Ya existe esa cédula']);
+        }
     }
 
     
