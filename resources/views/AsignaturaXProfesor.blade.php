@@ -13,9 +13,12 @@
                     <p>{{ \Session::get('success') }}</p>
                 </div><br />
                 @endif
+                @if (session('error'))
+                <div class="alert alert-danger">{{ session('error') }}</div>
+                @endif
 
                 
-<form    method="post" action="{{url('asigprofesores')}}" enctype="multipart/form-data">
+<form    method="post" action="{{url('pagAsigxProf')}}" enctype="multipart/form-data">
 @csrf
     <div class="form-horizontal">
         
@@ -26,7 +29,7 @@
     <div class="form-group row">
         <label class="control-label col-sm-3" for="codperiodo">Periodo</label>
         <div class="col-sm-6">
-            <input type="text" id="codperiodo" class="form-control" name="codperiodo" value="{{$periodo->codperiodo}}">
+            <input type="text" id="codperiodo" class="form-control" name="codperiodo" value="{{$periodo->codperiodo}}" readonly>
             </div>
         </div>
     @endforeach
@@ -137,11 +140,35 @@ $("#cedprofesor").on("change", function () {
 
     profesores.forEach(function(profesor){
        if(profesor.cedprofesor==document.getElementById('cedprofesor').value){
-        
         document.getElementById('nombreapellido').value = profesor.nomprofesor +' '+ profesor.apeprofesor
-        
        }
     })
+    var cols = "";
+
+    var profasigs;
+    $("#cuerpo tr").remove();
+    <?php if(isset($profasigs)){
+		echo 'profasigs = '.json_encode($profasigs, JSON_HEX_TAG).';'; }?>
+
+       profasigs.forEach(function(profasig){
+       if(profasig.cedprofesor==document.getElementById('cedprofesor').value){
+        
+        cols += '<tr><td><div class="form-row"><div class="form-group col-md-12"><select class="selectpicker form-control " name="asignaturas[]" data-live-search="true" required novalidate>'+
+        '<option  value=" '+profasig.descasignatura + '">  '+profasig.descasignatura + ' </option>'+
+        '@foreach ($asignaturas as $asig)'+
+        '<option value="{{$asig->descasignatura}}">{{$asig->descasignatura}}</option>@endforeach</select></div></td>';
+        cols += '<td><div class="form-group col-md-4"><button type="button" class="btn ibtnDel btn-danger"><span class="glyphicon glyphicon-remove-sign">Remover</span></button></div></div></div></td></tr>';
+        
+        $("table.order-list").append(cols);
+
+        cols='';
+        
+       }
+
+    })
+
+
+
 })
 </script>
 

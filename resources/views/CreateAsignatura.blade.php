@@ -13,6 +13,9 @@
                     <p>{{ \Session::get('success') }}</p>
                 </div><br />
                 @endif
+                @if (session('error'))
+                <div class="alert alert-danger">{{ session('error') }}</div>
+                @endif
 
                 
 <form    method="post" action="{{URL::to('/pagAsignaturas')}}" enctype="multipart/form-data">
@@ -21,24 +24,13 @@
    
 
     <div class="form-group row">
-        <label class="control-label col-sm-3" for="descuniversidad">Universidad</label>
-        <div class="col-sm-6">
-        <select class="form-control" id="descuniversidad" name="descuniversidad">
-        @foreach($universidades as $universidad)
-            <option>{{$universidad->descuniversidad}}</option>
-        @endforeach
-        </select>
-            </div>
-    </div>
-
-    
-    <div class="form-group row">
-        <label class="control-label col-sm-3" for="desccarrera">Carrera</label>
-        <div class="col-sm-6">
-        <select class="form-control" id="desccarrera" name="desccarrera">
-        @foreach($carreras as $carrera)
-             <option>{{$carrera->desccarrera}}</option>
-        @endforeach
+        <label class="control-label col-sm-3" for="unies">Universidad-Carrera</label>
+        <div class="col-sm-10">
+        <select class="form-control" id="unies" name="unies">
+        <option>Seleccionar Carrera</option>
+    @foreach ($carreras as $carrera)
+    <option value="{{$carrera->codcarrera}}" > {{$carrera->descuniversidad}} -  {{$carrera->descsede}} -  {{$carrera->descfacultad}} -  {{$carrera->descescuela}} -  {{$carrera->desccarrera}}</option>
+    @endforeach
         </select>
             </div>
     </div>

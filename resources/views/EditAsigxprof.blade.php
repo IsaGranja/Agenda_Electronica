@@ -13,6 +13,9 @@
                     <p>{{ \Session::get('success') }}</p>
                 </div><br />
                 @endif
+                @if (session('error'))
+                <div class="alert alert-danger">{{ session('error') }}</div>
+                @endif
 
                 
 <form    method="post" action="{{URL::to('/actualizarAsigxprof')}}" enctype="multipart/form-data">
@@ -27,7 +30,7 @@
     <div class="form-group row">
         <label class="control-label col-sm-3" for="codperiodo">Periodo</label>
         <div class="col-sm-6">
-            <input type="text" id="codperiodo" class="form-control" name="codperiodo" value="{{$periodo->codperiodo}}">
+            <input type="text" id="codperiodo" class="form-control" name="codperiodo" value="{{$periodo->codperiodo}}" readonly>
             </div>
         </div>
     @endforeach
@@ -46,7 +49,7 @@
     <div class="form-group row">
         <label class="control-label col-sm-3" for="nombreapellido">Nombre</label>
         <div class="col-sm-6">
-            <input type="text" id="nombreapellido" class="form-control" name="nombreapellido" readonly value="{{$profesor->nomprofesor}}' '{{$profesor->apeprofesor}}">
+            <input type="text" id="nombreapellido" class="form-control" name="nombreapellido" readonly value="{{$profesor->nomprofesor}} {{$profesor->apeprofesor}}">
             </div>
     </div>
     @endforeach
