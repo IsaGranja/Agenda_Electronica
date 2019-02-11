@@ -8,9 +8,18 @@ use DB;
 
 class FacultadController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $facus = Facultad::all()->sortBy('descfacultad');
+        if($request->get('buscardesc')!= ""){
+            $facus = DB::table('facultades')
+            ->where('facultades.descfacultad','LIKE','%'.$request->get('buscardesc').'%')
+            ->paginate(10);            
+        }
+        else{
+            $facus = Facultad::all()->sortBy('descfacultad');
+        }        
+
+        //$facus = Facultad::all()->sortBy('descfacultad');
         return view('facultades',compact('facus'));
         
     }
