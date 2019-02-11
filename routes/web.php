@@ -51,6 +51,7 @@ Route::post('/pagPeriodos/crear','PeriodosController@store');
 Route::get('/pagPeriodos/editar/{codperiodo}','PeriodosController@edit');
 Route::post('/pagPeriodos/editar/{codperiodo}','PeriodosController@update');
 Route::get('/pagPeriodos/{codperiodo}','PeriodosController@destroy');
+Route::post('pagPeriodos/crear/fetch','PeriodosController@fetch')->name('pagPeriodos.fetch');
 Route::view('/pagFacultades','facultades');
 Route::view('/pagFacultadesxSede','facultadesxSede');
 Route::view('/pagEscuelas','escuelas');
