@@ -105,8 +105,10 @@ Route::view('/pagGlosarios','glosarios');
 
 //Route::resource('asignaturasestu', 'AsignaturasxEstudiantesController');
 Route::resource('contenidos', 'ContenidosController');
+Route::post('actualizarContenidos', 'ContenidosController@update');
 
 Route::resource('talleres', 'TalleresController');
+Route::post('actualizarTalleres', 'TalleresController@update');
 //Route::get('eliminarTaller/{archivotaller}', 'TalleresController@destroy');
 //Route::get('guardarTaller', 'TalleresController@store');
 
