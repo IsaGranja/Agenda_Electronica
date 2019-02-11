@@ -14,24 +14,31 @@
                 <div class="card-header">Dashboard</div>
 
                 <div class="card-body">
-                @if (\Session::has('success'))
-                <div class="alert alert-success">
-                    <p>{{ \Session::get('success') }}</p>
-                </div><br />
-                @endif
+                    @if (\Session::has('success'))
+                    <div class="alert alert-success">
+                        <p>{{ \Session::get('success') }}</p>
+                    </div><br />
+                    @endif
+                    @if (session('error'))
+                    <div class="alert alert-danger">
+                        <p>{{Session('error') }}</p>
+                    </div><br />
+                    @endif
                 <a class="btn btn-primary" href="/contenidos/create">Nuevo</a>
                 
 
                     
-                <table class="table table-striped">
+<table id="myTable" class="table table-striped">
     <thead>
       <tr>
-        <th>Texto Contenido</th>
+        <th>Tema</th>
+        <th>Información de Apoyo</th>
         <th>Imagen Contenido</th>
         <th>Audio Contenido</th>
         <th>Video Contenido</th>
         
-        <th colspan="2">Accion</th>
+        <th>Modificar</th>
+        <th>Eliminar</th>
       </tr>
     </thead>
     <tbody>
@@ -39,12 +46,17 @@
       @foreach($contenidos as $contenido)
       
       <tr>
-        <td>{{$contenido['textocontenido']}}</td>
-        <td>{{$contenido['imagencontenido']}}</td>
-        <td>{{$contenido['audiocontenido']}}</td>
-        <td>{{$contenido['videocontenido']}}</td>
+        <td>@foreach($tema as $dato)
+        @if($dato->codtema == $contenido->codtema)
+        {{$dato->desctema}}
+        @endif
+        @endforeach</td>
+        <td>{{$contenido->infoapoyocontenido}}</td>
+        <td>{{$contenido->imagencontenido}}</td>
+        <td>{{$contenido->audiocontenido}}</td>
+        <td>{{$contenido->videocontenido}}</td>
 
-        <!--<td><a href="{{action('ContenidosController@edit', $contenido['codcontenido'])}}" class="btn btn-warning">Modificar</a></td>-->
+        <td><a href="{{action('ContenidosController@edit', $contenido['codcontenido'])}}" class="btn btn-warning">Modificar</a></td>
         <td>
           <form action="{{action('ContenidosController@destroy', $contenido['codcontenido'])}}" method="post">
             @csrf
@@ -64,6 +76,12 @@
     </div>
 </div>
 
+<script>
+$(document).ready(function() {
+    $('#myTable').DataTable({
+      "pageLength": 10
+    });
+} );
 
-
+</script>
   @stop

@@ -11,57 +11,40 @@ class ContenidosController extends Controller
 
     public function create()
     {
-
-        $contenido = DB::table('contenidos')->orderBy('codcontenido', 'desc')->first();
+        try{
+        $contenidos = DB::table('contenidos')->select('*')->get();
         $tema = DB::table('temas_estudio')->select('*')->get();
         $asignaturas = DB::table('asignaturas')->select('*')->get();
+        //$carreras = DB::table('carreras')->select('*')->get();
 
-        if(empty($contenido)){
-            $contenido='{
-                "codcontenido": null,
-                "textocontenido": "",
-                "imagencontenido": null,
-                "audiocontenido": null,
-                "videocontenido": null  
-            }';
-            $contenido = json_decode($contenido);
-            $datos = DB::table('escuelas')
-            ->join('facultadesxsedes', 'escuelas.codfacultad', '=', 'facultadesxsedes.codfacultad')
-            ->join('sedes', 'facultadesxsedes.codsede', '=', 'sedes.codsede')
-            ->join('universidades', 'sedes.coduniversidad', '=', 'universidades.coduniversidad')
-            ->join('carreras', 'escuelas.codescuela', '=', 'carreras.codescuela')
-            ->join('asignaturas', 'carreras.codcarrera', '=', 'asignaturas.codcarrera')
-            ->join('periodos', 'periodos.codsede', '=', 'sedes.codsede')
-            ->join('temas_estudio', 'asignaturas.codasignatura', '=', 'temas_estudio.codasignatura')
-            ->where('periodos.estperiodo', '=', 'A')
-            ->get();
-            return view('contenidosNuevo', compact('datos', 'asignaturas', 'tema', 'contenido'));
+        $contenidos = DB::table('contenidos')->select('*')->get();
+        
+            $carreras = DB::select('SELECT carreras.codcarrera, carreras.desccarrera, escuelas.descescuela, facultades.descfacultad, sedes.descsede, universidades.descuniversidad
+                    FROM carreras natural join escuelas natural join facultades natural join facultadesxsedes natural join sedes natural join universidades;');
+        }catch(\Exception $e)
+        {
+            return back()->withError($e->getMessage());
         }
-        else{
-            $datos = DB::table('escuelas')
-            ->join('facultadesxsedes', 'escuelas.codfacultad', '=', 'facultadesxsedes.codfacultad')
-            ->join('sedes', 'facultadesxsedes.codsede', '=', 'sedes.codsede')
-            ->join('universidades', 'sedes.coduniversidad', '=', 'universidades.coduniversidad')
-            ->join('carreras', 'escuelas.codescuela', '=', 'carreras.codescuela')
-            ->join('asignaturas', 'carreras.codcarrera', '=', 'asignaturas.codcarrera')
-            ->join('periodos', 'periodos.codsede', '=', 'sedes.codsede')
-            ->join('temas_estudio', 'asignaturas.codasignatura', '=', 'temas_estudio.codasignatura')
-            ->join('contenidos', 'temas_estudio.codtema', '=', 'contenidos.codtema')
-            ->where('periodos.estperiodo', '=', 'A')
-            ->get();
-            //echo $contenido;
-            return view('contenidos', compact('datos', 'asignaturas', 'tema', 'contenido'));
-        }
+            return view('contenidosNuevo', compact('carreras', 'asignaturas', 'tema', 'contenidos'));
+        
+        
     }
 
     public function index()//consultar
     {
+        try{
         $contenidos = ContenidosModel::select('*')->get();
-        //echo $asigxprofs;
-        return view('indexContenidos',['contenidos'=>$contenidos]);
+        $temas = DB::table('temas_estudio')->select('*')->get();
+        }catch(\Exception $e)
+        {
+            return back()->withError($e->getMessage());
+        }
+        return view('indexContenidos',['contenidos'=>$contenidos, 'tema'=> $temas]);
+        
     }
     public function store(Request $request)
     {
+        try{
         $codtema = $request->get('tema');
         $codasignatura = $request->get('asignatura');
         $codcontenido = $request->get('codcontenido');
@@ -73,18 +56,12 @@ class ContenidosController extends Controller
         }
         $codcontenido = $request->get('tema');
         $codcontenido = $codcontenido . '-C' . $numero;
-       // if ($request->hasFile('file')) {
+        
             $this->validate($request, [
-                'imagencontenido' => 'image',
+                'imagencontenido' => 'mimes:jpeg,jpg|image'
             ]);
             
-           /* $this->validate($request, [
-                'audiocontenido'  => 'audio'
-               ]);
-            $this->validate($request, [
-                'videocontenido'  => 'video'
-               ]);*/
-            
+           
             $audio = $request->file('audiocontenido');
             $video = $request->file('videocontenido');
             $image = $request->file('imagencontenido');
@@ -114,47 +91,159 @@ class ContenidosController extends Controller
             else
                 $videocontenido = "";
 
+    
+                $textocontenido = $request->get('textocontenido');
 
-
-
-        //}
-        $textocontenido = $request->get('textocontenido');
-
-        if(!$textocontenido)
-            $textocontenido = "";
-
-        $infoapoyocontenido = "";
+                if(!$textocontenido)
+                    $textocontenido = "";
+        
+                $infoapoyocontenido = $request->get('infoapoyo');
+        
+                if(!$infoapoyocontenido)
+                    $infoapoyocontenido = "";
 
         $data = array('codcontenido' => $codcontenido, 'codtema' => $codtema, 'codasignatura' => $codasignatura,
             'textocontenido' => $textocontenido, 'imagencontenido' => $imagencontenido, 'videocontenido' => $videocontenido,
             'audiocontenido' => $audiocontenido, 'infoapoyocontenido' => $infoapoyocontenido);
         DB::table('contenidos')->insert($data);
 
-        $contenido = DB::table('contenidos')->orderBy('codcontenido', 'desc')->first();
-
-            $datos = DB::table('escuelas')
-            ->join('facultadesxsedes', 'escuelas.codfacultad', '=', 'facultadesxsedes.codfacultad')
-            ->join('sedes', 'facultadesxsedes.codsede', '=', 'sedes.codsede')
-            ->join('universidades', 'sedes.coduniversidad', '=', 'universidades.coduniversidad')
-            ->join('carreras', 'escuelas.codescuela', '=', 'carreras.codescuela')
-            ->join('asignaturas', 'carreras.codcarrera', '=', 'asignaturas.codcarrera')
-            ->join('periodos', 'periodos.codsede', '=', 'sedes.codsede')
-            ->join('temas_estudio', 'asignaturas.codasignatura', '=', 'temas_estudio.codasignatura')
-            ->join('contenidos', 'temas_estudio.codtema', '=', 'contenidos.codtema')
-            ->where('periodos.estperiodo', '=', 'A')
-            ->get();
-            //echo $contenido;
-            $tema = DB::table('temas_estudio')->select('*')->get();
-            $asignaturas = DB::table('asignaturas')->select('*')->get();
-            return view('indexContenidos', compact('datos', 'asignaturas', 'tema', 'contenido'));
+        }catch(\Exception $e)
+        {
+            return back()->withError($e->getMessage());
+        }
+        return redirect('contenidos');
+        
         
     }
+    public function update(Request $request)
+    {
+       try{
+        $codtema = $request->get('tema');
+        $codasignatura = $request->get('codasignatura');
+        $codcontenido = $request->get('codcontenido');
+        $numero = substr($codcontenido, -1);
+        
+        $contenidos=DB::table('contenidos')->select('*')->where('codcontenido','=', $codcontenido)->get();
+        $contenidos = json_decode($contenidos, true)[0];
+        
+        
+            $this->validate($request, [
+                'imagencontenido' => 'mimes:jpeg,jpg|image'
+            ]);
+            
+             
+           
+        $imagencontenido = $contenidos['imagencontenido'];
+        $audiocontenido = $contenidos['audiocontenido'];
+        $videocontenido = $contenidos['videocontenido'];
+
+        $codcontenido = $request->get('tema');
+        $codcontenido = $codcontenido.'-C'. $numero;
+                
+        DB::table('contenidos')->where('codcontenido','=', $codcontenido)->delete();
+
+        $audio = $request->file('audiocontenido');
+        $video = $request->file('videocontenido');
+        $image = $request->file('imagencontenido');
+            
+
+
+        if($image)
+        {
+            $imagencontenido = $codcontenido . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('images'), $imagencontenido);
+        }
+        
     
+        if($audio)
+        {
+            $audiocontenido = $codcontenido . '.' . $audio->getClientOriginalExtension();
+            $audio->move(public_path('audio'), $audiocontenido);
+        }
+        
+        
+        if($video)
+        {
+            $videocontenido = $codcontenido . '.' . $video->getClientOriginalExtension();
+            $video->move(public_path('video'), $videocontenido);
+        }
+        
+            
+        $textocontenido = $request->get('textocontenido');
+
+                if(!$textocontenido)
+                    $textocontenido = "";
+        
+                $infoapoyocontenido = $request->get('infoapoyo');
+        
+                if(!$infoapoyocontenido)
+                    $infoapoyocontenido = "";
+
+        $data = array('codcontenido' => $codcontenido, 'codtema' => $codtema, 'codasignatura' => $codasignatura,
+            'textocontenido' => $textocontenido, 'imagencontenido' => $imagencontenido, 'videocontenido' => $videocontenido,
+            'audiocontenido' => $audiocontenido, 'infoapoyocontenido' => $infoapoyocontenido);
+        DB::table('contenidos')->insert($data);
+
+    }catch(\Exception $e)
+    {
+        return back()->withError($e->getMessage());
+    }  
+        return redirect('contenidos');
+    
+        
+    }
+    public function edit($codcontenido)//abre la ventana para modificar
+    {
+        try{
+        $contenidos = DB::table('contenidos')->select('*')->where('codcontenido',$codcontenido)->get();
+        $contenidos = json_decode($contenidos, true)[0];
+        
+        $tema = DB::table('temas_estudio')->select('*')->where('codtema', $contenidos['codtema'])->get();
+        $tema = json_decode($tema, true)[0];
+
+        $asignaturas = DB::table('asignaturas')->select('*')->where('codasignatura', $tema['codasignatura'])->get();
+        $asignaturas = json_decode($asignaturas, true)[0];
+
+
+        $carreras = DB::select('SELECT carreras.codcarrera, carreras.desccarrera, escuelas.descescuela, facultades.descfacultad, sedes.descsede, universidades.descuniversidad
+        FROM carreras natural join escuelas natural join facultades natural join facultadesxsedes natural join sedes natural join universidades;');
+
+        }catch(\Exception $e)
+        {
+            return back()->withError($e->getMessage());
+        }
+        return view('contenidosEdit',compact('carreras','contenidos',
+        'asignaturas','tema'));
+        
+    }
+
     public function destroy($codcontenido)//modificar
     {   
-        //$codtema = $request->get('tema');
-        //echo $codtema;
+        try{
+        $contenido=DB::table('contenidos')->select('*')->where('codcontenido','=', $codcontenido)->get();
+        $contenido = json_decode($contenido, true)[0];
+        if($contenido['imagencontenido']!="")
+        {
+            $imagencontenido = "images/".$contenido['imagencontenido'];
+            unlink($imagencontenido) or die("Couldn't delete file");
+        }
+        if($contenido['audiocontenido']!="")
+        {
+            $audiocontenido = "audio/".$contenido['audiocontenido'];
+            unlink($audiocontenido) or die("Couldn't delete file");
+        }
+        if($contenido['videocontenido']!="")
+        {
+            $videocontenido = "video/".$contenido['videocontenido'];
+            unlink($videocontenido) or die("Couldn't delete file");
+        }
+
         DB::table('contenidos')->where('codcontenido','=', $codcontenido)->delete();
+    }catch(\Exception $e)
+    {
+        return back()->withError($e->getMessage());
+    }
         return redirect('contenidos')->with('success','Se elimino correctamente');
+    
     }
 }

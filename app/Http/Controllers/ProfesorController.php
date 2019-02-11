@@ -11,12 +11,12 @@ class ProfesorController extends Controller
     {
      // dd($request->get('cedula'));
      if($request->get('cedula')!= ""){
-        $profesores = DB::table('profesores')->join('carreras','carreras.codcarrera','=','profesores.codcarrera')->where('profesores.cedprofesor','LIKE','%'.$request->get('cedula').'%')->paginate();
+        $profesores = DB::table('profesores')->join('carreras','carreras.codcarrera','=','profesores.codcarrera')->where('profesores.cedprofesor','LIKE','%'.$request->get('cedula').'%')->paginate(10);
         //dd($profesores);
         return view('profesores',compact('profesores'));
      }
      else{
-        $profesores = DB::table('profesores')->join('carreras','carreras.codcarrera','=','profesores.codcarrera')->paginate();
+        $profesores = DB::table('profesores')->join('carreras','carreras.codcarrera','=','profesores.codcarrera')->paginate(10);
         //dd($profesores);
         return view('profesores',compact('profesores'));
      }
@@ -26,7 +26,12 @@ class ProfesorController extends Controller
     {
        $carreras = DB::select('SELECT carreras.codcarrera, carreras.desccarrera, escuelas.descescuela, facultades.descfacultad, sedes.descsede, universidades.descuniversidad
                     FROM carreras natural join escuelas natural join facultades natural join facultadesxsedes natural join sedes natural join universidades;');
+                    
+       //$facultades = DB::select('SELECT facultades.codfacultad, facultades.descfacultad, sedes.descsede, universidades.descuniversidad
+       //FROM facultades natural join facultadesxsedes natural join sedes natural join universidades;');
                    // dd($carreras);
+        //return view('escuelas_crear', compact('facultades'));
+
         return view('profesores_crear', compact('carreras'));
     }
 
@@ -44,12 +49,11 @@ class ProfesorController extends Controller
             $profesor->correprofesor = $request->input('correprofesor');
             $profesor->celuprofesor = $request->input('celuprofesor');
             $profesor->save();
-            $request->flash('alert-success', 'Profesor fue ingresado'); 
-            return redirect('pagProfesores')->action('ProfesorController@index') ->with('message','No Ingresado');
+            return redirect('pagProfesores');
         }
         else{
             
-            return redirect()->back() ->with(['success' => 'Ya existe esa cédula']);
+            return redirect()->back() ->with(['error' => 'Ya existe esa cédula']);
         }
         
     }
@@ -92,7 +96,7 @@ class ProfesorController extends Controller
         }
         else{
            
-            return redirect()->back() ->with(['success' => 'Profesor no se pudo eliminar']);
+            return redirect()->back() ->with(['error' => 'No se puede eliminar el profesor. Está encargado de una asignatura']);
         }
 
     }
