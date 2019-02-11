@@ -120,7 +120,11 @@ Route::get('/pagTemas/{codtema}','TemasController@destroy');
 
 
 Route::view('/pagTalleres','talleres');
-Route::view('/pagEvaluaciones','evaluaciones');
+
+
+Route::get('/pagEvaluaciones','EvaluacionController@index');
+Route::post('/pagEvaluaciones/guardar','EvaluacionController@store');
+Route::get('/pagEvaluaciones/borrar/{Pregunta}','EvaluacionController@destroy');
 Route::view('/pagGlosarios','glosarios');
 
 //Route::resource('pagHome', 'HomeController');

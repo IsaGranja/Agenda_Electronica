@@ -4,8 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Carreras extends Model
+class TemasEstudio extends Model
 {
-    protected $table = 'carreras';
+    protected $table = 'temas_estudio';
     public $timestamps = false;
 }
