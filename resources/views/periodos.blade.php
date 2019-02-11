@@ -20,7 +20,7 @@
                 <div class="col-md-2"></div>  
 
                 <div class="col-md-6">
-                    <a href="pagPeriodos/crear" ><button type="submit" class="btn btn-primary" >Nuevo</button></a>
+                    <a href="pagPeriodos/crear" ><button type="submit" class="btn btn-primary" onclick="return confirm('¿Está seguro que desea crear un nuevo periodo? Los demás se pondrán en estado inactivo.')">Nuevo</button></a>
                 </div>
 
                 <div class = "col-md-1">
@@ -46,7 +46,7 @@
                             @if($periodos->count())  
                             @foreach($periodos as $periodo)  
                             <tr>
-                                <form action="{{action('PeriodosController@destroy', $periodo->codperiodo)}}" method="GET" onsubmit="return ConfirmDelete()">
+                                <form action="{{action('PeriodosController@destroy', $periodo->codperiodo)}}" method="GET">
                                     @csrf
                                     <input name="_method" type="hidden" value="DELETE">
                                     <td><button class='btn btn-danger-glyphicon glyphicon glyphicon-trash'></button></td>
@@ -68,7 +68,7 @@
                             @endforeach 
                             @else
                             <tr>
-                                <td colspan="8">No hay registro !!</td>
+                                <td colspan="8">No hay registros que mostrar.</td>
                             </tr>
                             @endif
                         </tbody>
@@ -79,7 +79,7 @@
             </div>
             <script>
                 function ConfirmDelete(){
-                    var x = confirm("¿Esta seguro que desea eliminar este registro?");
+                    var x = confirm("¿Está seguro que desea eliminar este registro?");
                     if (x)
                         return true;
                     else
