@@ -146,7 +146,7 @@ Route::post('/pagCiudades/crear','CiudadController@store');
 Route::get('/pagCiudades/editar/{id}','CiudadController@edit');
 Route::post('/pagCiudades/editar/{id}','CiudadController@update');
 Route::post('/pagCiudades/{id}','CiudadController@destroy');
-Route::view('/pagCiudades','ciudades');
+
 //ESTUDIANTES
 Route::get('/pagEstudiantes','EstudianteController@index');
 Route::get('/pagEstudiantes/crear','EstudianteController@create');
