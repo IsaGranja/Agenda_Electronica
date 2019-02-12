@@ -19,7 +19,7 @@
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Universidad</label>
                     <select name="coduniversidad" class="form-control" type="text" id="coduniversidad" data-dependent="codsede" style="width:220px">
-                            <option>Selecione una universidad</option>
+                            <option>Select Universidad</option>
                                 @foreach($unis as $uni)
                                     <option value="{{$uni->coduniversidad}}">{{$uni->descuniversidad}}</option>
                                 @endforeach
