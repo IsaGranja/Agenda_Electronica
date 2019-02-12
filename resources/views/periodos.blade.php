@@ -23,7 +23,7 @@
         </div>
         <div class="col-md-2"></div>  
         <div class="col-md-6">
-        <a href="pagPeriodos/crear" ><button type="submit" class="btn btn-primary" onclick="return confirm('¿Está seguro que desea crear un nuevo periodo? Los anteriores se pondrán en estado inactivo.')">Nuevo</button></a>
+        <a href="pagPeriodos/crear" ><button type="submit" class="btn btn-primary" onclick="return confirm('¿Está seguro que desea crear un nuevo periodo? Los anteriores se pondrán en estado inactivo.')">Nuevo</button></a>d
         </div>
         <div class = "col-md-1">
         <a href="/"><button type="submit" class="btn btn-primary">Salir</button></a>
