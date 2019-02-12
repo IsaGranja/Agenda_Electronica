@@ -9,20 +9,7 @@
                 <div class="col-sm-11">
                     <h2>Carreras</h2>
                 </div>
-                <div class="col-sm-3">
-                <form  action="/pagCarreras" method="GET" class="navbar-form navbar-left" role="search">
-                    <div class= "input-group">
-                        <input type="text" class="form-control"name="buscarcarrera" id="buscarcarrera"placeholder="Buscar por Carrera"/>
-                        <span class="input-group-btn">
-                            <button type="submit" class="btn btn-info">
-                                Buscar
-                            </button>
-                        </span>
-                    </div>
-                </form>
-                </div>
-
-                <div class="col-md-2"></div>  
+                
 
                 <div class="col-md-2">
                     <a href="pagCarreras/crear"><button type="submit" class="btn btn-info">Nuevo</button></a>
@@ -36,9 +23,8 @@
             </div>
 
             <div class="table-container">
-
-                <table id="mytable" class="table table-bordred table-striped">
-                    <thead>
+                <table id="myTable" class="table table-hover "  style="width:100%; margin-top:10px">
+                    <thead class="thead-light">
                         <th></th>
                         <th></th>
                         <th>Universidad-Sede-Facultad-Escuela</th>
@@ -68,6 +54,20 @@
 
             </div>
             <script>
+                 $(document).ready(function () {
+                    $('#myTable').DataTable({
+                        "paging": false, 
+                    "info": false,
+                    "autoWidth": true,
+                    "searching": true, // Search box and search function will be actived
+                    "dom": '<"top"f>rt<"bottom"ilp><"clear">',
+                    "language": {
+                    "zeroRecords": "No existe registros",
+                    "infoEmpty": "No se econtró ningún registro",
+                    "sSearch": "Buscar:   "
+                        }
+                    });
+                });
                 function ConfirmDelete(){
                     var x = confirm("¿Esta seguro que desea eliminar este registro?");
                     if (x)
