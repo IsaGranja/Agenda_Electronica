@@ -49,12 +49,11 @@ class ProfesorController extends Controller
             $profesor->correprofesor = $request->input('correprofesor');
             $profesor->celuprofesor = $request->input('celuprofesor');
             $profesor->save();
-            $request->flash('alert-success', 'Profesor fue ingresado'); 
             return redirect('pagProfesores');
         }
         else{
             
-            return redirect()->back() ->with(['success' => 'Ya existe esa cédula']);
+            return redirect()->back() ->with(['error' => 'Ya existe esa cédula']);
         }
         
     }
@@ -97,7 +96,7 @@ class ProfesorController extends Controller
         }
         else{
            
-            return redirect()->back() ->with(['success' => 'No se puede eliminar el profesor. Está encargado de una asignatura']);
+            return redirect()->back() ->with(['error' => 'No se puede eliminar el profesor. Está encargado de una asignatura']);
         }
 
     }

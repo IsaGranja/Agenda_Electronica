@@ -1,30 +1,27 @@
 @extends('base') {{-- Hereda el header y el footer de la view base --}}
 @section('content')
+@if (Session::has('error'))
+                    <div class="alert alert-danger alert-block">
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                            <strong>{{ Session::get('error') }}</strong>
+                    </div>
+                    @endif
     <div class="row" style="    margin-bottom: 1%;  margin-top: 1%; margin-left: 1%">
         <div class="col-sm-3">
-            <form  action="/pagEstudiantes" method="GET" class="navbar-form navbar-left" role="search">
-                <div class= "input-group">
-                    <input type="text" class="form-control"name="cedula" id="cedula"placeholder="Buscar Cédula"/>
-                    <span class="input-group-btn">
-                        <button type="submit" class="btn btn-info">
-                            Buscar
-                        </button>
-                    </span>
-                </div>
-            </form>
-
+           
+            <H1>ESTUDIANTES</H1>
         </div>
         <div class="col-md-2"></div>  
         <div class="col-md-6">
-            <a href="pagEstudiantes/crear"><button type="submit" class="btn btn-primary">Nuevo</button></a>
+            <a href="pagEstudiantes/crear"><button type="submit" class="btn btn-primary">Nuevo Estudiante</button></a>
         </div>
         <div class = "col-md-1">
         <a href="/"><button type="submit" class="btn btn-primary">Salir</button></a>
         </div>
     </div>
-    <div>
-        <table  class="table table-bordred table-striped">
-        <thead >
+    <div class="table-container">
+        <table  id="myTable" class="table table-hover "  style="width:100%;margin-top:10px">
+        <thead class="container">
             <tr>
                 <th></th>
                 <th ></th>
@@ -36,7 +33,7 @@
 
             </tr>   
         </thead>
-        <tbody>
+        <tbody class="container">
             @if($estudiantes->count())  
             @foreach ($estudiantes as $estudiante)
             <tr>
@@ -71,6 +68,7 @@
                             </tr>
             @endif
             </tbody>
+            
         </table>
         {{ $estudiantes->links() }}
     </div>
@@ -78,10 +76,17 @@
     <script>
 
 $(document).ready(function () {
-    $('#myTable').DataTable({
+    $('#myTable').DataTable({   
+        "paging": false, 
+        "info": false,
+        "autoWidth": true,
+        "searching": true, // Search box and search function will be actived
+        "dom": '<"top"f>rt<"bottom"ilp><"clear">',
         "language": {
-            "url": "/json/Spanish.json"
-        }
+            "zeroRecords": "No existe registros",
+            "infoEmpty": "No se econtró ningún registro",
+            "sSearch": "Buscar:   "
+                }
     });
     
 });

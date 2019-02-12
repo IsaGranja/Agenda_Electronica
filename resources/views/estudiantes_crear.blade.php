@@ -1,7 +1,12 @@
 @extends('base') {{-- Hereda el header y el footer de la view base --}}
 
 @section('content')
-    <br>
+@if (Session::has('error'))
+                    <div class="alert alert-danger alert-block">
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                            <strong>{{ Session::get('error') }}</strong>
+                    </div>
+                    @endif
     <body>
         <div style="    margin-left: 5%">
             

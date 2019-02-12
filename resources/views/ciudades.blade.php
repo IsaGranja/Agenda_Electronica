@@ -1,22 +1,19 @@
 @extends('base') {{-- Hereda el header y el footer de la view base --}}
 
 @section('content')
+@if (Session::has('error'))
+                    <div class="alert alert-danger alert-block">
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                            <strong>{{ Session::get('error') }}</strong>
+                    </div>
+@endif
     <body>
         <div>
             
             <div class="row" style="    margin-bottom: 1%;  margin-top: 1%; margin-left: 1%">
 
             <div class="col-sm-3">
-                <form  action="/pagCiudades" method="GET" class="navbar-form navbar-left" role="search">
-                    <div class= "input-group">
-                        <input type="text" class="form-control"name="ciudad" id="ciudad"placeholder="Buscar Cédula"/>
-                        <span class="input-group-btn">
-                            <button type="submit" class="btn btn-info">
-                                Buscar
-                            </button>
-                        </span>
-                    </div>
-                </form>
+                <h1>CIUDADES</h1>
 
             </div>
 
@@ -72,6 +69,20 @@
 
             </div>
             <script>
+            $(document).ready(function () {
+                $('#myTable').DataTable({
+                    "paging": false, 
+                "info": false,
+                "autoWidth": true,
+                "searching": true, // Search box and search function will be actived
+                "dom": '<"top"f>rt<"bottom"ilp><"clear">',
+                "language": {
+                "zeroRecords": "No existe registros",
+                "infoEmpty": "No se econtró ningún registro",
+                "sSearch": "Buscar:   "
+                    }
+                });
+            });
                 function ConfirmDelete(){
                     var x = confirm("¿Esta seguro que desea eliminar la ciudad?");
                     if (x)
