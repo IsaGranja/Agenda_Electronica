@@ -13,6 +13,9 @@
                     <p>{{ \Session::get('success') }}</p>
                 </div>
                 @endif
+                @if (session('error'))
+                <div class="alert alert-danger">{{ session('error') }}</div>
+                @endif
 
 <form   method="post" action="{{route('estudiante.import')}}" class="form-horizontal" data-toggle="validator" enctype="multipart/form-data">
 @csrf
@@ -25,6 +28,8 @@
     <input type="hidden" id="codasignatura" class="form-control" name="codasignatura" value="{{$dato->codasignatura}}">
     @endforeach
 
+
+    
     @foreach($periodos as $periodo)
     <div class="form-group row">
         <label class="control-label col-sm-3" for="codperiodo">Periodo</label>
@@ -35,11 +40,12 @@
     @endforeach
 
     <div class="form-group row">
-        <label class="control-label col-sm-3" for="unies">Universidad-Escuela</label>
+        <label class="control-label col-sm-3" for="unies">Universidad-Carrera</label>
         <div class="col-sm-10">
         <select class="form-control" id="unies" name="unies">
-    @foreach($datos as $dato)
-            <option>{{$dato->descuniversidad}}-{{$dato->descescuela}}</option>
+        <option>Seleccionar Carrera</option>
+    @foreach ($carreras as $carrera)
+    <option value="{{$carrera->codcarrera}}" > {{$carrera->descuniversidad}} -  {{$carrera->descsede}} -  {{$carrera->descfacultad}} -  {{$carrera->descescuela}} -  {{$carrera->desccarrera}}</option>
     @endforeach
         </select>
             </div>
@@ -49,9 +55,7 @@
         <label class="control-label col-sm-3" for="asignatura">Asignatura</label>
         <div class="col-sm-10">
         <select class="form-control" id="asignatura" name="asignatura">
-    @foreach($datos as $dato)
-            <option>{{$dato->descasignatura}}</option>
-    @endforeach
+    
         </select>
             </div>
     </div>
@@ -95,6 +99,32 @@
 
 
   
+
+ <script>
+
+$("#unies").on("change", function () {
+
+
+    var select = document.getElementById("asignatura");
+    var length = select.options.length;
+    for (i = 0; i < length; i++) {
+        select.remove(i);
+    }
+   var asignaturas;
+    <?php if(isset($asignaturas)){
+		echo 'asignaturas = '.json_encode($asignaturas, JSON_HEX_TAG).';'; }?>
+
+    asignaturas.map(function(asignatura){
+        console.log(document.getElementById('unies').value)
+       if(asignatura.codcarrera==document.getElementById('unies').value) {
+        
+        $('#asignatura').append("<option value='"+asignatura.codasignatura+"'>"+asignatura.descasignatura+"</option>")
+        //document.getElementById('asignatura').value = asignatura.descasignatura;
+        
+       } 
+    })
+})
+</script> 
 
 
 
