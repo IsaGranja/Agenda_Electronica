@@ -4,9 +4,14 @@
 
 
 
+<!------ Include the above in your HEAD tag ---------->
 
-  
-</div>
+
+
+<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-10">
@@ -19,31 +24,32 @@
                     <p>{{ \Session::get('success') }}</p>
                 </div><br />
                 @endif
+                @if (session('error'))
+                <div class="alert alert-danger">{{ session('error') }}</div>
+                @endif
+                
                 <a class="btn btn-primary" href="/pagAsignaturas/create">Nuevo</a>
                 
 
                     
-                <table class="table table-striped">
-    <thead>
-      <tr>
-        
-        <th>Carrera</th>
-        <th>Codigo</th>
-        <th>Asignatura</th>
-        <th># creditos</th>
-        <th>Nivel</th>
-        
-        
-        
-        <th colspan="2">Accion</th>
-      </tr>
-    </thead>
-    <tbody>
+<table id="tablita" class="table table-striped " cellspacing="0" width="100%">
+<thead>
+						<tr>
+							<th>Carrera</th>
+							<th>Codigo Asignatura</th>
+							<th>Asignatura</th>
+							<th>Creditos</th>
+							<th>Nivel</th>	
+              <th>Edit</th>
+              <th>Delete</th>
+						</tr>
+					</thead>
+					<tbody id="cuerpo">
+						
 
-      @foreach($asignaturas as $asignatura)
+            @foreach($asignaturas as $asignatura)
       
       <tr>
-        
         <td>{{$asignatura['codcarrera']}}</td>
         <td>{{$asignatura['codasignatura']}}</td>
         <td>{{$asignatura['descasignatura']}}</td>
@@ -52,16 +58,21 @@
 
         <td><a href="{{action('AsignaturaController@edit', $asignatura['codasignatura'])}}" class="btn btn-warning">Modificar</a></td>
         <td>
-          <form action="{{action('AsignaturaController@destroy', $asignatura['codasignatura'])}}" method="post">
-            @csrf
-            <input name="_method" type="hidden" value="DELETE">
-            <button class="btn btn-danger" type="submit">Eliminar</button>
-          </form>
+              <form action="{{action('AsignaturaController@destroy', $asignatura['codasignatura'])}}" method="post">
+                @csrf
+                <input name="_method" type="hidden" value="DELETE">
+                <button class="btn btn-danger" type="submit">Eliminar</button>
+              </form>
         </td>
       </tr>
-      @endforeach
-    </tbody>
-  </table>
+   @endforeach
+
+           
+						
+                           
+					</tbody>
+				</table>
+
 
 
                 </div>
@@ -72,4 +83,16 @@
 
 
 
-  @stop
+
+
+<script>
+$(document).ready(function() {
+
+
+    $('#tablita').dataTable();
+
+    
+} );
+</script>
+
+@stop

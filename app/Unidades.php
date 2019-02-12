@@ -9,5 +9,6 @@ class Unidades extends Model
     protected $table = 'unidades_estudio';
     protected $primaryKey = 'codunidad';
     public $timestamps = false;
+    public $incrementing = false;
     protected $fillable = ['codasignatura','codunidad','descunidad','numunidad'];
 }

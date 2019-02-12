@@ -4,14 +4,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Evaluacion;
 use App\TemasEstudio;
-
 use App\Universidades;
 use App\Sedes;
 use App\FacultadesxSedes;
 use App\Escuelas;
 use App\Carreras;
-use App\Asignatura;
-use App\Contenido;
+use App\AsignaturaModel;
+use App\ContenidosModel;
 
 class EvaluacionController extends Controller
 {
@@ -21,11 +20,11 @@ class EvaluacionController extends Controller
         $facultadesxsedes = FacultadesxSedes::all();
         $escuelas = Escuelas::all();
         $carreras = Carreras::all();
-        $asignatura = Asignatura::all();
+        $asignatura = AsignaturaModel::all();
         $unicarrera = 'hola';
         $evaluaciones = Evaluacion::all();
         $tema = TemasEstudio::all();
-        $contenido = Contenido::all();
+        $contenido = ContenidosModel::all();
         
         return view('evaluaciones',compact('universidad','asignatura','tema','contenido')); 
     }

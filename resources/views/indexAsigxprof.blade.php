@@ -5,13 +5,16 @@
 
 
 
+<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+
   
-</div>
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-10">
             <div class="card">
-                <div class="card-header">Dashboard</div>
+                <div class="card-header">Asignaturas por porfesor</div>
 
                 <div class="card-body">
                 @if (\Session::has('success'))
@@ -19,24 +22,26 @@
                     <p>{{ \Session::get('success') }}</p>
                 </div><br />
                 @endif
-                <a class="btn btn-primary" href="/pagAsigxProf/create">Nuevo</a>
+                @if (session('error'))
+                <div class="alert alert-danger">{{ session('error') }}</div>
+                @endif
+                <a class="btn btn-primary" href="/pagAsigxProf/create">Nuevo Asignaturas por Profesor</a>
                 
-
-                    
-                <table class="table table-striped">
-    <thead>
-      <tr>
-        
-        <th>Cedula de Profesor</th>
+                <table id="tablita" class="table table-striped " cellspacing="0" width="100%">
+<thead>
+						<tr>
+            <th>Cedula de Profesor</th>
         <th>Nombre de Profesor</th>
         <th>Apellido de Profesor</th>
-        
-        <th colspan="2">Accion</th>
-      </tr>
-    </thead>
-    <tbody>
+        <th>Modificar</th>
+        <th>Eliminar</th>
+       
+						</tr>
+					</thead>
+					<tbody id="cuerpo">
+						
 
-      @foreach($profesores as $profesor)
+          @foreach($profesores as $profesor)
       
       <tr>
         
@@ -54,9 +59,13 @@
         </td>
       </tr>
       @endforeach
-    </tbody>
-  </table>
 
+           
+						
+                           
+					</tbody>
+				</table>
+  
 
                 </div>
             </div>
@@ -65,5 +74,15 @@
 </div>
 
 
+
+  <script>
+$(document).ready(function() {
+
+
+    $('#tablita').dataTable();
+
+    
+} );
+</script>
 
   @stop
