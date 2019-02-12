@@ -38,12 +38,8 @@ Route::get('/pagUniversidades/crear','UniversidadesController@create');
 Route::post('/pagUniversidades/crear','UniversidadesController@store');
 Route::get('/pagUniversidades/editar/{coduniversidad}','UniversidadesController@edit');
 Route::post('/pagUniversidades/editar/{coduniversidad}','UniversidadesController@update');
-<<<<<<< HEAD
 Route::post('/pagUniversidades/{coduniversidad}','UniversidadesController@destroy');
-=======
-Route::get('/pagUniversidades/{coduniversidad}','UniversidadesController@destroy');
 //SEDES
->>>>>>> ce8850203e050a6fabf0d11f3955b9676af7d3fa
 Route::get('/pagSedes','SedesController@index');
 Route::get('/pagSedes/crear','SedesController@create');
 Route::post('/pagSedes/crear','SedesController@store');
