@@ -8,15 +8,29 @@ use DB;
 
 class SedesController extends Controller
 {
-    public function index()
+    
+    public function index(Request $request)
     {
-        $sedes = DB::table('sedes')
-                    ->join('ciudades','ciudades.codciudad','=','sedes.codciudad')
-                    ->join('universidades','universidades.coduniversidad','=','sedes.coduniversidad')
-                    ->orderBy('codsede')
-                    ->get();
+     
+     if($request->get('sede')!= ""){
+        $sedes = DB::table('sedes')->join('ciudades','ciudades.codciudad','=','sedes.codciudad')
+                                        ->join('universidades','universidades.coduniversidad','=','sedes.coduniversidad')
+                                        ->where('sedes.descsede','LIKE','%'.$request->get('sede').'%')
+                                        ->orderBy('codsede')
+                                        ->paginate();
+                                        
         
-        return view('sedes',compact('sedes')); 
+        return view('sedes',compact('sedes'));
+     }
+     else{
+        $sedes = DB::table('sedes')->join('ciudades','ciudades.codciudad','=','sedes.codciudad')
+                                        ->join('universidades','universidades.coduniversidad','=','sedes.coduniversidad')
+                                        ->orderBy('codsede')
+                                        ->paginate();
+                                        
+        
+        return view('sedes',compact('sedes'));
+     }
     }
     public function create()
     {
@@ -72,7 +86,7 @@ class SedesController extends Controller
     }
     public function edit($id)
     {
-        //$codigo = sedes::where('codsede', $id)->first();
+        
         $codigo = DB::table('sedes')
                     ->join('ciudades','ciudades.codciudad','=','sedes.codciudad')
                     ->join('universidades','universidades.coduniversidad','=','sedes.coduniversidad')

@@ -9,7 +9,7 @@ use App\Periodos;
 class PeriodosController extends Controller
 {
     
-    public function index()//GET
+    /*public function index()//GET
 	{
 		
 		$periodos = DB::table('periodos')
@@ -19,7 +19,30 @@ class PeriodosController extends Controller
 					->get();
         
         return view('periodos',compact('periodos')); 
-	}
+	}*/
+	public function index(Request $request)
+    {
+     
+     if($request->get('periodo')!= ""){
+        $periodos = DB::table('periodos')->join('sedes','sedes.codsede','=','periodos.codsede')
+										->join('universidades','universidades.coduniversidad','=','sedes.coduniversidad')
+                                        ->where('periodos.codperiodo','LIKE','%'.$request->get('periodo').'%')
+                                        ->orderBy('codperiodo')
+                                        ->paginate();
+                                        
+        
+        return view('periodos',compact('periodos'));
+     }
+     else{
+        $periodos = DB::table('periodos')->join('sedes','sedes.codsede','=','periodos.codsede')
+									->join('universidades','universidades.coduniversidad','=','sedes.coduniversidad')
+									->orderBy('codperiodo')
+									->paginate();
+                                        
+        
+        return view('periodos',compact('periodos'));
+     }
+    }
 	
 	public function create()
     {
@@ -73,7 +96,7 @@ class PeriodosController extends Controller
     }
 	public function destroy($codperiodo)
     {
-        $codigo = periodos::where('codperiodo', $codsede)->first();
+        $codigo = periodos::where('codperiodo', $codperiodo)->first();
         
         if ($codigo != null) {
             $codigo->delete();

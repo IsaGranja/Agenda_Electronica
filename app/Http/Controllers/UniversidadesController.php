@@ -4,14 +4,25 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Universidades;
+use DB;
 
 class UniversidadesController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $universidades = Universidades::all();
-        return view('universidades',compact('universidades')); 
+     // dd($request->get('cedula'));
+     if($request->get('universidad')!= ""){
+        $universidades = DB::table('universidades')->where('universidades.descuniversidad','LIKE','%'.$request->get('universidad').'%')->paginate();
+        //dd($profesores);
+        return view('universidades',compact('universidades'));
+     }
+     else{
+        $universidades = DB::table('universidades')->paginate();
+        //dd($profesores);
+        return view('universidades',compact('universidades'));
+     }
     }
+
     public function create()
     {
         return view('universidades_crear'); 
@@ -67,6 +78,7 @@ class UniversidadesController extends Controller
         }
         return back()->with(['message'=> 'Wrong ID!!']);
     }
+    
     public function edit($id)
     {
         $codigo = universidades::where('coduniversidad', $id)->first();
