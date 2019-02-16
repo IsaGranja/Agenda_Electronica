@@ -22,31 +22,6 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-<!--
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-
-    </ul>
-
-  </div>
---->
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav">
                 <li class="nav-item dropdown">
@@ -81,27 +56,55 @@
                     <a class="nav-link"  href="{{ url('/') }}">Descargar <span class="sr-only">(current)</span></a>
                 </li>
                 </ul>
-                <ul class="navbar-nav mr-auto">
+            <ul class="navbar-nav mr-auto">
                 <li class="nav-item active alert alert-danger success-block">
                     <strong>Welcome {{ Auth::user()->email }} </strong>
                 </li>
-                </ul>
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/main/logout') }}">Cerrar Sesión <span class="sr-only">(current)</span></a>
-                    </li>
-                </ul>
+            </ul>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url('/main/logout') }}">Cerrar Sesión <span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
         </div>
     </nav>
     {{-- Body --}}
     <section class="row">
-        <div class="col-lg-2 fondoizq">@yield('content-izq')</div>
+        <div class="col-lg-2 fondoizq">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+            <h6 class="dropdown-header colorHeaderToggle">Asignatura</h6>
+            <a class= "dropdown-item colorToggle" href="#">Tema 1</a>  
+            <a class= "dropdown-item colorToggle" href="#">Tema 2</a>
+        </div>
         <div class="col-md-12 col-lg-7 fondocentro">
             <center>
             <table border="0 cuerpo">
                 <tr class="containerPri1">
                     <td class="cuerpo" colspan="12">
-                    <center>@yield('content')                                    
+                    <center>
+                    <div id="carouselExampleFade" class="carousel slide carousel-fade" data-interval="false">
+                        <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img class="imagen1" src="https://mdbootstrap.com/img/Photos/Slides/img%20(15).jpg" alt="First slide">
+                        </div>
+                        <div class="carousel-item">
+                            <img class="imagen1" src="https://mdbootstrap.com/img/Photos/Slides/img%20(16).jpg" alt="Second slide">
+                        </div>
+                        <div class="carousel-item">
+                            <img class="imagen1" src="https://mdbootstrap.com/img/Photos/Slides/img%20(17).jpg" alt="Third slide">
+                        </div>
+                        </div>
+                        <a class="carousel-control-prev" title="Anterior" href="#carouselExampleFade" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" title="Siguiente" href="#carouselExampleFade" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                        </a>
+                    </div>                                  
                     </td>
                 </tr>
                 <tr class="containerPri2 colorFondoIconos">
@@ -282,7 +285,78 @@
                 </tr>
             </table>
         </div>
-        <div class="col-lg-3 fondoder"><center>@yield('content-der')</div>
+        <div class="col-lg-3 fondoder"><center>
+        <table border='0' style="width: 100%;">
+    <tr class="containerDer1">
+      <td>
+        <div class="colorHeaderToggle" style="font-size:14px">
+            <label for="comment">Anotaciones: </label><br>
+            <label class="labelC" style="font-size:9px">Caracteres restantes: <span style="color: white;">500</span></label>
+            <textarea maxlength="500" class="form-control" style="margin-bottom: 1rem;" name="anotaciones" id="comentarioEstudiante" rows="19" autofocus></textarea>
+        </div>
+      </td>
+    <tr>
+    <tr id="contenedorG" class="containerDer2">
+      <td>
+          <table align="center" style="width: 100%;">
+            <tr>
+              <td colspan="5"><center><canvas id="myCanvas" style="border:2px solid gray;"></canvas> </td>
+            </tr>
+            <tr>
+            <td>
+                <center>
+                <label style="color: white;">Tamaño: </label>
+                <select id="selWidth">
+                  <option value="1">1</option>
+                  <option value="3">3</option>
+                  <option value="5">5</option>
+                  <option value="7">7</option>
+                  <option value="9" selected="selected">9</option>
+                  <option value="11">11</option>
+                </select>
+              </td>
+              <td>
+             <label style="color: white;">Color: </label>
+                <select id="selColor">
+                  <option value="black">Negro</option>
+                  <option value="blue" selected="selected">Azul</option>
+                  <option value="red">Rojo</option>
+                  <option value="green">Verde</option>
+                  <option value="yellow">Amarillo</option>
+                  <option value="gray">Gris</option>
+                </select>
+              </td>              
+            </tr>
+            <tr>
+              <td colspan="2"><center><button style="width: 100%;" type="button" class="btn btn-primary" onclick="javascript:clearArea();return false;">Limpiar</button></td>
+            </tr>
+            <tr>
+            <td>
+                <center>  
+                <button style="width: 100%;" type="button" class="btn btn-warning" onclick="javascript:LoadImage();return false;">Cargar</button>
+                <form>
+                <div class="form-group">
+                  <label for="exampleFormControlFile1">Example file input</label>
+                  <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                </div>
+              </form>
+              </td>
+              <td width="10px">
+                <center>
+                <button type="button" class="btn btn-success" onclick="javascript:download();return false;">Guardar</button>
+                <a  id="downloadLnk" onclick="hide()" download="PruebaT.jpg">Descargar Imagen</a>             
+              </td>
+            </tr>
+          </table>
+      </td>
+    </tr>
+    <tr>
+      <td>
+      <p style="color:white;">adios</p>
+      </td>
+    </tr>
+  </table>
+        </div>
 </section>       
     {{-- Footer --}}
     <footer class="col-12 colorPUCE">

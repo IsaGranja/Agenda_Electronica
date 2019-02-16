@@ -45,11 +45,20 @@
                     <div class="form-group row">
                         <label for="sedeNombre" class="col-sm-2 col-form-label">Periodo<span style="color:red;font-weight:bold">*</span></label>
                         <div class="col-sm-1">
-                            <input type="text" class="form-control" name="codperiodo" id="codperiodo">
+                            <input onKeyDown="maxLengthCheck(this)" type="number" pattern="[2019-3000]{2019}" min="2019" max="3000" class="form-control" value="2019" name="codperiodo" id="codperiodo">
                         </div>
                         <div> - </div>
                         <div class="col-sm-1">
-                            <input type="text" class="form-control" name="codperiodoB" id="codperiodoB">
+                            <select class="form-control" name="codperiodoB" id="codperiodoB">
+                                <option value="01">01</option>
+                                <option value="02">02</option>
+                            </select>
+                            <script>
+                                function maxLengthCheck(object)
+                                {
+                                    object.value = object.value.slice(0, 4)
+                                }
+                            </script>
                         </div>
                     </div>
                     <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">

@@ -1,11 +1,10 @@
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
 @extends('master')
 {{-- Body --}}
 @section('content-izq')
-<!---
 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
-</button>--->
+</button>
 
     <h6 class="dropdown-header colorHeaderToggle">Asignatura</h6>
     <a class= "dropdown-item colorToggle" href="#">Tema 1</a>  
@@ -13,6 +12,7 @@
 @endsection
 
 @section('content')
+
 <div id="carouselExampleFade" class="carousel slide carousel-fade" data-interval="false">
     <div class="carousel-inner">
       <div class="carousel-item active">
