@@ -16,6 +16,24 @@
 <body class="col-12 bg-dark">
     {{-- https://www.youtube.com/channel/UCnQ2OeYdBZpe4mBgj_nOVAg/videos --}}
     {{-- https://www.youtube.com/watch?v=pZAPePev0wM --}}
+        @if(isset(Auth::user()->email))
+            <script>window.location="/main/successlogin";</script>
+        @endif
+        @if ($message = Session::get('error'))
+        <div class="alert alert-danger alert block">
+            <button type="button" class="close" data-dismiss="alert">x</button>
+            <strong>{{ $message }}</strong>
+        </div>
+        @endif
+        @if(count($errors) > 0)
+          <div class="alert alert-danger">
+            <ul>
+            @foreach($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+            </ul>
+          </div>  
+        @endif
     {{-- Navbar --}}
     <nav class="navbar navbar-expand-lg col-12 navbar-light colorPUCE">
         <a class="navbar-brand" href='http://www.puce.edu.ec'><img class="logo" height='50px' src="{{ url('img/puceLogo.jpg') }}"></a>
@@ -28,7 +46,7 @@
         <div class="row">
             <div class="col-lg-4 offset-lg-4" id="alert">
                 <div class="alert alert-success">
-                    <center><strong id="result">AGENDA ELECTRÓNICA</strong>
+                    <center><strong id="result">Inicio de Sesión Exitoso</strong>
                 </div>                
             </div>
         </div>
@@ -36,27 +54,28 @@
         <div class="row">
             <div class="col-lg-4 offset-lg-4 bg-light rounded" id="login-box">
                 <h2 class="text-center mt-2">Iniciar Sesión</h2>
-                <form action="" method="post" role="form" class="p-2" id="login-frm" accept-charset="utf-8">
+                <form method="post" action="{{ url('/main/checklogin') }}" role="form" class="p-2" id="login-frm" accept-charset="utf-8">
+                    {{csrf_field()}}
                     <div class="form-group">
-                        <input type="text" name="username" class="form-control" placeholder="Nombre de Usuario" required minlength="2">
+                        <input type="email" name="email" class="form-control" placeholder="Email:" required minlength="5">
                     </div>
                     <div class="form-group">
-                        <input type="password" name="password" class="form-control" placeholder="Contraseña" required minlength="6">
+                        <input type="password" name="password" class="form-control" placeholder="Contraseña:" required minlength="3">
                     </div>
                     <div class="form-group">
                         <div class="custom-control custom-checkbox">
-                            <input type="checkbox" name="rem" class="custom-control-input" id="customCheck">
-                            <label style="color: black;" for="customCheck" class="custom-control-label">Recuerdame</label>
+                            <!--<input type="checkbox" name="rem" class="custom-control-input" id="customCheck">
+                            <label style="color: black;" for="customCheck" class="custom-control-label">Recuerdame</label>-->
                             <a href="#" id="forgot-btn" class="float-right">Olvidó la Contraseña?</a>
                         </div>
                     </div>
                     <div class="form-group">
                         <input type="submit" name="login" id="login" value="Iniciar Sesión" class="btn btn-primary btn-block">
                     </div>
-                    <div class="form-group">
+                   <!-- <div class="form-group">
                         <p class="text-center">Nuevo Usuario? <a href="#" id="register-btn">Registrarse Aquí</a></p
                         >
-                    </div>
+                    </div>-->
                 </form>
             </div>
         </div>
@@ -159,6 +178,22 @@
                 }
             });
             $('#forgot-frm').validate();
+            //submit form without page refresh
+            $('#register').click(function(e){
+                if(document.getElementById('register-frm').checkValidity()){
+                    e.preventDefault();
+                    $.ajax({
+                        url:'/pagHome',
+                        metxhod:'post',
+                        data:$("#register-frm").serialize()+"&/pagHome=register",
+                        success:function(response){
+                         $("#alert").show();
+                         $("#result").html(response.msg);
+                        }
+                    });
+                }
+                return true;
+            });
         }); 
     </script>
 </body>

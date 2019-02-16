@@ -18,13 +18,7 @@
 
 */
 
-Route::get('/','HomeController@loginFunc');
-Route::get('/pagLogin','HomeController@loginFunc');
-//Route::get('pagHome','HomeController@homeFunc');
-Route::get('/pagAudio','HomeController@audioFunc');
-Route::get('/pagVideo','HomeController@videoFunc');
-Route::get('/pagImagen','HomeController@imagenFunc');
-Route::view('/pagHome','home');
+
 //PROVINCIAS
 Route::get('/pagProvincias','ProvinciaController@index');
 Route::get('/pagProvincias/crear','ProvinciaController@create');
@@ -161,5 +155,10 @@ Route::post('/pagProfesores/crear','ProfesorController@store');
 Route::get('/pagProfesores/editar/{id}','ProfesorController@edit');
 Route::post('/pagProfesores/editar/{id}','ProfesorController@update');
 Route::post('/pagProfesores/{id}','ProfesorController@destroy');
-
+//LOGIN E INTERFAZ PRINCIPAL:
+Route::get('/','MainController@index');
+Route::get('/main', 'MainController@index');
+Route::post('/main/checklogin', 'MainController@checklogin');
+Route::get('/main/successlogin', 'MainController@successlogin');
+Route::get('/main/logout', 'MainController@logout');
 

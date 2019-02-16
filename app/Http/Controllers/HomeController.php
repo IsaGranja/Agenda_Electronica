@@ -3,40 +3,26 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB;
-use App\anotaciones;
 
 class HomeController extends Controller
 {
-    /*
-    public function index()
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
     {
-        $periodos = DB::table('periodos')->where('periodos.estperiodo', '=', 'A')->get();
-        return view('master',['periodos'=>$periodos]);
+        $this->middleware('auth');
     }
-    public function create()
-    {
-        $periodos = DB::table('periodos')->select('*')->where('estperiodo','A')->get();
-        $estudiantes = DB::table('estudiantes')->select('*')->get();
-        $asignaturas = DB::table('asignaturas')->select('*')->get();
-        $carreras = DB::table('carreras')->select('*')->get();
-        $profesores = DB::table('profesores')->select('*')->get(); 
-        return view('AsignaturaXEstudiante',['periodos'=>$periodos,'estudiantes'=>$estudiantes,'asignaturas'=>$asignaturas,
-         'carreras'=>$carreras, 'profesores'=>$profesores]);
-    }*/
-    public function index()//GET
-	{
-		return \App\anotaciones::all();
-	}
-    //homepage
-    public function homeFunc()
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function index()
     {
         return view('home');
     }
-    //login
-    public function loginFunc()
-    {
-        return view('login');
-    }
-
 }
