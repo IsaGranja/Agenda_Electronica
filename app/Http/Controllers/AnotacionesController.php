@@ -11,12 +11,32 @@ class AnotacionesController extends Controller
 {
 	public function index()
     {
-		$user = Auth::user();
-		$email=$user->email;
-
-		$cedestudiante = DB::table('estudiantes')->where('correestudiante', $email)->value('cedestudiante');
-        $periodos = DB::table('asignaturasxestudiantes')->where('cedestudiante', $cedestudiante)->get();
-        return view('home',['periodos'=>$periodos]);
+		try{
+			$user = Auth::user();
+			$email=$user->email;
+			$cedestudiante = DB::table('estudiantes')
+						->where('correestudiante', $email)
+						->value('cedestudiante');
+			$periodos = DB::table('asignaturasxestudiantes')
+						->select('codperiodo')
+						->where('cedestudiante', $cedestudiante)
+						->groupBy('codperiodo')
+						->get();
+			$asignaturasxestudiante= DB::table('asignaturasxestudiantes')->where('cedestudiante', $cedestudiante);
+			$asignatura= DB::table('asignaturas')->select('*')->get();
+			$unidades_estudio=DB::table('unidades_estudio')->select('*')->get();
+			$temas_estudio=DB::table('temas_estudio')->select('*')->get();
+			$contenidos=DB::table('contenidos')->select('*')->get();
+			$talleres=DB::table('talleres')->select('*')->get();
+			$evaluaciones=DB::table('evaluaciones')->select('*')->get();
+			$glosarios=DB::table('glosarios')->select('*')->get();
+			$anotaciones=DB::table('anotaciones_estudiante')->select('*')->get();
+		}catch(\Exception $e)
+		{
+			return back()->withError($e->getMessage());
+		}
+		return view('home',compact('periodos','asignaturasxestudiante','asignatura','unidades','temas','contenidos',
+		'talleres', 'evaluaciones','glosarios','anotaciones'));
 	}
 	/*
     public function index()//GET
@@ -43,6 +63,6 @@ class AnotacionesController extends Controller
 		$registro = \App\anotaciones::findOrFail($id);
 		$registro -> delete();
 
-		return 204; //hubo una ejecución de instruccion exitosa
+		return 204; //hubo una ejecución de instrucción exitosa
 	}
 }

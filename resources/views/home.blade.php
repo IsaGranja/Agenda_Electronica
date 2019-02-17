@@ -6,10 +6,10 @@
     <span class="navbar-toggler-icon"></span>
 </button>
 
-    <div class="form-group row ">
-        <label for="sedeNombre" class="col-sm-2 col-form-label"></label>
-        <div class="col-sm-5">
-            <select name="codperiodo" class="form-control principal" type="text">
+    <div class="form-group">
+    <label class="control-label col-sm-3" for="asignatura"></label>
+            <div class="col-sm-6">
+            <select name="codperiodo" class="form-control principal" type="text" onchange="cambioPeriodo()">
                 @foreach($periodos as $periodo)
                     <option value="{{$periodo->codperiodo}}">{{$periodo->codperiodo}}</option>
                 @endforeach
@@ -17,9 +17,43 @@
         </div>
     </div>
 
+    <div class="form-group">
+            <label class="control-label col-sm-3" for="asignatura"></label>
+            <div class="col-sm-6">
+                <select class="form-control principal" id="asignatura" name="asignatura" onchange="cambioAsignatura()">
+                    <option></option>
+                </select>
+            </div>
+        </div>
+
       <h6 class="dropdown-header colorHeaderToggle">Periodo</h6>
     <a class= "dropdown-item colorToggle" href="#">Tema 1</a>  
     <a class= "dropdown-item colorToggle" href="#">Tema 2</a>
+    <script>
+
+    function cambioPeriodo(){
+    var periodos;
+    var asignatura;
+    var $asignaturaCombo = $("#asignatura");
+    $asignaturaCombo.empty(); // remove old options
+    <?php if(isset($asignaturas)){
+		 echo 'periodos = '.json_encode($periodos, JSON_HEX_TAG).';'; }?>
+    <?php if(isset($tema)){
+     echo 'asignatura  = '.json_encode($asignatura , JSON_HEX_TAG).';'; }?>
+        
+    periodos.forEach(function(periodo){
+       if(periodo.codperiodo==document.getElementById('asignatura').value){
+        asignatura.forEach(function(asignatura){
+            if(asignatura.codperiodo==periodo.codperiodo)
+            {
+                var option = $('<option></option>').attr("value", asignatura.codperiodo).text(asignatura.descasignatura);
+                $asignaturaCombo.append(option);
+            }
+        })
+       }
+    })
+}
+    </script>
 @endsection
 
 @section('content')
