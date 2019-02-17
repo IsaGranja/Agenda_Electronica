@@ -1,7 +1,6 @@
 @extends('base') {{-- Hereda el header y el footer de la view base --}}
 
 @section('content')
-
     <br>
         <body>
             <div>            
@@ -35,8 +34,6 @@
                             <select name="codsede" class="form-control" type="text" id="codsede">
                             @foreach($sede as $sed)
                                 <option value="{{$sed->codsede}}">{{$sed->descsede}}</option>
-
-
                             @endforeach
                                 
                             </select>

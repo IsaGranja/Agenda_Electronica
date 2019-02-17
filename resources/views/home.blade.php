@@ -6,7 +6,18 @@
     <span class="navbar-toggler-icon"></span>
 </button>
 
-    <h6 class="dropdown-header colorHeaderToggle">Asignatura</h6>
+    <div class="form-group row ">
+        <label for="sedeNombre" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-5">
+            <select name="codperiodo" class="form-control principal" type="text">
+                @foreach($periodos as $periodo)
+                    <option value="{{$periodo->codperiodo}}">{{$periodo->codperiodo}}</option>
+                @endforeach
+            </select>
+        </div>
+    </div>
+
+      <h6 class="dropdown-header colorHeaderToggle">Periodo</h6>
     <a class= "dropdown-item colorToggle" href="#">Tema 1</a>  
     <a class= "dropdown-item colorToggle" href="#">Tema 2</a>
 @endsection

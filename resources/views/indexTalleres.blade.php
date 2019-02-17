@@ -1,11 +1,6 @@
 @extends('base')
 @section('content')
 
-
-
-
-
-  
 </div>
 <div class="container">
     <div class="row justify-content-center">

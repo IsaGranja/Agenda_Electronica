@@ -94,6 +94,15 @@
         </div>
     </nav>
     {{-- Body --}}
+
+    <form method="post" action="{{url('anotaciones')}}" class="form-horizontal" data-toggle="validator"
+    enctype="multipart/form-data">
+    @csrf
+    <div class="form-horizontal">
+
+
+        <input type="hidden" id="codcontenido" class="form-control" name="codcontenido" >
+
     <section class="row">
         <div class="col-lg-2 fondoizq">@yield('content-izq')</div>
         <div class="col-md-12 col-lg-7 fondocentro">
@@ -284,6 +293,7 @@
         </div>
         <div class="col-lg-3 fondoder"><center>@yield('content-der')</div>
 </section>       
+</form>
     {{-- Footer --}}
     <footer class="col-12 colorPUCE">
         <div class="card-body text-center">

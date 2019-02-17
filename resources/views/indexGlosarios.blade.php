@@ -5,8 +5,6 @@
 <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
 <script src="{{ url('js/Proyecto.js') }}"></script>
 
-  
-
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-10">

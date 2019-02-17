@@ -20,9 +20,7 @@ class AsignaturaXProfesorController extends Controller
     {
         $codperiodo = $request->input('codperiodo');
         $cedprofesor = $request->input('cedprofesor');
-       
         $asignaturas = $request->input('asignaturas');
-
         foreach( $asignaturas as $asignatura){
             $asigs= DB::table('asignaturas')->select('codasignatura')->where('descasignatura','=',$asignatura)->get();
             $codasignatura;

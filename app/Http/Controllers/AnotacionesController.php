@@ -2,14 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\anotaciones;
+use DB;
 
 class AnotacionesController extends Controller
 {
 	public function index()
     {
-        $periodos = DB::table('periodos')->where('periodos.estperiodo', '=', 'A')->get();
+		$user = Auth::user();
+		$email=$user->email;
+
+		$cedestudiante = DB::table('estudiantes')->where('correestudiante', $email)->value('cedestudiante');
+        $periodos = DB::table('asignaturasxestudiantes')->where('cedestudiante', $cedestudiante)->get();
         return view('home',['periodos'=>$periodos]);
 	}
 	/*
