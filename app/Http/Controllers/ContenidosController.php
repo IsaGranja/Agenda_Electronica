@@ -16,7 +16,6 @@ class ContenidosController extends Controller
         $tema = DB::table('temas_estudio')->select('*')->get();
         $asignaturas = DB::table('asignaturas')->select('*')->get();
         //$carreras = DB::table('carreras')->select('*')->get();
-
         $contenidos = DB::table('contenidos')->select('*')->get();
         
             $carreras = DB::select('SELECT carreras.codcarrera, carreras.desccarrera, escuelas.descescuela, facultades.descfacultad, sedes.descsede, universidades.descuniversidad
@@ -25,8 +24,7 @@ class ContenidosController extends Controller
         {
             return back()->withError($e->getMessage());
         }
-            return view('contenidosNuevo', compact('carreras', 'asignaturas', 'tema', 'contenidos'));
-        
+        return view('contenidosNuevo', compact('carreras', 'asignaturas', 'tema', 'contenidos'));
         
     }
 

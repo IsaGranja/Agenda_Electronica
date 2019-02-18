@@ -162,3 +162,6 @@ Route::post('/main/checklogin', 'MainController@checklogin');
 Route::get('/main/successlogin', 'MainController@successlogin');
 Route::get('/main/logout', 'MainController@logout');
 
+Route::get('/json-asignaturas', 'AnotacionesController@findAsignaturaFunc');
+Route::resource('/main/successlogin', 'AnotacionesController');
+Route::post('/main/successlogin/actualizarAnotaciones', 'AnotacionesController@update');

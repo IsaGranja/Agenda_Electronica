@@ -38,8 +38,6 @@ class PeriodosController extends Controller
 									->join('universidades','universidades.coduniversidad','=','sedes.coduniversidad')
 									->orderBy('codperiodo')
 									->paginate();
-                                        
-        
         return view('periodos',compact('periodos'));
      }
     }

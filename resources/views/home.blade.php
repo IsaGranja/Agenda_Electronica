@@ -7,10 +7,49 @@
     <span class="navbar-toggler-icon"></span>
 </button>
 
-    <h6 class="dropdown-header colorHeaderToggle">Asignatura</h6>
+    <div class="form-group">
+    <label class="control-label col-sm-3" for="periodo"></label>
+            <div class="col-sm-6">
+            <select name="codperiodo" id="periodo" data-dependent="periodo" class="form-control input-lg periodo principal" type="text">
+                <option value="">Seleccione el periodo</option>
+                @foreach($periodos as $periodo)
+                    
+                    <option value="{{$periodo->codperiodo}}">{{$periodo->codperiodo}}</option>
+                @endforeach
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group">
+            <label class="control-label col-sm-3" for="asignatura"></label>
+            <div class="col-sm-6">
+                <select class="form-control input-lg dynamic principal" data-dependent="asignatura" id="asignatura" name="asignatura">
+                  <option value="0" disable="true" selected="true">Seleccione la asignatura</option>
+                    
+                </select>
+            </div>
+        </div>
+
+      <h6 class="dropdown-header colorHeaderToggle">Periodo</h6>
     <a class= "dropdown-item colorToggle" href="#">Tema 1</a>  
     <a class= "dropdown-item colorToggle" href="#">Tema 2</a>
 </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript">
+    $('#periodo').on('change',function(e){
+      console.log(e);
+      var codperiodo = e.target.value;
+      $.get('/json-asignaturas?codperiodo=' + codperiodo,function(data){
+        console.log(data);
+        $('#asignatura').empty();
+        $('#asignatura').append('<option value="0" disable="true" selected="true">Seleccione la asignatura</option>');
+        $.each(data, function(index, asignaturaObj){
+          $('#asignatura').append('<option value="'+asignaturaObj.codasignatura+'">'+asignaturaObj.descasignatura+' </option>');
+        })
+      });
+    });
+  
+    </script>
 @endsection
 
 @section('content')
