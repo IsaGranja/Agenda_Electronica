@@ -13,7 +13,7 @@
     <script src="{{ url('js/Proyecto.js') }}"></script>
     <link rel="stylesheet" type="text/css" media="screen" href="{{ url('js/jquery-3.3.1.slim.min.js') }}" />
     <link rel="stylesheet" type="text/css" media="screen" href="{{ url('js/popper.min.js') }}" />
-    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 </head>
 <body class="col-12 colorPUCE" onload="InitThis();">
   {{-- Navbar --}}
