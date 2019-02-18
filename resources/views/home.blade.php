@@ -2,6 +2,7 @@
 @extends('master')
 {{-- Body --}}
 @section('content-izq')
+<div style="width:100%;">
 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
 </button>
@@ -9,14 +10,21 @@
     <h6 class="dropdown-header colorHeaderToggle">Asignatura</h6>
     <a class= "dropdown-item colorToggle" href="#">Tema 1</a>  
     <a class= "dropdown-item colorToggle" href="#">Tema 2</a>
+</div>
 @endsection
 
 @section('content')
-
-<div id="carouselExampleFade" class="carousel slide carousel-fade" data-interval="false">
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img class="imagen1" src="https://mdbootstrap.com/img/Photos/Slides/img%20(15).jpg" alt="First slide">
+<div style="width:100%;">
+<div id="carouselExampleFade" style="width:100%;" class="carousel slide carousel-fade" data-interval="false">
+    <div class="carousel-inner" style="width:100%;" >
+      <div class="carousel-item active" style="width:100%;">
+        <!--<img class="imagen1" src="https://mdbootstrap.com/img/Photos/Slides/img%20(15).jpg" alt="First slide">-->
+        <!--<textarea class="imagen1" alt="First slide"></textarea>-->
+        <!--<p class="imagen1">dasda</p>-->
+        <!--<img class="d-block w-100" src="{{ url('img/beagle.jpg') }}" alt="First slide">-->
+        <div class="d-none d-md-block">          
+          <textarea class="form-controlCanvas" alt="First slide"></textarea>
+        </div>
       </div>
       <div class="carousel-item">
         <img class="imagen1" src="https://mdbootstrap.com/img/Photos/Slides/img%20(16).jpg" alt="Second slide">
@@ -34,9 +42,11 @@
       <span class="sr-only">Next</span>
     </a>
   </div>
+</div>
 @endsection
 
 @section('content-der')
+<div style="width:100%;">
     <table border='0' style="width: 100%;">
     <tr class="containerDer1">
       <td>
@@ -102,4 +112,5 @@
       </td>
     </tr>
   </table>
+</div>
 @endsection

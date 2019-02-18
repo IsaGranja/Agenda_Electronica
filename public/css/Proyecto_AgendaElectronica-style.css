@@ -51,9 +51,11 @@ textarea{
 }
 .containerPri1{
   height: 26rem;
+  width:100%;
 }
 .containerPri2{
   height: 7rem;
+  width:100%;
 }
 .containerDer1{
   height: 16.5rem;
@@ -76,6 +78,7 @@ textarea{
 }
 .colorFondoIconos{
   background-color: rgba(108, 108, 110, 0.144);
+  width: 100%;
 }
 .scroll{
   overflow-x: scroll;
@@ -87,6 +90,25 @@ textarea{
   max-height: 16.5rem;
   border-color:gray;
   color: #495057;
+}
+.form-controlCanvas {
+  width: 90%;
+  height: 26rem;
+  margin-left: 4%;
+  margin-right: 4%;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  border: 1px solid #db6bd2;
+  border-radius: 0.25rem;
+}
+.tableCanvas {
+  width: 100%;
+  align-content: center;
+  text-align: center;
+  position: relative;
 }
 .borderojo{
   display: block;

@@ -64,54 +64,11 @@
                     </div>
                     <div class="form-group">
                         <div class="custom-control custom-checkbox">
-                            <!--<input type="checkbox" name="rem" class="custom-control-input" id="customCheck">
-                            <label style="color: black;" for="customCheck" class="custom-control-label">Recuerdame</label>-->
                             <a href="#" id="forgot-btn" class="float-right">Olvidó la Contraseña?</a>
                         </div>
                     </div>
                     <div class="form-group">
                         <input type="submit" name="login" id="login" value="Iniciar Sesión" class="btn btn-primary btn-block">
-                    </div>
-                   <!-- <div class="form-group">
-                        <p class="text-center">Nuevo Usuario? <a href="#" id="register-btn">Registrarse Aquí</a></p
-                        >
-                    </div>-->
-                </form>
-            </div>
-        </div>
-        {{-- Registration Form --}}
-        <div class="row">
-            <div class="col-lg-4 offset-lg-4 bg-light rounded" id="register-box">
-                <h2 class="text-center mt-2">Registrarse</h2>
-                <form action="" method="post" role="form" class="p-2" id="register-frm" accept-charset="utf-8">
-                    <div class="form-group">
-                        <input type="text" name="name" class="form-control" placeholder="Nombre Completo" required minlength="3">
-                    </div>
-                    <div class="form-group">
-                        <input type="text" name="uname" class="form-control" placeholder="Nombre de Usuario" required minlength="4">
-                    </div>
-                    <div class="form-group">
-                        <input type="email" name="email" class="form-control" placeholder="E-Mail" required
-                        >
-                    </div>
-                    <div class="form-group">
-                        <input type="password" name="pass" id="pass" class="form-control" placeholder="Contraseña" required minlength="6">
-                    </div>
-                    <div class="form-group">
-                        <input type="password" name="cpass" id="cpass" class="form-control" placeholder="Confirmar Contraseña" required minlength="6">
-                    </div>
-                    <div class="form-group">
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" name="rem" class="custom-control-input" id="customCheck2">
-                            <label style="color: black;" for="customCheck2" class="custom-control-label">Acepto los <a href="#">terminos & condiciones.</a></label>                            
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <input type="submit" name="register" id="register" value="Registrarse" class="btn btn-primary btn-block">
-                    </div>
-                    <div class="form-group">
-                        <p class="text-center">Ya está registrado? <a href="#" id="login-btn">Iniciar Sesión Aquí</a></p
-                        >
                     </div>
                 </form>
             </div>
@@ -152,15 +109,7 @@
     <script src="{{ url('js/jquery.validate.min.js') }}"></script>
     <script src="{{ url('js/bootstrap.min.js') }}"></script>    
     <script type="text/javascript">
-        $(document).ready(function(){
-            $('#register-btn').click(function(){
-                $('#register-box').show();
-                $('#login-box').hide();                
-            });
-            $('#login-btn').click(function(){
-                $('#register-box').hide();
-                $('#login-box').show();                 
-            });
+        $(document).ready(function(){            
             $('#forgot-btn').click(function(){
                 $('#login-box').hide();
                 $('#forgot-box').show();                 
@@ -178,22 +127,28 @@
                 }
             });
             $('#forgot-frm').validate();
-            //submit form without page refresh
-            $('#register').click(function(e){
-                if(document.getElementById('register-frm').checkValidity()){
+            /*$('#forgot').click(function(e){
+                if(document.getElementById('forgot-frm').checkValidity()){
                     e.preventDefault();
                     $.ajax({
-                        url:'/pagHome',
-                        metxhod:'post',
-                        data:$("#register-frm").serialize()+"&/pagHome=register",
-                        success:function(response){
-                         $("#alert").show();
-                         $("#result").html(response.msg);
-                        }
+                        url:'/main',
+                        method:'post',
+                        data:$("#forgot-frm").serialize()+"&/main=register",
+                        success:function(response){*/
+                            <?php
+                            /*$to = "josesalgado7@hotmail.com";
+                            $subject = "Lolsito";
+                            $txt = "Hello world!";
+                            $headers = "From: webmaster@example.com" . "\r\n" .
+                            "CC: somebodyelse@example.com";
+                            mail($to,$subject,$txt,$headers);*/
+                            ?>
+                        /*}
                     });
                 }
                 return true;
-            });
+            });*/
+
         }); 
     </script>
 </body>

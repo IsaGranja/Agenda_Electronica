@@ -10,10 +10,10 @@ class UsersTablesSeeder extends Seeder
     public function run()
     {
         User::create([
-            'name' => Str::random(8),
+            'name' => 'admin',
             'email' => 'admin@puce.edu.ec',
-            'password' => bcrypt('password'),
-            'remember_token' => Str::random(8),
+            'password' => bcrypt('Admin456'),
+            'remember_token' => Str::random(5),
         ]);
         /*DB::table('users')->insert([
             'name' => Str::random(10),
