@@ -23,7 +23,7 @@
             <label class="control-label col-sm-3" for="asignatura"></label>
             <div class="col-sm-6">
                 <select name="codasignatura" id="asignatura" class="dropdown-item colorHeaderToggle form-control input-lg dynamic asignatura principal" data-dependent="asignatura" type="text" onchange="cambioUnidades()">
-                <option class="active item" style="color:red;" value="0"> Asignatura </option>   
+                <option value="0"> Asignatura </option>   
               </select>
             </div>
         </div>
@@ -164,7 +164,36 @@
         <!--<textarea class="imagen1" alt="First slide"></textarea>-->
         <!--<p class="imagen1">dasda</p>-->
         <!--<img class="d-block w-100" src="{{ url('img/beagle.jpg') }}" alt="First slide">-->
-        <div class="editor" id="editor" style="text-align: left; width:100%"  contenteditable="false">select isa dasdas isa </div>
+        <div class="editor" id="editor" style="text-align: left; width:100%"  contenteditable="false"></div>
+        
+        <script>
+          function cambioContenidos(){
+            console.log("hmm its ontenidos");
+            var $contenidoCombo = $("#editor");
+            $('#contenido option[value!="0"]').remove();
+            //$contenidoCombo.empty();
+            var codtema=$('#tema').val();
+            //var div=$('#tema').parent();
+            $.ajax({
+              type:'get',
+              url:'{!!URL::to('json-contenidos')!!}',
+              data:{'codtema':codtema},
+              dataType:'json',
+              success:function(data){
+              console.log('success conte');
+              console.log(data);
+              console.log(data.length);
+              document.getElementById('editor').innerHTML='';
+              for(var i=0;i<data.length;i++){
+                $contenidoCombo.append('<div class="editor" id="editor" value="'+data[i].codcontenido+'" style="text-align: left; width:100%" contenteditable="false">'+data[i].textocontenido+'</div>');
+              //$contenidoCombo.append('<option value="'+data[i].codcontenido+'">'+data[i].textocontenido+'</option>');
+              }
+            },
+            error:function(){
+            }
+            });
+            }
+          </script>
         <div id="div_content" style='width:100px;height:100px;display:none;'>Test data</div>
     <script>
 

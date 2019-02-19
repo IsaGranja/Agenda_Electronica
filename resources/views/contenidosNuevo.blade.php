@@ -25,15 +25,11 @@
 
 </div>
 
-
-
 <br />
 <form method="post" action="{{url('contenidos')}}" class="form-horizontal" data-toggle="validator"
     enctype="multipart/form-data">
     @csrf
     <div class="form-horizontal">
-
-
         <input type="hidden" id="codcontenido" class="form-control" name="codcontenido" >
 
         <div class="form-group">
