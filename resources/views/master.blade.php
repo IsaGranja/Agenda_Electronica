@@ -84,7 +84,7 @@
             <center>
             <table border="0 cuerpo" style="width:100%;" class="tableCanvas">
                 <tr class="containerPri1">
-                    <td class="cuerpo" colspan="12">
+                    <td colspan="12">
                     <center>@yield('content')                                    
                     </td>
                 </tr>

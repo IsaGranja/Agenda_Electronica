@@ -157,21 +157,60 @@
     }
   
 </script>
-    </div>
+</div>
 @endsection
 
 @section('content')
 <div style="width:100%;">
 <div id="carouselExampleFade" style="width:100%;" class="carousel slide carousel-fade" data-interval="false">
-    <div class="carousel-inner" style="width:100%;" >
+    <div class="carousel-inner" style="width:100%;" role="listbox" >
       <div class="carousel-item active" style="width:100%;">
         <!--<img class="imagen1" src="https://mdbootstrap.com/img/Photos/Slides/img%20(15).jpg" alt="First slide">-->
         <!--<textarea class="imagen1" alt="First slide"></textarea>-->
         <!--<p class="imagen1">dasda</p>-->
         <!--<img class="d-block w-100" src="{{ url('img/beagle.jpg') }}" alt="First slide">-->
-        <div class="d-none d-md-block">          
-          <textarea class="form-controlCanvas" alt="First slide"></textarea>
-        </div>
+        <div class="editor" id="editor" style="text-align: left; width:100%"  contenteditable="true">select isa dasdas isa </div>
+    <script>
+    $("#editor").on("keydown keyup change click load focus mouseover", function(e){
+      if (e.keyCode == 32){
+          var text = $(this).text().replace(/[\s]+/g, " ").trim();
+          var word = text.split(" ");
+          var newHTML = "";
+
+          $.each(word, function(index, value){
+              switch(value.toUpperCase()){
+                  case "SELECT":
+                  case "FROM":
+                  case "WHERE":
+                  case "LIKE":
+                  case "BETWEEN":
+                  case "NOTLIKE":
+                  case "FALSE":
+                  case "NULL":
+                  case "ISA":
+                  case "TRUE":
+                  case "PATITO":
+          case "NOTIN":
+                      newHTML += "<span class='statement'>" + value + "&nbsp;</span>";
+                      break;
+                  default: 
+                      newHTML += "<span class='other'>" + value + "&nbsp;</span>";
+              }
+          });
+          $(this).html(newHTML);
+          
+          //// Set cursor postion to end of text
+          var child = $(this).children();
+          var range = document.createRange();
+          var sel = window.getSelection();
+          range.setStart(child[child.length - 1], 1);
+          range.collapse(true);
+          sel.removeAllRanges();
+          sel.addRange(range);
+          $(this)[0].focus(); 
+      }
+  });
+    </script>
       </div>
       <div class="carousel-item">
         <img class="imagen1" src="https://mdbootstrap.com/img/Photos/Slides/img%20(16).jpg" alt="Second slide">
@@ -200,7 +239,7 @@
         <div class="colorHeaderToggle" style="font-size:14px">
             <label for="comment">Anotaciones: </label><br>
             <label class="labelC" style="font-size:9px">Caracteres restantes: <span style="color: white;">500</span></label>
-            <textarea maxlength="500" class="form-control" style="margin-bottom: 1rem;" name="anotaciones" id="comentarioEstudiante" rows="19" autofocus></textarea>
+            <textarea maxlength="500" class="form-control altoAnotaciones" style="margin-bottom: 1rem;" name="anotaciones" id="comentarioEstudiante" rows="19" autofocus></textarea>
         </div>
       </td>
     <tr>

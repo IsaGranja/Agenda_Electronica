@@ -104,6 +104,16 @@ class AnotacionesController extends Controller
 
 		return response()->json($contenidos);
 	}
+	public function TextAreaCanvas()
+	{
+		$contenidos = DB::table('contenidos')
+		->select(DB::raw("
+		name,
+		surname,  
+		(CASE WHEN (gender = 1) THEN 'M' ELSE 'F' END) as gender_text")
+		);
+	}
+	
 	public function index()
     {
 		try{
