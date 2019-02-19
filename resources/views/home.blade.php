@@ -164,11 +164,12 @@
         <!--<textarea class="imagen1" alt="First slide"></textarea>-->
         <!--<p class="imagen1">dasda</p>-->
         <!--<img class="d-block w-100" src="{{ url('img/beagle.jpg') }}" alt="First slide">-->
-        <div class="editor" id="editor" style="text-align: left; width:100%"  contenteditable="true">select isa dasdas isa </div>
+        <div class="editor" id="editor" style="text-align: left; width:100%"  contenteditable="false">select isa dasdas isa </div>
         <div id="div_content" style='width:100px;height:100px;display:none;'>Test data</div>
     <script>
-    $("#editor").on("keydown keyup change click load focus mouseover", function(e){
-      if (e.keyCode == 32){
+
+    $("#editor").on("focus mouseover",function(e){
+    
           var text = $(this).text().replace(/[\s]+/g, " ").trim();
           var word = text.split(" ");
           var newHTML = "";
@@ -185,7 +186,7 @@
                   case "NULL":
                   case "ISA":
                   case "TRUE":
-                  case "PATITO":
+                  case "VARIABLE":
                   case "NOTIN":
                       newHTML += "<span class='statement' style='white-space: nowrap;' data-toggle='tooltip' data-placement='right' title='Ola ke ase isa jajaja :v'>" + value + "&nbsp;</span>"
                       /*var e = new KeyboardEvent('keydown',{'keyCode':32,'which':32});
@@ -210,14 +211,14 @@
           $(this)[0].focus(); 
           ///////
           
-      }
+      
   });
-  (document).ready(function(){
+  $("#editor").ready(function(){
     $('[data-toggle="popover"]').popover();   
   });
-  (document).ready(function () {
+  $("#editor").ready(function () {
     $('[data-toggle="tooltip"]').tooltip()
-  })
+  });
     </script>
       </div>
       <div class="carousel-item">
@@ -237,6 +238,7 @@
     </a>
   </div>
 </div>
+
 @endsection
 
 @section('content-der')
