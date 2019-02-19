@@ -84,15 +84,14 @@ textarea{
   overflow-x: scroll;
   overflow-y: scroll;
 }
-.form-control{
-  font-size: 25px;
-  height: 16.5rem;
-  max-height: 16.5rem;
+.altoAnotaciones{
+  font-size: 25px;  
   border-color:gray;
   color: #495057;
+  height: 16.5rem;
+  max-height: 16.5rem;
 }
 .form-controlCanvas {
-  width: 90%;
   height: 26rem;
   margin-left: 4%;
   margin-right: 4%;
@@ -103,6 +102,37 @@ textarea{
   background-color: #fff;
   border: 1px solid #db6bd2;
   border-radius: 0.25rem;
+}
+.carousel-inner .item div {
+  height: 100%;
+  width: 100% !important;
+}
+#editor{
+  background-color: #444;
+  color: white;
+  font-size: 14px;
+  font-family: monospace;
+  height: 26rem;
+}
+.editor{
+  overflow:auto; /* older browsers */
+  -moz-appearance: textfield-multiline;
+  -webkit-appearance: textarea;
+  font: medium -moz-fixed;
+  font: -webkit-small-control;
+  resize: both;
+  display: block;
+  min-width: 50rem;
+  max-width: 50rem;
+  width: 100%;
+  height: 26rem;
+  white-space: normal;
+  margin:0;
+  padding:0;
+}
+
+.statement {
+  color: orange;
 }
 .tableCanvas {
   width: 100%;
@@ -121,9 +151,6 @@ textarea{
   padding: 0.375rem 0.75rem;
   color: #495057;
   line-height: 1.5;
-}
-.cuerpo{
-  width: 100%;
 }
 .labelC {
   display:block; 
