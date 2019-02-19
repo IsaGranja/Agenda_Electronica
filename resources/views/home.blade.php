@@ -167,7 +167,7 @@
         <div class="editor" id="editor" style="text-align: left; width:100%"  contenteditable="true">select isa dasdas isa </div>
         <div id="div_content" style='width:100px;height:100px;display:none;'>Test data</div>
     <script>
-    $("#editor").on("keydown keyup change click load focus mouseover", function(e){
+    $("#editor") function(e){
       if (e.keyCode == 32){
           var text = $(this).text().replace(/[\s]+/g, " ").trim();
           var word = text.split(" ");
