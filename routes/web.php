@@ -120,7 +120,8 @@ Route::get('/pagEvaluaciones','EvaluacionController@index');
 Route::post('/pagEvaluaciones/guardar','EvaluacionController@store');
 Route::get('/pagEvaluaciones/borrar/{Pregunta}','EvaluacionController@destroy');
 //GLOSARIOS
-Route::view('/pagGlosarios','glosarios');
+Route::resource('glosarios', 'GlosariosController');
+Route::post('actualizarGlosarios', 'GlosariosController@update');
 //CONTENIDOS
 Route::resource('contenidos', 'ContenidosController');
 Route::post('actualizarContenidos', 'ContenidosController@update');
@@ -129,7 +130,7 @@ Route::post('actualizarContenidos', 'ContenidosController@update');
 Route::resource('pagAsigxEstu','AsignaturaXEstudianteController');
 Route::post('actualizarAsigxestu', 'AsignaturaXEstudianteController@update');
 
-//ASIGNATURAS POR PROFESORE
+//ASIGNATURAS POR PROFESORES
 Route::resource('pagAsigxProf','AsignaturaXProfesorController');
 Route::post('actualizarAsigxprof', 'AsignaturaXProfesorController@update');
 
@@ -155,6 +156,7 @@ Route::post('/pagProfesores/crear','ProfesorController@store');
 Route::get('/pagProfesores/editar/{id}','ProfesorController@edit');
 Route::post('/pagProfesores/editar/{id}','ProfesorController@update');
 Route::post('/pagProfesores/{id}','ProfesorController@destroy');
+
 //LOGIN E INTERFAZ PRINCIPAL:
 Route::get('/','MainController@index');
 Route::get('/main', 'MainController@index');

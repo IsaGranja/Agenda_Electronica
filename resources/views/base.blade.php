@@ -56,7 +56,7 @@
                         <a class="dropdown-item" href="{{ url('/pagTemas') }}">Temas</a>
                         <a class="dropdown-item" href="{{ url('/talleres') }}">Talleres</a>
                         <a class="dropdown-item" href="{{ url('/pagEvaluaciones') }}">Evaluaciones</a>
-                        <a class="dropdown-item" href="{{ url('/pagGlosarios') }}">Glosario</a>
+                        <a class="dropdown-item" href="{{ url('/glosarios') }}">Glosario</a>
                         <a class="dropdown-item" href="{{ url('/contenidos') }}">Contenidos</a>
                     </div>
                 </li>

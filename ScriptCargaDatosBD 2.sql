@@ -70,6 +70,7 @@ insert into asignaturasxprofesor values ('15050', '1710664176','2018-02');
 
 insert into asignaturasxestudiantes values ('1718926213', '15050', '1710664176','2018-02');
 insert into asignaturasxestudiantes values ('1721635942', '15050', '1710664176','2018-02');
+insert into asignaturasxestudiantes values ('1718926213', '11402', '1706772082','2019-01');
 
 insert into unidades_estudio values ('11402', '11402-1','Los 10 principios de la economía', 1);
 insert into unidades_estudio values ('11402', '11402-2','La interdependencia y las ganancias', 2);

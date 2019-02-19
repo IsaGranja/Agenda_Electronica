@@ -54,25 +54,6 @@ class AnotacionesController extends Controller
 
 		return response()->json($asignaturasxestudiante);
 	}
-	/*
-	public function findAsignaturaFunc()
-	{
-		$user = Auth::user();
-			$email=$user->email;
-			$this->cedestudiante = DB::table('estudiantes')
-						->where('correestudiante', $email)
-						->value('cedestudiante');
-
-		$codperiodo=Input::get('codperiodo');
-
-		$asignaturasxestudiante= AsignaturaModel::select('descasignatura')
-				->join('asignaturasxestudiantes','asignaturasxestudiantes.codasignatura', '=', 'asignaturas.codasignatura')
-				->where('asignaturasxestudiantes.codperiodo','=',$codperiodo)
-				->where('asignaturasxestudiantes.cedestudiante','=',$this->cedestudiante)
-				->get();	
-
-		return response()->json($asignaturasxestudiante);
-	}*/
 	public function findUnidadFunc()
 	{
 		$codasignatura=Input::get('codasignatura');
@@ -100,6 +81,24 @@ class AnotacionesController extends Controller
 		$codtema=Input::get('codtema');
 		$contenidos=DB::table('contenidos')
 		->where('codtema','=',$codtema)
+		->orderby('codcontenido','ASC')
+		->get();
+
+		return response()->json($contenidos);
+	}
+	public function findAnotacionesFunc()
+	{
+		$user = Auth::user();
+		$email=$user->email;
+		$cedestudiante = DB::table('estudiantes')
+					->where('correestudiante', $email)
+					->value('cedestudiante');
+
+		$codcontenido=Input::get('codcontenido');
+
+		$anotaciones=DB::table('anotaciones')
+		->where('cedestudiante','=',$codcedestudiante)
+		->where('codcontenido','=',$codcontenido)
 		->orderby('codcontenido','ASC')
 		->get();
 

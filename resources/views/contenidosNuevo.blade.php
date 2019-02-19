@@ -168,7 +168,6 @@ function cambioTema(){
 <?php if(isset($contenidos)){
        echo 'contenidos = '.json_encode($contenidos, JSON_HEX_TAG).';'; }?>
 
-
 Array.from(contenidos).forEach(function(contenido){
         if(document.getElementById('tema').value==contenido.codtema)
         {
@@ -230,6 +229,9 @@ function cambioAsignatura(){
     cambioTema();
 }
 </script>
+
+
+
 
 @stop
 
