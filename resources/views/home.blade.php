@@ -10,9 +10,9 @@
     <div class="form-group">
     <label class="control-label col-sm-3" for="periodo"></label>
             <div class="col-sm-6">
-            <select name="codperiodo" id="periodo" data-dependent="periodo" class="form-control input-lg periodo principal" type="text">
-                <option value="">Seleccione el periodo</option>
-                @foreach($periodos as $periodo)                
+            <select name="codperiodo" id="periodo" data-dependent="periodo" class="periodo form-control input-lg principal" type="text" onchange="cambioAsignaturas()">
+              <option value="0"> Seleccione el año académico </option>   
+              @foreach($periodos as $periodo)
                     <option value="{{$periodo->codperiodo}}">{{$periodo->codperiodo}}</option>
                 @endforeach
             </select>
@@ -22,34 +22,171 @@
     <div class="form-group">
             <label class="control-label col-sm-3" for="asignatura"></label>
             <div class="col-sm-6">
-                <select class="form-control input-lg dynamic principal" onChange="myNewFunction(this);" data-dependent="asignatura" id="asignatura" name="asignatura">
-                  <option value="0" disable="true" selected="true">Seleccione la asignatura</option>                    
-                </select>
+                <select name="codasignatura" id="asignatura" class="form-control input-lg dynamic asignatura principal" data-dependent="asignatura" type="text" onchange="cambioUnidades()">
+                <option value="0"> Seleccione la asignatura </option>   
+              </select>
             </div>
         </div>
 
-      <h6 class="dropdown-header colorHeaderToggle">Periodo</h6>
-    <a class= "dropdown-item colorToggle" href="#">Tema 1</a>  
-    <a class= "dropdown-item colorToggle" href="#">Tema 2</a>
-</div>
+        <div class="form-group">
+            <label class="control-label col-sm-3" for="unidad"></label>
+            <div class="col-sm-6">
+                <select class="form-control input-lg dynamic unidad principal" data-dependent="unidad" id="unidad" type="text" onchange="cambioTemas()">
+                  <option value="0"> Seleccione la unidad </option>   
+              </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-sm-3" for="tema"></label>
+            <div class="col-sm-6">
+                <select class="form-control input-lg dynamic tema principal" data-dependent="tema" id="tema" type="text" onchange="cambioContenidos()">
+                <option value="0"> Seleccione el tema </option>   
+              </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-sm-3" for="contenido"></label>
+            <div class="col-sm-6">
+                <select class="form-control input-lg dynamic contenido principal" data-dependent="contenido" id="contenido" type="text">
+                  <option value="0"> Seleccione el contenido </option> 
+                </select>
+            </div>
+        </div>
+      <div>
+
+        <h6 class="dropdown-header colorHeaderToggle">Unidades</h6>
+          <a class= "dropdown-item colorToggle" href="#">Tema 1</a>  
+      </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script type="text/javascript">
-    $('#periodo').on('change',function(e){
-      console.log(e);
-      var codperiodo = e.target.value;
-      console.log(codperiodo);
-      $.get('/json-asignaturas?codperiodo=' + codperiodo,function(data){
-        console.log(data);
-        $('#asignatura').empty();
-        $('#asignatura').append('<option value="0" disable="true" selected="true">Seleccione la asignatura</option>');
-        $.each(data, function(index, asignaturaObj){
-          $('#asignatura').append('<option value="'+asignaturaObj.codasignatura+'">'+asignaturaObj.descasignatura+' </option>');
+    	/*$(document).ready(function(){
+        
+        $("#perido").change(function(){
+          var codperiodo=$('#periodo').val();
+          $.ajax({
+          type:'get',
+          url:'{!!URL::to('json-asignaturas')!!}',
+          data:{'codperiodo':codperiodo},
+          success:function(data){  
+            var opciones='';       
+					for(var i=0;i<data.length;i++){
+              opciones+='<option value="'+data[i].codasignatura+'">'+data[i].descasignatura+'</option>';
+              $("#asignatura").html("");
+              $("#asignatura").append(opciones);
+            }
+          },
+          error:function(){
+          }
+        })
         })
       });
-    });
-  
-    </script>
 
+    */
+	//$(document).ready(function(){
+    /*
+    $("#periodo").change(cambioAsignaturas);
+    cambioAsignaturas();
+    
+  });
+*/
+  function cambioAsignaturas(){
+		//$(document).on('change','.periodo',function(){
+      var $asignaturaCombo = $("#asignatura");
+      $asignaturaCombo.empty();
+			var codperiodo=$('#periodo').val();
+			//var div=$('#periodo').parent();
+			var op=" ";
+			$.ajax({
+				type:'get',
+				url:'{!!URL::to('json-asignaturas')!!}',
+				data:{'codperiodo':codperiodo},
+				success:function(data){      
+          $asignaturaCombo.append('<option value=""> Seleccione la asignatura </option>');    
+					for(var i=0;i<data.length;i++){
+					  $asignaturaCombo.append('<option value="'+data[i].codasignatura+'">'+data[i].descasignatura+'</option>');
+				   }
+				},
+				error:function(){
+				}
+			});
+    }
+    function cambioUnidades(){
+			console.log("hmm its change");
+      var $unidadCombo = $("#unidad");
+      $unidadCombo.empty();
+			var codasignatura=$('#asignatura').val();
+			//var div=$('#asignatura').parent();
+			$.ajax({
+				type:'get',
+				url:'{!!URL::to('json-unidades')!!}',
+				data:{'codasignatura':codasignatura},
+        dataType:'json',
+				success:function(data){ 
+					console.log('success');
+					console.log(data);
+					console.log(data.length);
+          $unidadCombo.append('<option value=""> Seleccione la unidad </option>'); 
+					for(var i=0;i<data.length;i++){
+            $unidadCombo.append('<option value="'+data[i].codunidad+'">'+data[i].descunidad+'</option>');
+				   }
+				},
+				error:function(){
+				}
+			});
+  }
+  function cambioTemas(){
+        console.log("hmm its change");
+        var $temaCombo = $("#tema");
+        $temaCombo.empty();
+        var codunidad=$('#unidad').val();
+        //var div=$('#unidad').parent();
+        $.ajax({
+          type:'get',
+          url:'{!!URL::to('json-temas')!!}',
+          data:{'codunidad':codunidad},
+          dataType:'json',
+          success:function(data){
+            console.log('success');
+            console.log(data);
+            console.log(data.length);
+            $temaCombo.append('<option value=""> Seleccione el tema </option>'); 
+            for(var i=0;i<data.length;i++){
+              $temaCombo.append('<option value="'+data[i].codtema+'">'+data[i].desctema+'</option>');
+            }
+          },
+          error:function(){
+          }
+        });
+    }
+    function cambioContenidos(){
+        console.log("hmm its change");
+        var $contenidoCombo = $("#contenido");
+        $contenidoCombo.empty();
+        var codtema=$('#tema').val();
+        //var div=$('#tema').parent();
+        $.ajax({
+          type:'get',
+          url:'{!!URL::to('json-contenidos')!!}',
+          data:{'codtema':codtema},
+          dataType:'json',
+          success:function(data){
+            console.log('success');
+            console.log(data);
+            console.log(data.length);
+            $contenidoCombo.append('<option value=""> Seleccione el contenido </option>'); 
+            for(var i=0;i<data.length;i++){
+              $contenidoCombo.append('<option value="'+data[i].codcontenido+'">'+data[i].textocontenido+'</option>');
+            }
+          },
+          error:function(){
+          }
+        });
+    }
+  
+</script>
+    
 @endsection
 
 @section('content')

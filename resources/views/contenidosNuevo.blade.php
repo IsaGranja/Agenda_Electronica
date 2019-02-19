@@ -67,8 +67,6 @@
             </div>
         </div>
 
-
-
         <div class="form-group" style="width:1000px; margin-left: 1%;">
             <h6>Texto</h6>
             <textarea name="textocontenido" id="summernote"></textarea>
@@ -79,8 +77,6 @@
             <textarea style= "height: 100px;
             width: 1000px;" name="infoapoyo" id="infoapoyo"></textarea>
         </div>
-
-
 
         <div class="form-group" style="width:800px; margin-left: 1%;">
             <h6>Imagen</h6>
@@ -234,10 +230,6 @@ function cambioAsignatura(){
     cambioTema();
 }
 </script>
-
-
-
-
 
 @stop
 

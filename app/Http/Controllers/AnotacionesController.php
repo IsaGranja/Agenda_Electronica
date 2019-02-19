@@ -9,6 +9,7 @@ use App\anotaciones;
 use App\Asignaturasxestudiante;
 use App\periodos;
 use App\AsignaturaModel;
+use App\Unidades;
 use DB;
 
 class AnotacionesController extends Controller
@@ -32,6 +33,28 @@ class AnotacionesController extends Controller
 		}
 		return view('home',compact('periodos'));
 	}
+	
+	public function findAsignaturaFunc()
+	{
+		$user = Auth::user();
+			$email=$user->email;
+			$this->cedestudiante = DB::table('estudiantes')
+						->where('correestudiante', $email)
+						->value('cedestudiante');
+
+		$codperiodo=Input::get('codperiodo');
+
+		$asignaturasxestudiante= DB::table('asignaturas')
+				->select('asignaturas.codasignatura','asignaturas.descasignatura')
+				->join('asignaturasxestudiantes','asignaturasxestudiantes.codasignatura', '=', 'asignaturas.codasignatura')
+				->where('asignaturasxestudiantes.codperiodo','=',$codperiodo)
+				->where('asignaturasxestudiantes.cedestudiante','=',$this->cedestudiante)
+				->orderby('asignaturas.codasignatura','ASC')
+				->get();	
+
+		return response()->json($asignaturasxestudiante);
+	}
+	/*
 	public function findAsignaturaFunc()
 	{
 		$user = Auth::user();
@@ -49,6 +72,38 @@ class AnotacionesController extends Controller
 				->get();	
 
 		return response()->json($asignaturasxestudiante);
+	}*/
+	public function findUnidadFunc()
+	{
+		$codasignatura=Input::get('codasignatura');
+		$unidades=DB::table('unidades_estudio')
+		->select('codunidad', 'descunidad')
+		->where('unidades_estudio.codasignatura','=',$codasignatura)
+		->orderby('codunidad','ASC')
+		->get();
+
+		return response()->json($unidades);
+	}
+	public function findTemaFunc()
+	{
+		$codunidad=Input::get('codunidad');
+		$temas=DB::table('temas_estudio')
+		->select('codtema', 'desctema')
+		->where('codunidad','=',$codunidad)
+		->orderby('codtema','ASC')
+		->get();
+
+		return response()->json($temas);
+	}
+	public function findContenidoFunc()
+	{
+		$codtema=Input::get('codtema');
+		$contenidos=DB::table('contenidos')
+		->where('codtema','=',$codtema)
+		->orderby('codcontenido','ASC')
+		->get();
+
+		return response()->json($contenidos);
 	}
 	public function TextAreaCanvas()
 	{
