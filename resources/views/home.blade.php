@@ -10,7 +10,7 @@
     <div class="form-group">
     <label class="control-label col-sm-3" for="periodo"></label>
             <div class="col-sm-6">
-            <select name="codperiodo" id="periodo" data-dependent="periodo" class="dropdown-item colorToggle periodo form-control input-lg principal" type="text" onchange="cambioAsignaturas()">
+            <select name="codperiodo" id="periodo" data-dependent="periodo" class="dropdown-item colorHeaderToggle periodo form-control input-lg principal" type="text" onchange="cambioAsignaturas()">
               <option value="0"> Año académico </option>   
               @foreach($periodos as $periodo)
                     <option value="{{$periodo->codperiodo}}">{{$periodo->codperiodo}}</option>
@@ -22,7 +22,7 @@
     <div class="form-group">
             <label class="control-label col-sm-3" for="asignatura"></label>
             <div class="col-sm-6">
-                <select name="codasignatura" id="asignatura" class="dropdown-item form-control input-lg dynamic asignatura principal" data-dependent="asignatura" type="text" onchange="cambioUnidades()">
+                <select name="codasignatura" id="asignatura" class="dropdown-item colorHeaderToggle form-control input-lg dynamic asignatura principal" data-dependent="asignatura" type="text" onchange="cambioUnidades()">
                 <option class="active item" style="color:red;" value="0"> Asignatura </option>   
               </select>
             </div>
@@ -31,7 +31,7 @@
         <div class="form-group">
             <label class="control-label col-sm-3" for="unidad"></label>
             <div class="col-sm-6">
-                <select class="dropdown-item form-control input-lg dynamic unidad principal" data-dependent="unidad" id="unidad" type="text" onchange="cambioTemas()">
+                <select class="dropdown-item colorHeaderToggle form-control input-lg dynamic unidad principal" data-dependent="unidad" id="unidad" type="text" onchange="cambioTemas()">
                   <option value="0"> Unidad </option>   
               </select>
             </div>
@@ -40,7 +40,7 @@
         <div class="form-group">
             <label class="control-label col-sm-3" for="tema"></label>
             <div class="col-sm-6">
-                <select class="dropdown-item form-control input-lg dynamic tema principal" data-dependent="tema" id="tema" type="text" onchange="cambioContenidos()">
+                <select class="dropdown-item colorHeaderToggle form-control input-lg dynamic tema principal" data-dependent="tema" id="tema" type="text" onchange="cambioContenidos()">
                 <option value="0"> Tema </option>   
               </select>
             </div>
@@ -49,7 +49,7 @@
         <div class="form-group">
             <label class="control-label col-sm-3" for="contenido"></label>
             <div class="col-sm-6">
-                <select class="dropdown-item form-control input-lg dynamic contenido principal" data-dependent="contenido" id="contenido" type="text">
+                <select class="dropdown-item colorHeaderToggle form-control input-lg dynamic contenido principal" data-dependent="contenido" id="contenido" type="text">
                   <option value="0"> Contenido </option> 
                 </select>
             </div>
@@ -63,18 +63,15 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script type="text/javascript">
   function cambioAsignaturas(){
-		//$(document).on('change','.periodo',function(){
       var $asignaturaCombo = $("#asignatura");
-      $asignaturaCombo.empty();
+      $('#asignatura option[value!="0"]').remove();
 			var codperiodo=$('#periodo').val();
-			//var div=$('#periodo').parent();
 			var op=" ";
 			$.ajax({
 				type:'get',
 				url:'{!!URL::to('json-asignaturas')!!}',
 				data:{'codperiodo':codperiodo},
-				success:function(data){      
-          $asignaturaCombo.append('<option value=""> Asignatura </option>');    
+				success:function(data){       
 					for(var i=0;i<data.length;i++){
 					  $asignaturaCombo.append('<option value="'+data[i].codasignatura+'">'+data[i].descasignatura+'</option>');
 				   }
@@ -86,7 +83,8 @@
     function cambioUnidades(){
 			console.log("hmm its change");
       var $unidadCombo = $("#unidad");
-      $unidadCombo.empty();
+      $('#unidad option[value!="0"]').remove();
+      //$unidadCombo.empty();
 			var codasignatura=$('#asignatura').val();
 			//var div=$('#asignatura').parent();
 			$.ajax({
@@ -98,7 +96,6 @@
 					console.log('success');
 					console.log(data);
 					console.log(data.length);
-          $unidadCombo.append('<option value=""> Unidad </option>'); 
 					for(var i=0;i<data.length;i++){
             $unidadCombo.append('<option value="'+data[i].codunidad+'">'+data[i].descunidad+'</option>');
 				   }
@@ -110,9 +107,8 @@
   function cambioTemas(){
         console.log("hmm its change");
         var $temaCombo = $("#tema");
-        $temaCombo.empty();
+        $('#tema option[value!="0"]').remove();
         var codunidad=$('#unidad').val();
-        //var div=$('#unidad').parent();
         $.ajax({
           type:'get',
           url:'{!!URL::to('json-temas')!!}',
@@ -122,7 +118,6 @@
             console.log('success');
             console.log(data);
             console.log(data.length);
-            $temaCombo.append('<option value=""> Tema </option>'); 
             for(var i=0;i<data.length;i++){
               $temaCombo.append('<option value="'+data[i].codtema+'">'+data[i].desctema+'</option>');
             }
@@ -134,7 +129,8 @@
     function cambioContenidos(){
         console.log("hmm its change");
         var $contenidoCombo = $("#contenido");
-        $contenidoCombo.empty();
+        $('#contenido option[value!="0"]').remove();
+        //$contenidoCombo.empty();
         var codtema=$('#tema').val();
         //var div=$('#tema').parent();
         $.ajax({
@@ -146,7 +142,6 @@
             console.log('success');
             console.log(data);
             console.log(data.length);
-            $contenidoCombo.append('<option value=""> Contenido </option>'); 
             for(var i=0;i<data.length;i++){
               $contenidoCombo.append('<option value="'+data[i].codcontenido+'">'+data[i].textocontenido+'</option>');
             }
