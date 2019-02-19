@@ -28,7 +28,7 @@ $(document).on('keyup', "[maxlength]", function (e) {
                 e.preventDefault();
             }
             else if (texto.length < maxlength) {
-                este.removeClass().addClass("form-control");
+                este.removeClass().addClass("altoAnotaciones");
             }   
         }   
     });

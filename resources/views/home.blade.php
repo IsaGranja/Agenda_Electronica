@@ -165,6 +165,7 @@
         <!--<p class="imagen1">dasda</p>-->
         <!--<img class="d-block w-100" src="{{ url('img/beagle.jpg') }}" alt="First slide">-->
         <div class="editor" id="editor" style="text-align: left; width:100%"  contenteditable="true">select isa dasdas isa </div>
+        <div id="div_content" style='width:100px;height:100px;display:none;'>Test data</div>
     <script>
     $("#editor").on("keydown keyup change click load focus mouseover", function(e){
       if (e.keyCode == 32){
@@ -185,8 +186,12 @@
                   case "ISA":
                   case "TRUE":
                   case "PATITO":
-          case "NOTIN":
-                      newHTML += "<span class='statement'>" + value + "&nbsp;</span>";
+                  case "NOTIN":
+                      newHTML += "<span class='statement' style='white-space: nowrap;' data-toggle='tooltip' data-placement='right' title='Tooltip on right'>" + value + "&nbsp;</span>"
+                      /*var e = new KeyboardEvent('keydown',{'keyCode':32,'which':32});
+                      console.log(e);
+                      document.dispatchEvent(e);*/
+                      /*newHTML += "<span class='statement'>" + value + "&nbsp;</span>";*/
                       break;
                   default: 
                       newHTML += "<span class='other'>" + value + "&nbsp;</span>";
@@ -203,8 +208,16 @@
           sel.removeAllRanges();
           sel.addRange(range);
           $(this)[0].focus(); 
+          ///////
+          
       }
   });
+  (document).ready(function(){
+    $('[data-toggle="popover"]').popover();   
+  });
+  (document).ready(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+  })
     </script>
       </div>
       <div class="carousel-item">
@@ -231,10 +244,10 @@
     <table border='0' style="width: 100%;">
     <tr class="containerDer1">
       <td>
-        <div class="colorHeaderToggle" style="font-size:14px">
+        <div class="colorHeaderToggle" style="font-size:14px;">
             <label for="comment">Anotaciones: </label><br>
             <label class="labelC" style="font-size:9px">Caracteres restantes: <span style="color: white;">500</span></label>
-            <textarea maxlength="500" class="form-control altoAnotaciones" style="margin-bottom: 1rem;" name="anotaciones" id="comentarioEstudiante" rows="19" autofocus></textarea>
+            <textarea maxlength="500" class="altoAnotaciones" style="margin-bottom: 1rem;resize: none;" name="anotaciones" id="comentarioEstudiante" autofocus></textarea>
         </div>
       </td>
     <tr>
@@ -242,7 +255,7 @@
       <td>
           <table align="center" style="width: 100%;">
             <tr>
-              <td colspan="5"><center><canvas id="myCanvas" style="border:2px solid gray;"></canvas> </td>
+              <td colspan="5"><center><canvas id="myCanvas" style="border:2px solid gray;resize: horizontal;"></canvas> </td>
             </tr>
             <tr>
             <td>
