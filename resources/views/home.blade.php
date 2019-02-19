@@ -10,8 +10,8 @@
     <div class="form-group">
     <label class="control-label col-sm-3" for="periodo"></label>
             <div class="col-sm-6">
-            <select name="codperiodo" id="periodo" data-dependent="periodo" class="periodo form-control input-lg principal" type="text" onchange="cambioAsignaturas()">
-              <option value="0"> Seleccione el año académico </option>   
+            <select name="codperiodo" id="periodo" data-dependent="periodo" class="dropdown-item colorToggle periodo form-control input-lg principal" type="text" onchange="cambioAsignaturas()">
+              <option value="0"> Año académico </option>   
               @foreach($periodos as $periodo)
                     <option value="{{$periodo->codperiodo}}">{{$periodo->codperiodo}}</option>
                 @endforeach
@@ -22,8 +22,8 @@
     <div class="form-group">
             <label class="control-label col-sm-3" for="asignatura"></label>
             <div class="col-sm-6">
-                <select name="codasignatura" id="asignatura" class="form-control input-lg dynamic asignatura principal" data-dependent="asignatura" type="text" onchange="cambioUnidades()">
-                <option value="0"> Seleccione la asignatura </option>   
+                <select name="codasignatura" id="asignatura" class="dropdown-item form-control input-lg dynamic asignatura principal" data-dependent="asignatura" type="text" onchange="cambioUnidades()">
+                <option class="active item" style="color:red;" value="0"> Asignatura </option>   
               </select>
             </div>
         </div>
@@ -31,8 +31,8 @@
         <div class="form-group">
             <label class="control-label col-sm-3" for="unidad"></label>
             <div class="col-sm-6">
-                <select class="form-control input-lg dynamic unidad principal" data-dependent="unidad" id="unidad" type="text" onchange="cambioTemas()">
-                  <option value="0"> Seleccione la unidad </option>   
+                <select class="dropdown-item form-control input-lg dynamic unidad principal" data-dependent="unidad" id="unidad" type="text" onchange="cambioTemas()">
+                  <option value="0"> Unidad </option>   
               </select>
             </div>
         </div>
@@ -40,8 +40,8 @@
         <div class="form-group">
             <label class="control-label col-sm-3" for="tema"></label>
             <div class="col-sm-6">
-                <select class="form-control input-lg dynamic tema principal" data-dependent="tema" id="tema" type="text" onchange="cambioContenidos()">
-                <option value="0"> Seleccione el tema </option>   
+                <select class="dropdown-item form-control input-lg dynamic tema principal" data-dependent="tema" id="tema" type="text" onchange="cambioContenidos()">
+                <option value="0"> Tema </option>   
               </select>
             </div>
         </div>
@@ -49,8 +49,8 @@
         <div class="form-group">
             <label class="control-label col-sm-3" for="contenido"></label>
             <div class="col-sm-6">
-                <select class="form-control input-lg dynamic contenido principal" data-dependent="contenido" id="contenido" type="text">
-                  <option value="0"> Seleccione el contenido </option> 
+                <select class="dropdown-item form-control input-lg dynamic contenido principal" data-dependent="contenido" id="contenido" type="text">
+                  <option value="0"> Contenido </option> 
                 </select>
             </div>
         </div>
@@ -59,38 +59,9 @@
         <h6 class="dropdown-header colorHeaderToggle">Unidades</h6>
           <a class= "dropdown-item colorToggle" href="#">Tema 1</a>  
       </div>
+      
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script type="text/javascript">
-    	/*$(document).ready(function(){
-        
-        $("#perido").change(function(){
-          var codperiodo=$('#periodo').val();
-          $.ajax({
-          type:'get',
-          url:'{!!URL::to('json-asignaturas')!!}',
-          data:{'codperiodo':codperiodo},
-          success:function(data){  
-            var opciones='';       
-					for(var i=0;i<data.length;i++){
-              opciones+='<option value="'+data[i].codasignatura+'">'+data[i].descasignatura+'</option>';
-              $("#asignatura").html("");
-              $("#asignatura").append(opciones);
-            }
-          },
-          error:function(){
-          }
-        })
-        })
-      });
-
-    */
-	//$(document).ready(function(){
-    /*
-    $("#periodo").change(cambioAsignaturas);
-    cambioAsignaturas();
-    
-  });
-*/
   function cambioAsignaturas(){
 		//$(document).on('change','.periodo',function(){
       var $asignaturaCombo = $("#asignatura");
@@ -103,7 +74,7 @@
 				url:'{!!URL::to('json-asignaturas')!!}',
 				data:{'codperiodo':codperiodo},
 				success:function(data){      
-          $asignaturaCombo.append('<option value=""> Seleccione la asignatura </option>');    
+          $asignaturaCombo.append('<option value=""> Asignatura </option>');    
 					for(var i=0;i<data.length;i++){
 					  $asignaturaCombo.append('<option value="'+data[i].codasignatura+'">'+data[i].descasignatura+'</option>');
 				   }
@@ -127,7 +98,7 @@
 					console.log('success');
 					console.log(data);
 					console.log(data.length);
-          $unidadCombo.append('<option value=""> Seleccione la unidad </option>'); 
+          $unidadCombo.append('<option value=""> Unidad </option>'); 
 					for(var i=0;i<data.length;i++){
             $unidadCombo.append('<option value="'+data[i].codunidad+'">'+data[i].descunidad+'</option>');
 				   }
@@ -151,7 +122,7 @@
             console.log('success');
             console.log(data);
             console.log(data.length);
-            $temaCombo.append('<option value=""> Seleccione el tema </option>'); 
+            $temaCombo.append('<option value=""> Tema </option>'); 
             for(var i=0;i<data.length;i++){
               $temaCombo.append('<option value="'+data[i].codtema+'">'+data[i].desctema+'</option>');
             }
@@ -175,7 +146,7 @@
             console.log('success');
             console.log(data);
             console.log(data.length);
-            $contenidoCombo.append('<option value=""> Seleccione el contenido </option>'); 
+            $contenidoCombo.append('<option value=""> Contenido </option>'); 
             for(var i=0;i<data.length;i++){
               $contenidoCombo.append('<option value="'+data[i].codcontenido+'">'+data[i].textocontenido+'</option>');
             }

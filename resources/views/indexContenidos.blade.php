@@ -1,10 +1,5 @@
 @extends('base')
 @section('content')
-
-
-
-
-
   
 </div>
 <div class="container">

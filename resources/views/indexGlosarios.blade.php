@@ -20,7 +20,7 @@
                     @if (session('error'))
                     <div class="alert alert-danger">{{ session('error') }}</div>
                     @endif
-                    <center><a class="btn btn-primary" href="/pagGlosarios/create">Nuevo</a></center>
+                    <center><a class="btn btn-primary" href="/glosarios/create">Nuevo</a></center>
                     
                     <table id="tablita" class="table table-striped " cellspacing="0" width="100%">
                         <thead>
