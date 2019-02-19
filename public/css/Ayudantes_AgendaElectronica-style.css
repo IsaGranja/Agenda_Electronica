@@ -3,7 +3,7 @@
 .colorPUCE{
   background-color: rgb(76, 191, 220);
 }
-#alert,#register-box,#forgot-box{
+#alert,#forgot-box{
   display:none;
 }
 html,
