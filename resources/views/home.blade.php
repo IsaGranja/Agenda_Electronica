@@ -186,7 +186,7 @@
     }
   
 </script>
-    
+</div>
 @endsection
 
 @section('content')
@@ -198,59 +198,48 @@
         <!--<textarea class="imagen1" alt="First slide"></textarea>-->
         <!--<p class="imagen1">dasda</p>-->
         <!--<img class="d-block w-100" src="{{ url('img/beagle.jpg') }}" alt="First slide">-->
-        <div class="editor" id="editor" style="text-align: left; width:100%"  contenteditable="false">select isa dasdas isa </div>
-	<script>
-	$("#editor").on("keydown keyup change click load focus mouseover", function(e){
-    if (e.keyCode == 32){
-        var text = $(this).text().replace(/[\s]+/g, " ").trim();
-        var word = text.split(" ");
-        var newHTML = "";
+        <div class="editor" id="editor" style="text-align: left; width:100%"  contenteditable="true">select isa dasdas isa </div>
+    <script>
+    $("#editor").on("keydown keyup change click load focus mouseover", function(e){
+      if (e.keyCode == 32){
+          var text = $(this).text().replace(/[\s]+/g, " ").trim();
+          var word = text.split(" ");
+          var newHTML = "";
 
-        $.each(word, function(index, value){
-            switch(value.toUpperCase()){
-                case "SELECT":
-                case "FROM":
-                case "WHERE":
-                case "LIKE":
-                case "BETWEEN":
-                case "NOTLIKE":
-                case "FALSE":
-                case "NULL":
-                case "ISA":
-                case "TRUE":
-                case "PATITO":
-				case "NOTIN":
-                    newHTML += "<span class='statement'>" + value + "&nbsp;</span>";
-                    break;
-                default: 
-                    newHTML += "<span class='other'>" + value + "&nbsp;</span>";
-            }
-        });
-      	$(this).html(newHTML);
-        
-        //// Set cursor postion to end of text
-        var child = $(this).children();
-        var range = document.createRange();
-        var sel = window.getSelection();
-        range.setStart(child[child.length - 1], 1);
-        range.collapse(true);
-        sel.removeAllRanges();
-        sel.addRange(range);
-        $(this)[0].focus(); 
-    }
-});
-	</script>
-       <!-- <div class="d-none d-md-block">          
-          <textarea id="status" class="form-controlCanvas" alt="First slide">hola ke ase</textarea>
-        </div>
-        
-
-        <script type="text/javascript">
-        function myNewFunction(sel) {
-          var textF= sel.options[sel.selectedIndex].text;
-          alert(textF);
-        }
-        </script>-->
+          $.each(word, function(index, value){
+              switch(value.toUpperCase()){
+                  case "SELECT":
+                  case "FROM":
+                  case "WHERE":
+                  case "LIKE":
+                  case "BETWEEN":
+                  case "NOTLIKE":
+                  case "FALSE":
+                  case "NULL":
+                  case "ISA":
+                  case "TRUE":
+                  case "PATITO":
+          case "NOTIN":
+                      newHTML += "<span class='statement'>" + value + "&nbsp;</span>";
+                      break;
+                  default: 
+                      newHTML += "<span class='other'>" + value + "&nbsp;</span>";
+              }
+          });
+          $(this).html(newHTML);
+          
+          //// Set cursor postion to end of text
+          var child = $(this).children();
+          var range = document.createRange();
+          var sel = window.getSelection();
+          range.setStart(child[child.length - 1], 1);
+          range.collapse(true);
+          sel.removeAllRanges();
+          sel.addRange(range);
+          $(this)[0].focus(); 
+      }
+  });
+    </script>
       </div>
       <div class="carousel-item">
         <img class="imagen1" src="https://mdbootstrap.com/img/Photos/Slides/img%20(16).jpg" alt="Second slide">
