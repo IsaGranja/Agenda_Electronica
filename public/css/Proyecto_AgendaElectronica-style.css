@@ -11,6 +11,8 @@ footer{
   float: bottom;
   text-align: center;
   height:none;
+  color:white;
+  margin-top:1.5px;
 }
 table{
   margin: none;
@@ -42,7 +44,7 @@ textarea{
     float:right;
 }
 .containerPri1{
-  height: 26rem;
+  height: 30rem;
   width:100%;
 }
 .containerPri2{
@@ -103,14 +105,17 @@ textarea{
   width: 100%;
 }
 #editor{
+  position:relative;
   background-color: #444;
   color: white;
   font-size: 24px;
   font-family: monospace;
-  height: 26rem;
+  height: 34rem;
+  width:100%;
   padding: 50px;
 }
 .editor{
+  position:relative;
   overflow:auto; /* older browsers */
   -moz-appearance: textfield-multiline;
   -webkit-appearance: textarea;
@@ -121,7 +126,7 @@ textarea{
   min-width: 50rem;
   max-width: 50rem;
   width: 100%;
-  height: 26rem;
+  height: 34rem;
   white-space: normal;
   margin:0;
   padding:0;
@@ -171,7 +176,7 @@ textarea{
 .carousel {
     background-color: rgba(255, 255, 255, 0.144);
     width:100%;
-    height: 26rem;
+    height: 34rem;
     margin: none;
     padding: none;
   }
@@ -183,18 +188,18 @@ textarea{
   
   /* Declare heights because of positioning of img element */
   .carousel-item {
-    height: 26rem;
+    height: 36rem;
     width: 100%;
 
   }
   .carousel-control-prev,
   .carousel-control-next{
-      height: 26rem;
+      height: 36rem;
       width: 5%;
   }
   /*imagen desplegable por iconos*/
   .imagen{  
-    height: 26rem;
+    height: 34rem;
     z-index: 0;
     align-content: center;
     width:100%;
@@ -204,7 +209,7 @@ textarea{
   /*contenido de carousel*/
   .imagen1{
     width: 100%;
-    height: 26rem;
+    height: 34rem;
     padding-left: 4%;
     padding-right: 4%;
     align-content: center;

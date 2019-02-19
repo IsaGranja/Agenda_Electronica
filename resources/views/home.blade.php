@@ -284,25 +284,22 @@
     <tr>
     <tr id="contenedorG" class="containerDer2">
       <td>
-          <table align="center" style="width: 100%;">
-            <tr>
+          <table align="center">
+            <tr class="form-group row">
               <td colspan="5"><center><canvas id="myCanvas" style="border:2px solid gray;resize: horizontal;"></canvas> </td>
             </tr>
-            <tr>
-            <td>
-                <center>
-                <label style="color: white;">Tamaño: </label>
-                <select id="selWidth">
-                  <option value="1">1</option>
-                  <option value="3">3</option>
-                  <option value="5">5</option>
-                  <option value="7">7</option>
-                  <option value="9" selected="selected">9</option>
-                  <option value="11">11</option>
-                </select>
-              </td>
-              <td>
-             <label style="color: white;">Color: </label>
+            <tr class="form-group row">
+                  <center>
+                  <label style="color: white;">Tamaño: </label>
+                  <select id="selWidth">
+                    <option value="1">1</option>
+                    <option value="3">3</option>
+                    <option value="5">5</option>
+                    <option value="7">7</option>
+                    <option value="9" selected="selected">9</option>
+                    <option value="11">11</option>
+                  </select>
+              <label style="color: white;">Color: </label>
                 <select id="selColor">
                   <option value="black">Negro</option>
                   <option value="blue" selected="selected">Azul</option>
@@ -310,28 +307,17 @@
                   <option value="green">Verde</option>
                   <option value="yellow">Amarillo</option>
                   <option value="gray">Gris</option>
-                </select>
-              </td>              
+                </select>            
             </tr>
-            <tr>
-              <td colspan="2"><center><button style="width: 100%;" type="button" class="btn btn-primary" onclick="javascript:clearArea();return false;">Limpiar</button></td>
-            </tr>
-            <tr>
-            <td>
-                <center>  
-                <button style="width: 100%;" type="button" class="btn btn-warning" onclick="javascript:LoadImage();return false;">Cargar</button>
-                <form>
-                <div class="form-group">
-                  <label for="exampleFormControlFile1">Example file input</label>
-                  <input type="file" class="form-control-file" id="exampleFormControlFile1">
-                </div>
-              </form>
-              </td>
-              <td width="10px">
-                <center>
-                <button type="button" class="btn btn-success" onclick="javascript:download();return false;">Guardar</button>
-                <a  id="downloadLnk" onclick="hide()" download="PruebaT.jpg">Descargar Imagen</a>             
-              </td>
+            <tr class="form-group row">
+              <button type="button" class="btn btn-primary" onclick="javascript:clearArea();return false;">Limpiar</button>
+              <button type="button" class="btn btn-warning" onclick="javascript:LoadImage();return false;">Cargar</button>
+              <div>
+                <label for="exampleFormControlFile1">Example file input</label>
+                <input type="file" class="form-control-file" id="exampleFormControlFile1">
+              </div>
+              <button type="button" class="btn btn-success" onclick="javascript:download();return false;">Guardar</button>
+              <a  id="downloadLnk" onclick="hide()" download="PruebaT.jpg">Descargar Imagen</a>             
             </tr>
           </table>
       </td>
