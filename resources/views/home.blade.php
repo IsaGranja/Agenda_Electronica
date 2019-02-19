@@ -192,7 +192,7 @@
                   case "TRUE":
                   case "PATITO":
                   case "NOTIN":
-                      newHTML += "<span class='statement' style='white-space: nowrap;' data-toggle='tooltip' data-placement='right' title='Tooltip on right'>" + value + "&nbsp;</span>"
+                      newHTML += "<span class='statement' style='white-space: nowrap;' data-toggle='tooltip' data-placement='right' title='Ola ke ase isa jajaja :v'>" + value + "&nbsp;</span>"
                       /*var e = new KeyboardEvent('keydown',{'keyCode':32,'which':32});
                       console.log(e);
                       document.dispatchEvent(e);*/
