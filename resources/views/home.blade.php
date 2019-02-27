@@ -11,7 +11,7 @@
     <label class="control-label col-sm-3" for="periodo"></label>
             <div class="col-sm-6">
             <select name="codperiodo" id="periodo" data-dependent="periodo" class="dropdown-item colorHeaderToggle periodo form-control input-lg principal" type="text" onchange="cambioAsignaturas()">
-              <option value="0"> Año académico </option>   
+              <option value="0">AÑO ACADÉMICO </option>   
               @foreach($periodos as $periodo)
                     <option value="{{$periodo->codperiodo}}">{{$periodo->codperiodo}}</option>
                 @endforeach
@@ -23,7 +23,7 @@
             <label class="control-label col-sm-3" for="asignatura"></label>
             <div class="col-sm-6">
                 <select name="codasignatura" id="asignatura" class="dropdown-item colorHeaderToggle form-control input-lg dynamic asignatura principal" data-dependent="asignatura" type="text" onchange="cambioUnidades()">
-                <option value="0"> Asignatura </option>   
+                <option value="0">ASIGNATURA </option>   
               </select>
             </div>
         </div>
@@ -32,7 +32,7 @@
             <label class="control-label col-sm-3" for="unidad"></label>
             <div class="col-sm-6">
                 <select class="dropdown-item colorHeaderToggle form-control input-lg dynamic unidad principal" data-dependent="unidad" id="unidad" type="text" onchange="cambioTemas()">
-                  <option value="0"> Unidad </option>   
+                  <option value="0">UNIDAD </option>   
               </select>
             </div>
         </div>
@@ -41,7 +41,7 @@
             <label class="control-label col-sm-3" for="tema"></label>
             <div class="col-sm-6">
                 <select class="dropdown-item colorHeaderToggle form-control input-lg dynamic tema principal" data-dependent="tema" id="tema" type="text" onchange="cambioContenidos()">
-                <option value="0"> Tema </option>   
+                <option value="0">TEMA </option>   
               </select>
             </div>
         </div>
@@ -50,7 +50,7 @@
             <label class="control-label col-sm-3" for="contenido"></label>
             <div class="col-sm-6">
                 <select class="dropdown-item colorHeaderToggle form-control input-lg dynamic contenido principal" data-dependent="contenido" id="contenido" type="text">
-                  <option value="0"> Contenido </option> 
+                  <option value="0">CONTENIDO </option> 
                 </select>
             </div>
         </div>
@@ -198,7 +198,6 @@
     <script>
 
     $("#editor").on("focus mouseover",function(e){
-    
           var text = $(this).text().replace(/[\s]+/g, " ").trim();
           var word = text.split(" ");
           var newHTML = "";
@@ -272,62 +271,62 @@
 
 @section('content-der')
 <div style="width:100%;">
-    <table align="center" border='0' style="width: 100%;">
-    <tr class="containerDer1">
-      <td>
-        <div class="colorHeaderToggle" style="font-size:14px;">
-            <label for="comment">Anotaciones: </label><br>
-            <label class="labelC" style="font-size:9px">Caracteres restantes: <span style="color: white;">500</span></label>
-            <textarea maxlength="500" class="altoAnotaciones" style="margin-bottom: 1rem;resize: none;" name="anotaciones" id="comentarioEstudiante" autofocus></textarea>
-        </div>
-      </td>
-    </tr>
-    <tr id="contenedorG" class="containerDer2">
-      <td>
-          <table align="center">
-            <tr class="Form-group row">
-              <td colspan="5"><center><canvas id="myCanvas" style="border:2px solid gray;resize: horizontal;"></canvas> </td>
-            </tr>
-            <tr class="form-control form-group row">
-                  <center>
-                  <label style="color: white;">Tamaño: </label>
-                  <select id="selWidth">
-                    <option value="1">1</option>
-                    <option value="3">3</option>
-                    <option value="5">5</option>
-                    <option value="7">7</option>
-                    <option value="9" selected="selected">9</option>
-                    <option value="11">11</option>
-                    <option value="13">13</option>
-                    <option value="15">15</option>
-                    <option value="17">17</option>
-                  </select>
-              <label style="color: white;">Color: </label>
-                <select id="selColor">
-                  <option value="black">Negro</option>
-                  <option value="blue" selected="selected">Azul</option>
-                  <option value="red">Rojo</option>
-                  <option value="green">Verde</option>
-                  <option value="yellow">Amarillo</option>
-                  <option value="gray">Gris</option>
-                </select>            
-            </tr>
-            <tr class="form-group row">
+    <table border='0' style="width: 100%;">
+      <tr class="containerDer1">
+        <td>
+          <div class="colorHeaderToggle" style="font-size:14px;">
+              <label for="comment">Anotaciones: </label><br>
+              <label class="labelC" style="font-size:9px">Caracteres restantes: <span style="color: white;">500</span></label>
+              <textarea maxlength="500" class="altoAnotaciones" style="margin-bottom: 1rem;resize: none;" name="anotaciones" id="comentarioEstudiante" autofocus></textarea>
+          </div>
+        </td>
+      </tr>
+      <tr id="contenedorG" class="containerDer2">
+        <td>
+            <table align="center">
+              <tr class="form-group">
+                <td colspan="5"><center><canvas id="myCanvas" style="border:2px solid gray;resize: horizontal;"></canvas> </td>
+              </tr>
+              <tr class="form-group row">
+                    <center>
+                    <label style="color: white;">Tamaño: </label>
+                    <select id="selWidth">
+                      <option value="1">1</option>
+                      <option value="3">3</option>
+                      <option value="5">5</option>
+                      <option value="7">7</option>
+                      <option value="9" selected="selected">9</option>
+                      <option value="11">11</option>
+                      <option value="13">13</option>
+                      <option value="15">15</option>
+                      <option value="17">17</option>
+                    </select>
+                  <label style="color: white;">Color: </label>
+                  <select id="selColor">
+                    <option value="black">Negro</option>
+                    <option value="blue" selected="selected">Azul</option>
+                    <option value="red">Rojo</option>
+                    <option value="green">Verde</option>
+                    <option value="yellow">Amarillo</option>
+                    <option value="gray">Gris</option>
+                  </select> 
+                  </center>           
+              </tr>
+              <tr class="form-group row">
               <td>
-                <button type="button" class="btn btn-primary" onclick="javascript:clearArea();return false;">Limpiar</button>
-                <button type="button" class="btn btn-warning" onclick="javascript:LoadImage();return false;">Cargar</button>
-                <label style="color: white;"><input type="checkbox" id="cbox1" value="first_checkbox"> Borrador</label>
-                <div>
+                  <button type="button" class="btn btn-primary" onclick="javascript:clearArea();return false;">Limpiar</button>
+                  <button type="button" class="btn btn-warning" onclick="javascript:LoadImage();return false;">Cargar</button>
+                  <button type="button" class="btn btn-success" onclick="javascript:download();return false;">Guardar</button>
+                  <label style="color: white;"><input type="checkbox" id="cbox1" value="first_checkbox"> Borrador</label>
+                  <!--<input type="file" class="btn btn-warning form-control-file" id="exampleFormControlFile1"  onclick="javascript:LoadImage();return false;">-->
+                  <a  id="downloadLnk" onclick="hide()" download="PruebaT.jpg">Descargar Imagen</a>
                   <label for="exampleFormControlFile1">Example file input</label>
                   <input type="file" class="form-control-file" id="exampleFormControlFile1">
-                </div>
-                <button type="button" class="btn btn-success" onclick="javascript:download();return false;">Guardar</button>
-                <a  id="downloadLnk" onclick="hide()" download="PruebaT.jpg">Descargar Imagen</a>                         
-              </td>
-            </tr>
-          </table>
-      </td>
-    </tr>
+                </td>        
+              </tr>
+            </table>
+        </td>
+      </tr>
   </table>
 </div>
 @endsection
