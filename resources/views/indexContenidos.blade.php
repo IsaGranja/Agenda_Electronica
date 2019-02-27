@@ -20,8 +20,6 @@
                     </div><br />
                     @endif
                 <a class="btn btn-primary" href="/contenidos/create">Nuevo</a>
-                
-
                     
 <table id="myTable" class="table table-striped">
     <thead>
