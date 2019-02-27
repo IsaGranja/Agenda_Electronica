@@ -95,18 +95,6 @@ $(document).on('keyup', "[maxlength]", function (e) {
         ctx.fillStyle = "#FFFFFF";
         ctx.fillRect(0,0,window.innerWidth,window.innerHeight);
     }
-   /*
-    function LoadImage() {
-        if (canvas != null) {
-            if (canvas.getContext) {
-                var img = new Image();
-                img.src = "{{ url('img/beagle.jpg') }}";  //moved up for cosmetics
-                img.onload = function () {
-                    canvas.drawImage(img, 15, 15, 620, 475);                    
-                }                    
-            }
-        }
-    }*/
 
     function LoadImage() {
         if (canvas != null) {
@@ -117,6 +105,17 @@ $(document).on('keyup', "[maxlength]", function (e) {
                     canvas.drawImage(img, 15, 15, 620, 475);                    
                 }                    
             }
+        }
+    }
+
+    function make_base()
+    {
+        var canvas = document.getElementById('myCanvas'),
+        context = canvas.getContext('2d');
+        base_image = new Image();
+        base_image.src = 'img/base.png';
+        base_image.onload = function(){
+        context.drawImage(base_image, 0, 0);
         }
     }
 
