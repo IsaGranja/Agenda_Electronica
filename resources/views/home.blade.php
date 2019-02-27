@@ -272,7 +272,7 @@
 
 @section('content-der')
 <div style="width:100%;">
-    <table border='0' style="width: 100%;">
+    <table align="center" border='0' style="width: 100%;">
     <tr class="containerDer1">
       <td>
         <div class="colorHeaderToggle" style="font-size:14px;">
@@ -281,14 +281,14 @@
             <textarea maxlength="500" class="altoAnotaciones" style="margin-bottom: 1rem;resize: none;" name="anotaciones" id="comentarioEstudiante" autofocus></textarea>
         </div>
       </td>
-    <tr>
+    </tr>
     <tr id="contenedorG" class="containerDer2">
       <td>
           <table align="center">
-            <tr class="form-group row">
+            <tr class="Form-group row">
               <td colspan="5"><center><canvas id="myCanvas" style="border:2px solid gray;resize: horizontal;"></canvas> </td>
             </tr>
-            <tr class="form-group row">
+            <tr class="form-control form-group row">
                   <center>
                   <label style="color: white;">Tamaño: </label>
                   <select id="selWidth">
@@ -298,6 +298,9 @@
                     <option value="7">7</option>
                     <option value="9" selected="selected">9</option>
                     <option value="11">11</option>
+                    <option value="13">13</option>
+                    <option value="15">15</option>
+                    <option value="17">17</option>
                   </select>
               <label style="color: white;">Color: </label>
                 <select id="selColor">
@@ -310,14 +313,17 @@
                 </select>            
             </tr>
             <tr class="form-group row">
-              <button type="button" class="btn btn-primary" onclick="javascript:clearArea();return false;">Limpiar</button>
-              <button type="button" class="btn btn-warning" onclick="javascript:LoadImage();return false;">Cargar</button>
-              <div>
-                <label for="exampleFormControlFile1">Example file input</label>
-                <input type="file" class="form-control-file" id="exampleFormControlFile1">
-              </div>
-              <button type="button" class="btn btn-success" onclick="javascript:download();return false;">Guardar</button>
-              <a  id="downloadLnk" onclick="hide()" download="PruebaT.jpg">Descargar Imagen</a>             
+              <td>
+                <button type="button" class="btn btn-primary" onclick="javascript:clearArea();return false;">Limpiar</button>
+                <button type="button" class="btn btn-warning" onclick="javascript:LoadImage();return false;">Cargar</button>
+                <label style="color: white;"><input type="checkbox" id="cbox1" value="first_checkbox"> Borrador</label>
+                <div>
+                  <label for="exampleFormControlFile1">Example file input</label>
+                  <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                </div>
+                <button type="button" class="btn btn-success" onclick="javascript:download();return false;">Guardar</button>
+                <a  id="downloadLnk" onclick="hide()" download="PruebaT.jpg">Descargar Imagen</a>                         
+              </td>
             </tr>
           </table>
       </td>

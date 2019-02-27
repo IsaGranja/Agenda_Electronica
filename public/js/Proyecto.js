@@ -64,14 +64,26 @@ $(document).on('keyup', "[maxlength]", function (e) {
 
     function Draw(x, y, isDown) {
         if (isDown) {
-            ctx.beginPath();
-            ctx.strokeStyle = $('#selColor').val();
-            ctx.lineWidth = $('#selWidth').val();
-            ctx.lineJoin = "round";
-            ctx.moveTo(lastX, lastY);
-            ctx.lineTo(x, y);
-            ctx.closePath();
-            ctx.stroke();
+            if($('#cbox1').is(":checked"))
+            {
+                ctx.beginPath();
+                ctx.strokeStyle = "#FFFFFF";
+                ctx.lineWidth = $('#selWidth').val();
+                ctx.lineJoin = "round";
+                ctx.moveTo(lastX, lastY);
+                ctx.lineTo(x, y);
+                ctx.closePath();
+                ctx.stroke();
+            }else{
+                ctx.beginPath();
+                ctx.strokeStyle = $('#selColor').val();
+                ctx.lineWidth = $('#selWidth').val();
+                ctx.lineJoin = "round";
+                ctx.moveTo(lastX, lastY);
+                ctx.lineTo(x, y);
+                ctx.closePath();
+                ctx.stroke();
+            }
         }
         lastX = x; lastY = y;
     }
@@ -80,7 +92,7 @@ $(document).on('keyup', "[maxlength]", function (e) {
         // Use the identity matrix while clearing the canvas
         ctx.setTransform(1, 0, 0, 1, 0, 0);
         ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-        ctx.fillStyle = 'rgba(255,255,255)';
+        ctx.fillStyle = "#FFFFFF";
         ctx.fillRect(0,0,window.innerWidth,window.innerHeight);
     }
    /*
