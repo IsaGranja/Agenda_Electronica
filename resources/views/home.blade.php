@@ -184,7 +184,7 @@
               console.log(data);
               console.log(data.length);
               document.getElementById('editor').innerHTML='';
-              for(var i=0;i<data.length;i++){
+              for(var i=0;i<data.length ;i++){
                 $contenidoCombo.append('<div class="editor" id="editor" value="'+data[i].codcontenido+'" style="text-align: left; width:100%" contenteditable="false">'+data[i].textocontenido+'</div>');
               //$contenidoCombo.append('<option value="'+data[i].codcontenido+'">'+data[i].textocontenido+'</option>');
               }
@@ -217,6 +217,7 @@
                   case "VARIABLE":
                   case "NOTIN":
                       newHTML += "<span class='statement' style='white-space: nowrap;' data-toggle='tooltip' data-placement='right' title='Ola ke ase isa jajaja :v'>" + value + "&nbsp;</span>"
+                      
                       /*var e = new KeyboardEvent('keydown',{'keyCode':32,'which':32});
                       console.log(e);
                       document.dispatchEvent(e);*/

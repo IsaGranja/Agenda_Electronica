@@ -110,10 +110,11 @@ textarea{
   font-size: 24px;
   font-family: monospace;
   height: 34rem;
-  width:100%;
-  padding: 50px;
+  width: min-content;
+  overflow:auto;
 }
 .editor{
+  width: min-content;
   position:relative;
   overflow:auto; /* older browsers */
   -moz-appearance: textfield-multiline;
@@ -124,7 +125,6 @@ textarea{
   display: block;
   min-width: 50rem;
   max-width: 50rem;
-  width: 100%;
   height: 34rem;
   white-space: normal;
   margin:0;
@@ -133,6 +133,22 @@ textarea{
 
 .statement {
   color: orange;
+  text-align: center;
+  position: relative;
+  width: 100%;
+  height: auto;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  cursor:pointer;
+}
+.other{
+  color: white;
+  text-align: center;
+  position: relative;
+  width: 100%;
+  height: auto;
+  word-wrap: break-word;
+  white-space: pre-wrap
 }
 .tableCanvas {
   width: 100%;
