@@ -245,8 +245,11 @@
   $("#editor").ready(function(){
     $('[data-toggle="popover"]').popover();   
   });
-  $("#editor").ready(function () {
+  /*$("#editor").ready(function () {
     $('[data-toggle="tooltip"]').tooltip()
+  });*/
+  $( document ).ready(function() {
+    $('[data-toggle="tooltip"]').tooltip({'placement': 'top'});
   });
     </script>
       </div>
