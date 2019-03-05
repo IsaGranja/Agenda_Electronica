@@ -36,26 +36,8 @@
               </select>
             </div>
         </div>
-
-        <div class="form-group">
-            <label class="control-label col-sm-3" for="tema"></label>
-            <div class="col-sm-6">
-                <select class="dropdown-item colorHeaderToggle form-control input-lg dynamic tema principal" data-dependent="tema" id="tema" type="text" onchange="cambioContenidos()">
-                <option value="0">TEMA </option>   
-              </select>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="control-label col-sm-3" for="contenido"></label>
-            <div class="col-sm-6">
-                <select class="dropdown-item colorHeaderToggle form-control input-lg dynamic contenido principal" data-dependent="contenido" id="contenido" type="text">
-                  <option value="0">CONTENIDO </option> 
-                </select>
-            </div>
-        </div>
+        
         <h6 class="dropdown-header colorHeaderToggle">Temas</h6>
-          <!--<a class= "dropdown-item colorToggle" id="lol" value="0" href="#"></a>-->
       <div id="listaT" class="list-group" onchange="cambioContenidos()">
       </div>
       
