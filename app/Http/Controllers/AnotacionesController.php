@@ -15,9 +15,11 @@ use DB;
 class AnotacionesController extends Controller
 {
 	private $cedestudiante;
+
 	public function periodoFunc()
-	{
+	{	
 		try{
+			$contenidos=[];
 			$user = Auth::user();
 			$email=$user->email;
 			$this->cedestudiante = DB::table('estudiantes')
@@ -26,14 +28,16 @@ class AnotacionesController extends Controller
 			$periodos = asignaturasxestudiantes::select('codperiodo')
 						->where('cedestudiante', $this->cedestudiante)
 						->groupBy('codperiodo')
+						->orderby('codperiodo','desc')
 						->get();
 		}catch(\Exception $e)
 		{
 			return back()->withError($e->getMessage());
 		}
-		return view('home',compact('periodos'));
+		return view('home',compact('periodos','contenidos'));
+		
 	}
-	
+
 	public function findAsignaturaFunc()
 	{
 		$user = Auth::user();
@@ -126,6 +130,7 @@ class AnotacionesController extends Controller
 						->select('codperiodo')
 						->where('cedestudiante', $cedestudiante)
 						->groupBy('codperiodo')
+						->orderby('codperiodo','desc')
 						->get();
 			$asignaturasxestudiante= DB::table('asignaturasxestudiantes')->where('cedestudiante', $cedestudiante);
 			$asignatura= DB::table('asignaturas')->select('*')->get();
@@ -140,7 +145,7 @@ class AnotacionesController extends Controller
 		{
 			return back()->withError($e->getMessage());
 		}
-		return view('home',compact('periodos','asignaturasxestudiante','asignatura','unidades','temas','contenidos',
+		return view('home',compact('periodos','asignaturasxestudiante','asignatura','unidades','temas',
 		'talleres', 'evaluaciones','glosarios','anotaciones'));
 	}
 	/*
