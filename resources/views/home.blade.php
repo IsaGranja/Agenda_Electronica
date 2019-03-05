@@ -38,7 +38,6 @@
         </div>
 
         <h6 class="dropdown-header colorHeaderToggle">TEMAS</h6>
-          <!--<a class= "dropdown-item colorToggle" id="lol" value="0" href="#"></a>-->
       <div id="listaT" class="list-group" onchange="cambioContenidos()">
       </div>
       
@@ -106,8 +105,7 @@
             console.log(data);
             console.log(data.length);
             for(var i=0;i<data.length;i++){
-              
-              $temaLista.append('<a class= "list-group-item navHov" style="color: #60b5ee;" onclick="cambioContenidos()" id="'+data[i].codtema+'">'+i+":"+data[i].desctema+'</a>');
+              $temaLista.append('<a class= "list-group-item navHov" style="color: #60b5ee;" onclick="cambioContenidos()" id="'+data[i].codtema+'">'+(i+1)+": "+data[i].desctema+'</a>');
             }
           },
           error:function(){
@@ -120,6 +118,10 @@
             console.log("fasfa");
             var $contenidoCombo = $(".carousel-inner");
             $('.carousel-inner option[value!="0"]').remove();
+            /*
+            var $contenidoCombo = $("#editor");
+            $('#contenido option[value!="0"]').remove();
+            */
             $('#listaT').click(function(e){              
                 var cT = e.target.id;                
                 var codtema= cT;                
@@ -173,6 +175,13 @@
                 });
               });                
             }
+            $("#editor").ready(function(){
+              $('[data-toggle="popover"]').popover();   
+            });
+
+            $( document ).ready(function() {
+              $('[data-toggle="tooltip"]').tooltip({'placement': 'top'});
+            });
   
 </script>
 </div>
