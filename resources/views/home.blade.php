@@ -44,6 +44,7 @@
       
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script type="text/javascript">
+
   function cambioAsignaturas(){
       var $asignaturaCombo = $("#asignatura");
       $('#asignatura option[value!="0"]').remove();
@@ -114,6 +115,7 @@
     }
 
     function cambioContenidos(){
+            console.log("fasfa");
             var $contenidoCombo = $("#editor");
             $('#contenido option[value!="0"]').remove();
             $('#listaT').click(function(e){              
@@ -132,6 +134,33 @@
                   for(var i=0;i<data.length ;i++){
                     $contenidoCombo.append('<div class="editor" id="editor" value="'+data[i].codcontenido+'" style="text-align: left; width:100%" contenteditable="false">'+data[i].textocontenido+'</div>');                  
                   }
+                  /////
+                  var text = $("#editor").text().replace(/[\s]+/g, " ").trim();
+                  var word = text.split(" ");
+                  var newHTML = "";
+
+                  $.each(word, function(index, value){
+                      switch(value.toUpperCase()){
+                          case "SELECT":
+                          case "FROM":
+                          case "WHERE":
+                          case "LIKE":
+                          case "BETWEEN":
+                          case "NOTLIKE":
+                          case "FALSE":
+                          case "NULL":
+                          case "ISA":
+                          case "TRUE":
+                          case "VARIABLE":
+                          case "NOTIN":
+                              newHTML += "<span class='statement' style='white-space: nowrap;' data-toggle='tooltip' data-placement='right' title='Ola ke ase isa jajaja :v'>" + value + "&nbsp;</span>"              
+                              break;
+                          default: 
+                              newHTML += "<span class='other'>" + value + "&nbsp;</span>";
+                      }
+                  });
+                  $("#editor").html(newHTML);
+                  /////
                 },
                 error:function(){
                 }
@@ -162,50 +191,15 @@
           var text = $("#editor").text().replace(/[\s]+/g, " ").trim();
           var word = text.split(" ");
           var newHTML = "";
+            $("#editor").ready(function(){
+              $('[data-toggle="popover"]').popover();   
+            });
 
-          $.each(word, function(index, value){
-              switch(value.toUpperCase()){
-                  case "SELECT":
-                  case "FROM":
-                  case "WHERE":
-                  case "LIKE":
-                  case "BETWEEN":
-                  case "NOTLIKE":
-                  case "FALSE":
-                  case "NULL":
-                  case "ISA":
-                  case "TRUE":
-                  case "VARIABLE":
-                  case "NOTIN":
-                      newHTML += "<span class='statement' style='white-space: nowrap;' data-toggle='tooltip' data-placement='right' title='Ola ke ase isa jajaja :v'>" + value + "&nbsp;</span>"              
-                      break;
-                  default: 
-                      newHTML += "<span class='other'>" + value + "&nbsp;</span>";
-              }
-          });
-          $("#editor").html(newHTML);
-          
-          //// Set cursor postion to end of text
-          /*var child = $("#editor").children();
-          var range = document.createRange();
-          var sel = window.getSelection();
-          range.setStart(child[child.length - 1], 1);
-          range.collapse("#editor");
-          sel.removeAllRanges();
-          sel.addRange(range);
-          $("#editor")[0].focus(); */
-          ///////
-  });
-  $("#editor").ready(function(){
-    $('[data-toggle="popover"]').popover();   
-  });
-  /*$("#editor").ready(function () {
-    $('[data-toggle="tooltip"]').tooltip()
-  });*/
-  $( document ).ready(function() {
-    $('[data-toggle="tooltip"]').tooltip({'placement': 'top'});
-  });
-    </script>
+            $( document ).ready(function() {
+              $('[data-toggle="tooltip"]').tooltip({'placement': 'top'});
+            });
+          </script>
+          <div id="div_content" style='width:100px;height:100px;display:none;'>Test data</div>
       </div>
       <div class="carousel-item">
         <img class="imagen1" src="https://mdbootstrap.com/img/Photos/Slides/img%20(16).jpg" alt="Second slide">
