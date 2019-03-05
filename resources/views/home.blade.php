@@ -54,10 +54,11 @@
                 </select>
             </div>
         </div>
-      <div>
-
         <h6 class="dropdown-header colorHeaderToggle">Unidades</h6>
-          <a class= "dropdown-item colorToggle" href="#">Tema 1</a>  
+          <!--<a class= "dropdown-item colorToggle" id="lol" value="0" href="#"></a>-->
+      <div id="listaT" onchange="cambioContenidos()">
+
+        
       </div>
       
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -65,6 +66,7 @@
   function cambioAsignaturas(){
       var $asignaturaCombo = $("#asignatura");
       $('#asignatura option[value!="0"]').remove();
+
 			var codperiodo=$('#periodo').val();
 			var op=" ";
 			$.ajax({
@@ -84,6 +86,7 @@
 			console.log("hmm its change");
       var $unidadCombo = $("#unidad");
       $('#unidad option[value!="0"]').remove();
+      $('#listaT a[value!="0"]').remove();
       //$unidadCombo.empty();
 			var codasignatura=$('#asignatura').val();
 			//var div=$('#asignatura').parent();
@@ -107,7 +110,10 @@
   function cambioTemas(){
         console.log("hmm its change");
         var $temaCombo = $("#tema");
+        var $temaLista = $("#listaT");
+        $('#asignatura option[value!="0"]').remove();
         $('#tema option[value!="0"]').remove();
+        $('#listaT a[value!="0"]').remove();
         var codunidad=$('#unidad').val();
         $.ajax({
           type:'get',
@@ -121,6 +127,9 @@
             for(var i=0;i<data.length;i++){
               $temaCombo.append('<option value="'+data[i].codtema+'">'+data[i].desctema+'</option>');
             }
+            for(var i=0;i<data.length;i++){
+              $temaLista.append('<a class= "dropdown-item colorToggle" value="'+data[i].codtema+'">'+data[i].desctema+'</a>');
+            }
           },
           error:function(){
           }
@@ -132,6 +141,7 @@
         $('#contenido option[value!="0"]').remove();
         //$contenidoCombo.empty();
         var codtema=$('#tema').val();
+        var codtema=$('#listaT').val();
         //var div=$('#tema').parent();
         $.ajax({
           type:'get',
@@ -184,7 +194,7 @@
               console.log(data);
               console.log(data.length);
               document.getElementById('editor').innerHTML='';
-              for(var i=0;i<data.length;i++){
+              for(var i=0;i<data.length ;i++){
                 $contenidoCombo.append('<div class="editor" id="editor" value="'+data[i].codcontenido+'" style="text-align: left; width:100%" contenteditable="false">'+data[i].textocontenido+'</div>');
               //$contenidoCombo.append('<option value="'+data[i].codcontenido+'">'+data[i].textocontenido+'</option>');
               }
@@ -217,6 +227,7 @@
                   case "VARIABLE":
                   case "NOTIN":
                       newHTML += "<span class='statement' style='white-space: nowrap;' data-toggle='tooltip' data-placement='right' title='Ola ke ase isa jajaja :v'>" + value + "&nbsp;</span>"
+                      
                       /*var e = new KeyboardEvent('keydown',{'keyCode':32,'which':32});
                       console.log(e);
                       document.dispatchEvent(e);*/
@@ -244,8 +255,11 @@
   $("#editor").ready(function(){
     $('[data-toggle="popover"]').popover();   
   });
-  $("#editor").ready(function () {
+  /*$("#editor").ready(function () {
     $('[data-toggle="tooltip"]').tooltip()
+  });*/
+  $( document ).ready(function() {
+    $('[data-toggle="tooltip"]').tooltip({'placement': 'top'});
   });
     </script>
       </div>

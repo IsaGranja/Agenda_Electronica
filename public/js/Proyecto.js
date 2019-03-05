@@ -59,6 +59,7 @@ $(document).on('keyup', "[maxlength]", function (e) {
             mousePressed = false;
         });
         ctx.fillStyle = 'rgba(255,255,255)';
+        ctx.fillStyle = "#FFFFFF";
         ctx.fillRect(0,0,window.innerWidth,window.innerHeight);
     }
 
@@ -92,6 +93,7 @@ $(document).on('keyup', "[maxlength]", function (e) {
         // Use the identity matrix while clearing the canvas
         ctx.setTransform(1, 0, 0, 1, 0, 0);
         ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+        ctx.fillStyle = 'rgba(255,255,255)';
         ctx.fillStyle = "#FFFFFF";
         ctx.fillRect(0,0,window.innerWidth,window.innerHeight);
     }
