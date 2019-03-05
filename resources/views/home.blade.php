@@ -36,13 +36,14 @@
               </select>
             </div>
         </div>
-        
+
         <h6 class="dropdown-header colorHeaderToggle">Temas</h6>
       <div id="listaT" class="list-group" onchange="cambioContenidos()">
       </div>
       
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script type="text/javascript">
+
   function cambioAsignaturas(){
       var $asignaturaCombo = $("#asignatura");
       $('#asignatura option[value!="0"]').remove();
@@ -108,7 +109,7 @@
               $temaCombo.append('<option value="'+data[i].codtema+'">'+data[i].desctema+'</option>');
             }
             for(var i=0;i<data.length;i++){
-              $temaLista.append('<a class= "list-group-item navHov" style="color: #60b5ee;" onclick="cambioContenidos1()" id="'+data[i].codtema+'">'+i+":"+data[i].desctema+'</a>');
+              $temaLista.append('<a class= "list-group-item navHov" style="color: #60b5ee;" onclick="cambioContenidos1()" id="'+data[i].codtema+'">'+(i+1)+":"+data[i].desctema+'</a>');
             }
           },
           error:function(){
