@@ -37,24 +37,7 @@
             </div>
         </div>
 
-        <div class="form-group">
-            <label class="control-label col-sm-3" for="tema"></label>
-            <div class="col-sm-6">
-                <select class="dropdown-item colorHeaderToggle form-control input-lg dynamic tema principal" data-dependent="tema" id="tema" type="text" onchange="cambioContenidos()">
-                <option value="0">TEMA </option>   
-              </select>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="control-label col-sm-3" for="contenido"></label>
-            <div class="col-sm-6">
-                <select class="dropdown-item colorHeaderToggle form-control input-lg dynamic contenido principal" data-dependent="contenido" id="contenido" type="text">
-                  <option value="0">CONTENIDO </option> 
-                </select>
-            </div>
-        </div>
-        <h6 class="dropdown-header colorHeaderToggle">Temas</h6>
+        <h6 class="dropdown-header colorHeaderToggle">TEMAS</h6>
           <!--<a class= "dropdown-item colorToggle" id="lol" value="0" href="#"></a>-->
       <div id="listaT" class="list-group" onchange="cambioContenidos()">
       </div>
@@ -109,7 +92,6 @@
         console.log("hmm its change");
         var $temaCombo = $("#tema");
         var $temaLista = $("#listaT");
-        $('#asignatura option[value!="0"]').remove();
         $('#tema option[value!="0"]').remove();
         $('#listaT a[value!="0"]').remove();
         var codunidad=$('#unidad').val();
@@ -122,11 +104,8 @@
             console.log('success');
             console.log(data);
             console.log(data.length);
-            for(var i=0;i<data.length;i++){ 
-              $temaCombo.append('<option value="'+data[i].codtema+'">'+data[i].desctema+'</option>');
-            }
             for(var i=0;i<data.length;i++){
-              $temaLista.append('<a class= "list-group-item navHov" style="color: #60b5ee;" onclick="cambioContenidos1()" id="'+data[i].codtema+'">'+i+":"+data[i].desctema+'</a>');
+              $temaLista.append('<a class= "list-group-item navHov" style="color: #60b5ee;" onclick="cambioContenidos()" id="'+data[i].codtema+'">'+i+":"+data[i].desctema+'</a>');
             }
           },
           error:function(){
@@ -135,76 +114,6 @@
     }
 
     function cambioContenidos(){
-        console.log("hmm its change");
-        var $contenidoCombo = $("#contenido");
-        $('#contenido option[value!="0"]').remove();
-        //$contenidoCombo.empty();
-        var codtema=$('#tema').val();
-        var codtema=$('#listaT').val();
-        //var div=$('#tema').parent();
-        $.ajax({
-          type:'get',
-          url:'{!!URL::to('json-contenidos')!!}',
-          data:{'codtema':codtema},
-          dataType:'json',
-          success:function(data){
-            console.log('success');
-            console.log(data);
-            console.log(data.length);
-            for(var i=0;i<data.length;i++){
-              $contenidoCombo.append('<option value="'+data[i].codcontenido+'">'+data[i].textocontenido+'</option>');
-            }
-          },
-          error:function(){
-          }
-        });
-    }
-    
-  
-</script>
-</div>
-@endsection
-
-@section('content')
-<div style="width:100%;">
-<div id="carouselExampleFade" style="width:100%;" class="carousel slide carousel-fade" data-interval="false">
-    <div class="carousel-inner" style="width:100%;" role="listbox" >
-      <div class="carousel-item active" style="width:100%;">
-        <!--<img class="imagen1" src="https://mdbootstrap.com/img/Photos/Slides/img%20(15).jpg" alt="First slide">-->
-        <!--<textarea class="imagen1" alt="First slide"></textarea>-->
-        <!--<p class="imagen1">dasda</p>-->
-        <!--<img class="d-block w-100" src="{{ url('img/beagle.jpg') }}" alt="First slide">-->
-        <div class="editor" id="editor" style="text-align: left; width:100%"  contenteditable="false"></div>
-        
-        <script>
-          function cambioContenidos(){
-            console.log("hmm its ontenidos");
-            var $contenidoCombo = $("#editor");
-            $('#contenido option[value!="0"]').remove();
-            //$contenidoCombo.empty();
-            var codtema=$('#tema').val();
-            //var div=$('#tema').parent();
-            $.ajax({
-              type:'get',
-              url:'{!!URL::to('json-contenidos')!!}',
-              data:{'codtema':codtema},
-              dataType:'json',
-              success:function(data){
-              console.log('success conte');
-              console.log(data);
-              console.log(data.length);
-              document.getElementById('editor').innerHTML='';
-              for(var i=0;i<data.length ;i++){
-                $contenidoCombo.append('<div class="editor" id="editor" value="'+data[i].codcontenido+'" style="text-align: left; width:100%" contenteditable="false">'+data[i].textocontenido+'</div>');
-              //$contenidoCombo.append('<option value="'+data[i].codcontenido+'">'+data[i].textocontenido+'</option>');
-              }
-            },
-            error:function(){
-            }
-            });
-            }
-            function cambioContenidos1(){
-            console.log("fasfa");
             var $contenidoCombo = $("#editor");
             $('#contenido option[value!="0"]').remove();
             $('#listaT').click(function(e){              
@@ -229,7 +138,22 @@
                 });
               });                
             }
-          </script>
+  
+</script>
+</div>
+@endsection
+
+@section('content')
+<div style="width:100%;">
+<div id="carouselExampleFade" style="width:100%;" class="carousel slide carousel-fade" data-interval="false">
+    <div class="carousel-inner" style="width:100%;" role="listbox" >
+      <div class="carousel-item active" style="width:100%;">
+        <!--<img class="imagen1" src="https://mdbootstrap.com/img/Photos/Slides/img%20(15).jpg" alt="First slide">-->
+        <!--<textarea class="imagen1" alt="First slide"></textarea>-->
+        <!--<p class="imagen1">dasda</p>-->
+        <!--<img class="d-block w-100" src="{{ url('img/beagle.jpg') }}" alt="First slide">-->
+        <div class="editor" id="editor" style="text-align: left; width:100%"  contenteditable="false"></div>
+ 
         <div id="div_content" style='width:100px;height:100px;display:none;'>Test data</div>
         
     <script>
