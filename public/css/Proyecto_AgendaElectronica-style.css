@@ -202,6 +202,18 @@ textarea{
   background-color: #f8f9fa;
 }
 
+.navHov{
+  background-color: rgb(34, 34, 34);
+  border-color:  rgb(34, 34, 34);
+  font-size: 12px;
+  width: 100%;
+  overflow:auto;
+  cursor: pointer;
+}
+.navHov:hover{
+  background-color: #686666;
+}
+
 /* CUSTOMIZE THE CAROUSEL
 -------------------------------------------------- */
 

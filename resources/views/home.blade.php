@@ -54,11 +54,9 @@
                 </select>
             </div>
         </div>
-        <h6 class="dropdown-header colorHeaderToggle">Unidades</h6>
+        <h6 class="dropdown-header colorHeaderToggle">Temas</h6>
           <!--<a class= "dropdown-item colorToggle" id="lol" value="0" href="#"></a>-->
-      <div id="listaT" onchange="cambioContenidos()">
-
-        
+      <div id="listaT" class="list-group" onchange="cambioContenidos()">
       </div>
       
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -124,17 +122,18 @@
             console.log('success');
             console.log(data);
             console.log(data.length);
-            for(var i=0;i<data.length;i++){
+            for(var i=0;i<data.length;i++){ 
               $temaCombo.append('<option value="'+data[i].codtema+'">'+data[i].desctema+'</option>');
             }
             for(var i=0;i<data.length;i++){
-              $temaLista.append('<a class= "dropdown-item colorToggle" value="'+data[i].codtema+'">'+data[i].desctema+'</a>');
+              $temaLista.append('<a class= "list-group-item navHov" style="color: #60b5ee;" onclick="cambioContenidos1()" id="'+data[i].codtema+'">'+i+":"+data[i].desctema+'</a>');
             }
           },
           error:function(){
           }
         });
     }
+
     function cambioContenidos(){
         console.log("hmm its change");
         var $contenidoCombo = $("#contenido");
@@ -160,6 +159,7 @@
           }
         });
     }
+    
   
 </script>
 </div>
@@ -203,12 +203,39 @@
             }
             });
             }
+            function cambioContenidos1(){
+            console.log("fasfa");
+            var $contenidoCombo = $("#editor");
+            $('#contenido option[value!="0"]').remove();
+            $('#listaT').click(function(e){              
+                var cT = e.target.id;                
+                var codtema= cT;                
+                $.ajax({
+                  type:'get',
+                  url:'{!!URL::to('json-contenidos')!!}',
+                  data:{'codtema':codtema},
+                  dataType:'json',
+                  success:function(data){
+                  console.log('success conte');
+                  console.log(data);
+                  console.log(data.length);
+                  document.getElementById('editor').innerHTML='';
+                  for(var i=0;i<data.length ;i++){
+                    $contenidoCombo.append('<div class="editor" id="editor" value="'+data[i].codcontenido+'" style="text-align: left; width:100%" contenteditable="false">'+data[i].textocontenido+'</div>');                  
+                  }
+                },
+                error:function(){
+                }
+                });
+              });                
+            }
           </script>
         <div id="div_content" style='width:100px;height:100px;display:none;'>Test data</div>
+        
     <script>
 
     $("#editor").on("focus mouseover",function(e){
-          var text = $(this).text().replace(/[\s]+/g, " ").trim();
+          var text = $("#editor").text().replace(/[\s]+/g, " ").trim();
           var word = text.split(" ");
           var newHTML = "";
 
@@ -237,20 +264,18 @@
                       newHTML += "<span class='other'>" + value + "&nbsp;</span>";
               }
           });
-          $(this).html(newHTML);
+          $("#editor").html(newHTML);
           
           //// Set cursor postion to end of text
-          var child = $(this).children();
+          /*var child = $("#editor").children();
           var range = document.createRange();
           var sel = window.getSelection();
           range.setStart(child[child.length - 1], 1);
-          range.collapse(true);
+          range.collapse("#editor");
           sel.removeAllRanges();
           sel.addRange(range);
-          $(this)[0].focus(); 
+          $("#editor")[0].focus(); */
           ///////
-          
-      
   });
   $("#editor").ready(function(){
     $('[data-toggle="popover"]').popover();   

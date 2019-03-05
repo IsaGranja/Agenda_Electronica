@@ -69,7 +69,7 @@ class AnotacionesController extends Controller
 	{
 		$codunidad=Input::get('codunidad');
 		$temas=DB::table('temas_estudio')
-		->select('codtema', 'desctema')
+		->select('codtema', 'numtema', 'desctema')
 		->where('codunidad','=',$codunidad)
 		->orderby('codtema','ASC')
 		->get();
