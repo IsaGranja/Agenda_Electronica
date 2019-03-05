@@ -109,7 +109,7 @@
               $temaCombo.append('<option value="'+data[i].codtema+'">'+data[i].desctema+'</option>');
             }
             for(var i=0;i<data.length;i++){
-              $temaLista.append('<a class= "list-group-item navHov" style="color: #60b5ee;" onclick="cambioContenidos1()" id="'+data[i].codtema+'">'+(i+1)+":"+data[i].desctema+'</a>');
+              $temaLista.append('<a class= "list-group-item navHov" style="color: #60b5ee;" onclick="cambioContenidos1()" id="'+data[i].codtema+'">'+(i+1)  +":"+data[i].desctema+'</a>');
             }
           },
           error:function(){
