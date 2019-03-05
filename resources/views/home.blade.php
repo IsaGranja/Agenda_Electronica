@@ -167,6 +167,13 @@
                 });
               });                
             }
+            $("#editor").ready(function(){
+              $('[data-toggle="popover"]').popover();   
+            });
+
+            $( document ).ready(function() {
+              $('[data-toggle="tooltip"]').tooltip({'placement': 'top'});
+            });
   
 </script>
 </div>
@@ -177,29 +184,8 @@
 <div id="carouselExampleFade" style="width:100%;" class="carousel slide carousel-fade" data-interval="false">
     <div class="carousel-inner" style="width:100%;" role="listbox" >
       <div class="carousel-item active" style="width:100%;">
-        <!--<img class="imagen1" src="https://mdbootstrap.com/img/Photos/Slides/img%20(15).jpg" alt="First slide">-->
-        <!--<textarea class="imagen1" alt="First slide"></textarea>-->
-        <!--<p class="imagen1">dasda</p>-->
-        <!--<img class="d-block w-100" src="{{ url('img/beagle.jpg') }}" alt="First slide">-->
         <div class="editor" id="editor" style="text-align: left; width:100%"  contenteditable="false"></div>
- 
         <div id="div_content" style='width:100px;height:100px;display:none;'>Test data</div>
-        
-    <script>
-
-    $("#editor").on("focus mouseover",function(e){
-          var text = $("#editor").text().replace(/[\s]+/g, " ").trim();
-          var word = text.split(" ");
-          var newHTML = "";
-            $("#editor").ready(function(){
-              $('[data-toggle="popover"]').popover();   
-            });
-
-            $( document ).ready(function() {
-              $('[data-toggle="tooltip"]').tooltip({'placement': 'top'});
-            });
-          </script>
-          <div id="div_content" style='width:100px;height:100px;display:none;'>Test data</div>
       </div>
       <div class="carousel-item">
         <img class="imagen1" src="https://mdbootstrap.com/img/Photos/Slides/img%20(16).jpg" alt="Second slide">
