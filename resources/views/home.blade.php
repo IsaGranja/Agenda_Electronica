@@ -115,10 +115,11 @@
 
     $contenidos="";
     function cambioContenidos(){
+      /*
             console.log("fasfa");
             var $contenidoCombo = $(".carousel-inner");
             $('.carousel-inner option[value!="0"]').remove();
-            /*
+            
             var $contenidoCombo = $("#editor");
             $('#contenido option[value!="0"]').remove();
             */
@@ -134,15 +135,38 @@
                   console.log('success conte');
                   console.log(data);
                   console.log(data.length);
-                  document.getElementById('editor').innerHTML='';
+                  //document.getElementById('editor').innerHTML='';
                   contenidos=data;
                   console.log("CONTENIDOS");
                   console.log(contenidos);
-
+                  
+                 // $("#editor").remove();
+                  //$("#carousel-indicators").empty();
+                  $('.carousel-inner,.carousel-indicators,.carousel-control-prev,.carousel-control-next').empty();
                   for(var i=0;i<data.length ;i++){
+                    $('<div class="item"><div class="editor" id="editor" value="'+data[i].codcontenido+'" style="text-align: left; width:100%" contenteditable="false">'+data[i].textocontenido+'</div><div class="carousel-caption"></div>   </div>').appendTo('.carousel-inner');
+                    $('<li data-target="#carouselExampleFade" data-slide-to="'+i+'"></li>').appendTo('.carousel-indicators')
 
-                    $contenidoCombo.append('<div class="editor" id="editor" value="'+data[i].codcontenido+'" style="text-align: left; width:100%" contenteditable="false">'+data[i].textocontenido+'</div>');                  
+                    //$contenidoCombo.append('<div class="editor" id="editor" value="'+data[i].codcontenido+'" style="text-align: left; width:100%" contenteditable="false">'+data[i].textocontenido+'</div>');    
+
                   }
+                  $('.item').first().addClass('active');
+                    $('.carousel-indicators > li').first().addClass('active');
+                    $('<a href="#carouselExampleFade" data-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="sr-only">Previous</span></a>').appendTo('.carousel-control-prev'); 
+                    $('<a href="#carouselExampleFade" data-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="sr-only">Next</span></a>').appendTo('.carousel-control-next');
+                    //$('#carouselExampleFade').carousel();
+                  /*
+                  $(document).ready(function(){  
+                    for(var i=0 ; i< m.length ; i++) {
+                      $('<div class="item"><img src="'+m[i]+'"><div class="carousel-caption"></div>   </div>').appendTo('.carousel-inner');
+                      $('<li data-target="#carousel-example-generic" data-slide-to="'+i+'"></li>').appendTo('.carousel-indicators')
+
+                    }
+                    $('.item').first().addClass('active');
+                    $('.carousel-indicators > li').first().addClass('active');
+                    $('#carousel-example-generic').carousel();
+                  });
+                  */
                   var text = $("#editor").text().replace(/[\s]+/g, " ").trim();
                   var word = text.split(" ");
                   var newHTML = "";
@@ -188,43 +212,11 @@
 @endsection
 
 @section('content')
-<div style="width:100%;">
-<div id="carouselExampleFade" style="width:100%;" class="carousel slide carousel-fade" data-interval="false">
+<div id="carouselExampleFade" style="width:100%;" class="carousel slide carousel-fade" data-ride="carousel" data-interval="false">
 
+    <ol class="carousel-indicators"></ol>
     <div class="carousel-inner" style="width:100%;" role="listbox" >
-      <div class="carousel-item active" style="width:100%;">
-        <!--<img class="imagen1" src="https://mdbootstrap.com/img/Photos/Slides/img%20(15).jpg" alt="First slide">-->
-        <!--<textarea class="imagen1" alt="First slide"></textarea>-->
-        <!--<p class="imagen1">dasda</p>-->
-        <!--<img class="d-block w-100" src="{{ url('img/beagle.jpg') }}" alt="First slide">-->
-        <div class="carousel-inner" role="listbox">
-        <?php if(empty($contenidos)) : ?>
-          <div class="editor" id="editor" style="text-align: left; width:100%"  contenteditable="false"></div>
-        <?php else : ?>
-          @foreach( $contenidos as $contenido )
-            <div class="carousel-item {{ $loop->first ? ' active' : '' }}" >
-              <div class="editor" id="editor" style="text-align: left; width:100%"  contenteditable="false">{{ $contenido->textocontenido }}</div>
-            </div>
-          @endforeach
-        <?php endif; ?>
-        </div>
-    <script>
-
-    $("#editor").on("focus mouseover",function(e){
-          var text = $("#editor").text().replace(/[\s]+/g, " ").trim();
-          var word = text.split(" ");
-          var newHTML = "";
-            $("#editor").ready(function(){
-              $('[data-toggle="popover"]').popover();   
-            });
-
-            $( document ).ready(function() {
-              $('[data-toggle="tooltip"]').tooltip({'placement': 'top'});
-            });
-          </script>
-          <div id="div_content" style='width:100px;height:100px;display:none;'>Test data</div>
-      </div>
-
+      <div><p>hola mundo</p></div>
     </div>
     <a class="carousel-control-prev" title="Anterior" href="#carouselExampleFade" role="button" data-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -234,7 +226,7 @@
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="sr-only">Next</span>
     </a>
-  </div>
+  
 </div>
 
 @endsection
