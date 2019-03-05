@@ -37,7 +37,8 @@
             </div>
         </div>
 
-        <h6 class="dropdown-header colorHeaderToggle">Temas</h6>
+        <h6 class="dropdown-header colorHeaderToggle">TEMAS</h6>
+          <!--<a class= "dropdown-item colorToggle" id="lol" value="0" href="#"></a>-->
       <div id="listaT" class="list-group" onchange="cambioContenidos()">
       </div>
       
@@ -92,7 +93,6 @@
         console.log("hmm its change");
         var $temaCombo = $("#tema");
         var $temaLista = $("#listaT");
-        $('#asignatura option[value!="0"]').remove();
         $('#tema option[value!="0"]').remove();
         $('#listaT a[value!="0"]').remove();
         var codunidad=$('#unidad').val();
@@ -105,30 +105,16 @@
             console.log('success');
             console.log(data);
             console.log(data.length);
-            for(var i=0;i<data.length;i++){ 
-              $temaCombo.append('<option value="'+data[i].codtema+'">'+data[i].desctema+'</option>');
-            }
             for(var i=0;i<data.length;i++){
-              $temaLista.append('<a class= "list-group-item navHov" style="color: #60b5ee;" onclick="cambioContenidos1()" id="'+data[i].codtema+'">'+(i+1)  +":"+data[i].desctema+'</a>');
+              $temaLista.append('<a class= "list-group-item navHov" style="color: #60b5ee;" onclick="cambioContenidos()" id="'+data[i].codtema+'">'+(i+1)+": "+data[i].desctema+'</a>');
             }
           },
           error:function(){
           }
         });
     }
-  
-</script>
-</div>
-@endsection
 
-@section('content')
-<div style="width:100%;">
-<div id="carouselExampleFade" style="width:100%;" class="carousel slide carousel-fade" data-interval="false">
-    <div class="carousel-inner" style="width:100%;" role="listbox" >
-      <div class="carousel-item active" style="width:100%;">
-        <div class="editor" id="editor" style="text-align: left; width:100%"  contenteditable="false"></div>        
-        <script>
-            function cambioContenidos1(){
+    function cambioContenidos(){
             console.log("fasfa");
             var $contenidoCombo = $("#editor");
             $('#contenido option[value!="0"]').remove();
@@ -181,6 +167,30 @@
                 });
               });                
             }
+  
+</script>
+</div>
+@endsection
+
+@section('content')
+<div style="width:100%;">
+<div id="carouselExampleFade" style="width:100%;" class="carousel slide carousel-fade" data-interval="false">
+    <div class="carousel-inner" style="width:100%;" role="listbox" >
+      <div class="carousel-item active" style="width:100%;">
+        <!--<img class="imagen1" src="https://mdbootstrap.com/img/Photos/Slides/img%20(15).jpg" alt="First slide">-->
+        <!--<textarea class="imagen1" alt="First slide"></textarea>-->
+        <!--<p class="imagen1">dasda</p>-->
+        <!--<img class="d-block w-100" src="{{ url('img/beagle.jpg') }}" alt="First slide">-->
+        <div class="editor" id="editor" style="text-align: left; width:100%"  contenteditable="false"></div>
+ 
+        <div id="div_content" style='width:100px;height:100px;display:none;'>Test data</div>
+        
+    <script>
+
+    $("#editor").on("focus mouseover",function(e){
+          var text = $("#editor").text().replace(/[\s]+/g, " ").trim();
+          var word = text.split(" ");
+          var newHTML = "";
             $("#editor").ready(function(){
               $('[data-toggle="popover"]').popover();   
             });
