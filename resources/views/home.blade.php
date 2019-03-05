@@ -143,12 +143,7 @@
 <div id="carouselExampleFade" style="width:100%;" class="carousel slide carousel-fade" data-interval="false">
     <div class="carousel-inner" style="width:100%;" role="listbox" >
       <div class="carousel-item active" style="width:100%;">
-        <!--<img class="imagen1" src="https://mdbootstrap.com/img/Photos/Slides/img%20(15).jpg" alt="First slide">-->
-        <!--<textarea class="imagen1" alt="First slide"></textarea>-->
-        <!--<p class="imagen1">dasda</p>-->
-        <!--<img class="d-block w-100" src="{{ url('img/beagle.jpg') }}" alt="First slide">-->
-        <div class="editor" id="editor" style="text-align: left; width:100%"  contenteditable="false"></div>
-        
+        <div class="editor" id="editor" style="text-align: left; width:100%"  contenteditable="false"></div>        
         <script>
             function cambioContenidos1(){
             console.log("fasfa");
@@ -215,7 +210,7 @@
   $( document ).ready(function() {
     $('[data-toggle="tooltip"]').tooltip({'placement': 'top'});
   });
-  
+
     </script>
       </div>
       <div class="carousel-item">
