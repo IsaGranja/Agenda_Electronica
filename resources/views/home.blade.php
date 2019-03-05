@@ -105,100 +105,75 @@
             console.log(data);
             console.log(data.length);
             for(var i=0;i<data.length;i++){
-              $temaLista.append('<a class= "list-group-item navHov" style="color: #60b5ee;" onclick="cambioContenidos()" id="'+data[i].codtema+'">'+(i+1)+": "+data[i].desctema+'</a>');
+              $temaLista.append('<a class= "list-group-item navHov" style="color: #60b5ee;" id="'+data[i].codtema+'">'+(i+1)+": "+data[i].desctema+'</a>');
             }
           },
           error:function(){
           }
         });
     }
-
-    $contenidos="";
-    function cambioContenidos(){
-      /*
-            console.log("fasfa");
-            var $contenidoCombo = $(".carousel-inner");
-            $('.carousel-inner option[value!="0"]').remove();
-            
-            var $contenidoCombo = $("#editor");
-            $('#contenido option[value!="0"]').remove();
-            */
+//CAMMBIO CONTENIDOS
             $('#listaT').click(function(e){              
                 var cT = e.target.id;                
-                var codtema= cT;                
+                var codtema= cT; 
+                               
                 $.ajax({
                   type:'get',
                   url:'{!!URL::to('json-contenidos')!!}',
                   data:{'codtema':codtema},
                   dataType:'json',
                   success:function(data){
-                  console.log('success conte');
-                  console.log(data);
-                  console.log(data.length);
-                  //document.getElementById('editor').innerHTML='';
-                  contenidos=data;
-                  console.log("CONTENIDOS");
-                  console.log(contenidos);
-                  
-                 // $("#editor").remove();
-                  //$("#carousel-indicators").empty();
-                  $('.carousel-inner,.carousel-indicators,.carousel-control-prev,.carousel-control-next').empty();
-                  for(var i=0;i<data.length ;i++){
-                    $('<div class="item"><div class="editor" id="editor" value="'+data[i].codcontenido+'" style="text-align: left; width:100%" contenteditable="false">'+data[i].textocontenido+'</div><div class="carousel-caption"></div>   </div>').appendTo('.carousel-inner');
-                    $('<li data-target="#carouselExampleFade" data-slide-to="'+i+'"></li>').appendTo('.carousel-indicators')
-
-                    //$contenidoCombo.append('<div class="editor" id="editor" value="'+data[i].codcontenido+'" style="text-align: left; width:100%" contenteditable="false">'+data[i].textocontenido+'</div>');    
-
-                  }
-                  $('.item').first().addClass('active');
-                    $('.carousel-indicators > li').first().addClass('active');
-                    $('<a href="#carouselExampleFade" data-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="sr-only">Previous</span></a>').appendTo('.carousel-control-prev'); 
-                    $('<a href="#carouselExampleFade" data-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="sr-only">Next</span></a>').appendTo('.carousel-control-next');
-                    //$('#carouselExampleFade').carousel();
-                  /*
-                  $(document).ready(function(){  
-                    for(var i=0 ; i< m.length ; i++) {
-                      $('<div class="item"><img src="'+m[i]+'"><div class="carousel-caption"></div>   </div>').appendTo('.carousel-inner');
-                      $('<li data-target="#carousel-example-generic" data-slide-to="'+i+'"></li>').appendTo('.carousel-indicators')
-
+                    console.log("CONTENIDOS");
+                    console.log(data.length);
+                    console.log(data);
+                  // $("#editor").remove();
+                    //$("#carousel-indicators").empty();
+                    $('.carousel-inner,.carousel-indicators,.carousel-control-prev,.carousel-control-next').empty();
+                    for(var i=0;i<data.length ;i++){
+                      $('<div class="item"><div class="editor" id="editor" value="'+data[i].codcontenido+'" style="text-align: left; width:100%" contenteditable="false">'+data[i].textocontenido+'</div><div class="carousel-caption"></div>   </div>').appendTo('.carousel-inner');
+                      $('<li data-target="#carouselExampleFade" data-slide-to="'+i+'"></li>').appendTo('.carousel-indicators')
+                      //$contenidoCombo.append('<div class="editor" id="editor" value="'+data[i].codcontenido+'" style="text-align: left; width:100%" contenteditable="false">'+data[i].textocontenido+'</div>');    
                     }
                     $('.item').first().addClass('active');
-                    $('.carousel-indicators > li').first().addClass('active');
-                    $('#carousel-example-generic').carousel();
-                  });
-                  */
-                  var text = $("#editor").text().replace(/[\s]+/g, " ").trim();
-                  var word = text.split(" ");
-                  var newHTML = "";
+                      $('.carousel-indicators > li').first().addClass('active');
+                      $('<a href="#carouselExampleFade" data-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="sr-only">Previous</span></a>').appendTo('.carousel-control-prev'); 
+                      $('<a href="#carouselExampleFade" data-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="sr-only">Next</span></a>').appendTo('.carousel-control-next');
+                      $('#carouselExampleFade').carousel();
+                      glosario();
+                  },
+              error:function(){
+              }
+              });
+            }); 
+//GLOSARIOS                
+        function glosario(){
+          var text = $("#editor").text().replace(/[\s]+/g, " ").trim();
+            var word = text.split(" ");
+            var newHTML = "";
 
-                  $.each(word, function(index, value){
-                      switch(value.toUpperCase()){
-                          case "SELECT":
-                          case "FROM":
-                          case "WHERE":
-                          case "LIKE":
-                          case "BETWEEN":
-                          case "NOTLIKE":
-                          case "FALSE":
-                          case "NULL":
-                          case "ISA":
-                          case "TRUE":
-                          case "VARIABLE":
-                          case "NOTIN":
-                              newHTML += "<span class='statement' style='white-space: nowrap;' data-toggle='tooltip' data-placement='right' title='Ola ke ase isa jajaja :v'>" + value + "&nbsp;</span>"              
-                              break;
-                          default: 
-                              newHTML += "<span class='other'>" + value + "&nbsp;</span>";
-                      }
-                  });
-                  $("#editor").html(newHTML);
-                  /////
-                },
-                error:function(){
+            $.each(word, function(index, value){
+                switch(value.toUpperCase()){
+                    case "SELECT":
+                    case "FROM":
+                    case "WHERE":
+                    case "LIKE":
+                    case "BETWEEN":
+                    case "NOTLIKE":
+                    case "FALSE":
+                    case "NULL":
+                    case "ISA":
+                    case "TRUE":
+                    case "VARIABLE":
+                    case "NOTIN":
+                        newHTML += "<span class='statement' style='white-space: nowrap;' data-toggle='tooltip' data-placement='right' title='Ola ke ase isa jajaja :v'>" + value + "&nbsp;</span>"              
+                        break;
+                    default: 
+                        newHTML += "<span class='other'>" + value + "&nbsp;</span>";
                 }
-                });
-              });                
-            }
+            });
+            $("#editor").html(newHTML);
+            /////                   
+        }
             $("#editor").ready(function(){
               $('[data-toggle="popover"]').popover();   
             });
@@ -206,17 +181,15 @@
             $( document ).ready(function() {
               $('[data-toggle="tooltip"]').tooltip({'placement': 'top'});
             });
-  
+      
 </script>
 </div>
 @endsection
 
 @section('content')
 <div id="carouselExampleFade" style="width:100%;" class="carousel slide carousel-fade" data-ride="carousel" data-interval="false">
-
     <ol class="carousel-indicators"></ol>
     <div class="carousel-inner" style="width:100%;" role="listbox" >
-      <div><p>hola mundo</p></div>
     </div>
     <a class="carousel-control-prev" title="Anterior" href="#carouselExampleFade" role="button" data-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -226,9 +199,7 @@
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="sr-only">Next</span>
     </a>
-  
 </div>
-
 @endsection
 
 @section('content-der')
