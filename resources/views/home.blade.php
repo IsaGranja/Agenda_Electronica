@@ -253,12 +253,7 @@
                   case "TRUE":
                   case "VARIABLE":
                   case "NOTIN":
-                      newHTML += "<span class='statement' style='white-space: nowrap;' data-toggle='tooltip' data-placement='right' title='Ola ke ase isa jajaja :v'>" + value + "&nbsp;</span>"
-                      
-                      /*var e = new KeyboardEvent('keydown',{'keyCode':32,'which':32});
-                      console.log(e);
-                      document.dispatchEvent(e);*/
-                      /*newHTML += "<span class='statement'>" + value + "&nbsp;</span>";*/
+                      newHTML += "<span class='statement' style='white-space: nowrap;' data-toggle='tooltip' data-placement='right' title='Ola ke ase isa jajaja :v'>" + value + "&nbsp;</span>"              
                       break;
                   default: 
                       newHTML += "<span class='other'>" + value + "&nbsp;</span>";
