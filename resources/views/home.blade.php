@@ -198,20 +198,15 @@
                 });
               });                
             }
+            $("#editor").ready(function(){
+              $('[data-toggle="popover"]').popover();   
+            });
+
+            $( document ).ready(function() {
+              $('[data-toggle="tooltip"]').tooltip({'placement': 'top'});
+            });
           </script>
-        <div id="div_content" style='width:100px;height:100px;display:none;'>Test data</div>
-        
-    <script>
-
-  $("#editor").ready(function(){
-    $('[data-toggle="popover"]').popover();   
-  });
-
-  $( document ).ready(function() {
-    $('[data-toggle="tooltip"]').tooltip({'placement': 'top'});
-  });
-
-    </script>
+          <div id="div_content" style='width:100px;height:100px;display:none;'>Test data</div>
       </div>
       <div class="carousel-item">
         <img class="imagen1" src="https://mdbootstrap.com/img/Photos/Slides/img%20(16).jpg" alt="Second slide">
