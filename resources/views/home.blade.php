@@ -38,7 +38,6 @@
         </div>
 
         <h6 class="dropdown-header colorHeaderToggle">TEMAS</h6>
-          <!--<a class= "dropdown-item colorToggle" id="lol" value="0" href="#"></a>-->
       <div id="listaT" class="list-group" onchange="cambioContenidos()">
       </div>
       
@@ -115,7 +114,6 @@
     }
 
     function cambioContenidos(){
-            console.log("fasfa");
             var $contenidoCombo = $("#editor");
             $('#contenido option[value!="0"]').remove();
             $('#listaT').click(function(e){              
