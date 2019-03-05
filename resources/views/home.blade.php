@@ -3,12 +3,10 @@
 {{-- Body --}}
 @section('content-izq')
 <div style="width:100%;">
-<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-</button>
-
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+  </button>
     <div class="form-group">
-    <label class="control-label col-sm-3" for="periodo"></label>
             <div class="col-sm-6">
             <select name="codperiodo" id="periodo" data-dependent="periodo" class="dropdown-item colorHeaderToggle periodo form-control input-lg principal" type="text" onchange="cambioAsignaturas()">
               <option value="0">AÑO ACADÉMICO </option>   
@@ -20,26 +18,25 @@
     </div>
 
     <div class="form-group">
-            <label class="control-label col-sm-3" for="asignatura"></label>
-            <div class="col-sm-6">
-                <select name="codasignatura" id="asignatura" class="dropdown-item colorHeaderToggle form-control input-lg dynamic asignatura principal" data-dependent="asignatura" type="text" onchange="cambioUnidades()">
-                <option value="0">ASIGNATURA </option>   
-              </select>
-            </div>
+        <div class="col-sm-6">
+            <select name="codasignatura" id="asignatura" class="dropdown-item colorHeaderToggle form-control input-lg dynamic asignatura principal" data-dependent="asignatura" type="text" onchange="cambioUnidades()">
+            <option value="0">ASIGNATURA </option>   
+          </select>
         </div>
+    </div>
 
-        <div class="form-group">
-            <label class="control-label col-sm-3" for="unidad"></label>
-            <div class="col-sm-6">
-                <select class="dropdown-item colorHeaderToggle form-control input-lg dynamic unidad principal" data-dependent="unidad" id="unidad" type="text" onchange="cambioTemas()">
-                  <option value="0">UNIDAD </option>   
-              </select>
-            </div>
+    <div class="form-group">
+        <label class="control-label col-sm-3" for="unidad"></label>
+        <div class="col-sm-6">
+            <select class="dropdown-item colorHeaderToggle form-control input-lg dynamic unidad principal" data-dependent="unidad" id="unidad" type="text" onchange="cambioTemas()">
+              <option value="0">UNIDAD </option>   
+          </select>
         </div>
+    </div>
 
-        <h6 class="dropdown-header colorHeaderToggle">TEMAS</h6>
-      <div id="listaT" class="list-group" onchange="cambioContenidos()">
-      </div>
+    <h6 class="dropdown-header colorHeaderToggle">TEMAS</h6>
+    <div id="listaT" class="list-group" onchange="cambioContenidos()"></div>
+</div>
       
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script type="text/javascript">
@@ -112,7 +109,7 @@
           }
         });
     }
-//CAMMBIO CONTENIDOS
+//CAMBIO CONTENIDOS
             $('#listaT').click(function(e){              
                 var cT = e.target.id;                
                 var codtema= cT; 
@@ -126,7 +123,7 @@
                     console.log("CONTENIDOS");
                     console.log(data.length);
                     console.log(data);
-                  // $("#editor").remove();
+                    // $("#editor").remove();
                     //$("#carousel-indicators").empty();
                     $('.carousel-inner,.carousel-indicators,.carousel-control-prev,.carousel-control-next').empty();
                     for(var i=0;i<data.length ;i++){
@@ -135,11 +132,11 @@
                       //$contenidoCombo.append('<div class="editor" id="editor" value="'+data[i].codcontenido+'" style="text-align: left; width:100%" contenteditable="false">'+data[i].textocontenido+'</div>');    
                     }
                     $('.item').first().addClass('active');
-                      $('.carousel-indicators > li').first().addClass('active');
-                      $('<a href="#carouselExampleFade" data-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="sr-only">Previous</span></a>').appendTo('.carousel-control-prev'); 
-                      $('<a href="#carouselExampleFade" data-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="sr-only">Next</span></a>').appendTo('.carousel-control-next');
-                      $('#carouselExampleFade').carousel();
-                      glosario();
+                    $('.carousel-indicators > li').first().addClass('active');
+                    $('<a href="#carouselExampleFade" data-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="sr-only">Previous</span></a>').appendTo('.carousel-control-prev'); 
+                    $('<a href="#carouselExampleFade" data-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="sr-only">Next</span></a>').appendTo('.carousel-control-next');
+                    $('#carouselExampleFade').carousel();
+                    glosario();
                   },
               error:function(){
               }
@@ -183,7 +180,6 @@
             });
       
 </script>
-</div>
 @endsection
 
 @section('content')
