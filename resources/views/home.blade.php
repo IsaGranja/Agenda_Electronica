@@ -133,33 +133,6 @@
           }
         });
     }
-
-    function cambioContenidos(){
-        console.log("hmm its change");
-        var $contenidoCombo = $("#contenido");
-        $('#contenido option[value!="0"]').remove();
-        //$contenidoCombo.empty();
-        var codtema=$('#tema').val();
-        var codtema=$('#listaT').val();
-        //var div=$('#tema').parent();
-        $.ajax({
-          type:'get',
-          url:'{!!URL::to('json-contenidos')!!}',
-          data:{'codtema':codtema},
-          dataType:'json',
-          success:function(data){
-            console.log('success');
-            console.log(data);
-            console.log(data.length);
-            for(var i=0;i<data.length;i++){
-              $contenidoCombo.append('<option value="'+data[i].codcontenido+'">'+data[i].textocontenido+'</option>');
-            }
-          },
-          error:function(){
-          }
-        });
-    }
-    
   
 </script>
 </div>
@@ -177,32 +150,6 @@
         <div class="editor" id="editor" style="text-align: left; width:100%"  contenteditable="false"></div>
         
         <script>
-          function cambioContenidos(){
-            console.log("hmm its ontenidos");
-            var $contenidoCombo = $("#editor");
-            $('#contenido option[value!="0"]').remove();
-            //$contenidoCombo.empty();
-            var codtema=$('#tema').val();
-            //var div=$('#tema').parent();
-            $.ajax({
-              type:'get',
-              url:'{!!URL::to('json-contenidos')!!}',
-              data:{'codtema':codtema},
-              dataType:'json',
-              success:function(data){
-              console.log('success conte');
-              console.log(data);
-              console.log(data.length);
-              document.getElementById('editor').innerHTML='';
-              for(var i=0;i<data.length ;i++){
-                $contenidoCombo.append('<div class="editor" id="editor" value="'+data[i].codcontenido+'" style="text-align: left; width:100%" contenteditable="false">'+data[i].textocontenido+'</div>');
-              //$contenidoCombo.append('<option value="'+data[i].codcontenido+'">'+data[i].textocontenido+'</option>');
-              }
-            },
-            error:function(){
-            }
-            });
-            }
             function cambioContenidos1(){
             console.log("fasfa");
             var $contenidoCombo = $("#editor");
@@ -223,6 +170,33 @@
                   for(var i=0;i<data.length ;i++){
                     $contenidoCombo.append('<div class="editor" id="editor" value="'+data[i].codcontenido+'" style="text-align: left; width:100%" contenteditable="false">'+data[i].textocontenido+'</div>');                  
                   }
+                  /////
+                  var text = $("#editor").text().replace(/[\s]+/g, " ").trim();
+                  var word = text.split(" ");
+                  var newHTML = "";
+
+                  $.each(word, function(index, value){
+                      switch(value.toUpperCase()){
+                          case "SELECT":
+                          case "FROM":
+                          case "WHERE":
+                          case "LIKE":
+                          case "BETWEEN":
+                          case "NOTLIKE":
+                          case "FALSE":
+                          case "NULL":
+                          case "ISA":
+                          case "TRUE":
+                          case "VARIABLE":
+                          case "NOTIN":
+                              newHTML += "<span class='statement' style='white-space: nowrap;' data-toggle='tooltip' data-placement='right' title='Ola ke ase isa jajaja :v'>" + value + "&nbsp;</span>"              
+                              break;
+                          default: 
+                              newHTML += "<span class='other'>" + value + "&nbsp;</span>";
+                      }
+                  });
+                  $("#editor").html(newHTML);
+                  /////
                 },
                 error:function(){
                 }
@@ -234,53 +208,14 @@
         
     <script>
 
-    $("#editor").on("focus mouseover",function(e){
-          var text = $("#editor").text().replace(/[\s]+/g, " ").trim();
-          var word = text.split(" ");
-          var newHTML = "";
-
-          $.each(word, function(index, value){
-              switch(value.toUpperCase()){
-                  case "SELECT":
-                  case "FROM":
-                  case "WHERE":
-                  case "LIKE":
-                  case "BETWEEN":
-                  case "NOTLIKE":
-                  case "FALSE":
-                  case "NULL":
-                  case "ISA":
-                  case "TRUE":
-                  case "VARIABLE":
-                  case "NOTIN":
-                      newHTML += "<span class='statement' style='white-space: nowrap;' data-toggle='tooltip' data-placement='right' title='Ola ke ase isa jajaja :v'>" + value + "&nbsp;</span>"              
-                      break;
-                  default: 
-                      newHTML += "<span class='other'>" + value + "&nbsp;</span>";
-              }
-          });
-          $("#editor").html(newHTML);
-          
-          //// Set cursor postion to end of text
-          /*var child = $("#editor").children();
-          var range = document.createRange();
-          var sel = window.getSelection();
-          range.setStart(child[child.length - 1], 1);
-          range.collapse("#editor");
-          sel.removeAllRanges();
-          sel.addRange(range);
-          $("#editor")[0].focus(); */
-          ///////
-  });
   $("#editor").ready(function(){
     $('[data-toggle="popover"]').popover();   
   });
-  /*$("#editor").ready(function () {
-    $('[data-toggle="tooltip"]').tooltip()
-  });*/
+
   $( document ).ready(function() {
     $('[data-toggle="tooltip"]').tooltip({'placement': 'top'});
   });
+  
     </script>
       </div>
       <div class="carousel-item">
