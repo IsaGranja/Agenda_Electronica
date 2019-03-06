@@ -6,14 +6,15 @@
     <title>Principal</title>
     <base href="{{ URL::asset('/') }}" target="_top">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="{{ url('css/glyphicon.css') }}" />
-    <link rel="stylesheet" type="text/css" media="screen" href="{{ url('css/bootstrap.min.css') }}" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ url('js/jquery-3.3.1.slim.min.js') }}" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ url('css/glyphicon.css') }}" />    
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ url('js/popper.min.js') }}" />
     <link rel="stylesheet" type="text/css" media="screen" href="{{ url('css/normalize.css') }}" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ url('css/bootstrap.min.css') }}" />    
     <link rel="stylesheet" type="text/css" media="screen" href="{{ url('css/Proyecto_AgendaElectronica-style.css') }}" />
     <script src="{{ url('js/jquery-3.3.1.min.js') }}"></script>
     <script src="{{ url('js/Proyecto.js') }}"></script>
-    <link rel="stylesheet" type="text/css" media="screen" href="{{ url('js/jquery-3.3.1.slim.min.js') }}" />
-    <link rel="stylesheet" type="text/css" media="screen" href="{{ url('js/popper.min.js') }}" />
+        
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <style>
     .dropdown-submenu {
@@ -266,7 +267,40 @@
                     
                      function replaceAll(str, find, replace) {
                         return str.replace(new RegExp(find, 'g'), replace);
-                    }    
+                    }   
+                     
+                    function cambioSlide(){
+                        //$valorR = $("#carouselExampleFade div").find("div.active").attr('value').toString();
+                        //console.log("Valores");
+                        //console.log("valor: "+ $valorR);
+                        //anotaciones($valorR);
+                    }
+                   
+                    $('#carouselExampleFade').on('slide.bs.carousel', function () {
+                        var totalItems = $('#carouselExampleFade').length;
+                        var currentIndex = $('div.active').index() + 2;
+                        
+                        alert(''+currentIndex+'/'+totalItems+'');
+
+                    });
+                        $('.carousel-control-next, .carousel-control-prev').on('click', function () {
+                            //$valorR = $("#carouselExampleFade div").find("div.active").attr('value').toString();
+                            //console.log("Valores");
+                            //anotaciones($valorR);
+                        });
+                        /*$(".carousel-control-next").click(function(){
+
+                            $valorR = $("#carouselExampleFade div").find("div.active").(index()+1).attr('value').toString();
+                            alert("NEXT");
+                            anotaciones($valorR);
+                            alert($valorR);
+                        });
+                        $(".carousel-control-prev").click(function(){
+                            $valorR = $("#carouselExampleFade div").find("div.active").attr('value').toString();
+                            alert("PREV");
+                            anotaciones($valorR);
+                            alert($valorR);
+                        });*/
                     function iconos()
                     {
                         var contenido = null;
@@ -274,18 +308,18 @@
                                 var imagenT=$(this).attr('src');
                                 var imagenID=$(this).attr('id');
                                 $valor = $("#carouselExampleFade div").find("div.active").attr('value').toString();
-                                //glosarios(valor);
+                                anotaciones($valor);
                                 $.ajax({
                                     type:'get',
                                     url:'{!!URL::to('json-contenidosUnico')!!}',
                                     data:{'codcontenido':$valor},
                                     dataType:'json',
                                     success:function(data){
+                                        //$('#mimodal5').empty();
                                         console.log("CONTENIDO");
                                         console.log(data.length);
                                         console.log(data);
-                                        contenido=data[0];
-                                        
+                                        contenido=data[0];    
                                 },
                                 error:function(){
                             }
@@ -357,6 +391,30 @@
                     }
                     });
                     }
+                    function anotaciones($codcontenido){
+                        console.log("FUNCION ANOTACIONES");
+                                $.ajax({
+                                type:'get',
+                                url:'{!!URL::to('json-anotaciones')!!}',
+                                data:{'codcontenido':$codcontenido},
+                                dataType:'json',
+                                success:function(data){
+                                    console.log("anotaciones");
+                                    console.log(data.length);
+                                    console.log(data);
+                                    // $("#editor").remove();
+                                    //$("#carousel-indicators").empty();
+                                    //$('.altoAnotaciones').empty();
+                                    document.getElementById("comentarioEstudiante").value = "";
+                                    //comentarioEstudiante.val(data[0].anotestudiante);
+                                    $('#comentarioEstudiante').val($('#comentarioEstudiante').val() + data[0].anotestudiante);
+                                        //$('#comentarioEstudiante').append(data[i].anotestudiante)
+                                
+                                },
+                                error:function(){
+                            }
+                            });
+                        }
                     </script>
                 </tr>
             </table>

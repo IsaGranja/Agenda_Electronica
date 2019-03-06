@@ -127,13 +127,12 @@ class AnotacionesController extends Controller
 
 		$codcontenido=Input::get('codcontenido');
 
-		$anotaciones=DB::table('anotaciones')
-		->where('cedestudiante','=',$codcedestudiante)
+		$anotaciones=DB::table('anotaciones_estudiante')
+		->where('cedestudiante','=',$cedestudiante)
 		->where('codcontenido','=',$codcontenido)
-		->orderby('codcontenido','ASC')
 		->get();
 
-		return response()->json($contenidos);
+		return response()->json($anotaciones);
 	}
 	
 	public function index()
