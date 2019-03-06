@@ -211,7 +211,7 @@
                                 <div id="mimodal5" class="modal-dialog imagen">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h1>Iformación adicional</h1>    
+                                            <h1>Información adicional</h1>    
                                             <button class="close" data-dismiss="modal">&times;</button>                                                
                                         </div>
                                         <div class="modal-body">
@@ -257,35 +257,64 @@
                                 </div>
                             </div>
                     </td>
-                    <script type="text/javascript">
+                    <script type="text/javascript">   
+                     /*$('#carouselExampleFade').on('slide.bs.carousel', function(e) {
+                        var valor = $("#carouselExampleFade div").find("div.active").attr('value'); 
+                        alert(valor);
+
+                     });*/ 
+                  
+                     function replaceAll(str, find, replace) {
+                        return str.replace(new RegExp(find, 'g'), replace);
+                    }    
                     function iconos()
                     {
-
+                        var contenido = null;
                         $('.imagen2').click(function(){
                                 var imagenT=$(this).attr('src');
-                                var imagenID=$(this).attr('id'); 
-                                $(this).removeData();                            
-                            if(imagenT==""){
-                                $('.recibir-imagen').attr('src',"{{ url('img/beagle.jpg') }}"); //aqui se coloca la imagen que desea cargar
-                                    $('#mimodal').modal(); 
+                                var imagenID=$(this).attr('id');
+                                $valor = $("#carouselExampleFade div").find("div.active").attr('value').toString();
+
+                                $.ajax({
+                                    type:'get',
+                                    url:'{!!URL::to('json-contenidosUnico')!!}',
+                                    data:{'codcontenido':$valor},
+                                    dataType:'json',
+                                    success:function(data){
+                                        console.log("CONTENIDO");
+                                        console.log(data.length);
+                                        console.log(data);
+                                        contenido=data[0];
+                                        
+                                },
+                                error:function(){
+                            }
+                            });
+                            //var editorVAL=$('#editor').attr('value'); 
+                            console.log(contenido);                            
+                            if(imagenT==""){                                                                    
+                                //alert(valor);                    
+                                $('.recibir-imagen').attr('src',"{{ url('img/no_disponible.jpg') }}"); //aqui se coloca la imagen que desea cargar
+                                $('#mimodal').modal(); 
                             }else{
                                 if(imagenID=="imagen")
-                                {
-                                    $('.recibir-imagen').attr('src',"{{ url('img/beagle.jpg') }}"); //aqui se coloca la imagen que desea cargar
+                                {            
+                                    $('.recibir-imagen').attr('src', "images/"+$valor+".jpg"); //aqui se coloca la imagen que desea cargar
                                     $('#mimodal').modal();     
                                 }else if(imagenID=="audio"){
-                                    $('.recibir-audio').attr('src',"{{ url('img/avicii_levels.mp3') }}"); //aqui se coloca el audio que desea cargar
+                                    $('.recibir-audio').attr('src',"video/"+$valor+".mp3')"); //aqui se coloca el audio que desea cargar
                                     //$('.recibir-audio').attr('type',"audio/mpeg");
                                     //$('.recibir-audio').attr('type',"audio/ogg");
                                     $('#mimodal2').modal();  
                                 }else if(imagenID=="video"){
-                                    $('.recibir-video').attr('src',"{{ url('img/mundos.mp4') }}"); //aqui se coloca el video que desea cargar
+                                    $('.recibir-video').attr('src',"audio/"+$valor+".mp4')"); //aqui se coloca el video que desea cargar
                                     $('#mimodal3').modal();  
                                 }else if(imagenID=="evaluaciones"){
                                     $('.recibir-evaluaciones').attr('src',"{{ url('img/Question_mark.ico') }}"); //aqui se coloca la evaluacion que desea cargar
                                     $('#mimodal4').modal();  
                                 }else if(imagenID=="informacion_adicional"){
                                     $('.recibir-info').attr('src',"{{ url('img/info.ico') }}"); //aqui se coloca la infoAdicional que desea cargar
+                                    $('#mimodal5 .modal-body').append(contenido["infoapoyocontenido"]);
                                     $('#mimodal5').modal();
                                 }else if(imagenID=="glosario"){
                                     $('.recibir-glosario').attr('src',"{{ url('img/glosario.ico') }}"); //aqui se coloca la infoAdicional que desea cargar

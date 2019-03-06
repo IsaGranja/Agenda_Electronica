@@ -112,6 +112,9 @@ textarea{
   height: 34rem;
   width: min-content;
   overflow: hidden;
+  display: inline-block;
+  vertical-align: middle;
+  line-height: normal;
 }
 .editor{
   width: min-content;
@@ -122,13 +125,15 @@ textarea{
   font: medium -moz-fixed;
   font: -webkit-small-control;
   resize: both;
-  display: block;
   min-width: 50rem;
   max-width: 50rem;
   height: 34rem;
   white-space: normal;
   margin:0;
   padding:0;
+  display: inline-block;
+  vertical-align: middle;
+  line-height: normal;
 }
 
 .statement {

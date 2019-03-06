@@ -90,6 +90,15 @@ class AnotacionesController extends Controller
 
 		return response()->json($contenidos);
 	}
+	public function findContenido1Func()
+	{
+		$codcontenido=Input::get('codcontenido');
+		$contenidos=DB::table('contenidos')
+		->where('codcontenido','=',$codcontenido)
+		->get();
+
+		return response()->json($contenidos);
+	}
 	public function findAnotacionesFunc()
 	{
 		$user = Auth::user();

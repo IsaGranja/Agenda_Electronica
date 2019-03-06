@@ -124,7 +124,7 @@
                     $('.carousel-inner,.carousel-indicators,.carousel-control-prev,.carousel-control-next').empty();
                     for(var i=0;i<data.length ;i++){
                       $('<li data-target="#carouselExampleFade" data-slide-to="'+i+'"></li>').appendTo('.carousel-indicators');
-                      $('<div class="carousel-item"><div class="editor" id="editor" value="'+data[i].codcontenido+'" style="text-align: left; width:100%" contenteditable="false">'+data[i].textocontenido+'</div><div class="carousel-caption"></div>   </div>').appendTo('.carousel-inner');
+                      $('<div class="carousel-item" value="'+data[i].codcontenido+'"><div class="editor" id="editor" value="'+data[i].codcontenido+'" style="text-align: left; width:100%" contenteditable="false">'+data[i].textocontenido+'</div><div class="carousel-caption"></div>   </div>').appendTo('.carousel-inner');
                       //$contenidoCombo.append('<div class="editor" id="editor" value="'+data[i].codcontenido+'" style="text-align: left; width:100%" contenteditable="false">'+data[i].textocontenido+'</div>');    
                     }
                     $('.carousel-item').first().addClass('active');
