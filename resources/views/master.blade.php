@@ -35,8 +35,8 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav">
-                <ul class="navbar-nav active">
+            
+                <ul class="navbar-nav ">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Opciones
@@ -85,17 +85,17 @@
                     </script>
                 </li>
                 </ul>
-                <ul class="navbar-nav active">
-                <li class="nav-item active">
-                    <a class="nav-link"  href="{{ url('/') }}">Descargar <span class="sr-only">(current)</span></a>
-                </li>
+                <ul class="navbar-nav ">
+                    <li class="nav-item ">
+                        <a class="nav-link"  href="{{ url('/') }}">Descargar <span class="sr-only">(current)</span></a>
+                    </li>
                 </ul>
-                <ul class="navbar-nav active">
-                <li class="nav-item active" style="color: red;">
-                    <strong>Bienvenido {{ Auth::user()->email }} </strong>
-                </li>
+                <ul class="navbar-nav align-content-center ">
+                    <li class="nav-item " style="color: white;">
+                        <b>Bienvenido {{ Auth::user()->email }} </b>
+                    </li>
                 </ul>
-                <ul class="navbar-nav mr-auto">
+                <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url('/main/logout') }}">Cerrar Sesión <span class="sr-only">(current)</span></a>
                     </li>
