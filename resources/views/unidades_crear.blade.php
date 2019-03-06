@@ -18,44 +18,49 @@
             <br>
 
             <form method="post" action = "/pagUnidades/crear"> 
-                <div class = "col-md-8">
-                    {{ csrf_field() }}
+            @csrf
+                    <div class="form-horizontal">   
+ 
                     <div class="form-group row">
-                        <label>Universidad-Carrera<span style="color:red;font-weight:bold">*</span></label>
-                        <div class="col-sm-10">
+                        <label class="control-label col-sm-3">Universidad-Carrera<span style="color:red;font-weight:bold">*</span></label>
+                        <div class="col-sm-6">
                             <select class="form-control input-lg dynamic" id="codcarrera" data-dependent ="codasignatura">
-                                <option value="">Seleccion Carrera</option>
+                                <option value="">Seleccionar Universidad - Carrera</option>
                                 @foreach($test as $t)                      
                                     <option value="{{$t->codcarrera}}">{{$t->descuniversidad}}-{{$t->descsede}}-{{$t->descfacultad}}-{{$t->descescuela}}-{{$t->desccarrera}}</option>
                                 @endforeach
                             </select>
-                        </div>
+                            </div>
                     </div>
+                    
+                    @csrf
+
+
 
                     <div class="form-group row">
-                        <label>Asignatura<span style="color:red;font-weight:bold">*</span></label>
-                        <div class="col-sm-10">
+                        <label class="control-label col-sm-3">Asignatura<span style="color:red;font-weight:bold">*</span></label>
+                        <div class="col-sm-6">
                             <select class="form-control input-lg" name="codasignatura" id="codasignatura">                    
-                                <option value="">Select Asignatura</option>
+                                <option value="">Seleccionar Asignatura</option>
                             </select>
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        <label># de Unidad<span style="color:red;font-weight:bold">*</span></label>
-                        <div class="col-sm-5">
+                        <label class="control-label col-sm-3"> # de Unidad<span style="color:red;font-weight:bold">*</span></label>
+                        <div class="col-sm-6">
                             <input type="text" class="form-control" name="numunidad">
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        <label>Unidad<span style="color:red;font-weight:bold">*</span></label>
+                        <label class="control-label col-sm-3">Descripción de Unidad<span style="color:red;font-weight:bold">*</span></label>
                         <div class="col-sm-6">
                             <input type="text" class="form-control" name="descunidad">
                         </div>
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-sm-6">
                         <button type="submit" class="btn btn-primary">Guardar</button>
                     </div>
                 </div>
