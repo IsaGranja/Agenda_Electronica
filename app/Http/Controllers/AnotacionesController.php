@@ -99,6 +99,15 @@ class AnotacionesController extends Controller
 
 		return response()->json($contenidos);
 	}
+	public function findEvaluacionFunc()
+	{
+		$codtema=Input::get('codtema');
+		$evaluaciones=DB::table('evaluaciones')
+		->where('codtema','=',$codtema)
+		->get();
+
+		return response()->json($evaluaciones);
+	}
 	public function findAnotacionesFunc()
 	{
 		$user = Auth::user();

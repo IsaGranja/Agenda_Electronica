@@ -133,6 +133,7 @@
                     $('<a href="#carouselExampleFade" data-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="sr-only">Next</span></a>').appendTo('.carousel-control-next');
                     $('#carouselExampleFade').carousel();
                     glosario();
+                    evaluaciones(codtema);
                     iconos();
                   },
                 error:function(){
@@ -179,7 +180,7 @@
 @endsection
 
 @section('content')
-<div id="carouselExampleFade" style="width:100%;" class="carousel slide carousel-fade">
+<div id="carouselExampleFade" style="width:100%;" class="carousel slide carousel-fade" data-interval="false">
     <ol class="carousel-indicators"></ol>
     <div class="carousel-inner" onchange="iconos();"></div>
     <a class="carousel-control-prev" title="Anterior" href="#carouselExampleFade" role="button" data-slide="prev">

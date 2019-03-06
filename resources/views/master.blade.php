@@ -326,6 +326,37 @@
                             }                                
                         });
                     }
+                    function evaluaciones(codtema){
+                                       
+                        $.ajax({
+                        type:'get',
+                        url:'{!!URL::to('json-evaluaciones')!!}',
+                        data:{'codtema':codtema},
+                        dataType:'json',
+                        success:function(data){
+                            console.log("eval");
+                            console.log(data.length);
+                            console.log(data);
+                            // $("#editor").remove();
+                            //$("#carousel-indicators").empty();
+                            $('.carousel-inner,.carousel-indicators,.carousel-control-prev,.carousel-control-next').empty();
+                            for(var i=0;i<data.length ;i++){
+                            $('<li data-target="#carouselExampleFade" data-slide-to="'+i+'"></li>').appendTo('.carousel-indicators');
+                            $('<div class="carousel-item" value="'+data[i].codpregunta+'"><div class="editor" id="editor" value="'+data[i].codpregunta+'" style="text-align: left; width:100%" contenteditable="false">'+data[i].enunpregevaluacion+'</div><div class="carousel-caption"></div>   </div>').appendTo('.carousel-inner');
+                            //$contenidoCombo.append('<div class="editor" id="editor" value="'+data[i].codcontenido+'" style="text-align: left; width:100%" contenteditable="false">'+data[i].textocontenido+'</div>');    
+                            }
+                            $('.carousel-item').first().addClass('active');
+                            $('.carousel-indicators > li').first().addClass('active');
+                            $('<a href="#carouselExampleFade" data-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="sr-only">Previous</span></a>').appendTo('.carousel-control-prev'); 
+                            $('<a href="#carouselExampleFade" data-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="sr-only">Next</span></a>').appendTo('.carousel-control-next');
+                            $('#carouselExampleFade').carousel();
+                            glosario();
+                            iconos();
+                        },
+                        error:function(){
+                    }
+                    });
+                    }
                     </script>
                 </tr>
             </table>

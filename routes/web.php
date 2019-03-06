@@ -170,5 +170,6 @@ Route::get('/json-unidades', 'AnotacionesController@findUnidadFunc');
 Route::get('/json-temas', 'AnotacionesController@findTemaFunc');
 Route::get('/json-contenidos', 'AnotacionesController@findContenidoFunc');
 Route::get('/json-contenidosUnico', 'AnotacionesController@findContenido1Func');
+Route::get('/json-evaluaciones', 'AnotacionesController@findEvaluacionFunc');
 Route::resource('/main/successlogin', 'AnotacionesController');
 Route::post('/main/successlogin/actualizarAnotaciones', 'AnotacionesController@update');
