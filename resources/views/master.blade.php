@@ -90,12 +90,12 @@
                         <a class="nav-link"  href="{{ url('/') }}">Descargar <span class="sr-only">(current)</span></a>
                     </li>
                 </ul>
-                <ul class="navbar-nav align-content-center ">
+                <ul class="navbar-nav ml-auto">
                     <li class="nav-item " style="color: white;">
                         <b>Bienvenido {{ Auth::user()->email }} </b>
                     </li>
                 </ul>
-                <ul class="navbar-nav ml-auto">
+                <ul class="navbar-nav ">
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url('/main/logout') }}">Cerrar Sesión <span class="sr-only">(current)</span></a>
                     </li>
@@ -258,15 +258,16 @@
                             </div>
                     </td>
                     <script type="text/javascript">
-                    $(document).ready(function()
+                    function iconos()
                     {
+
                         $('.imagen2').click(function(){
                                 var imagenT=$(this).attr('src');
                                 var imagenID=$(this).attr('id'); 
                                 $(this).removeData();                            
                             if(imagenT==""){
-                                $('.recibir-imagen').attr('src',"{{ url('img/Image-not-found.gif') }}");
-                                $('#mimodal').modal();
+                                $('.recibir-imagen').attr('src',"{{ url('img/beagle.jpg') }}"); //aqui se coloca la imagen que desea cargar
+                                    $('#mimodal').modal(); 
                             }else{
                                 if(imagenID=="imagen")
                                 {
@@ -295,7 +296,7 @@
                                 }
                             }                                
                         });
-                    });
+                    }
                     </script>
                 </tr>
             </table>
