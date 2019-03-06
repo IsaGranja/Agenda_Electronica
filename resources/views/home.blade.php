@@ -87,9 +87,7 @@
   }
   function cambioTemas(){
         console.log("hmm its change");
-        var $temaCombo = $("#tema");
         var $temaLista = $("#listaT");
-        $('#tema option[value!="0"]').remove();
         $('#listaT a[value!="0"]').remove();
         var codunidad=$('#unidad').val();
         $.ajax({
@@ -110,10 +108,8 @@
         });
     }
 //CAMBIO CONTENIDOS
-            $('#listaT').click(function(e){              
-                var cT = e.target.id;                
-                var codtema= cT; 
-                               
+            $('#listaT').click(function(e){                              
+                var codtema= e.target.id;                
                 $.ajax({
                   type:'get',
                   url:'{!!URL::to('json-contenidos')!!}',
@@ -127,18 +123,18 @@
                     //$("#carousel-indicators").empty();
                     $('.carousel-inner,.carousel-indicators,.carousel-control-prev,.carousel-control-next').empty();
                     for(var i=0;i<data.length ;i++){
-                      $('<div class="item"><div class="editor" id="editor" value="'+data[i].codcontenido+'" style="text-align: left; width:100%" contenteditable="false">'+data[i].textocontenido+'</div><div class="carousel-caption"></div>   </div>').appendTo('.carousel-inner');
-                      $('<li data-target="#carouselExampleFade" data-slide-to="'+i+'"></li>').appendTo('.carousel-indicators')
+                      $('<li data-target="#carouselExampleFade" data-slide-to="'+i+'"></li>').appendTo('.carousel-indicators');
+                      $('<div class="carousel-item"><div class="editor" id="editor" value="'+data[i].codcontenido+'" style="text-align: left; width:100%" contenteditable="false">'+data[i].textocontenido+'</div><div class="carousel-caption"></div>   </div>').appendTo('.carousel-inner');
                       //$contenidoCombo.append('<div class="editor" id="editor" value="'+data[i].codcontenido+'" style="text-align: left; width:100%" contenteditable="false">'+data[i].textocontenido+'</div>');    
                     }
-                    $('.item').first().addClass('active');
+                    $('.carousel-item').first().addClass('active');
                     $('.carousel-indicators > li').first().addClass('active');
                     $('<a href="#carouselExampleFade" data-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="sr-only">Previous</span></a>').appendTo('.carousel-control-prev'); 
                     $('<a href="#carouselExampleFade" data-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="sr-only">Next</span></a>').appendTo('.carousel-control-next');
                     $('#carouselExampleFade').carousel();
                     glosario();
                   },
-              error:function(){
+                error:function(){
               }
               });
             }); 
@@ -177,16 +173,14 @@
 
             $( document ).ready(function() {
               $('[data-toggle="tooltip"]').tooltip({'placement': 'top'});
-            });
-      
+            }); 
 </script>
 @endsection
 
 @section('content')
-<div id="carouselExampleFade" style="width:100%;" class="carousel slide carousel-fade" data-ride="carousel" data-interval="false">
+<div id="carouselExampleFade" style="width:100%;" class="carousel slide carousel-fade">
     <ol class="carousel-indicators"></ol>
-    <div class="carousel-inner" style="width:100%;" role="listbox" >
-    </div>
+    <div class="carousel-inner"></div>
     <a class="carousel-control-prev" title="Anterior" href="#carouselExampleFade" role="button" data-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="sr-only">Previous</span>

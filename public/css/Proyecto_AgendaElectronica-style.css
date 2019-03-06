@@ -105,13 +105,13 @@ textarea{
 }
 #editor{
   position:relative;
-  background-color: #444;
-  color: white;
+  background-color: #DEDBDB;
+  color: #969393;
   font-size: 24px;
   font-family: monospace;
   height: 34rem;
   width: min-content;
-  overflow:auto;
+  overflow: hidden;
 }
 .editor{
   width: min-content;
