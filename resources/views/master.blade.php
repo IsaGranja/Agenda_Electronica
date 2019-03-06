@@ -307,10 +307,10 @@
                                 //alert("TI-1: " + totalItems);
                                 if (index <= totalItems) {
                                     $valorR = $("#carouselExampleFade div").find("div.active").next().attr('value').toString(); 
-                                    alert("NEXT: "+$valorR);
+                                    //alert("NEXT: "+$valorR);
                                 } else {
                                     $valorR = $("#carouselExampleFade div").carousel(0).attr('value').toString();
-                                    alert("NEXT: "+$valorR);
+                                    //alert("NEXT: "+$valorR);
                                 }
                                 
                             }
@@ -360,15 +360,15 @@
                             }else{
                                 if(imagenID=="imagen")
                                 {            
-                                    $('.recibir-imagen').attr('src', "images/"+$valor+".jpg"); //aqui se coloca la imagen que desea cargar
+                                    $('.recibir-imagen').attr('src', "images/"+$valor); //aqui se coloca la imagen que desea cargar
                                     $('#mimodal').modal();     
                                 }else if(imagenID=="audio"){
-                                    $('.recibir-audio').attr('src',"audio/"+$valor+".mp3"); //aqui se coloca el audio que desea cargar
+                                    $('.recibir-audio').attr('src',"audio/"+$valor); //aqui se coloca el audio que desea cargar
                                     //$('.recibir-audio').attr('type',"audio/mpeg");
                                     //$('.recibir-audio').attr('type',"audio/ogg");
                                     $('#mimodal2').modal();  
                                 }else if(imagenID=="video"){
-                                    $('.recibir-video').attr('src',"video/"+$valor+".mp4"); //aqui se coloca el video que desea cargar
+                                    $('.recibir-video').attr('src',"video/"+$valor); //aqui se coloca el video que desea cargar
                                     $('#mimodal3').modal();  
                                 }else if(imagenID=="evaluaciones"){
                                     $('.recibir-evaluaciones').attr('src',"{{ url('img/Question_mark.ico') }}"); //aqui se coloca la evaluacion que desea cargar
