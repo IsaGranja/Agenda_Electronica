@@ -45,6 +45,23 @@ class FacultadxSedeController extends Controller
         return view('facultadesxsede_crear', compact('unis','sedes','facus'));
     }
 
+    public function fetch(Request $request)
+    {
+        $select = $request->get('select');
+        $value = $request->get('value');
+        $dependent = $request->get('dependent');
+        $data = DB::table('sedes')
+        ->where('coduniversidad', $value)
+        ->groupBy('codsede')
+        ->get();
+        $output = '<option value="">Select Sede</option>';
+        foreach($data as $row)
+        {
+            $output .= '<option value="'.$row->$dependent.'">'.$row->descsede.'</option>';
+        }
+        echo $output;
+	}
+
     public function store(Request $request)
     {
         $facultadxsede = new FacultadxSede();

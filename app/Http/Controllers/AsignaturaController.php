@@ -10,50 +10,48 @@ class AsignaturaController extends Controller
     
     public function create()
     {
-        try{
-        $carreras = DB::table('carreras')->join('escuelas','escuelas.codescuela','=','carreras.codescuela')
-        ->join('facultades','escuelas.codfacultad','=','facultades.codfacultad')
-        ->join('facultadesxsedes','facultadesxsedes.codfacultad','=','facultades.codfacultad')
-        ->join('sedes','sedes.codsede','=','facultadesxsedes.codsede')
-        ->join('universidades','universidades.coduniversidad','=','sedes.coduniversidad')
-        ->orderBy('codcarrera')->paginate();
+        try {
+        $carreras = DB::select('SELECT carreras.codcarrera, carreras.desccarrera, escuelas.descescuela, facultades.descfacultad, sedes.descsede, universidades.descuniversidad
+        FROM carreras natural join escuelas natural join facultades natural join facultadesxsedes natural join sedes natural join universidades;');
+       // dd($carreras);
+        } catch (\Exception $exception) {
+            return back()->withError($exception->getMessage());
         }
-        catch(\Exception $e)		{
-			return back()->withError($e->getMessage());
-		}
-        return view('CreateAsignatura')->with('carreras', $carreras);
+        return view('CreateAsignatura',['carreras'=>$carreras]);
     }
 
     public function store(Request $request)
     {
-        try{
-            $desccarrera = $request->input('desccarrera');
-            $codasignatura = $request->input('codasignatura');
-            $descasignatura = $request->input('descasignatura');
-            $credasignatura = $request->input('credasignatura');
-            $nivelasignatura = $request->input('nivelasignatura');
-            $objeasignatura = $request->input('objeasignatura');
-            $resulapreasignatura = $request->input('resulapreasignatura');
-            $caracapreasignatura = $request->input('caracapreasignatura');
+        try {
+        $codasignatura = $request->input('codasignatura');
+        $descasignatura = $request->input('descasignatura');
+        $credasignatura = $request->input('credasignatura');
+        $nivelasignatura = $request->input('nivelasignatura');
+        $objeasignatura = $request->input('objeasignatura');
+        $resulapreasignatura = $request->input('resulapreasignatura');
+        $caracapreasignatura = $request->input('caracapreasignatura');
 
-            $carreras= DB::table('carreras')->select('codcarrera')->where('desccarrera','=',$desccarrera)->get();
-            
-            $codcarrera = $request->input('codcarrera');
-            /*
-            $codcarerra="";
-            foreach ($carreras as $carrera){
-                $codcarrera = $carrera->codcarrera;
-                console.log($codcarrera);
-            }*/
+        
+        $codcarrera= $request->input('unies');
+        
 
-            $data = array('codcarrera'=>$codcarrera,
-            'codasignatura'=>$codasignatura,
-            'descasignatura'=>$descasignatura,
-            'credasignatura'=>$credasignatura,
-            'nivelasignatura'=>$nivelasignatura,
-            'objeasignatura'=>$objeasignatura,
-            'resulapreasignatura'=>$resulapreasignatura,
-            'caracapreasignatura'=>$caracapreasignatura
+        $data = array('codcarrera'=>$codcarrera,
+        'codasignatura'=>$codasignatura,
+        'descasignatura'=>$descasignatura,
+        'credasignatura'=>$credasignatura,
+        'nivelasignatura'=>$nivelasignatura,
+        'objeasignatura'=>$objeasignatura,
+        'resulapreasignatura'=>$resulapreasignatura,
+        'caracapreasignatura'=>$caracapreasignatura
+    
+        );
+        DB::table('asignaturas')->insert($data);
+        } catch (\Exception $exception) {
+            return back()->withError($exception->getMessage());
+        }
+
+        
+        return redirect('pagAsignaturas')->with('success', 'Se añadio correctamente');
         
             );
             DB::table('asignaturas')->insert($data);
@@ -66,32 +64,38 @@ class AsignaturaController extends Controller
 
     public function index()
     {
-        $carreras= DB::table('carreras')->select('codcarrera')->where('desccarrera','=',$desccarrera)->get();
+        try {
         $asignaturas = AsignaturaModel::select('*')->get();
+        } catch (\Exception $exception) {
+            return back()->withError($exception->getMessage());
+        }
         return view('IndexAsignaturas',['asignaturas'=>$asignaturas]);
     }
 
     public function edit($codasignatura)//abre la ventana para modificar
     {
-        $universidades = DB::table('universidades')->select('*')->get();
-        $carreras = DB::table('carreras')->select('*')->get();
+        try {
         $asignaturas = DB::table('asignaturas')->select('*')->where('codasignatura',$codasignatura)->get();
-        
-        $codcar;
-        foreach ($asignaturas as $ass){
-            $codcar = $ass->codcarrera;
+        $codcarrera;
+            foreach ($asignaturas as $asig){
+                $codcarrera = $asig->codcarrera;
+            }
+        $carreras = DB::select('SELECT carreras.codcarrera, carreras.desccarrera, escuelas.descescuela, facultades.descfacultad, sedes.descsede, universidades.descuniversidad
+        FROM carreras natural join escuelas natural join facultades natural join facultadesxsedes natural join sedes natural join universidades;');
+       // dd($carreras);
+
+       $cars = DB::select("SELECT carreras.codcarrera, carreras.desccarrera, escuelas.descescuela, facultades.descfacultad, sedes.descsede, universidades.descuniversidad
+        FROM carreras natural join escuelas natural join facultades natural join facultadesxsedes natural join sedes natural join universidades where carreras.codcarrera = '".$codcarrera."';");
+       // dd($carreras);
+        } catch (\Exception $exception) {
+            return back()->withError($exception->getMessage());
         }
-
-        $cars = DB::table('carreras')->select('*')->where('codcarrera',$codcar)->get();
-
-         
-        return view('EditAsignatura',compact('universidades','carreras','asignaturas','cars'));
+        return view('EditAsignatura',compact('carreras','asignaturas','cars'));
     }
 
     public function update(Request $request)//modificar
     {   
-        
-        $desccarrera = $request->input('desccarrera');
+        try {
         $codasignatura = $request->input('codasignatura');
         $descasignatura = $request->input('descasignatura');
         $credasignatura = $request->input('credasignatura');
@@ -99,12 +103,7 @@ class AsignaturaController extends Controller
         $objeasignatura = $request->input('objeasignatura');
         $resulapreasignatura = $request->input('resulapreasignatura');
         $caracapreasignatura = $request->input('caracapreasignatura');
-
-        $carreras= DB::table('carreras')->select('codcarrera')->where('desccarrera','=',$desccarrera)->get();
-        $codcarrera;
-        foreach ($carreras as $carrera){
-            $codcarrera = $carrera->codcarrera;
-        }
+        $codcarrera= $request->input('unies');
 
         $data = array('codcarrera'=>$codcarrera,
         'codasignatura'=>$codasignatura,
@@ -113,19 +112,24 @@ class AsignaturaController extends Controller
         'nivelasignatura'=>$nivelasignatura,
         'objeasignatura'=>$objeasignatura,
         'resulapreasignatura'=>$resulapreasignatura,
-        'caracapreasignatura'=>$caracapreasignatura
-    
-        );
+        'caracapreasignatura'=>$caracapreasignatura);
+
         DB::table('asignaturas')->where('codasignatura','=', $codasignatura)->update($data);
-       
-        return redirect('pagAsignaturas')->with('success', 'Se modificó correctamente');
+        } catch (\Exception $exception) {
+            return back()->withError($exception->getMessage());
+        }
+        return redirect('pagAsignaturas')->with('success', 'Se modifico correctamente');
         
     }
 
     public function destroy($codasignatura)//modificar
     {   
+        try {
         DB::table('asignaturas')->where('codasignatura','=', $codasignatura)->delete();
-        return redirect('pagAsignaturas')->with('success','Se eliminó correctamente');
+        } catch (\Exception $exception) {
+            return back()->withError($exception->getMessage());
+        }
+        return redirect('pagAsignaturas')->with('success','Se elimino correctamente');
     }
 
 

@@ -18,16 +18,18 @@
 
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Universidad</label>
-                    <select class="form-control" id="universidad" name="universidad"  style="width:220px">
-                        @foreach ($unis as $uni)
-    +                       <option value="{{$uni->coduniversidad}}">{{$uni->descuniversidad}} </option>
-    +                   @endforeach
+                    <select name="coduniversidad" class="form-control" type="text" id="coduniversidad" data-dependent="codsede" style="width:220px">
+                            <option>Select Universidad</option>
+                                @foreach($unis as $uni)
+                                    <option value="{{$uni->coduniversidad}}">{{$uni->descuniversidad}}</option>
+                                @endforeach
                     </select>
+                    
                 </div>
 
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Sede</label>
-                    <select class="form-control" id="sede" name="sede"  style="width:220px">
+                    <select class="form-control" id="codsede" name="codsede"  style="width:220px">
                         @foreach ($sedes as $sed)
     +                       <option value="{{$sed->codsede}}">{{$sed->descsede}} </option>
     +                   @endforeach
@@ -51,4 +53,31 @@
             <br>
         </div>
     </body>
+    <script>
+        $(document).ready(function(){
+            $('#coduniversidad').change(function(){
+                if($(this).val() != '')
+                {
+                    var select = $(this).attr("id");
+                    var value = $(this).val();
+                    var dependent = $(this).data('dependent');
+                    var _token = $('input[name="_token"]').val();
+                    $.ajax({
+                        url:"{{ route('pagFacultadesxSede.fetch') }}",
+                        method: "POST",
+                        data:{select:select, value:value, _token:_token, dependent:dependent},
+                        success:function(result)
+                        {
+                            $('#'+dependent).html(result);
+                        }
+                    })
+                }
+            });
+
+            $('#coduniversidad').change(function(){
+                $('#codsede').val('');
+            });
+
+        });
+    </script>
 @endsection
