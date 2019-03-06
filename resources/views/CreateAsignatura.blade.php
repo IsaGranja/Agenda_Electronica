@@ -22,26 +22,23 @@
 @csrf
     <div class="form-horizontal">
    
-
     <div class="form-group row">
         <label class="control-label col-sm-3" for="unies">Universidad-Carrera</label>
-        <div class="col-sm-10">
-        <select class="form-control" id="unies" name="unies">
-        <option>Seleccionar Carrera</option>
-    @foreach ($carreras as $carrera)
-    <option value="{{$carrera->codcarrera}}" > {{$carrera->descuniversidad}} -  {{$carrera->descsede}} -  {{$carrera->descfacultad}} -  {{$carrera->descescuela}} -  {{$carrera->desccarrera}}</option>
-    @endforeach
-        </select>
-            </div>
+        <div class="col-sm-6">
+            <select class="form-control" id="unies" name="unies">
+            <option>Seleccionar Universidad - Carrera</option>
+                @foreach ($carreras as $carrera)
+                <option value="{{$carrera->codcarrera}}" > {{$carrera->descuniversidad}} -  {{$carrera->descsede}} -  {{$carrera->descfacultad}} -  {{$carrera->descescuela}} -  {{$carrera->desccarrera}}</option>
+                @endforeach
+            </select>
+        </div>
     </div>
 
-
-
     <div class="form-group row">
-        <label class="control-label col-sm-3" for="codasignatura">Codigo</label>
+        <label class="control-label col-sm-3" for="codasignatura">Código</label>
         <div class="col-sm-6">
             <input type="text" id="desccarrera" class="form-control" name="codasignatura">
-            </div>
+        </div>
     </div>
 
     <div class="form-group row">
@@ -53,7 +50,7 @@
 
 
     <div class="form-group row">
-        <label class="control-label col-sm-3" for="credasignatura"># de creditos</label>
+        <label class="control-label col-sm-3" for="credasignatura"># de créditos</label>
         <div class="col-sm-6">
         <select class="form-control" id="credasignatura" name="credasignatura">
             <option>1</option>
@@ -105,7 +102,7 @@
     </div>
 
     <div class="form-group row">
-        <label class="control-label col-sm-3" for="caracapreasignatura">Caracteristicas de aprendizaje</label>
+        <label class="control-label col-sm-3" for="caracapreasignatura">Características de aprendizaje</label>
         <div class="col-sm-6">
         <textarea class="form-control" rows="5" name="caracapreasignatura" id='caracapreasignatura' value=""></textarea>
             </div>

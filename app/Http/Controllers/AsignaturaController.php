@@ -10,10 +10,15 @@ class AsignaturaController extends Controller
     
     public function create()
     {
-        $universidades = DB::table('universidades')->select('*')->get();
-        $carreras = DB::table('carreras')->select('*')->get();
-        
-        return view('CreateAsignatura',['universidades'=>$universidades,'carreras'=>$carreras]);
+        $carreras = DB::table('carreras')->join('escuelas','escuelas.codescuela','=','carreras.codescuela')
+        ->join('facultades','escuelas.codfacultad','=','facultades.codfacultad')
+        ->join('facultadesxsedes','facultadesxsedes.codfacultad','=','facultades.codfacultad')
+        ->join('sedes','sedes.codsede','=','facultadesxsedes.codsede')
+        ->join('universidades','universidades.coduniversidad','=','sedes.coduniversidad')
+        ->orderBy('codcarrera')->paginate();
+        //return view('unidades',compact('test'));
+        return view('CreateAsignatura')->with('carreras', $carreras);
+
     }
 
     public function store(Request $request)
