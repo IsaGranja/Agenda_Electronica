@@ -9,18 +9,27 @@ class AsignaturaXProfesorController extends Controller
 {
     
     public function create()
-    {
-        $periodos = DB::table('periodos')->select('*')->where('estperiodo','1')->get();
+    {   
+        try {
+        $periodos = DB::table('periodos')->select('*')->where('estperiodo','A')->get();
         $profesores = DB::table('profesores')->select('*')->get();
         $asignaturas = DB::table('asignaturas')->select('*')->get();
-        return view('AsignaturaXProfesor',['periodos'=>$periodos,'profesores'=>$profesores,'asignaturas'=>$asignaturas]);
+        $profasigs = DB::select('SELECT asignaturasxprofesor.cedprofesor, asignaturas.descasignatura
+        FROM asignaturasxprofesor natural join asignaturas;');
+       // dd($carreras);
+        } catch (\Exception $exception) {
+            return back()->withError($exception->getMessage());
+        }
+        return view('AsignaturaXProfesor',['periodos'=>$periodos,'profesores'=>$profesores,'asignaturas'=>$asignaturas,'profasigs'=>$profasigs]);
     }
 
     public function store(Request $request)
     {
+        try {
         $codperiodo = $request->input('codperiodo');
         $cedprofesor = $request->input('cedprofesor');
         $asignaturas = $request->input('asignaturas');
+        DB::table('asignaturasxprofesor')->where('cedprofesor','=', $cedprofesor)->delete();
         foreach( $asignaturas as $asignatura){
             $asigs= DB::table('asignaturas')->select('codasignatura')->where('descasignatura','=',$asignatura)->get();
             $codasignatura;
@@ -34,7 +43,9 @@ class AsignaturaXProfesorController extends Controller
                 'codperiodo'=>$codperiodo,               
                 ]);
         }
-       
+        } catch (\Exception $exception) {
+            return back()->withError($exception->getMessage());
+        }
         return redirect('pagAsigxProf')->with('success', 'Se añadio correctamente');
         
     }
@@ -42,13 +53,17 @@ class AsignaturaXProfesorController extends Controller
     public function index()//consultar
     {
         
-
+        try {
         $profesores = AsignaturasxprofesorModel::select('*')->get();
         //echo $asigxprofs;
         return view('indexAsigxprof',['profesores'=>$profesores]);
+        } catch (\Exception $exception) {
+            return back()->withError($exception->getMessage());
+        }
     }
     public function edit($cedprofesor)//abre la ventana para modificar
     {
+        try {
         $periodos = DB::table('periodos')->select('*')->where('estperiodo','A')->get();
         $profesores = DB::table('profesores')->select('*')->where('cedprofesor',$cedprofesor)->get();
         $asignaturas = DB::table('asignaturas')->select('*')->get();
@@ -56,12 +71,15 @@ class AsignaturaXProfesorController extends Controller
         ->join('asignaturas', 'asignaturasxprofesor.codasignatura', '=', 'asignaturas.codasignatura')
         ->where('cedprofesor',$cedprofesor)
         
-        ->get(); 
+        ->get();
+        } catch (\Exception $exception) {
+            return back()->withError($exception->getMessage());
+        } 
         return view('EditAsigxprof',compact('periodos','profesores','asignaturasxprofesor','asignaturas'));
     }
     public function update(Request $request)//modificar
     {   
-        
+        try {
         $codperiodo = $request->input('codperiodo');
         $cedprofesor = $request->input('cedprofesor');
              
@@ -82,13 +100,20 @@ class AsignaturaXProfesorController extends Controller
                 'codperiodo'=>$codperiodo,               
                 ]);
         }
+        } catch (\Exception $exception) {
+            return back()->withError($exception->getMessage());
+        }
        
         return redirect('pagAsigxProf')->with('success', 'Se modifico correctamente');
         
     }
     public function destroy($cedprof)//modificar
     {   
+        try {
         DB::table('asignaturasxprofesor')->where('cedprofesor','=', $cedprofesor)->delete();
+        } catch (\Exception $exception) {
+            return back()->withError($exception->getMessage());
+        }
         return redirect('pagAsigxProf')->with('success','Se elimino correctamente');
     }
 

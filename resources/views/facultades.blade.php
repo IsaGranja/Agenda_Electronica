@@ -3,42 +3,25 @@
 @section('content')
     
 <body>
-        <div>
-            
+        <div>            
             <div class="row">
+                  
                 <div class="col-sm-11">
-                    <h2>Facultad</h2>
+                    <h2>Facultades</h2>
                 </div>
-                <div class="col-sm-3">
-                    <form  action="/pagFacultades" method="GET" class="navbar-form navbar-left" role="search">
-                        <div class= "input-group">
-                            <input type="text" class="form-control"name="buscardesc" id="buscardesc"placeholder="buscar por Descripción"/>
-                            <span class="input-group-btn">
-                                <button type="submit" class="btn btn-info">
-                                    Buscar
-                                </button>
-                            </span>
-                        </div>
-                    </form>
-                </div>
-
-                <div class="col-md-2"></div>  
-
+                
                 <div class="col-md-2">
                     <a href="pagFacultades/crear"><button type="submit" class="btn btn-info">Nuevo</button></a>
                 </div>  
 
-
                 <div class = "col-md-1">
                     <button type="submit" class="btn btn-info">Salir</button>
-                </div>
-
+                </div>             
             </div>
 
             <div class="table-container">
-
-                <table id="mytable" class="table table-bordred table-striped">
-                    <thead>
+                <table id="myTable" class="table table-hover "  style="width:100%; margin-top:10px">
+                    <thead class="thead-light">
                         <th></th>
                         <th></th>
                         <th>Descripción</th>
@@ -64,9 +47,24 @@
                         </tbody>
                     </thead>           
                 </table>   
-
             </div>
+
             <script>
+                $(document).ready(function () {
+                            $('#myTable').DataTable({
+                                "paging": false, 
+                            "info": false,
+                            "autoWidth": true,
+                            "searching": true, // Search box and search function will be actived
+                            "dom": '<"top"f>rt<"bottom"ilp><"clear">',
+                            "language": {
+                            "zeroRecords": "No existe registros",
+                            "infoEmpty": "No se econtró ningún registro",
+                            "sSearch": "Buscar:   "
+                                }
+                            });
+                        });
+
                 function ConfirmDelete(){
                     var x = confirm("¿Esta seguro que desea eliminar este registro?");
                     if (x)

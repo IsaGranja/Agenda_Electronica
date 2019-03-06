@@ -10,15 +10,19 @@ class AsignaturaController extends Controller
     
     public function create()
     {
-        $universidades = DB::table('universidades')->select('*')->get();
-        $carreras = DB::table('carreras')->select('*')->get();
-        
-        return view('CreateAsignatura',['universidades'=>$universidades,'carreras'=>$carreras]);
+        try {
+        $carreras = DB::select('SELECT carreras.codcarrera, carreras.desccarrera, escuelas.descescuela, facultades.descfacultad, sedes.descsede, universidades.descuniversidad
+        FROM carreras natural join escuelas natural join facultades natural join facultadesxsedes natural join sedes natural join universidades;');
+       // dd($carreras);
+        } catch (\Exception $exception) {
+            return back()->withError($exception->getMessage());
+        }
+        return view('CreateAsignatura',['carreras'=>$carreras]);
     }
 
     public function store(Request $request)
     {
-        $desccarrera = $request->input('desccarrera');
+        try {
         $codasignatura = $request->input('codasignatura');
         $descasignatura = $request->input('descasignatura');
         $credasignatura = $request->input('credasignatura');
@@ -27,11 +31,9 @@ class AsignaturaController extends Controller
         $resulapreasignatura = $request->input('resulapreasignatura');
         $caracapreasignatura = $request->input('caracapreasignatura');
 
-        $carreras= DB::table('carreras')->select('codcarrera')->where('desccarrera','=',$desccarrera)->get();
-        $codcarrera;
-        foreach ($carreras as $carrera){
-            $codcarrera = $carrera->codcarrera;
-        }
+        
+        $codcarrera= $request->input('unies');
+        
 
         $data = array('codcarrera'=>$codcarrera,
         'codasignatura'=>$codasignatura,
@@ -40,45 +42,49 @@ class AsignaturaController extends Controller
         'nivelasignatura'=>$nivelasignatura,
         'objeasignatura'=>$objeasignatura,
         'resulapreasignatura'=>$resulapreasignatura,
-        'caracapreasignatura'=>$caracapreasignatura
-    
-        );
-        DB::table('asignaturas')->insert($data);
-
-
-        
-        return redirect('pagAsignaturas')->with('success', 'Se añadio correctamente');
-        
+        'caracapreasignatura'=>$caracapreasignatura);
+            DB::table('asignaturas')->insert($data);
+        }
+        catch(\Exception $e){
+            return back()->withError($e->getMessage());
+        }
+        return redirect('pagAsignaturas')->with('success', 'Se añadió correctamente');
     }
 
     public function index()
     {
-        
+        try {
         $asignaturas = AsignaturaModel::select('*')->get();
+        } catch (\Exception $exception) {
+            return back()->withError($exception->getMessage());
+        }
         return view('IndexAsignaturas',['asignaturas'=>$asignaturas]);
     }
 
     public function edit($codasignatura)//abre la ventana para modificar
     {
-        $universidades = DB::table('universidades')->select('*')->get();
-        $carreras = DB::table('carreras')->select('*')->get();
+        try {
         $asignaturas = DB::table('asignaturas')->select('*')->where('codasignatura',$codasignatura)->get();
-        
-        $codcar;
-        foreach ($asignaturas as $ass){
-            $codcar = $ass->codcarrera;
+        $codcarrera;
+            foreach ($asignaturas as $asig){
+                $codcarrera = $asig->codcarrera;
+            }
+        $carreras = DB::select('SELECT carreras.codcarrera, carreras.desccarrera, escuelas.descescuela, facultades.descfacultad, sedes.descsede, universidades.descuniversidad
+        FROM carreras natural join escuelas natural join facultades natural join facultadesxsedes natural join sedes natural join universidades;');
+       // dd($carreras);
+
+       $cars = DB::select("SELECT carreras.codcarrera, carreras.desccarrera, escuelas.descescuela, facultades.descfacultad, sedes.descsede, universidades.descuniversidad
+        FROM carreras natural join escuelas natural join facultades natural join facultadesxsedes natural join sedes natural join universidades where carreras.codcarrera = '".$codcarrera."';");
+       // dd($carreras);
+        } catch (\Exception $exception) {
+            return back()->withError($exception->getMessage());
         }
-
-        $cars = DB::table('carreras')->select('*')->where('codcarrera',$codcar)->get();
-
-         
-        return view('EditAsignatura',compact('universidades','carreras','asignaturas','cars'));
+        return view('EditAsignatura',compact('carreras','asignaturas','cars'));
     }
 
     public function update(Request $request)//modificar
     {   
-        
-        $desccarrera = $request->input('desccarrera');
+        try {
         $codasignatura = $request->input('codasignatura');
         $descasignatura = $request->input('descasignatura');
         $credasignatura = $request->input('credasignatura');
@@ -86,12 +92,7 @@ class AsignaturaController extends Controller
         $objeasignatura = $request->input('objeasignatura');
         $resulapreasignatura = $request->input('resulapreasignatura');
         $caracapreasignatura = $request->input('caracapreasignatura');
-
-        $carreras= DB::table('carreras')->select('codcarrera')->where('desccarrera','=',$desccarrera)->get();
-        $codcarrera;
-        foreach ($carreras as $carrera){
-            $codcarrera = $carrera->codcarrera;
-        }
+        $codcarrera= $request->input('unies');
 
         $data = array('codcarrera'=>$codcarrera,
         'codasignatura'=>$codasignatura,
@@ -100,18 +101,23 @@ class AsignaturaController extends Controller
         'nivelasignatura'=>$nivelasignatura,
         'objeasignatura'=>$objeasignatura,
         'resulapreasignatura'=>$resulapreasignatura,
-        'caracapreasignatura'=>$caracapreasignatura
-    
-        );
+        'caracapreasignatura'=>$caracapreasignatura);
+
         DB::table('asignaturas')->where('codasignatura','=', $codasignatura)->update($data);
-       
+        } catch (\Exception $exception) {
+            return back()->withError($exception->getMessage());
+        }
         return redirect('pagAsignaturas')->with('success', 'Se modifico correctamente');
         
     }
 
     public function destroy($codasignatura)//modificar
     {   
+        try {
         DB::table('asignaturas')->where('codasignatura','=', $codasignatura)->delete();
+        } catch (\Exception $exception) {
+            return back()->withError($exception->getMessage());
+        }
         return redirect('pagAsignaturas')->with('success','Se elimino correctamente');
     }
 

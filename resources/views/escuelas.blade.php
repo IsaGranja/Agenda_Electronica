@@ -9,25 +9,10 @@
                 <div class="col-sm-11">
                     <h2>Escuelas</h2>
                 </div>
-                <div class="col-sm-3">
-                <form  action="/pagEscuelas" method="GET" class="navbar-form navbar-left" role="search">
-                    <div class= "input-group">
-                        <input type="text" class="form-control"name="escuelabuscar" id="escuelabuscar"placeholder="Buscar por Escuela"/>
-                        <span class="input-group-btn">
-                            <button type="submit" class="btn btn-info">
-                                Buscar
-                            </button>
-                        </span>
-                    </div>
-                </form>
-                </div>
-
-                <div class="col-md-2"></div>  
-
+                
                 <div class="col-md-2">
                     <a href="pagEscuelas/crear"><button type="submit" class="btn btn-info">Nuevo</button></a>
                 </div>  
-
 
                 <div class = "col-md-1">
                     <button type="submit" class="btn btn-info">Salir</button>
@@ -36,16 +21,14 @@
             </div>
 
             <div class="table-container">
-
-                <table id="mytable" class="table table-bordred table-striped">
-                    <thead>
+                <table id="myTable" class="table table-hover "  style="width:100%; margin-top:10px">
+                    <thead class="thead-light">
                         <th></th>
                         <th></th>
                         <th>Universidad - Sede - Facultad</th>
                         <th>Escuela</th>
                         <th>Director</th>                        
-                        <tbody>
-                            <tr>                                
+                        <tbody>                              
                                 @foreach($escuelas as $escu)
                                     <tr>
                                         <form action="{{action('EscuelasController@destroy', $escu->codescuela)}}" method="GET" onsubmit="return ConfirmDelete()">
@@ -61,14 +44,27 @@
                                         <td>{{$escu->descescuela}}</td>
                                         <td>{{$escu->directorescuela}}</td>
                                     </tr>
-                                @endforeach
-                            </tr>                        
+                                @endforeach                  
                         </tbody>
                     </thead>           
                 </table>   
 
             </div>
             <script>
+                $(document).ready(function () {
+                    $('#myTable').DataTable({
+                        "paging": false, 
+                    "info": false,
+                    "autoWidth": true,
+                    "searching": true, // Search box and search function will be actived
+                    "dom": '<"top"f>rt<"bottom"ilp><"clear">',
+                    "language": {
+                    "zeroRecords": "No existe registros",
+                    "infoEmpty": "No se econtró ningún registro",
+                    "sSearch": "Buscar:   "
+                        }
+                    });
+                });
                 function ConfirmDelete(){
                     var x = confirm("¿Esta seguro que desea eliminar este registro?");
                     if (x)
