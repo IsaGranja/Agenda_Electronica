@@ -132,16 +132,18 @@
                     $('<a href="#carouselExampleFade" data-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="sr-only">Previous</span></a>').appendTo('.carousel-control-prev'); 
                     $('<a href="#carouselExampleFade" data-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="sr-only">Next</span></a>').appendTo('.carousel-control-next');
                     $('#carouselExampleFade').carousel();
-                    //glosarios();
-                    evaluaciones(codtema);
+                    glosarios();
+                    //evaluaciones(codtema);
                     iconos();
                   },
                 error:function(){
               }
               });
             }); 
-        //GLOSARIOS                
-        function glosarios(codcontenido){
+        //GLOSARIOS     
+        //codcontenido           
+        function glosarios(){
+          /*
           $.ajax({
               type:'get',
               url:'{!!URL::to('json-glosarios')!!}',
@@ -152,7 +154,7 @@
                   console.log(data.length);
                   console.log(data);
                   contenido=data[0];
-
+*/
                   var text = $("#editor").text().replace(/[\s]+/g, " ").trim();
                   var word = text.split(" ");
                   var newHTML = "";
@@ -181,6 +183,7 @@
                           case "ISA":
                           case "TRUE":
                           case "VARIABLE":
+                          case "MODELO":
                           case "NOTIN":
                               newHTML += "<span class='statement' style='white-space: nowrap;' data-toggle='tooltip' data-placement='right' title='Ola ke ase isa jajaja :v'>" + value + "&nbsp;</span>"              
                               break;
@@ -188,11 +191,11 @@
                               newHTML += "<span class='other'>" + value + "&nbsp;</span>";
                       }
                     });
+                  
+                    /*
               },
             error:function(){
-
-            }
-        });
+            }*/
         $("#editor").html(newHTML);                  
         $("#editor").ready(function(){
           $('[data-toggle="popover"]').popover();   

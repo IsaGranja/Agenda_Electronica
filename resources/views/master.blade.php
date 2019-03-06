@@ -274,7 +274,7 @@
                                 var imagenT=$(this).attr('src');
                                 var imagenID=$(this).attr('id');
                                 $valor = $("#carouselExampleFade div").find("div.active").attr('value').toString();
-                                glosarios(valor);
+                                //glosarios(valor);
                                 $.ajax({
                                     type:'get',
                                     url:'{!!URL::to('json-contenidosUnico')!!}',
