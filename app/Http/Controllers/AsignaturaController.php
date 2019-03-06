@@ -42,18 +42,7 @@ class AsignaturaController extends Controller
         'nivelasignatura'=>$nivelasignatura,
         'objeasignatura'=>$objeasignatura,
         'resulapreasignatura'=>$resulapreasignatura,
-        'caracapreasignatura'=>$caracapreasignatura
-    
-        );
-        DB::table('asignaturas')->insert($data);
-        } catch (\Exception $exception) {
-            return back()->withError($exception->getMessage());
-        }
-
-        
-        return redirect('pagAsignaturas')->with('success', 'Se añadio correctamente');
-        
-            );
+        'caracapreasignatura'=>$caracapreasignatura);
             DB::table('asignaturas')->insert($data);
         }
         catch(\Exception $e){
