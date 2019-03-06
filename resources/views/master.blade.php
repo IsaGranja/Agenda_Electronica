@@ -276,11 +276,14 @@
                         //anotaciones($valorR);
                     }
                    
-                    $('#carouselExampleFade').on('slide.bs.carousel', function () {
-                        var totalItems = $('#carouselExampleFade .item').length;
-                        var currentIndex = $('div.active').index() + 2;
-                        
-                        alert(''+currentIndex+'/'+totalItems+'');
+                    $('#carouselExampleFade').on('slide.bs.carousel', function (e) {
+                        //var totalItems = $('#carouselExampleFade .carousel-item').length;
+                        //var currentIndex = $('div.active').index() + 2;
+                        //var $active = $(e.relatedTarget);
+                        //Add corresponding classes to next and prev elements                        
+                        //$valorR = $("#carouselExampleFade div").find("div.active").next().attr('value').toString();
+                        //alert(''+currentIndex+'/'+totalItems+'');
+                        //alert($valorR);
 
                     });
                         $('.carousel-control-next, .carousel-control-prev').on('click', function () {
@@ -288,19 +291,43 @@
                             //console.log("Valores");
                             //anotaciones($valorR);
                         });
-                        /*$(".carousel-control-next").click(function(){
+                        $(".carousel-control-next").click(function(){
+                            var totalItems = $('#carouselExampleFade .carousel-item').length;                                
+                            try {
 
-                            $valorR = $("#carouselExampleFade div").find("div.active").(index()+1).attr('value').toString();
-                            alert("NEXT");
-                            anotaciones($valorR);
-                            alert($valorR);
+                                /*if($valorR<=totalItems){                                                           
+                                    alert("NEXT: "+$valorR);
+                                }else if{
+                                    $valorR = $("#carouselExampleFade div").carousel(0).attr('value').toString();
+                                    alert("NEXT: "+$valorR);
+                                }*/
+                                var index = $("#carouselExampleFade div").find("div.active").index();
+                                //alert("PO: " + index);
+                                totalItems = totalItems-1;
+                                //alert("TI-1: " + totalItems);
+                                if (index <= totalItems) {
+                                    $valorR = $("#carouselExampleFade div").find("div.active").next().attr('value').toString(); 
+                                    alert("NEXT: "+$valorR);
+                                } else {
+                                    $valorR = $("#carouselExampleFade div").carousel(0).attr('value').toString();
+                                    alert("NEXT: "+$valorR);
+                                }
+                                
+                            }
+                            catch(err) {                                
+                                alert(err.message);
+                            }
+
                         });
-                        $(".carousel-control-prev").click(function(){
-                            $valorR = $("#carouselExampleFade div").find("div.active").attr('value').toString();
-                            alert("PREV");
-                            anotaciones($valorR);
-                            alert($valorR);
-                        });*/
+                        $(".carousel-control-prev").click(function(){                            
+                            try {
+                                $valorR = $("#carouselExampleFade div").find("div.active").prev().attr('value').toString();                                 
+                                alert("PREV: "+$valorR);
+                            }
+                            catch(err) {
+                                alert(err.message);
+                            }
+                        });
                     function iconos()
                     {
                         var contenido = null;
