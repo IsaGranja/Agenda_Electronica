@@ -108,6 +108,15 @@ class AnotacionesController extends Controller
 
 		return response()->json($evaluaciones);
 	}
+	public function findGlosarioFunc()
+	{
+		$codcontenido=Input::get('codcontenido');
+		$glosarios=DB::table('glosarios')
+		->where('codcontenido','=',$codcontenido)
+		->get();
+
+		return response()->json($glosarios);
+	}
 	public function findAnotacionesFunc()
 	{
 		$user = Auth::user();

@@ -132,7 +132,7 @@
                     $('<a href="#carouselExampleFade" data-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="sr-only">Previous</span></a>').appendTo('.carousel-control-prev'); 
                     $('<a href="#carouselExampleFade" data-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="sr-only">Next</span></a>').appendTo('.carousel-control-next');
                     $('#carouselExampleFade').carousel();
-                    glosario();
+                    //glosarios();
                     evaluaciones(codtema);
                     iconos();
                   },
@@ -140,42 +140,67 @@
               }
               });
             }); 
-//GLOSARIOS                
-        function glosario(){
-          var text = $("#editor").text().replace(/[\s]+/g, " ").trim();
-            var word = text.split(" ");
-            var newHTML = "";
+        //GLOSARIOS                
+        function glosarios(codcontenido){
+          $.ajax({
+              type:'get',
+              url:'{!!URL::to('json-glosarios')!!}',
+              data:{'codcontenido':codcontenido},
+              dataType:'json',
+              success:function(data){
+                  console.log("Glosarios");
+                  console.log(data.length);
+                  console.log(data);
+                  contenido=data[0];
 
-            $.each(word, function(index, value){
-                switch(value.toUpperCase()){
-                    case "SELECT":
-                    case "FROM":
-                    case "WHERE":
-                    case "LIKE":
-                    case "BETWEEN":
-                    case "NOTLIKE":
-                    case "FALSE":
-                    case "NULL":
-                    case "ISA":
-                    case "TRUE":
-                    case "VARIABLE":
-                    case "NOTIN":
-                        newHTML += "<span class='statement' style='white-space: nowrap;' data-toggle='tooltip' data-placement='right' title='Ola ke ase isa jajaja :v'>" + value + "&nbsp;</span>"              
-                        break;
-                    default: 
-                        newHTML += "<span class='other'>" + value + "&nbsp;</span>";
-                }
-            });
-            $("#editor").html(newHTML);
-            /////                   
-        }
-            $("#editor").ready(function(){
-              $('[data-toggle="popover"]').popover();   
-            });
+                  var text = $("#editor").text().replace(/[\s]+/g, " ").trim();
+                  var word = text.split(" ");
+                  var newHTML = "";
 
-            $( document ).ready(function() {
-              $('[data-toggle="tooltip"]').tooltip({'placement': 'top'});
-            }); 
+                  $.each(word, function(index, value){
+
+                  /*switch($_GET['canal']) 
+                  { 
+                      case $row['nombre']: 
+                      echo $comun->recuadro('Inicio'); 
+                      echo '<h2>'.$row["nombreCabezera"].'</h2>'; 
+                      echo $varclass->opcion($row['code'],$row['embeb'],5); 
+                      echo $comun->recuadro('Final'); 
+                      break; 
+                  }  */
+
+                      switch(value.toUpperCase()){
+                          case "SELECT":
+                          case "FROM":
+                          case "WHERE":
+                          case "LIKE":
+                          case "BETWEEN":
+                          case "NOTLIKE":
+                          case "FALSE":
+                          case "NULL":
+                          case "ISA":
+                          case "TRUE":
+                          case "VARIABLE":
+                          case "NOTIN":
+                              newHTML += "<span class='statement' style='white-space: nowrap;' data-toggle='tooltip' data-placement='right' title='Ola ke ase isa jajaja :v'>" + value + "&nbsp;</span>"              
+                              break;
+                          default: 
+                              newHTML += "<span class='other'>" + value + "&nbsp;</span>";
+                      }
+                    });
+              },
+            error:function(){
+
+            }
+        });
+        $("#editor").html(newHTML);                  
+        $("#editor").ready(function(){
+          $('[data-toggle="popover"]').popover();   
+        });
+        $( document ).ready(function() {
+          $('[data-toggle="tooltip"]').tooltip({'placement': 'top'});
+        });    
+      }
 </script>
 @endsection
 

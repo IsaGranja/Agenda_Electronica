@@ -263,7 +263,7 @@
                         alert(valor);
 
                      });*/ 
-                  
+                    
                      function replaceAll(str, find, replace) {
                         return str.replace(new RegExp(find, 'g'), replace);
                     }    
@@ -274,7 +274,7 @@
                                 var imagenT=$(this).attr('src');
                                 var imagenID=$(this).attr('id');
                                 $valor = $("#carouselExampleFade div").find("div.active").attr('value').toString();
-
+                                glosarios(valor);
                                 $.ajax({
                                     type:'get',
                                     url:'{!!URL::to('json-contenidosUnico')!!}',
@@ -294,7 +294,7 @@
                             console.log(contenido);                            
                             if(imagenT==""){                                                                    
                                 //alert(valor);                    
-                                $('.recibir-imagen').attr('src',"{{ url('img/no_disponible.jpg') }}"); //aqui se coloca la imagen que desea cargar
+                                $('.recibir-imagen').attr('src',"img/no_disponible.jpg"); //aqui se coloca la imagen que desea cargar
                                 $('#mimodal').modal(); 
                             }else{
                                 if(imagenID=="imagen")
