@@ -29,19 +29,17 @@
                 @endif
                 
                 <a class="btn btn-primary" href="/pagAsignaturas/create">Nuevo</a>
-                
-
                     
-<table id="tablita" class="table table-striped " cellspacing="0" width="100%">
-<thead>
+                <table id="tablita" class="table table-striped " cellspacing="0" width="100%">
+                <thead>
 						<tr>
 							<th>Carrera</th>
 							<th>Codigo Asignatura</th>
 							<th>Asignatura</th>
 							<th>Creditos</th>
 							<th>Nivel</th>	
-              <th>Edit</th>
-              <th>Delete</th>
+                            <th>Modificar</th>
+                            <th>Eliminar</th>
 						</tr>
 					</thead>
 					<tbody id="cuerpo">

@@ -23,9 +23,9 @@
     <div class="form-horizontal">
    
     <div class="form-group row">
-        <label class="control-label col-sm-3" for="unies">Universidad-Carrera</label>
+        <label class="control-label col-sm-3" for="codcarrera">Universidad-Carrera</label>
         <div class="col-sm-6">
-            <select class="form-control" id="unies" name="unies">
+            <select class="form-control" id="codcarrera" name="codcarrera">
             <option>Seleccionar Universidad - Carrera</option>
                 @foreach ($carreras as $carrera)
                 <option value="{{$carrera->codcarrera}}" > {{$carrera->descuniversidad}} -  {{$carrera->descsede}} -  {{$carrera->descfacultad}} -  {{$carrera->descescuela}} -  {{$carrera->desccarrera}}</option>
