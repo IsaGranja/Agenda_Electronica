@@ -132,7 +132,7 @@
                                 <div id="mimodal" class="modal-dialog imagen">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h1>imagen</h1>    
+                                            <h1>Imagen</h1>    
                                             <button class="close" data-dismiss="modal">&times;</button>                                            
                                         </div>
                                         <div class="modal-body">
@@ -150,7 +150,7 @@
                                 <div id="mimodal2" class="modal-dialog imagen">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h1>audio</h1>    
+                                            <h1>Audio</h1>    
                                             <button class="close" data-dismiss="modal">&times;</button>                                                
                                         </div>
                                         <div class="modal-body">
@@ -171,11 +171,11 @@
                                 <div id="mimodal3" class="modal-dialog imagen">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h1>video</h1>    
+                                            <h1>Video</h1>    
                                             <button class="close" data-dismiss="modal">&times;</button>                                                
                                         </div>
                                         <div class="modal-body">
-                                            <video controls width="100%" height="100%>
+                                            <video controls width="100%" height="100%">
                                                 <source src="" class="recibir-video" type="video/mp4" />
                                                 <source src="" class="recibir-video" type="video/ogg" />
                                                 <source src="" class="recibir-video" type="video/webm" />
@@ -193,7 +193,7 @@
                                 <div id="mimodal4" class="modal-dialog imagen">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h1>evaluaciones</h1>    
+                                            <h1>Evaluaciones</h1>    
                                             <button class="close" data-dismiss="modal">&times;</button>                                                
                                         </div>
                                         <div class="modal-body">
@@ -205,13 +205,13 @@
                     </td>
                     <td>
                         <center>
-                        <img class="image-responsive imagen2 static" title="Informacion Adicional" id="informacion_adicional" src="{{ url('img/iconos/lightbulb/static.png') }}">
-                            <img class="image-responsive imagen2" title="Informacion Adicional" id="informacion_adicional" src="{{ url('img/iconos/lightbulb/animat-lightbulb-color.gif') }}">
+                        <img class="image-responsive imagen2 static" title="Información Adicional" id="informacion_adicional" src="{{ url('img/iconos/lightbulb/static.png') }}">
+                            <img class="image-responsive imagen2" title="Información Adicional" id="informacion_adicional" src="{{ url('img/iconos/lightbulb/animat-lightbulb-color.gif') }}">
                             <div id="mimodal5" class="modal fade" role="dialog">
                                 <div id="mimodal5" class="modal-dialog imagen">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h1>informacion adicional</h1>    
+                                            <h1>Iformación adicional</h1>    
                                             <button class="close" data-dismiss="modal">&times;</button>                                                
                                         </div>
                                         <div class="modal-body">
