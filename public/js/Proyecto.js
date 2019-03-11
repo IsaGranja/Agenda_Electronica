@@ -154,5 +154,8 @@ $(document).on('keyup', "[maxlength]", function (e) {
       link.style.visibility = "hidden";
     };
 
+//////////////// DROP-DOWNS
+
+
 
       

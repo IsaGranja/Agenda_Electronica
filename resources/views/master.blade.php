@@ -176,10 +176,10 @@
                                             <button class="close" data-dismiss="modal">&times;</button>                                                
                                         </div>
                                         <div class="modal-body">
-                                            <video controls width="100%" height="100%">
+                                            <video width="100%" height="100%" controls>
                                                 <source src="" class="recibir-video" type="video/mp4" />
-                                                <source src="" class="recibir-video" type="video/ogg" />
-                                                <source src="" class="recibir-video" type="video/webm" />
+                                                
+                                                
                                             </video>                                            
                                         </div>
                                     </div>
@@ -269,64 +269,41 @@
                         return str.replace(new RegExp(find, 'g'), replace);
                     }   
                      
-                    function cambioSlide(){
-                        //$valorR = $("#carouselExampleFade div").find("div.active").attr('value').toString();
-                        //console.log("Valores");
-                        //console.log("valor: "+ $valorR);
-                        //anotaciones($valorR);
-                    }
-                   
-                    $('#carouselExampleFade').on('slide.bs.carousel', function (e) {
-                        //var totalItems = $('#carouselExampleFade .carousel-item').length;
-                        //var currentIndex = $('div.active').index() + 2;
-                        //var $active = $(e.relatedTarget);
-                        //Add corresponding classes to next and prev elements                        
-                        //$valorR = $("#carouselExampleFade div").find("div.active").next().attr('value').toString();
-                        //alert(''+currentIndex+'/'+totalItems+'');
-                        //alert($valorR);
-
-                    });
-                        $('.carousel-control-next, .carousel-control-prev').on('click', function () {
-                            //$valorR = $("#carouselExampleFade div").find("div.active").attr('value').toString();
-                            //console.log("Valores");
-                            //anotaciones($valorR);
-                        });
                         $(".carousel-control-next").click(function(){
-                            var totalItems = $('#carouselExampleFade .carousel-item').length;                                
+                            var totalItems = $('#carouselExampleFade .carousel-item').length; 
+                            var valor=" ";                               
                             try {
-
-                                /*if($valorR<=totalItems){                                                           
-                                    alert("NEXT: "+$valorR);
-                                }else if{
-                                    $valorR = $("#carouselExampleFade div").carousel(0).attr('value').toString();
-                                    alert("NEXT: "+$valorR);
-                                }*/
                                 var index = $("#carouselExampleFade div").find("div.active").index();
-                                //alert("PO: " + index);
                                 totalItems = totalItems-1;
-                                //alert("TI-1: " + totalItems);
                                 if (index <= totalItems) {
-                                    $valorR = $("#carouselExampleFade div").find("div.active").next().attr('value').toString(); 
-                                    //alert("NEXT: "+$valorR);
+                                    $valor = $("#carouselExampleFade div").find("div.active").next().attr('value').toString(); 
                                 } else {
-                                    $valorR = $("#carouselExampleFade div").carousel(0).attr('value').toString();
-                                    //alert("NEXT: "+$valorR);
+                                    $('#carouselExampleFade div').find('.item').first().addClass('active');
+                                    $valor = $("#carouselExampleFade div").find('div').first().attr('value').toString(); 
                                 }
+
+                            }
+                            catch(err) {      
+                                $('#carouselExampleFade div').find('.item').first().addClass('active');
+                                $valor = $("#carouselExampleFade div").find('div').first().attr('value').toString();                            
+                                alert(err.message);
+                            }
+                            anotaciones($valor);
+
+                        });
+                        $(".carousel-control-prev").click(function(){ 
+                            $valor=" ";                           
+                            try {
+                                $valor = $("#carouselExampleFade div").find("div.active").prev().attr('value').toString();                                 
+                                //alert("PREV: "+$valorR);
                                 
                             }
-                            catch(err) {                                
-                                alert(err.message);
-                            }
-
-                        });
-                        $(".carousel-control-prev").click(function(){                            
-                            try {
-                                $valorR = $("#carouselExampleFade div").find("div.active").prev().attr('value').toString();                                 
-                                alert("PREV: "+$valorR);
-                            }
                             catch(err) {
+                                $('#carouselExampleFade div').find('.item').last().addClass('active');
+                                $valor = $("#carouselExampleFade div").find('div').last().attr('value').toString();  
                                 alert(err.message);
                             }
+                            anotaciones($valor);
                         });
                     function iconos()
                     {
@@ -335,7 +312,7 @@
                                 var imagenT=$(this).attr('src');
                                 var imagenID=$(this).attr('id');
                                 $valor = $("#carouselExampleFade div").find("div.active").attr('value').toString();
-                                anotaciones($valor);
+                                //anotaciones($valor);
                                 $.ajax({
                                     type:'get',
                                     url:'{!!URL::to('json-contenidosUnico')!!}',
@@ -352,7 +329,8 @@
                             }
                             });
                             //var editorVAL=$('#editor').attr('value'); 
-                            console.log(contenido);                            
+                            console.log(contenido); 
+                        
                             if(imagenT==""){                                                                    
                                 //alert(valor);                    
                                 $('.recibir-imagen').attr('src',"img/no_disponible.jpg"); //aqui se coloca la imagen que desea cargar
@@ -368,8 +346,11 @@
                                     //$('.recibir-audio').attr('type',"audio/ogg");
                                     $('#mimodal2').modal();  
                                 }else if(imagenID=="video"){
+                                    
                                     $('.recibir-video').attr('src',"video/"+$valor); //aqui se coloca el video que desea cargar
-                                    $('#mimodal3').modal();  
+                                    
+                                    $('#mimodal3').modal();
+                                    //document.getElementById('.recibir-video').play(); 
                                 }else if(imagenID=="evaluaciones"){
                                     $('.recibir-evaluaciones').attr('src',"{{ url('img/Question_mark.ico') }}"); //aqui se coloca la evaluacion que desea cargar
                                     $('#mimodal4').modal();  

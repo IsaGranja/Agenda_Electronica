@@ -25,7 +25,6 @@ class ContenidosController extends Controller
             return back()->withError($e->getMessage());
         }
         return view('contenidosNuevo', compact('carreras', 'asignaturas', 'tema', 'contenidos'));
-        
     }
 
     public function index()//consultar
@@ -83,6 +82,7 @@ class ContenidosController extends Controller
             
             if($video)
             {
+
                 $videocontenido = $codcontenido . '.' . $video->getClientOriginalExtension();
                 $video->move(public_path('video'), $videocontenido);
             }
@@ -99,7 +99,7 @@ class ContenidosController extends Controller
         
                 if(!$infoapoyocontenido)
                     $infoapoyocontenido = "";
-
+        
         $data = array('codcontenido' => $codcontenido, 'codtema' => $codtema, 'codasignatura' => $codasignatura,
             'textocontenido' => $textocontenido, 'imagencontenido' => $imagencontenido, 'videocontenido' => $videocontenido,
             'audiocontenido' => $audiocontenido, 'infoapoyocontenido' => $infoapoyocontenido);
@@ -193,6 +193,7 @@ class ContenidosController extends Controller
     public function edit($codcontenido)//abre la ventana para modificar
     {
         try{
+
         $contenidos = DB::table('contenidos')->select('*')->where('codcontenido',$codcontenido)->get();
         $contenidos = json_decode($contenidos, true)[0];
         
