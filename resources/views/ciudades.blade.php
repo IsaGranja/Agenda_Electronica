@@ -16,9 +16,6 @@
                 <h1>CIUDADES</h1>
 
             </div>
-
-                <div class="col-md-2"></div>  
-
                 <div class="col-md-6">
                     <a href="pagCiudades/crear"><button type="submit" class="btn btn-primary">Nuevo</button></a>
                 </div>
@@ -26,11 +23,9 @@
                 <div class = "col-md-1">
                 <a href="/"><button type="submit" class="btn btn-primary">Salir</button></a>
                 </div>
-
             </div>
 
             <div class="table-container">
-
                 <table id="myTable" class="table table-bordred table-striped">
                     <thead>
                         <th></th>

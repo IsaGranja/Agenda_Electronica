@@ -34,8 +34,7 @@ class AnotacionesController extends Controller
 		{
 			return back()->withError($e->getMessage());
 		}
-		return view('home',compact('periodos','contenidos'));
-		
+		return view('home',compact('periodos','contenidos'));	
 	}
 
 	public function findAsignaturaFunc()
@@ -66,7 +65,6 @@ class AnotacionesController extends Controller
 		->where('unidades_estudio.codasignatura','=',$codasignatura)
 		->orderby('codunidad','ASC')
 		->get();
-
 		return response()->json($unidades);
 	}
 	public function findTemaFunc()
