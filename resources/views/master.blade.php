@@ -274,16 +274,22 @@
                             var valor=" ";                               
                             try {
                                 var index = $("#carouselExampleFade div").find("div.active").index();
+                                /*
                                 totalItems = totalItems-1;
                                 if (index <= totalItems) {
-                                    $valor = $("#carouselExampleFade div").find("div.active").next().attr('value').toString(); 
+                                    */
+                                    $valor = $("#carouselExampleFade div").find("div.active").next().attr('value').toString();
+                                    alert(index); 
+                                    /*
                                 } else {
                                     $('#carouselExampleFade div').find('.item').first().addClass('active');
-                                    $valor = $("#carouselExampleFade div").find('div').first().attr('value').toString(); 
-                                }
+                                    $valor = $("#carouselExampleFade div").find('div').first().attr('value').toString();
+                                    alert('hol'); 
+                                }*/
 
                             }
-                            catch(err) {      
+                            catch(err) {  
+                                   
                                 $('#carouselExampleFade div').find('.item').first().addClass('active');
                                 $valor = $("#carouselExampleFade div").find('div').first().attr('value').toString();                            
                                 alert(err.message);
@@ -294,14 +300,19 @@
                         $(".carousel-control-prev").click(function(){ 
                             $valor=" ";                           
                             try {
-                                $valor = $("#carouselExampleFade div").find("div.active").prev().attr('value').toString();                                 
+                                var index = $("#carouselExampleFade div").find("div.active").index();
+                                if(index >= 0)
+                                $valor = $("#carouselExampleFade div").find("div.active").prev().attr('value').toString();   
+                                else{
+                                    $('#carouselExampleFade div').find('.item').last().addClass('active');
+                                    $valor = $("#carouselExampleFade div").find('div').last().attr('value').toString(); 
+                                }                              
                                 //alert("PREV: "+$valorR);
                                 
                             }
                             catch(err) {
-                                $('#carouselExampleFade div').find('.item').last().addClass('active');
-                                $valor = $("#carouselExampleFade div").find('div').last().attr('value').toString();  
-                                alert(err.message);
+ 
+                                //alert(err.message);
                             }
                             anotaciones($valor);
                         });
