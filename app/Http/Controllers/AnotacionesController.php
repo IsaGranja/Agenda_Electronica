@@ -117,19 +117,42 @@ class AnotacionesController extends Controller
 	}
 	public function findAnotacionesFunc()
 	{
+		$codcontenido=Input::get('codcontenido');
+
+		//CONSULTAR
 		$user = Auth::user();
 		$email=$user->email;
 		$cedestudiante = DB::table('estudiantes')
 					->where('correestudiante', $email)
-					->value('cedestudiante');
-
-		$codcontenido=Input::get('codcontenido');
+					->value('cedestudiante');		
 
 		$anotaciones=DB::table('anotaciones_estudiante')
 		->where('cedestudiante','=',$cedestudiante)
 		->where('codcontenido','=',$codcontenido)
 		->get();
 
+		return response()->json($anotaciones);
+	}
+	public function store1(Request $request)//POST
+	{
+		return \App\anotaciones::create($request->all());
+	}
+	public function store(Request $request)
+	{
+		$user = Auth::user();
+		$email=$user->email;
+		$cedestudiante = DB::table('estudiantes')
+					->where('correestudiante', $email)
+					->value('cedestudiante');
+		$codcontenido=Input::get('codcontenido');
+		$anota=Input::get('anotaciones');
+		//INGRESAR O MODIFICAR
+		$anotaciones = anotaciones::updateOrCreate([
+			'codcontenido' => $codcontenido,
+			'cedestudiante' => $cedestudiante,
+			'anotestudiante' => $request->get('anotestudiante'),
+			'anotestudiante' => null			
+		]);
 		return response()->json($anotaciones);
 	}
 	
@@ -172,10 +195,12 @@ class AnotacionesController extends Controller
 	{
 		return \App\anotaciones::find($id);
 	}
+
+	/*
 	public function store(Request $request)//POST
 	{
 		return \App\anotaciones::create($request->all());
-	}
+	}*/
 	public function edit(Request $request, $id)//PUT
 	{
 		$registro = \App\anotaciones::findOrFail($id);

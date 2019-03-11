@@ -295,7 +295,7 @@
                                 alert(err.message);
                             }
                             anotaciones($valor);
-
+                            createAnotaciones($valor);
                         });
                         $(".carousel-control-prev").click(function(){ 
                             $valor=" ";                           
@@ -315,6 +315,7 @@
                                 //alert(err.message);
                             }
                             anotaciones($valor);
+                            createAnotaciones($valor);
                         });
                     function iconos()
                     {
@@ -410,6 +411,7 @@
                     }
                     });
                     }
+
                     function anotaciones($codcontenido){
                         console.log("FUNCION ANOTACIONES");
                                 $.ajax({
@@ -429,6 +431,22 @@
                                     $('#comentarioEstudiante').val($('#comentarioEstudiante').val() + data[0].anotestudiante);
                                         //$('#comentarioEstudiante').append(data[i].anotestudiante)
                                 
+                                },
+                                error:function(){
+                            }
+                            });
+                        }
+                        function createAnotaciones($codcontenido){
+                            $anotacion=$('#comentarioEstudiante').val();
+                            console.log("FUNCION ANOTACIONES");
+                            $.ajax({
+                                type:'post',
+                                url:'{!!URL::to('json-anotacionesCreate')!!}',
+                                data:{'codcontenido':$codcontenido,'anotestudiante':$anotacion},
+                                dataType:'json',
+                                success:function(data){
+                                    console.log("anotaciones");
+                                    console.log(data.length);                              
                                 },
                                 error:function(){
                             }
