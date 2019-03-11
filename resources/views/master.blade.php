@@ -259,29 +259,30 @@
                             </div>
                     </td>
                     <script type="text/javascript">   
-                     /*$('#carouselExampleFade').on('slide.bs.carousel', function(e) {
-                        var valor = $("#carouselExampleFade div").find("div.active").attr('value'); 
-                        alert(valor);
-
-                     });*/ 
                     
                      function replaceAll(str, find, replace) {
                         return str.replace(new RegExp(find, 'g'), replace);
-                    }   
-                                            
+                    }                                        
                     $('#carouselExampleFade').on('slid.bs.carousel', function (event) {
                         //var nextactiveslide = $(event.relatedTarget).index();
                         var valor = $(event.relatedTarget).attr('value').toString();
+                        $valorI = $("#carouselExampleFade div").find("div.active").attr('value').toString();
                         alert(valor);
+                        alert("VI: "+ $valorI);
                         anotaciones(valor);
+                        iconos($valorI);
                     });
-                    function iconos()
+                    function iconos($valor)
                     {
                         var contenido = null;
+                        if($valor == null)
+                        {
+                            $valor = $("#carouselExampleFade div").find("div.active").attr('value').toString();
+                        }
                         $('.imagen2').click(function(){
                                 var imagenT=$(this).attr('src');
                                 var imagenID=$(this).attr('id');
-                                $valor = $("#carouselExampleFade div").find("div.active").attr('value').toString();
+                                //$valor = $("#carouselExampleFade div").find("div.active").attr('value').toString();
                                 //anotaciones($valor);
                                 $.ajax({
                                     type:'get',
