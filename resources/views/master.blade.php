@@ -7,6 +7,8 @@
     <base href="{{ URL::asset('/') }}" target="_top">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="{{ url('js/jquery-3.3.1.slim.min.js') }}" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ url('css/video-js.css') }}" /> 
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ url('css/video-js.min.css') }}" />     
     <link rel="stylesheet" type="text/css" media="screen" href="{{ url('css/glyphicon.css') }}" />    
     <link rel="stylesheet" type="text/css" media="screen" href="{{ url('js/popper.min.js') }}" />
     <link rel="stylesheet" type="text/css" media="screen" href="{{ url('css/normalize.css') }}" />
@@ -16,6 +18,10 @@
     <script src="{{ url('js/Proyecto.js') }}"></script>
         
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <!-- If you'd like to support IE8 (for Video.js versions prior to v7) -->
+    <script src="https://vjs.zencdn.net/ie8/ie8-version/videojs-ie8.min.js"></script>
+    <script src="https://unpkg.com/video.js@6.2.5/dist/video.min.js"></script>
+<script src="https://unpkg.com/videojs-flash@2.0.0/dist/videojs-flash.min.js"></script>
     <style>
     .dropdown-submenu {
         position: relative;
@@ -154,11 +160,10 @@
                                             <h1>Audio</h1>    
                                             <button class="close" data-dismiss="modal">&times;</button>                                                
                                         </div>
-                                        <div class="modal-body">
-                                            <audio controls>
-                                                <source src="" class="recibir-audio" type="audio/mpeg">
-                                                <source src="" class="recibir-audio" type="audio/ogg">
-                                                <!--https://developer.mozilla.org/en-US/docs/Web/Apps/Fundamentals/Audio_and_video_delivery/Cross-browser_audio_basics-->
+                                        <div class="modal-body">                                        
+                                            <audio id="audioclip" controls="controls" style="width:100%;">
+                                                <source id="mp3audio" src="" type="audio/mpeg" />
+                                            </audio>     
                                         </div>
                                     </div>
                                 </div>
@@ -169,18 +174,17 @@
                         <img class="image-responsive imagen2 static" title="Video" id="video" src="{{ url('img/iconos/video/static.png') }}">
                             <img class="image-responsive imagen2" title="Video" id="video" src="{{ url('img/iconos/video/animat-video-color.gif') }}">
                             <div id="mimodal3" class="modal fade" role="dialog">
-                                <div id="mimodal3" class="modal-dialog imagen">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
+                                <div id="mimodal3" class="modal-dialog imagen" style="width:950px; height:500px;">
+                                    <div class="modal-content" style="width:100%; height:100%;">
+                                        <div class="modal-header" style="width:100%;">
                                             <h1>Video</h1>    
                                             <button class="close" data-dismiss="modal">&times;</button>                                                
                                         </div>
-                                        <div class="modal-body">
-                                            <video width="100%" height="100%" controls>
-                                                <source src="" class="recibir-video" type="video/mp4" />
-                                                
-                                                
-                                            </video>                                            
+                                        <div class="modal-body" style="width:100%; height:100%; padding:10%">
+                                            <center>                                                                                        
+                                            <video id="videoclip" class="video-js vjs-default-skin" controls="controls" style="width:100%; height:100%;">
+                                                <source id="mp4video" src="" type="video/mp4"  />
+                                            </video>                              
                                         </div>
                                     </div>
                                 </div>
@@ -275,28 +279,33 @@
                     
                      function replaceAll(str, find, replace) {
                         return str.replace(new RegExp(find, 'g'), replace);
-                    }                                        
-                    $('#carouselExampleFade').on('slid.bs.carousel', function (event) {
-                        //var nextactiveslide = $(event.relatedTarget).index();
-                        var valor = $(event.relatedTarget).attr('value').toString();
-                        $valorI = $("#carouselExampleFade div").find("div.active").attr('value').toString();
-                        //alert(valor);
-                        //alert("VI: "+ $valorI);
+                    }                       
+                    $('#mimodal3').on('hidden.bs.modal', function () {
+                        var videocontainer = document.getElementById('videoclip');
+                        videocontainer.pause();
+                    })
+                    $('#mimodal2').on('hidden.bs.modal', function () {
+                        var audiocontainer = document.getElementById('audioclip');
+                        audiocontainer.pause();
+                    })                    
+                    $('#carouselExampleFade').on('slid.bs.carousel', function (event) {                        
+                        var valor = $(event.relatedTarget).attr('value').toString();                        
+                        alert(valor);                        
                         anotaciones(valor);
-                        iconos($valorI);
                     });
-                    function iconos($valor)
+                    function iconos()
                     {
                         var contenido = null;
-                        if($valor == null)
+                        /*if($valor == null)
                         {
                             $valor = $("#carouselExampleFade div").find("div.active").attr('value').toString();
-                        }
+                        }*/
                         $('.imagen2').click(function(){
                                 var imagenT=$(this).attr('src');
                                 var imagenID=$(this).attr('id');
-                                //$valor = $("#carouselExampleFade div").find("div.active").attr('value').toString();
+                                $valor = $("#carouselExampleFade div").find("div.active").attr('value').toString();                            
                                 //anotaciones($valor);
+                                //alert($valor);
                                 $.ajax({
                                     type:'get',
                                     url:'{!!URL::to('json-contenidosUnico')!!}',
@@ -321,18 +330,34 @@
                                 $('#mimodal').modal(); 
                             }else{
                                 if(imagenID=="imagen")
-                                {            
+                                {   
+                                    $valor=$valor+".jpg";
+                                    alert($valor);         
                                     $('.recibir-imagen').attr('src', "images/"+$valor); //aqui se coloca la imagen que desea cargar
                                     $('#mimodal').modal();     
                                 }else if(imagenID=="audio"){
-                                    $('.recibir-audio').attr('src',"audio/"+$valor); //aqui se coloca el audio que desea cargar
+                                    $valor="/audio/"+$valor+".mp3";
+                                    alert($valor);  
+                                    //$('.recibir-audio').attr('src',"audio/"+$valor); //aqui se coloca el audio que desea cargar
                                     //$('.recibir-audio').attr('type',"audio/mpeg");
                                     //$('.recibir-audio').attr('type',"audio/ogg");
+                                    var audiocontainer = document.getElementById('audioclip');
+                                    var audiosource = document.getElementById('mp3audio');
+                                    audiocontainer.pause();
+                                    audiosource.setAttribute('src', $valor);
+                                    audiocontainer.load();
+                                    audiocontainer.play();
                                     $('#mimodal2').modal();  
                                 }else if(imagenID=="video"){
-                                    
-                                    $('.recibir-video').attr('src',"video/"+$valor); //aqui se coloca el video que desea cargar
-                                    
+                                    $valor="/video/"+$valor+".mp4";
+                                    alert($valor);  
+                                    //$('.recibir-video').attr('src', $valor); //aqui se coloca el video que desea cargar     
+                                    var videocontainer = document.getElementById('videoclip');
+                                    var videosource = document.getElementById('mp4video');
+                                    videocontainer.pause();
+                                    videosource.setAttribute('src', $valor);
+                                    videocontainer.load();
+                                    videocontainer.play();
                                     $('#mimodal3').modal();
                                     //document.getElementById('.recibir-video').play(); 
                                 }else if(imagenID=="evaluaciones"){
@@ -435,7 +460,7 @@
         <div class="col-lg-3 fondoder"><center>@yield('content-der')</div>
 </section>       
 </form>
-
+<script src='https://vjs.zencdn.net/7.4.1/video.js'></script>
 </body>
 {{-- Footer --}}
     
