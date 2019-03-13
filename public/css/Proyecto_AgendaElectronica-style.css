@@ -363,6 +363,20 @@ ul span {
 .popupMenu {
   display: none;
 }
+.evaluaciones {
+  padding-left: 15px;
+  display: inline;
+}
+.carousel-control-next-icon:after
+{
+  font-size: 55px;
+  color: black;
+}
+
+.carousel-control-prev-icon:after {
+  font-size: 55px;
+  color: black;
+}
 
 a span {display: none; position: absolute; color: #fff; background: #000; padding: 5px;}
 a {position: relative;}
