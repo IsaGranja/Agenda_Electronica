@@ -173,16 +173,16 @@
                       
                         if(value.toUpperCase()===palabra.toUpperCase()){  
                           alert( "If "+ value + " is " + index + " value: "+value.toUpperCase()+" palabra: "+palabra.toUpperCase());
-                          newHTML += "<span class='statement' style='white-space: nowrap;' data-toggle='tooltip' data-placement='right' title='"+data[i].defglosario+"'>" + value + "&nbsp;</span>"              
+                          newHTML += "<span class='statement' style='white-space: nowrap; color: red;' data-toggle='popover' data-placement='right' title='"+data[i].palabraglosario+"' data-content='"+data[i].defglosario+"'>" + value + "&nbsp;</span>"              
                         }
                         else{
-                          alert( "Else " +value + " is " + index + " value: "+value.toUpperCase()+" palabra: "+palabra.toUpperCase());
+                          //alert( "Else " +value + " is " + index + " value: "+value.toUpperCase()+" palabra: "+palabra.toUpperCase());
                           newHTML += "<span class='other'>" + value + "&nbsp;</span>";
                         }
                       });
                       console.log(palabra);
                   }
-
+                  $("#editor").html(newHTML);
                   /*
                   var text = $("#editor").text().replace(/[\s]+/g, " ").trim();
                   var word = text.split(" ");
@@ -210,10 +210,17 @@
                       }
                     });
                     */
+                     
                 },
               error:function(){
               }
             });
+            $("#editor").ready(function(){
+              $('[data-toggle="popover"]').popover({'placement': 'right'});   
+            });
+            $('.popover-dismiss').popover({
+              trigger: 'focus'
+            })
             /*
         $("#editor").html(newHTML);                  
         $("#editor").ready(function(){
