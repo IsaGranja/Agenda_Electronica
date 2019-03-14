@@ -125,7 +125,7 @@
                     for(var i=0;i<data.length ;i++){
                       $('<li data-target="#carouselExampleFade" data-slide-to="'+i+'"></li>').appendTo('.carousel-indicators');
                       $('<div class="carousel-item" value="'+data[i].codcontenido+'"><div class="editor" id="editor" value="'+data[i].codcontenido+'" style="text-align: left; width:100%" contenteditable="false">'+data[i].textocontenido+'</div><div class="carousel-caption"></div>   </div>').appendTo('.carousel-inner');
-                      //glosarios();
+                      glosarios(codtema+"-C1");
                       //$contenidoCombo.append('<div class="editor" id="editor" value="'+data[i].codcontenido+'" style="text-align: left; width:100%" contenteditable="false">'+data[i].textocontenido+'</div>');    
                     }
                     $('.carousel-item').first().addClass('active');
@@ -171,7 +171,7 @@
                               newHTML += "<span class='statement' style='color:red;' title='"+data[i].palabraglosario+
                               "' data-container = 'body' data-toggle = 'popover' data-placement = 'right' data-trigger='hover' data-content = '"+data[i].defglosario+"'>" + value + 
                               "&nbsp;</span>";                              
-                              bool=true;
+                              bool=true;                            
                             }
                           }
                           if(bool==false)  {                            
