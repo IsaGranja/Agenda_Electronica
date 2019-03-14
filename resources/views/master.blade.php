@@ -296,6 +296,8 @@
                         var valor = $(event.relatedTarget).attr('value').toString();                        
                         //alert(valor);                        
                         anotaciones(valor);
+                        //var actual = $("#carouselExampleFade div").find("div.active").attr('value').toString();                     
+                        //alert(actual);
                         glosarios(valor);
                     });
                     function iconos()
@@ -343,9 +345,6 @@
                                 }else if(imagenID=="audio"){
                                     $valor="/audio/"+$valor+".mp3";
                                     alert($valor);  
-                                    //$('.recibir-audio').attr('src',"audio/"+$valor); //aqui se coloca el audio que desea cargar
-                                    //$('.recibir-audio').attr('type',"audio/mpeg");
-                                    //$('.recibir-audio').attr('type',"audio/ogg");
                                     var audiocontainer = document.getElementById('audioclip');
                                     var audiosource = document.getElementById('mp3audio');
                                     audiocontainer.pause();

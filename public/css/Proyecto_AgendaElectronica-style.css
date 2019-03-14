@@ -140,14 +140,7 @@ textarea{
 }
 
 .statement {
-  color: orange;
-  text-align: center;
-  position: relative;
-  width: 100%;
-  height: auto;
-  word-wrap: break-word;
-  white-space: pre-wrap;
-  cursor:pointer;
+    cursor:pointer;
 }
 
 .other{

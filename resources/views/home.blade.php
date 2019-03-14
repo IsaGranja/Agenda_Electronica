@@ -161,66 +161,38 @@
                   var text = $("#editor").text().replace(/[\s]+/g, " ").trim();
                   var word = text.split(" ");
                   var newHTML = "";
-                  var palabra="";
-                  for(var i=0;i<data.length ;i++){
-                    /*
-                    if($(".editor('"+data[i].palabraglosario+"')").length > 0){
-                      $( ".editor:contains('"+data[i].palabraglosario+"')" ).addClass("statement");
-                    }
-                    console.log(data[i].palabraglosario);*/
-                    palabra=data[i].palabraglosario;
+                  var palabra = "";
+                  var bool=false;
+                  
                       $.each(word, function(index, value){
-                      
-                        if(value.toUpperCase()===palabra.toUpperCase()){  
-                          alert( "If "+ value + " is " + index + " value: "+value.toUpperCase()+" palabra: "+palabra.toUpperCase());
-                          newHTML += "<span class='statement' style='white-space: nowrap; color: red;' data-toggle='popover' data-placement='right' title='"+data[i].palabraglosario+"' data-content='"+data[i].defglosario+"'>" + value + "&nbsp;</span>"              
-                        }
-                        else{
-                          //alert( "Else " +value + " is " + index + " value: "+value.toUpperCase()+" palabra: "+palabra.toUpperCase());
-                          newHTML += "<span class='other'>" + value + "&nbsp;</span>";
-                        }
-                      });
-                      console.log(palabra);
-                  }
-                  $("#editor").html(newHTML);
-                  /*
-                  var text = $("#editor").text().replace(/[\s]+/g, " ").trim();
-                  var word = text.split(" ");
-                  var newHTML = "";
-
-                  $.each(word, function(index, value){
-                      switch(value.toUpperCase()){
-                          case "SELECT":
-                          case "FROM":
-                          case "WHERE":
-                          case "LIKE":
-                          case "BETWEEN":
-                          case "NOTLIKE":
-                          case "FALSE":
-                          case "NULL":
-                          case "ISA":
-                          case "TRUE":
-                          case "VARIABLE":
-                          case "MODELO":
-                          case "NOTIN":
-                              newHTML += "<span class='statement' style='white-space: nowrap;' data-toggle='tooltip' data-placement='right' title='Ola ke ase isa jajaja :v'>" + value + "&nbsp;</span>"              
-                              break;
-                          default: 
-                              newHTML += "<span class='other'>" + value + "&nbsp;</span>";
-                      }
-                    });
-                    */
-                     
+                        bool=false;
+                          for(var i=0;i<data.length ;i++){
+                            if(value.toUpperCase() === data[i].palabraglosario.toUpperCase()){                              
+                              newHTML += "<span class='statement' style='color:red;' title='"+data[i].palabraglosario+
+                              "' data-container = 'body' data-toggle = 'popover' data-placement = 'right' data-content = '"+data[i].defglosario+"'>" + value + 
+                              "&nbsp;</span>";                              
+                              bool=true;
+                            }
+                          }
+                          if(bool==false)  {                            
+                              newHTML += "<span class='other'>" + value + "&nbsp;</span>";                                                          
+                          }
+                        })
+                        $("#editor").html(newHTML);
+                        $('[data-toggle="popover"]').popover();                                             
                 },
               error:function(){
               }
             });
             $("#editor").ready(function(){
-              $('[data-toggle="popover"]').popover({'placement': 'right'});   
+              $('[data-toggle="popover"]').popover();   
             });
-            $('.popover-dismiss').popover({
-              trigger: 'focus'
-            })
+            $( document ).ready(function() {
+              $('[data-toggle="popover"]').popover(); 
+            });
+            $(function () {
+              $('[data-toggle="popover"]').popover()
+            })  
             /*
         $("#editor").html(newHTML);                  
         $("#editor").ready(function(){
