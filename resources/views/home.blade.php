@@ -171,12 +171,8 @@
                               newHTML += "<span class='statement' style='color:red;' title='"+data[i].palabraglosario+
                               "' data-container = 'body' data-toggle = 'popover' data-placement = 'right' data-trigger='hover' data-content = '"+data[i].defglosario+"'>" + value + 
                               "&nbsp;</span>";                              
-<<<<<<< HEAD
-                              bool=true;                            
-=======
                               bool=true;
                               break;
->>>>>>> c4a9970c1645bc92d89d0c2d92bb8fb659a04302
                             }
                           }
                           if(bool==false)  {                            
