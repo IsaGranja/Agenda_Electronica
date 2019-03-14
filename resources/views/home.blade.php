@@ -172,6 +172,7 @@
                               "' data-container = 'body' data-toggle = 'popover' data-placement = 'right' data-content = '"+data[i].defglosario+"'>" + value + 
                               "&nbsp;</span>";                              
                               bool=true;
+                              break;
                             }
                           }
                           if(bool==false)  {                            

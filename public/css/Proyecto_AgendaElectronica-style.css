@@ -30,7 +30,7 @@ textarea{
   float:left;
 }
 .fondocentro{
-    background-color: rgb(87, 136, 205);
+    background-color:rgb(231, 226, 226);
     max-height: 41rem;
     margin: none;
     width: 100%;
@@ -106,19 +106,7 @@ textarea{
   height: 100%;
   width: 100%;
 }
-#editor{
-  position:relative;
-  background-color: #DEDBDB;
-  color: #969393;
-  font-size: 24px;
-  font-family: monospace;
-  height: 34rem;
-  width: min-content;
-  overflow: hidden;
-  display: inline-block;
-  vertical-align: middle;
-  line-height: normal;
-}
+
 .editor{
   width: min-content;
   position:relative;
@@ -241,8 +229,9 @@ textarea{
   }
   .carousel-control-prev,
   .carousel-control-next{
-      height: 36rem;
+      height: 34rem;
       width: 5%;
+      background-color: rgb(87, 136, 205);
   }
   /*imagen desplegable por iconos*/
   .imagen{  

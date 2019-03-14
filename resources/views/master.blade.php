@@ -433,6 +433,9 @@
                                     //$('.altoAnotaciones').empty();
                                     document.getElementById("comentarioEstudiante").value = "";
                                     //comentarioEstudiante.val(data[0].anotestudiante);
+                                    var i=data.length;
+                                    
+                                    if(i>0)
                                     $('#comentarioEstudiante').val($('#comentarioEstudiante').val() + data[0].anotestudiante);
                                         //$('#comentarioEstudiante').append(data[i].anotestudiante)
                                 
