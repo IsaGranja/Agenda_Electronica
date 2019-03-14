@@ -133,9 +133,10 @@
                     $('<a href="#carouselExampleFade" data-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="sr-only">Previous</span></a>').appendTo('.carousel-control-prev'); 
                     $('<a href="#carouselExampleFade" data-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="sr-only">Next</span></a>').appendTo('.carousel-control-next');
                     $('#carouselExampleFade').carousel();
-                    glosarios();
+                    glosarios(codtema+"-C1");
                     //console.log(codtema+"-C1");
                     anotaciones(codtema+"-C1");
+                    
                     evaluaciones(codtema);
                     iconos();
                   },
@@ -145,8 +146,8 @@
             }); 
         //GLOSARIOS     
         //codcontenido           
-        function glosarios(){
-          /*
+        function glosarios(codcontenido){
+          
           $.ajax({
               type:'get',
               url:'{!!URL::to('json-glosarios')!!}',
@@ -156,24 +157,38 @@
                   console.log("Glosarios");
                   console.log(data.length);
                   console.log(data);
-                  contenido=data[0];
-*/
+                  
+                  var text = $("#editor").text().replace(/[\s]+/g, " ").trim();
+                  var word = text.split(" ");
+                  var newHTML = "";
+                  var palabra="";
+                  for(var i=0;i<data.length ;i++){
+                    /*
+                    if($(".editor('"+data[i].palabraglosario+"')").length > 0){
+                      $( ".editor:contains('"+data[i].palabraglosario+"')" ).addClass("statement");
+                    }
+                    console.log(data[i].palabraglosario);*/
+                    palabra=data[i].palabraglosario;
+                      $.each(word, function(index, value){
+                      
+                        if(value.toUpperCase()===palabra.toUpperCase()){  
+                          alert( "If "+ value + " is " + index + " value: "+value.toUpperCase()+" palabra: "+palabra.toUpperCase());
+                          newHTML += "<span class='statement' style='white-space: nowrap;' data-toggle='tooltip' data-placement='right' title='"+data[i].defglosario+"'>" + value + "&nbsp;</span>"              
+                        }
+                        else{
+                          alert( "Else " +value + " is " + index + " value: "+value.toUpperCase()+" palabra: "+palabra.toUpperCase());
+                          newHTML += "<span class='other'>" + value + "&nbsp;</span>";
+                        }
+                      });
+                      console.log(palabra);
+                  }
+
+                  /*
                   var text = $("#editor").text().replace(/[\s]+/g, " ").trim();
                   var word = text.split(" ");
                   var newHTML = "";
 
                   $.each(word, function(index, value){
-
-                  /*switch($_GET['canal']) 
-                  { 
-                      case $row['nombre']: 
-                      echo $comun->recuadro('Inicio'); 
-                      echo '<h2>'.$row["nombreCabezera"].'</h2>'; 
-                      echo $varclass->opcion($row['code'],$row['embeb'],5); 
-                      echo $comun->recuadro('Final'); 
-                      break; 
-                  }  */
-
                       switch(value.toUpperCase()){
                           case "SELECT":
                           case "FROM":
@@ -194,18 +209,20 @@
                               newHTML += "<span class='other'>" + value + "&nbsp;</span>";
                       }
                     });
-                  
-                    /*
-              },
-            error:function(){
-            }*/
+                    */
+                },
+              error:function(){
+              }
+            });
+            /*
         $("#editor").html(newHTML);                  
-        /*$("#editor").ready(function(){
+        $("#editor").ready(function(){
           $('[data-toggle="popover"]').popover();   
-        });*/
+        });
         $( document ).ready(function() {
           $('[data-toggle="tooltip"]').tooltip({'placement': 'top'});
-        });    
+        });   */
+         
       }
 </script>
 @endsection

@@ -290,8 +290,9 @@
                     })                    
                     $('#carouselExampleFade').on('slid.bs.carousel', function (event) {                        
                         var valor = $(event.relatedTarget).attr('value').toString();                        
-                        alert(valor);                        
+                        //alert(valor);                        
                         anotaciones(valor);
+                        glosarios(valor);
                     });
                     function iconos()
                     {
