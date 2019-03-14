@@ -144,9 +144,9 @@
               });
             }); 
         //GLOSARIOS     
-        //codcontenido           
+        //codcontenido  
         function glosarios(){
-          /*
+          //var audiocontainer = document.getElementById('');
           $.ajax({
               type:'get',
               url:'{!!URL::to('json-glosarios')!!}',
@@ -157,55 +157,20 @@
                   console.log(data.length);
                   console.log(data);
                   contenido=data[0];
-*/
-                  var text = $("#editor").text().replace(/[\s]+/g, " ").trim();
-                  var word = text.split(" ");
-                  var newHTML = "";
-
-                  $.each(word, function(index, value){
-
-                  /*switch($_GET['canal']) 
-                  { 
-                      case $row['nombre']: 
-                      echo $comun->recuadro('Inicio'); 
-                      echo '<h2>'.$row["nombreCabezera"].'</h2>'; 
-                      echo $varclass->opcion($row['code'],$row['embeb'],5); 
-                      echo $comun->recuadro('Final'); 
-                      break; 
-                  }  */
-
-                      switch(value.toUpperCase()){
-                          case "SELECT":
-                          case "FROM":
-                          case "WHERE":
-                          case "LIKE":
-                          case "BETWEEN":
-                          case "NOTLIKE":
-                          case "FALSE":
-                          case "NULL":
-                          case "ISA":
-                          case "TRUE":
-                          case "VARIABLE":
-                          case "MODELO":
-                          case "NOTIN":
-                              newHTML += "<span class='statement' style='white-space: nowrap;' data-toggle='tooltip' data-placement='right' title='Ola ke ase isa jajaja :v'>" + value + "&nbsp;</span>"              
-                              break;
-                          default: 
-                              newHTML += "<span class='other'>" + value + "&nbsp;</span>";
-                      }
-                    });
-                  
-                    /*
-              },
+                  for(var i=0;i<data.length ;i++){
+                    $('#editor:contains("'+data[i].palabraglosario'")').addClass('statement');                    
+                  }
+                },
             error:function(){
-            }*/
-        $("#editor").html(newHTML);                  
-        /*$("#editor").ready(function(){
-          $('[data-toggle="popover"]').popover();   
-        });*/
-        $( document ).ready(function() {
+            }
+          });
+          
+       /* $( document ).ready(function() {
           $('[data-toggle="tooltip"]').tooltip({'placement': 'top'});
-        });    
+        });
+        $( 'statement' ).ready(function() {
+          $('[data-toggle="popover"]').popover({'placement': 'right'});
+        });*/    
       }
 </script>
 @endsection

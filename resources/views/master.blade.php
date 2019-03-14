@@ -9,17 +9,21 @@
     <link rel="stylesheet" type="text/css" media="screen" href="{{ url('js/jquery-3.3.1.slim.min.js') }}" />
     <link rel="stylesheet" type="text/css" media="screen" href="{{ url('css/video-js.css') }}" /> 
     <link rel="stylesheet" type="text/css" media="screen" href="{{ url('css/video-js.min.css') }}" />     
-    <link rel="stylesheet" type="text/css" media="screen" href="{{ url('css/glyphicon.css') }}" />    
-    <link rel="stylesheet" type="text/css" media="screen" href="{{ url('js/popper.min.js') }}" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ url('css/glyphicon.css') }}" />        
     <link rel="stylesheet" type="text/css" media="screen" href="{{ url('css/normalize.css') }}" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ url('js/popper.min.js') }}" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ url('js/popper.js') }}" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ url('js/tooltip.js') }}" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ url('js/tooltip.min.js') }}" />
     <link rel="stylesheet" type="text/css" media="screen" href="{{ url('css/bootstrap.min.css') }}" />    
     <link rel="stylesheet" type="text/css" media="screen" href="{{ url('css/Proyecto_AgendaElectronica-style.css') }}" />
     <script src="{{ url('js/jquery-3.3.1.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
     <script src="{{ url('js/Proyecto.js') }}"></script>
         
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <!-- If you'd like to support IE8 (for Video.js versions prior to v7) -->
-    <script src="https://vjs.zencdn.net/ie8/ie8-version/videojs-ie8.min.js"></script>
+    <!-- If you'd like to support IE8 (for Video.js versions prior to v7) 
+    <script src="https://vjs.zencdn.net/ie8/ie8-version/videojs-ie8.min.js"></script>-->
     <script src="https://unpkg.com/video.js@6.2.5/dist/video.min.js"></script>
 <script src="https://unpkg.com/videojs-flash@2.0.0/dist/videojs-flash.min.js"></script>
     <style>

@@ -43,6 +43,9 @@ textarea{
     overflow-y: scroll;
     float:right;
 }
+.popover {
+  max-width: 100% !important;
+}
 .containerPri1{
   height: 30rem;
   width:100%;
@@ -146,6 +149,7 @@ textarea{
   white-space: pre-wrap;
   cursor:pointer;
 }
+
 .other{
   color: white;
   text-align: center;
