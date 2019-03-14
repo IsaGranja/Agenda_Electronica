@@ -198,15 +198,28 @@
                         <center>
                         <img class="image-responsive imagen2 static" title="Evaluaciones" id="evaluaciones" src="{{ url('img/iconos/evaluacion/evaluacion.png') }}">
                             <img class="image-responsive imagen2" title="Evaluaciones" id="evaluaciones" src="{{ url('img/iconos/evaluacion/evaluacion.gif') }}">
-                            <div id="mimodal4" class="modal fade" role="dialog">
+                            <div id="mimodal4" class="modal fade" role="dialog" >
                                 <div id="mimodal4" class="modal-dialog imagen">
                                     <div class="modal-content">
-                                        <div class="modal-header">
+                                        <div class="modal-header colorPUCE" style="color: white;">
                                             <h1>Evaluaciones</h1>    
                                             <button class="close" data-dismiss="modal">&times;</button>                                                
                                         </div>
-                                        <div class="modal-body">
-                                            <img src="" class="recibir-evaluaciones" width="100%" height="100%">
+                                        <div class="modal-body" style="background: #f1f1f1;">
+                                            <div id="carouselExampleModal" style="width:100%;" class="carousel slide carousel-fade" data-interval="false">
+                                                <ol class="carousel-indicators modalIndicators"></ol>
+                                                <div class="carousel-inner modalInner" onchange="evaluaciones();"></div>
+
+                                                <a class="carousel-control-prev modalPrev" title="Anterior" href="#carouselExampleModal" role="button" data-slide="prev">
+                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                <span class="sr-only">Previous</span>
+                                                </a>
+                                                <a class="carousel-control-next modalNext" title="Siguiente" href="#carouselExampleModal" role="button" data-slide="next">
+                                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                <span class="sr-only">Next</span>
+                                                </a>
+                                            </div>
+                                        
                                         </div>
                                     </div>
                                 </div>
@@ -253,7 +266,7 @@
                         <img class="image-responsive imagen2 static" title="Talleres" id="talleres" src="{{ url('img/iconos/pencil/static.png') }}">
                             <img class="image-responsive imagen2" title="Talleres" id="talleres" src="{{ url('img/iconos/pencil/animat-pencil-color.gif') }}">
                             <div id="mimodal7" class="modal fade" role="dialog">
-                                <div id="mimodal7" class="modal-dialog imagen">
+                                <div id="mimodal7" class="modal-dialog imagen" >
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h1>Talleres</h1>    
@@ -281,8 +294,9 @@
                     })                    
                     $('#carouselExampleFade').on('slid.bs.carousel', function (event) {                        
                         var valor = $(event.relatedTarget).attr('value').toString();                        
-                        alert(valor);                        
+                        //alert(valor);                        
                         anotaciones(valor);
+                        glosarios(valor);
                     });
                     function iconos()
                     {
@@ -368,8 +382,7 @@
                             }                                
                         });
                     }
-                    function evaluaciones(codtema){
-                                       
+                    function evaluaciones(codtema){        
                         $.ajax({
                         type:'get',
                         url:'{!!URL::to('json-evaluaciones')!!}',
@@ -381,25 +394,30 @@
                             console.log(data);
                             // $("#editor").remove();
                             //$("#carousel-indicators").empty();
-                            $('.carousel-inner,.carousel-indicators,.carousel-control-prev,.carousel-control-next').empty();
+                            $('.modalInner, .modalIndicators, .modalPrev, .modalNext').empty();
                             for(var i=0;i<data.length ;i++){
-                            $('<li data-target="#carouselExampleFade" data-slide-to="'+i+'"></li>').appendTo('.carousel-indicators');
-                            $('<div class="carousel-item" value="'+data[i].codpregunta+'"><div class="editor" id="editor" value="'+data[i].codpregunta+'" style="text-align: left; width:100%" contenteditable="false">'+data[i].enunpregevaluacion+'</div><div class="carousel-caption"></div>   </div>').appendTo('.carousel-inner');
-                            //$contenidoCombo.append('<div class="editor" id="editor" value="'+data[i].codcontenido+'" style="text-align: left; width:100%" contenteditable="false">'+data[i].textocontenido+'</div>');    
+                                $('<li data-target="#carouselExampleModal" data-slide-to="'+i+'"></li>').appendTo('.modalIndicators');
+                                
+                                $('<div class="carousel-item modalItem" value="'+data[i].codtema+'"><div class="editor1" id="editor1" value="'+data[i].codtema+'" contenteditable="false">'+data[i].enunpregevaluacion+
+                                '<input type="radio" class ="evaluaciones" name="optionsRadios" id="optionsRadios1" value="'+data[i].codpregunta+'" checked="">'+ data[i].op1evaluacion+'<br>'+
+                                '<input type="radio" class ="evaluaciones" name="optionsRadios" id="optionsRadios1" value="'+data[i].codpregunta+'" checked="">'+ data[i].op2evaluacion+'<br>'+
+                                '<input type="radio" class ="evaluaciones" name="optionsRadios" id="optionsRadios1" value="'+data[i].codpregunta+'" checked="">'+ data[i].op3evaluacion+'<br>'+
+                                '<input type="radio" class ="evaluaciones" name="optionsRadios" id="optionsRadios1" value="'+data[i].codpregunta+'" checked="">'+ data[i].op4evaluacion+
+                                '</div></div>').appendTo('.modalInner');   
+                                
                             }
-                            $('.carousel-item').first().addClass('active');
-                            $('.carousel-indicators > li').first().addClass('active');
-                            $('<a href="#carouselExampleFade" data-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="sr-only">Previous</span></a>').appendTo('.carousel-control-prev'); 
-                            $('<a href="#carouselExampleFade" data-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="sr-only">Next</span></a>').appendTo('.carousel-control-next');
-                            $('#carouselExampleFade').carousel();
-                            glosario();
-                            iconos();
+                            $('#carouselExampleModal .modalItem').first().addClass('active');
+                            $('#carouselExampleModal .modalIndicators > li').first().addClass('active');
+                            $('<a href="#carouselExampleModal" data-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="sr-only">Previous</span></a>').appendTo('.modalPrev'); 
+                            $('<a href="#carouselExampleModal" data-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="sr-only">Next</span></a>').appendTo('.modalNext');
+                            $('#carouselExampleModal').carousel();
                         },
                         error:function(){
                     }
                     });
                     }
 
+ 
                     function anotaciones($codcontenido){
                         console.log("FUNCION ANOTACIONES");
                                 $.ajax({

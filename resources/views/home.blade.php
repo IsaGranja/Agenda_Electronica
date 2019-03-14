@@ -133,10 +133,11 @@
                     $('<a href="#carouselExampleFade" data-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="sr-only">Previous</span></a>').appendTo('.carousel-control-prev'); 
                     $('<a href="#carouselExampleFade" data-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="sr-only">Next</span></a>').appendTo('.carousel-control-next');
                     $('#carouselExampleFade').carousel();
-                    glosarios();
+                    glosarios(codtema+"-C1");
                     //console.log(codtema+"-C1");
                     anotaciones(codtema+"-C1");
-                    //evaluaciones(codtema);
+                    
+                    evaluaciones(codtema);
                     iconos();
                   },
                 error:function(){
@@ -144,9 +145,9 @@
               });
             }); 
         //GLOSARIOS     
-        //codcontenido  
-        function glosarios(){
-          //var audiocontainer = document.getElementById('');
+        //codcontenido           
+        function glosarios(codcontenido){
+          
           $.ajax({
               type:'get',
               url:'{!!URL::to('json-glosarios')!!}',
@@ -156,21 +157,72 @@
                   console.log("Glosarios");
                   console.log(data.length);
                   console.log(data);
-                  contenido=data[0];
+                  
+                  var text = $("#editor").text().replace(/[\s]+/g, " ").trim();
+                  var word = text.split(" ");
+                  var newHTML = "";
+                  var palabra="";
                   for(var i=0;i<data.length ;i++){
-                    $('#editor:contains("'+data[i].palabraglosario'")').addClass('statement');                    
+                    /*
+                    if($(".editor('"+data[i].palabraglosario+"')").length > 0){
+                      $( ".editor:contains('"+data[i].palabraglosario+"')" ).addClass("statement");
+                    }
+                    console.log(data[i].palabraglosario);*/
+                    palabra=data[i].palabraglosario;
+                      $.each(word, function(index, value){
+                      
+                        if(value.toUpperCase()===palabra.toUpperCase()){  
+                          alert( "If "+ value + " is " + index + " value: "+value.toUpperCase()+" palabra: "+palabra.toUpperCase());
+                          newHTML += "<span class='statement' style='white-space: nowrap;' data-toggle='tooltip' data-placement='right' title='"+data[i].defglosario+"'>" + value + "&nbsp;</span>"              
+                        }
+                        else{
+                          alert( "Else " +value + " is " + index + " value: "+value.toUpperCase()+" palabra: "+palabra.toUpperCase());
+                          newHTML += "<span class='other'>" + value + "&nbsp;</span>";
+                        }
+                      });
+                      console.log(palabra);
                   }
+
+                  /*
+                  var text = $("#editor").text().replace(/[\s]+/g, " ").trim();
+                  var word = text.split(" ");
+                  var newHTML = "";
+
+                  $.each(word, function(index, value){
+                      switch(value.toUpperCase()){
+                          case "SELECT":
+                          case "FROM":
+                          case "WHERE":
+                          case "LIKE":
+                          case "BETWEEN":
+                          case "NOTLIKE":
+                          case "FALSE":
+                          case "NULL":
+                          case "ISA":
+                          case "TRUE":
+                          case "VARIABLE":
+                          case "MODELO":
+                          case "NOTIN":
+                              newHTML += "<span class='statement' style='white-space: nowrap;' data-toggle='tooltip' data-placement='right' title='Ola ke ase isa jajaja :v'>" + value + "&nbsp;</span>"              
+                              break;
+                          default: 
+                              newHTML += "<span class='other'>" + value + "&nbsp;</span>";
+                      }
+                    });
+                    */
                 },
-            error:function(){
-            }
-          });
-          
-       /* $( document ).ready(function() {
-          $('[data-toggle="tooltip"]').tooltip({'placement': 'top'});
+              error:function(){
+              }
+            });
+            /*
+        $("#editor").html(newHTML);                  
+        $("#editor").ready(function(){
+          $('[data-toggle="popover"]').popover();   
         });
-        $( 'statement' ).ready(function() {
-          $('[data-toggle="popover"]').popover({'placement': 'right'});
-        });*/    
+        $( document ).ready(function() {
+          $('[data-toggle="tooltip"]').tooltip({'placement': 'top'});
+        });   */
+         
       }
 </script>
 @endsection
