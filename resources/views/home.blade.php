@@ -193,14 +193,6 @@
             $(function () {
               $('[data-toggle="popover"]').popover()
             })  
-            /*
-        $("#editor").html(newHTML);                  
-        $("#editor").ready(function(){
-          $('[data-toggle="popover"]').popover();   
-        });
-        $( document ).ready(function() {
-          $('[data-toggle="tooltip"]').tooltip({'placement': 'top'});
-        });   */
          
       }
 </script>
