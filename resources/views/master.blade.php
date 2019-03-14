@@ -303,10 +303,6 @@
                     function iconos()
                     {
                         var contenido = null;
-                        /*if($valor == null)
-                        {
-                            $valor = $("#carouselExampleFade div").find("div.active").attr('value').toString();
-                        }*/
                         $('.imagen2').click(function(){
                                 var imagenT=$(this).attr('src');
                                 var imagenID=$(this).attr('id');

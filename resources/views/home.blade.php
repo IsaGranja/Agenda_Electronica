@@ -169,7 +169,7 @@
                           for(var i=0;i<data.length ;i++){
                             if(value.toUpperCase() === data[i].palabraglosario.toUpperCase()){                              
                               newHTML += "<span class='statement' style='color:red;' title='"+data[i].palabraglosario+
-                              "' data-container = 'body' data-toggle = 'popover' data-placement = 'right' data-content = '"+data[i].defglosario+"'>" + value + 
+                              "' data-container = 'body' data-toggle = 'popover' data-placement = 'right' data-trigger='hover' data-content = '"+data[i].defglosario+"'>" + value + 
                               "&nbsp;</span>";                              
                               bool=true;
                             }
@@ -179,20 +179,20 @@
                           }
                         })
                         $("#editor").html(newHTML);
-                        $('[data-toggle="popover"]').popover();                                             
+                        $('[data-toggle="popover"]').popover({ trigger: "hover" });                                             
                 },
               error:function(){
               }
             });
             $("#editor").ready(function(){
-              $('[data-toggle="popover"]').popover();   
+              $('[data-toggle="popover"]').popover({ trigger: "hover" });   
             });
-            $( document ).ready(function() {
-              $('[data-toggle="popover"]').popover(); 
+            /*$( document ).ready(function() {
+              $('[data-toggle="popover"]').popover({ trigger: "hover" }); 
             });
             $(function () {
-              $('[data-toggle="popover"]').popover()
-            })  
+              $('[data-toggle="popover"]').popover({ trigger: "hover" })
+            })*/  
          
       }
 </script>
