@@ -149,7 +149,7 @@
         function glosarios(codcontenido){
           $cont=$('.editor').attr('id');
           //alert($cont);
-          alert("S:"+codcontenido);
+          //alert("S:"+codcontenido);
           $.ajax({
               type:'get',
               url:'{!!URL::to('json-glosarios')!!}',
@@ -159,9 +159,12 @@
                   console.log("Glosarios");
                   console.log(data.length);
                   console.log(data);
-                  var text = $('#'+codcontenido).text().replace(/[\s]+/g, " ").trim();
+                  var text = $('#'+codcontenido).html().replace(/[\s]+/g, " ").trim();
+                  var text = text.replace(/\>/g, "> ");//Reemplazar puntos
+                  var text = text.replace(/\</g, " <");//Reemplazar puntos
                   //alert(text);
                   var word = text.split(" ");
+                  console.log(word);
                   var newHTML = "";
                   var palabra = "";
                   var bool=false;
@@ -169,16 +172,21 @@
                       $.each(word, function(index, value){
                         bool=false;
                           for(var i=0;i<data.length ;i++){
-                            if(value.toUpperCase() === data[i].palabraglosario.toUpperCase()){                              
-                              newHTML += "<span class='statement' style='color:red;' title='"+data[i].palabraglosario+
+                            var value1 = value.replace(/\,/g, "");//Reemplazar comas
+                            var value1 = value1.replace(/\./g, "");//Reemplazar puntos
+                            console.log(value1);
+                           
+                            if(value1.toUpperCase() === data[i].palabraglosario.toUpperCase()){                              
+                              newHTML += "<span class='statement' style='color:red;' title= '"+data[i].palabraglosario+
                               "' data-container = 'body' data-toggle = 'popover' data-placement = 'right' data-trigger='hover' data-content = '"+data[i].defglosario+"'>" + value + 
-                              "&nbsp;</span>";                              
+                              " </span>";                              
                               bool=true;
+                              //console.log(value1);
                               break;
                             }
                           }
                           if(bool==false)  {                            
-                              newHTML += "<span class='other'>" + value + "&nbsp;</span>";                                                          
+                              newHTML += value + " ";                                                          
                           }
                         })
                         $('#'+codcontenido).html(newHTML);
