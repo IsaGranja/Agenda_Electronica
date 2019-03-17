@@ -221,8 +221,12 @@
         <td>
           <div class="colorHeaderToggle" style="font-size:14px;">
               <label for="comment">Anotaciones: </label><br>
+              
               <label class="labelC" style="font-size:9px">Caracteres restantes: <span style="color: white;">500</span></label>
-              <textarea maxlength="500" class="altoAnotaciones" style="margin-bottom: 1rem;resize: none;" name="anotaciones" id="comentarioEstudiante" autofocus></textarea>
+              <form action="" method="POST" id="idFormulario">
+              @csrf
+                <textarea maxlength="500" class="altoAnotaciones" style="margin-bottom: 1rem;resize: none;" name="anotaciones" id="comentarioEstudiante" autofocus></textarea>
+              </form>
           </div>
         </td>
       </tr>

@@ -139,6 +139,9 @@ class AnotacionesController extends Controller
 	}
 	public function store(Request $request)
 	{
+		$data = Input::all();
+		Log::info($data);
+		/*
 		$user = Auth::user();
 		$email=$user->email;
 		$cedestudiante = DB::table('estudiantes')
@@ -146,14 +149,17 @@ class AnotacionesController extends Controller
 					->value('cedestudiante');
 		$codcontenido=Input::get('codcontenido');
 		$anota=Input::get('anotaciones');
+		\Log::info('Anota: '+$anota);
+		\Log::info('codcontenido: '+$codcontenido);
 		//INGRESAR O MODIFICAR
 		$anotaciones = anotaciones::updateOrCreate([
 			'codcontenido' => $codcontenido,
 			'cedestudiante' => $cedestudiante,
-			'anotestudiante' => $request->get('anotestudiante'),
-			'anotestudiante' => null			
-		]);
-		return response()->json($anotaciones);
+		],[
+			'anotestudiante' => $anota,
+			'imgestudiante' => null			
+		]);*/
+		return response()->json($data);
 	}
 	
 	public function index()
