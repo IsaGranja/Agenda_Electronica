@@ -39,7 +39,7 @@
 </div>
       
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script type="text/javascript">
+<script type="text/javascript">
 
   function cambioAsignaturas(){
       var $asignaturaCombo = $("#asignatura");
@@ -124,7 +124,7 @@
                     $('.carousel-inner,.carousel-indicators,.carousel-control-prev,.carousel-control-next').empty();
                     for(var i=0;i<data.length ;i++){
                       $('<li data-target="#carouselExampleFade" data-slide-to="'+i+'"></li>').appendTo('.carousel-indicators');
-                      $('<div class="carousel-item" value="'+data[i].codcontenido+'"><div class="editor" id="editor" value="'+data[i].codcontenido+'" style="text-align: left; width:100%" contenteditable="false">'+data[i].textocontenido+'</div><div class="carousel-caption"></div>   </div>').appendTo('.carousel-inner');
+                      $('<div class="carousel-item" value="'+data[i].codcontenido+'"><div class="editor" id="'+data[i].codcontenido+'" value="'+data[i].codcontenido+'" style="text-align: left; width:100%" contenteditable="false">'+data[i].textocontenido+'</div><div class="carousel-caption"></div>   </div>').appendTo('.carousel-inner');
                       glosarios(codtema+"-C1");
                       //$contenidoCombo.append('<div class="editor" id="editor" value="'+data[i].codcontenido+'" style="text-align: left; width:100%" contenteditable="false">'+data[i].textocontenido+'</div>');    
                     }
@@ -147,7 +147,9 @@
         //GLOSARIOS     
         //codcontenido           
         function glosarios(codcontenido){
-          
+          $cont=$('.editor').attr('id');
+          //alert($cont);
+          alert("S:"+codcontenido);
           $.ajax({
               type:'get',
               url:'{!!URL::to('json-glosarios')!!}',
@@ -157,8 +159,8 @@
                   console.log("Glosarios");
                   console.log(data.length);
                   console.log(data);
-                  
-                  var text = $("#editor").text().replace(/[\s]+/g, " ").trim();
+                  var text = $('#'+codcontenido).text().replace(/[\s]+/g, " ").trim();
+                  //alert(text);
                   var word = text.split(" ");
                   var newHTML = "";
                   var palabra = "";
@@ -179,22 +181,29 @@
                               newHTML += "<span class='other'>" + value + "&nbsp;</span>";                                                          
                           }
                         })
-                        $("#editor").html(newHTML);
-                        $('[data-toggle="popover"]').popover({ trigger: "hover" });                                             
+                        $('#'+codcontenido).html(newHTML);
+                        $("[data-toggle = 'popover']").popover({
+                            html: true,
+                            trigger: "  focus",
+                        }).on("mouseenter", function() {
+                            var _this = this;
+                            $(this).popover("show");
+                            $(this).siblings(".popover").on("mouseleave", function() {
+                                $(_this).popover('hide');
+                            });
+                        }).on("mouseleave", function() {
+                            var _this = this;
+                            setTimeout(function() {
+                                if (!$(".popover:hover").length) {
+                                    $(_this).popover("hide")
+                                }
+                            }, 100);
+                        });
                 },
               error:function(){
               }
             });
-            $("#editor").ready(function(){
-              $('[data-toggle="popover"]').popover({ trigger: "hover" });   
-            });
-            /*$( document ).ready(function() {
-              $('[data-toggle="popover"]').popover({ trigger: "hover" }); 
-            });
-            $(function () {
-              $('[data-toggle="popover"]').popover({ trigger: "hover" })
-            })*/  
-         
+            
       }
 </script>
 @endsection
