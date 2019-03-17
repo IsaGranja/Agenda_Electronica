@@ -25,7 +25,7 @@
     @csrf
     <div class="card-header"><h2>Glosarios</h2></div>
     <div class="form-horizontal card-body">
-        <input type="hidden" id="codcontenido" class="form-control" name="codcontenido" >
+ 
 
         <div class="form-group row">
             <label class="control-label col-sm-3" for="unies">Universidad-Carrera</label>
@@ -67,58 +67,44 @@
             </div>
         </div>
 
+        <div class="form-group row">
+            <div class="col-sm-10">
+                <button type="button" id="addglosario"
+                    class="btn btn-primary btn-save">Nuevo</button>
+            </div>
+        </div>
+        <div>
+            <table class="table table-striped" id="myTable">
+                <thead>
+                    <tr>
+                        <th>Palabra</th>
+                        <th>Definición</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
         <div class="row">
-            <div class="col-md-3"></div>
+            <div class="col-md-5"></div>
             <div class="form-group col-md-4">
                 <button type="submit" class="btn btn-primary btn-save">Guardar</button>
             </div>
         </div>
-
 </form>
 
 <script>
 
 $(document).ready(function(){
-
-    $('#summernote').summernote({
-            placeholder: 'Hello stand alone ui',
-            tabsize: 2,
-            height: 100,
-            width: 1000
-        });
-
-    var codcontenido = null;
-    var contenido;
-
-    <?php if(isset($contenido)){
-        echo 'contenido = '.json_encode($contenido, JSON_HEX_TAG).';'; }?>
-
-    Array.from(contenido).forEach(function(contenido){
-            if(document.getElementById('tema').value==contenido.codtema)
-            {
-                codcontenido = contenido.codcontenido;
-            }
-        })
-    document.getElementById('codcontenido').value = codcontenido;
-
     cambioCarrera();
-    })
-
-
-function cambioContenido(){
-    var codcontenido = null;
-    var contenido;
-
-    <?php if(isset($contenido)){
-        echo 'contenido = '.json_encode($contenido, JSON_HEX_TAG).';'; }?>
-    Array.from(contenido).forEach(function(contenido){
-            if(document.getElementById('tema').value==contenido.codtema)
-            {
-                codcontenido = contenido.codcontenido;
-            }
-        })
-    document.getElementById('codcontenido').value = codcontenido;
-}
+});
 
 function cambioCarrera(){
     var asignaturas;
@@ -183,16 +169,33 @@ function cambioTema(){
     tema.forEach(function(tema){    
        if(tema.codtema==document.getElementById('tema').value){
             contenido.forEach(function(contenido){
-            if(contenido.codtema==tema.codtema)
-            {
-                var option = $('<option></option>').attr("value", contenido.codcontenido).text(contenido.textocontenido);
-                $contenidoCombo.append(option);
-            }
+                if(contenido.codtema==tema.codtema)
+                {
+                    var texto=contenido.textocontenido;
+                    var option = $('<option></option>').attr("value", contenido.codcontenido).text($(texto).text());
+                    $contenidoCombo.append(option);
+                }
         })
        }
     })
-    cambioContenido();
 }
+var counter = 0;
+$("#addglosario").on("click", function () {
+            var newRow = $("<tr>");
+            var cols = "";
+            cols += '<td><input type="text" class="form-control" name="palabraglosario[]"></td>';
+            cols += '<td><input type="text" class="form-control" name="defglosario[]"></td>';
+            cols += '<td><div class="form-group col-md-4"><button type="button" class="btn ibtnDel btn-danger"><span class="glyphicon glyphicon-remove-sign"></span></button></div></div></div></td></tr>';
+            newRow.append(cols);
+            $("#myTable").append(newRow);
+            counter++;
+        });
+
+        $("#myTable").on("click", ".ibtnDel", function (event) {
+            $(this).closest("tr").remove();       
+            counter -= 1
+        });
+    
 </script>
 @stop
 

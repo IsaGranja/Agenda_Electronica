@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use DB;
 use App\Glosarios;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 class GlosariosController extends Controller
 {
     public function create(){
@@ -22,24 +23,69 @@ class GlosariosController extends Controller
             return view('glosarios', compact('carreras', 'asignaturas', 'tema', 'contenido', 'glosarios'));
     }
     public function store(Request $request){
-        
-        $codcontenido= $request->input('codperiodo');
-        $cedprofesor = $request->input('cedprofesor');
-        $asignaturas = $request->input('asignaturas');
-        foreach( $glosario as $glosario){
-            $asigs= DB::table('asignaturas')->select('codasignatura')->where('descasignatura','=',$asignatura)->get();
-            $codasignatura;
-            foreach ($asigs as $asig){
-                $codasignatura = $asig->codasignatura;
-            }
-            DB::table('glosarios')->insert([
-                'codglosario'=>$codglosario,
-                'codcontenido'=>$codcontenido,
-                'palabraglosario'=>$palabraglosario,
-                'defglosario'=>$defglosario             
+        /*    public function store(Request $request)
+    {
+    public function store(Request $request)
+    {
+        $num = $request->input('numtema');
+        $desc = $request->input('desctema');
+        $coment = $request->input('comentema');
+        for ($i=0; $i <count($num); $i++) { 
+            $cad1 = $desc[$i];
+            $cad2 = $coment[$i];
+            Temas::create([
+                'codasignatura'=>$request->input('codasignatura'),
+                'codunidad'=>$request->input('codunidad'),
+                'codtema'=>$request->input('codunidad')."-".strval($num[$i]),
+                'desctema'=>$cad1,
+                'numtema'=>intval($num[$i]),
+                'comentema'=>$cad2,
+                'esttema'=>'E'
             ]);
         }
-        return redirect('pagGlosarios')->with('success', 'Se añadió correctamente');
+       
+        return redirect('pagTemas');
+    }
+        } */
+        $codcontenido=Input::get('contenido');
+        //$codcontenido= $request->input('codcontenido');
+        //dd($codcontenido);
+        $palabraglosario= $request->input('palabraglosario');
+        $defglosario= $request->input('defglosario');
+        $codglosario =DB::table('glosarios')->select('codglosario')
+        ->where('codcontenido',$codcontenido)
+        ->orderby('codglosario','desc')
+        ->first();
+        /*
+        $codglosario = Glosarios::where('codcontenido',$codcontenido)
+        ->orderby('codglosario','desc')
+        ->first();*/
+        $codglosario = (array)$codglosario;
+
+        
+        list($keys, $values) = array_divide($codglosario);
+        //dd($values[0]);
+
+        //$codglosario=response()->json($codglosario);
+        //MyModel::where('field', 'foo')->first()->value('id');
+        $numero = substr($values[0], -1);
+        if ($numero == null) {
+            $numero = 1;
+        } else {
+            $numero += 1;
+        }
+
+        for ($i=0; $i <count($palabraglosario); $i++) { 
+            $palabraglosarioVal = $palabraglosario[$i];
+            $defglosarioVal = $defglosario[$i];
+            Glosarios::create([
+                'codglosario'=>$codcontenido."-".(strval($numero+$i)),
+                'codcontenido'=>$codcontenido,
+                'palabraglosario'=>$palabraglosarioVal,
+                'defglosario'=>$defglosarioVal
+            ]);
+        }
+        return redirect('glosarios')->with('success', 'Se añadió correctamente');
     }
     public function index()//consultar
     {
