@@ -394,12 +394,11 @@
                                 $('<li data-target="#carouselExampleModal" data-slide-to="'+i+'"></li>').appendTo('.modalIndicators');
                                 
                                 $('<div class="carousel-item modalItem" value="'+data[i].codtema+'"><div class="editor1" id="editor1" value="'+data[i].codtema+'" contenteditable="false">'+data[i].enunpregevaluacion+
-                                '<input type="radio" class ="evaluaciones" name="optionsRadios" id="optionsRadios1" value="'+data[i].codpregunta+'" checked="">'+ data[i].op1evaluacion+'<br>'+
-                                '<input type="radio" class ="evaluaciones" name="optionsRadios" id="optionsRadios1" value="'+data[i].codpregunta+'" checked="">'+ data[i].op2evaluacion+'<br>'+
-                                '<input type="radio" class ="evaluaciones" name="optionsRadios" id="optionsRadios1" value="'+data[i].codpregunta+'" checked="">'+ data[i].op3evaluacion+'<br>'+
-                                '<input type="radio" class ="evaluaciones" name="optionsRadios" id="optionsRadios1" value="'+data[i].codpregunta+'" checked="">'+ data[i].op4evaluacion+
+                                '<br><input type="radio" class ="evaluaciones" name="optionsRadios" id="optionsRadios1" value="'+data[i].op1evaluacion+'" checked="" onclick="check(); return false;" >'+ data[i].op1evaluacion+'<br>'+
+                                '<input type="radio" class ="evaluaciones" name="optionsRadios" id="optionsRadios2" value="'+data[i].op2evaluacion+'" checked="" onclick="check(); return false;" >'+ data[i].op2evaluacion+'<br>'+
+                                '<input type="radio" class ="evaluaciones" name="optionsRadios" id="optionsRadios3" value="'+data[i].op3evaluacion+'" checked="" onclick="check(); return false;" >'+ data[i].op3evaluacion+'<br>'+
+                                '<input type="radio" class ="evaluaciones" name="optionsRadios" id="optionsRadios4" value="'+data[i].op4evaluacion+'" checked="" onclick="check(); return false;" >'+ data[i].op4evaluacion+
                                 '</div></div>').appendTo('.modalInner');   
-                                
                             }
                             $('#carouselExampleModal .modalItem').first().addClass('active');
                             $('#carouselExampleModal .modalIndicators > li').first().addClass('active');
@@ -411,8 +410,10 @@
                     }
                     });
                     }
-
- 
+                    function check(){
+                        var lol= document.querySelector("input[name=optionsRadios]:checked").value;
+                        alert(lol);
+                    } 
                     function anotaciones($codcontenido){
                         console.log("FUNCION ANOTACIONES");
                                 $.ajax({
