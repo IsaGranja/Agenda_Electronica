@@ -23,51 +23,16 @@ class GlosariosController extends Controller
             return view('glosarios', compact('carreras', 'asignaturas', 'tema', 'contenido', 'glosarios'));
     }
     public function store(Request $request){
-        /*    public function store(Request $request)
-    {
-    public function store(Request $request)
-    {
-        $num = $request->input('numtema');
-        $desc = $request->input('desctema');
-        $coment = $request->input('comentema');
-        for ($i=0; $i <count($num); $i++) { 
-            $cad1 = $desc[$i];
-            $cad2 = $coment[$i];
-            Temas::create([
-                'codasignatura'=>$request->input('codasignatura'),
-                'codunidad'=>$request->input('codunidad'),
-                'codtema'=>$request->input('codunidad')."-".strval($num[$i]),
-                'desctema'=>$cad1,
-                'numtema'=>intval($num[$i]),
-                'comentema'=>$cad2,
-                'esttema'=>'E'
-            ]);
-        }
-       
-        return redirect('pagTemas');
-    }
-        } */
         $codcontenido=Input::get('contenido');
-        //$codcontenido= $request->input('codcontenido');
-        //dd($codcontenido);
         $palabraglosario= $request->input('palabraglosario');
         $defglosario= $request->input('defglosario');
         $codglosario =DB::table('glosarios')->select('codglosario')
         ->where('codcontenido',$codcontenido)
         ->orderby('codglosario','desc')
         ->first();
-        /*
-        $codglosario = Glosarios::where('codcontenido',$codcontenido)
-        ->orderby('codglosario','desc')
-        ->first();*/
         $codglosario = (array)$codglosario;
-
-        
+   
         list($keys, $values) = array_divide($codglosario);
-        //dd($values[0]);
-
-        //$codglosario=response()->json($codglosario);
-        //MyModel::where('field', 'foo')->first()->value('id');
         $numero = substr($values[0], -1);
         if ($numero == null) {
             $numero = 1;
