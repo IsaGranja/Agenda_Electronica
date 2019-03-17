@@ -251,7 +251,7 @@
                                 <div id="mimodal6" class="modal-dialog imagen">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h1>glosario</h1>    
+                                            <h1>Glosario</h1>    
                                             <button class="close" data-dismiss="modal">&times;</button>                                                
                                         </div>
                                         <div class="modal-body">
