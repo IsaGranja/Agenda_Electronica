@@ -123,11 +123,11 @@ class GlosariosController extends Controller
                 'codperiodo'=>$codperiodo,               
                 ]);
         }
-        return redirect('pagGlosarios')->with('success', 'Se modifico correctamente');
+        return redirect('glosarios')->with('success', 'Se modifico correctamente');
     }
     public function destroy($codglosario)//modificar
     {   
         DB::table('glosarios')->where('codglosario','=', $codglosario)->delete();
-        return redirect('pagGlosarios')->with('success','Se eliminó correctamente');
+        return redirect('glosarios')->with('success','Se eliminó correctamente');
     }
 }
