@@ -251,7 +251,7 @@
                                 <div id="mimodal6" class="modal-dialog imagen">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h1>glosario</h1>    
+                                            <h1>Glosario</h1>    
                                             <button class="close" data-dismiss="modal">&times;</button>                                                
                                         </div>
                                         <div class="modal-body">
@@ -291,14 +291,16 @@
                     $('#mimodal2').on('hidden.bs.modal', function () {
                         var audiocontainer = document.getElementById('audioclip');
                         audiocontainer.pause();
-                    })                    
-                    $('#carouselExampleFade').on('slid.bs.carousel', function (event) {                        
+                    })             
+
+                    $('#carouselExampleFade').on('slid.bs.carousel', function (event) {  
+                        var actual = $("#carouselExampleFade div").find("div.active").attr('value').toString();                     
+                        //alert(actual);                      
                         var valor = $(event.relatedTarget).attr('value').toString();                        
                         //alert(valor);                        
-                        anotaciones(valor);
-                        //var actual = $("#carouselExampleFade div").find("div.active").attr('value').toString();                     
-                        //alert(actual);
-                        glosarios(valor);
+                        anotaciones(valor);                      
+                        glosarios(valor);                  
+                        createAnotaciones(actual);
                     });
                     function iconos()
                     {
@@ -387,8 +389,6 @@
                             console.log("eval");
                             console.log(data.length);
                             console.log(data);
-                            // $("#editor").remove();
-                            //$("#carousel-indicators").empty();
                             $('.modalInner, .modalIndicators, .modalPrev, .modalNext').empty();
                             for(var i=0;i<data.length ;i++){
                                 $('<li data-target="#carouselExampleModal" data-slide-to="'+i+'"></li>').appendTo('.modalIndicators');
@@ -433,7 +433,7 @@
                                     var i=data.length;
                                     
                                     if(i>0)
-                                    $('#comentarioEstudiante').val($('#comentarioEstudiante').val() + data[0].anotestudiante);
+                                        $('#comentarioEstudiante').val($('#comentarioEstudiante').val() + data[0].anotestudiante);
                                         //$('#comentarioEstudiante').append(data[i].anotestudiante)
                                 
                                 },
@@ -444,18 +444,59 @@
                         function createAnotaciones($codcontenido){
                             $anotacion=$('#comentarioEstudiante').val();
                             console.log("FUNCION ANOTACIONES crear update");
+                            var frm=$( "#idFormulario" ); //Identificamos el formulario por su id
+                            //var datos = frm.serialize(); 
+
+		                    var dataString = {codcontenido: $codcontenido, anotestudiante: $anotacion};
+
+                            $.ajaxSetup({
+                                headers: {
+                                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                }
+                            });
+                            $.ajax({
+                                url:'{!!URL::to('/main/successlogin')!!}',  
+                                type:'POST',
+                                data:dataString,
+                                success: function(Data) { alert("Save Complete") },
+                                error: function (data) {
+                                console.log('Error');
+                                    console.log( dataString);
+                                    console.log( data);
+                                }
+                            });
+                        
+
+                            /*
+                            $.ajax({
+                                type: "POST",
+                                headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                }
+                                url: '{!!URL::to('json-anotacionesCreate')!!}',
+                                data: ({
+                                        '_token': "{{ csrf_token() }}",
+                                        'codcontenido':$codcontenido,
+                                        'anotestudiante':$anotacion
+                                    }),
+                                
+                                dataType: "text",
+                                success: function(resultData) { alert("Save Complete") }
+                            });*/
+                        
+/*
                             $.ajax({
                                 type:'post',
                                 url:'{!!URL::to('json-anotacionesCreate')!!}',
                                 data:{'codcontenido':$codcontenido,'anotestudiante':$anotacion},
                                 dataType:'json',
                                 success:function(data){
-                                    console.log("anotaciones");
+                                    console.log("Crear anotaciones");
                                     console.log(data.length);                              
                                 },
                                 error:function(){
                             }
-                            });
+                            });*/
                         }
                     </script>
                 </tr>

@@ -149,7 +149,7 @@
         function glosarios(codcontenido){
           $cont=$('.editor').attr('id');
           //alert($cont);
-          alert("S:"+codcontenido);
+          //alert("S:"+codcontenido);
           $.ajax({
               type:'get',
               url:'{!!URL::to('json-glosarios')!!}',
@@ -159,26 +159,40 @@
                   console.log("Glosarios");
                   console.log(data.length);
                   console.log(data);
-                  var text = $('#'+codcontenido).text().replace(/[\s]+/g, " ").trim();
-                  //alert(text);
+                
+
+                  var text =  $('#'+codcontenido).html().replace(/\>/g, "> ");//Reemplazar >
+                  text = text.replace(/\</g, " <");//Reemplazar <
+                  text = text.replace(/[\s]+/g, " ").trim();
                   var word = text.split(" ");
+                  console.log(word);
                   var newHTML = "";
                   var palabra = "";
                   var bool=false;
-                  
+                  $('#mimodal6 .modal-body').text("");
+                  for(var i=0;i<data.length ;i++){
+                    $('#mimodal6 .modal-body').append(data[i].palabraglosario+"<br>");
+                  }
                       $.each(word, function(index, value){
                         bool=false;
+                        var value1 = value.replace(/\,/g, "");//Reemplazar comas
+                        value1 = value1.replace(/\./g, "");//Reemplazar puntos
+                        console.log(value1);
                           for(var i=0;i<data.length ;i++){
-                            if(value.toUpperCase() === data[i].palabraglosario.toUpperCase()){                              
+                            
+                            
+                            if(value1.toUpperCase() === data[i].palabraglosario.toUpperCase()){                              
                               newHTML += "<span class='statement' style='color:red;' title='"+data[i].palabraglosario+
                               "' data-container = 'body' data-toggle = 'popover' data-placement = 'right' data-trigger='hover' data-content = '"+data[i].defglosario+"'>" + value + 
-                              "&nbsp;</span>";                              
+                              " </span>";                              
                               bool=true;
+                             
+                              //console.log(value1);
                               break;
                             }
                           }
                           if(bool==false)  {                            
-                              newHTML += "<span class='other'>" + value + "&nbsp;</span>";                                                          
+                              newHTML += value + " ";                                                          
                           }
                         })
                         $('#'+codcontenido).html(newHTML);
@@ -230,8 +244,12 @@
         <td>
           <div class="colorHeaderToggle" style="font-size:14px;">
               <label for="comment">Anotaciones: </label><br>
+              
               <label class="labelC" style="font-size:9px">Caracteres restantes: <span style="color: white;">500</span></label>
-              <textarea maxlength="500" class="altoAnotaciones" style="margin-bottom: 1rem;resize: none;" name="anotaciones" id="comentarioEstudiante" autofocus></textarea>
+              <form action="" method="POST" id="idFormulario">
+              @csrf
+                <textarea maxlength="500" class="altoAnotaciones" style="margin-bottom: 1rem;resize: none;" name="anotaciones" id="comentarioEstudiante" autofocus></textarea>
+              </form>
           </div>
         </td>
       </tr>
