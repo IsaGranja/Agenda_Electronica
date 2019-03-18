@@ -2,7 +2,6 @@
 @section('content')
 <html>
     <head>
->
 <div class="card-body">
                     @if (\Session::has('success'))
                     <div class="alert alert-success">
