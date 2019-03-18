@@ -180,7 +180,7 @@
                         //console.log(value1);
                           for(var i=0;i<data.length ;i++){
                             if(value1.toUpperCase() === data[i].palabraglosario.toUpperCase()){                              
-                              newHTML += "<span class='statement' style='color:red;' title='"+data[i].palabraglosario+
+                              newHTML += "<span class='statement' style='color:rgb(76, 191, 220);font-weight: bold;' title='"+data[i].palabraglosario+
                               "' data-container = 'body' data-toggle = 'popover' data-placement = 'right' data-trigger='hover' data-content = '"+data[i].defglosario+"'>" + value + 
                               " </span>";                              
                               bool=true;
