@@ -137,29 +137,51 @@ class AnotacionesController extends Controller
 	{
 		return \App\anotaciones::create($request->all());
 	}
-	public function store(Request $request)
+	public function createOrUpdate(Request $request)
 	{
-		$data = Input::all();
-		Log::info($data);
-		/*
+		//try{
+		//CONSULTAR
 		$user = Auth::user();
 		$email=$user->email;
 		$cedestudiante = DB::table('estudiantes')
 					->where('correestudiante', $email)
-					->value('cedestudiante');
+					->value('cedestudiante');		
 		$codcontenido=Input::get('codcontenido');
-		$anota=Input::get('anotaciones');
-		\Log::info('Anota: '+$anota);
-		\Log::info('codcontenido: '+$codcontenido);
-		//INGRESAR O MODIFICAR
-		$anotaciones = anotaciones::updateOrCreate([
-			'codcontenido' => $codcontenido,
-			'cedestudiante' => $cedestudiante,
-		],[
-			'anotestudiante' => $anota,
-			'imgestudiante' => null			
-		]);*/
-		return response()->json($data);
+		$anota=Input::get('anotestudiante');
+
+		$anotacion=anotaciones::where('cedestudiante','=',$cedestudiante)
+		->where('codcontenido','=',$codcontenido)
+		->count();
+		if($anotacion > 0){
+			$update= anotaciones::where('cedestudiante', '=', $cedestudiante)
+			->where('codcontenido', '=', $codcontenido)
+			->update(['anotestudiante' => $anota]);
+			//return redirect('anotacion');
+			return response()->json($anotacion);
+		}
+		else
+		{
+			$insert= anotaciones::insert(['cedestudiante'=>$cedestudiante,'codcontenido'=>$codcontenido,'anotestudiante'=>$anota,'imgestudiante'=>'']);
+			//return redirect('anotacion');
+			return response()->json($anotacion);
+		}
+/*
+		$wishlist=DB::table('wishlist')
+		->where('user_id','=',$user_id)
+		->where('product_id','=',$product_id)
+		->count();
+
+		if($wishlist > 0){
+		return redirect('wishlist');
+		}
+		else{
+		DB::table('wishlist')
+		->insert(['id'=>$id,'user_id'=>$user_id,'product_id'=>$product_id]);
+		return redirect('wishlist');
+		}
+*/
+
+		
 	}
 	
 	public function index()

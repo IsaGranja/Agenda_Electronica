@@ -31,7 +31,6 @@ class GlosariosController extends Controller
         ->orderby('codglosario','desc')
         ->first();
         $codglosario = (array)$codglosario;
-   
         list($keys, $values) = array_divide($codglosario);
         $numero = substr($values[0], -1);
         if ($numero == null) {
@@ -39,7 +38,6 @@ class GlosariosController extends Controller
         } else {
             $numero += 1;
         }
-
         for ($i=0; $i <count($palabraglosario); $i++) { 
             $palabraglosarioVal = $palabraglosario[$i];
             $defglosarioVal = $defglosario[$i];
@@ -59,16 +57,26 @@ class GlosariosController extends Controller
         return view('indexGlosarios',['glosarios'=>$glosarios]);
     }
     public function edit($codglosario)//abre la ventana para modificar
-    {
-        $periodos = DB::table('periodos')->select('*')->where('estperiodo','A')->get();
-        $profesores = DB::table('profesores')->select('*')->where('cedprofesor',$cedprofesor)->get();
-        $asignaturas = DB::table('asignaturas')->select('*')->get();
-        $glosarios = DB::table('glosarios')->select('*')
-        ->join('asignaturas', 'glosarios.codasignatura', '=', 'asignaturas.codasignatura')
-        ->where('cedprofesor',$cedprofesor)
-        
-        ->get(); 
-        return view('EditGlosarios',compact('periodos','profesores','glosarios','asignaturas'));
+    {   
+        try{
+            $contenidos = DB::table('contenidos')->select('*')->where('codcontenido',$codcontenido)->get();
+            $contenidos = json_decode($contenidos, true)[0];
+            
+            $tema = DB::table('temas_estudio')->select('*')->where('codtema', $contenidos['codtema'])->get();
+            $tema = json_decode($tema, true)[0];
+
+            $asignaturas = DB::table('asignaturas')->select('*')->where('codasignatura', $tema['codasignatura'])->get();
+            $asignaturas = json_decode($asignaturas, true)[0];
+
+            $carreras = DB::select('SELECT carreras.codcarrera, carreras.desccarrera, escuelas.descescuela, facultades.descfacultad, sedes.descsede, universidades.descuniversidad
+            FROM carreras natural join escuelas natural join facultades natural join facultadesxsedes natural join sedes natural join universidades;');
+
+        }catch(\Exception $e)
+        {
+            return back()->withError($e->getMessage());
+        }
+        return view('glosariosEdit',compact('carreras','contenidos',
+        'asignaturas','tema'));
     }
     public function update(Request $request)//modificar
     {   
@@ -88,11 +96,19 @@ class GlosariosController extends Controller
                 'codperiodo'=>$codperiodo,               
                 ]);
         }
-        return redirect('glosarios')->with('success', 'Se modifico correctamente');
+        return redirect('glosarios')->with('success', 'Se modificó correctamente');
     }
-    public function destroy($codglosario)//modificar
+    public function destroy($codglosario)
     {   
-        DB::table('glosarios')->where('codglosario','=', $codglosario)->delete();
+        try{
+            DB::table('glosarios')->where('codglosario',$codglosario)->delete();
+        
+        }catch(\Exception $e){
+            return back()->withError($e->getMessage());
+        }
+        
         return redirect('glosarios')->with('success','Se eliminó correctamente');
+        
+
     }
 }
