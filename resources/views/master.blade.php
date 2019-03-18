@@ -361,12 +361,12 @@
                                 if(imagenID=="imagen")
                                 {   
                                     $valor=$valor+".jpg";
-                                    alert($valor);         
+                                    //alert($valor);         
                                     $('.recibir-imagen').attr('src', "images/"+$valor); //aqui se coloca la imagen que desea cargar
                                     $('#mimodal').modal();     
                                 }else if(imagenID=="audio"){
                                     $valor="/audio/"+$valor+".mp3";
-                                    alert($valor);  
+                                    //alert($valor);  
                                     var audiocontainer = document.getElementById('audioclip');
                                     var audiosource = document.getElementById('mp3audio');
                                     audiocontainer.pause();
@@ -376,7 +376,7 @@
                                     $('#mimodal2').modal();  
                                 }else if(imagenID=="video"){
                                     $valor="/video/"+$valor+".mp4";
-                                    alert($valor);  
+                                    //alert($valor);  
                                     //$('.recibir-video').attr('src', $valor); //aqui se coloca el video que desea cargar     
                                     var videocontainer = document.getElementById('videoclip');
                                     var videosource = document.getElementById('mp4video');
@@ -402,8 +402,8 @@
                                     //x.setAttribute("type", "file");
                                     $taller="/taller/"+$valor+".pdf";
                                     $solucion="/solucion/"+$valor+".pdf";
-                                    alert($taller);
-                                    alert($solucion);
+                                    //alert($taller);
+                                    //alert($solucion);
                                     var tallercontainer = document.getElementById('talCont'); 
                                     var solucioncontainer = document.getElementById('solCont'); 
                                     tallercontainer.setAttribute('src', $taller);
