@@ -165,7 +165,7 @@
                   text = text.replace(/\</g, " <");//Reemplazar <
                   text = text.replace(/[\s]+/g, " ").trim();
                   var word = text.split(" ");
-                  console.log(word);
+                  //console.log(word);
                   var newHTML = "";
                   var palabra = "";
                   var bool=false;
@@ -179,15 +179,11 @@
                         value1 = value1.replace(/\./g, "");//Reemplazar puntos
                         //console.log(value1);
                           for(var i=0;i<data.length ;i++){
-                            
-                            
                             if(value1.toUpperCase() === data[i].palabraglosario.toUpperCase()){                              
                               newHTML += "<span class='statement' style='color:red;' title='"+data[i].palabraglosario+
                               "' data-container = 'body' data-toggle = 'popover' data-placement = 'right' data-trigger='hover' data-content = '"+data[i].defglosario+"'>" + value + 
                               " </span>";                              
                               bool=true;
-                             
-                              //console.log(value1);
                               break;
                             }
                           }
@@ -246,10 +242,9 @@
               <label for="comment">Anotaciones: </label><br>
               
               <label class="labelC" style="font-size:9px">Caracteres restantes: <span style="color: white;">500</span></label>
-              <form action="" method="POST" id="idFormulario">
-              @csrf
+
                 <textarea maxlength="500" class="altoAnotaciones" style="margin-bottom: 1rem;resize: none;" name="anotaciones" id="comentarioEstudiante" autofocus></textarea>
-              </form>
+
           </div>
         </td>
       </tr>

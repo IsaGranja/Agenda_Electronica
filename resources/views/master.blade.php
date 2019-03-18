@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Principal</title>
     <base href="{{ URL::asset('/') }}" target="_top">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -309,16 +310,20 @@
                     $('#mimodal2').on('hidden.bs.modal', function () {
                         var audiocontainer = document.getElementById('audioclip');
                         audiocontainer.pause();
-                    })             
+                    }) 
+                    var actual="";
+                    $('#carouselExampleFade').on('slide.bs.carousel', function (event) {  
+                        actual = $("#carouselExampleFade div").find("div.active").attr('value').toString();                     
+                         
+                    });            
 
                     $('#carouselExampleFade').on('slid.bs.carousel', function (event) {  
-                        var actual = $("#carouselExampleFade div").find("div.active").attr('value').toString();                     
-                        //alert(actual);                      
-                        var valor = $(event.relatedTarget).attr('value').toString();                        
-                        //alert(valor);                        
-                        anotaciones(valor);                      
-                        glosarios(valor);                  
-                        createAnotaciones(actual);
+                        var valor = $(event.relatedTarget).attr('value').toString(); 
+                        //alert(valor);
+                        anotaciones(valor);                                            
+                        glosarios(valor); 
+                        //alert("crear:"+actual);  
+                        anotaciones1(actual);    
                     });
                     function iconos()
                     {
@@ -559,63 +564,29 @@
                             }
                             });
                         }
-                        function createAnotaciones($codcontenido){
-                            $anotacion=$('#comentarioEstudiante').val();
-                            console.log("FUNCION ANOTACIONES crear update");
-                            var frm=$( "#idFormulario" ); //Identificamos el formulario por su id
-                            //var datos = frm.serialize(); 
-
-		                    var dataString = {codcontenido: $codcontenido, anotestudiante: $anotacion};
-
-                            $.ajaxSetup({
-                                headers: {
-                                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                                }
-                            });
-                            $.ajax({
-                                url:'{!!URL::to('/main/successlogin')!!}',  
-                                type:'POST',
-                                data:dataString,
-                                success: function(Data) { alert("Save Complete") },
-                                error: function (data) {
-                                console.log('Error');
-                                    console.log( dataString);
-                                    console.log( data);
-                                }
-                            });
-                        
-
-                            /*
-                            $.ajax({
-                                type: "POST",
-                                headers: {
-                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                                }
-                                url: '{!!URL::to('json-anotacionesCreate')!!}',
-                                data: ({
-                                        '_token': "{{ csrf_token() }}",
-                                        'codcontenido':$codcontenido,
-                                        'anotestudiante':$anotacion
-                                    }),
+                        function anotaciones1($codcontenido){
+                        console.log("FUNCION ANOTACIONES 111111");
+                        $anotestudiante=$('#comentarioEstudiante').val();
+                        console.log("Anote: "+$anotestudiante);
+                                $.ajax({
+                                type:'get',
+                                url:'{!!URL::to('json-anotaciones1')!!}',
+                                data:{'codcontenido':$codcontenido,'anotestudiante':$anotestudiante},
                                 
-                                dataType: "text",
-                                success: function(resultData) { alert("Save Complete") }
-                            });*/
-                        
-/*
-                            $.ajax({
-                                type:'post',
-                                url:'{!!URL::to('json-anotacionesCreate')!!}',
-                                data:{'codcontenido':$codcontenido,'anotestudiante':$anotacion},
-                                dataType:'json',
                                 success:function(data){
-                                    console.log("Crear anotaciones");
-                                    console.log(data.length);                              
+                                    console.log("Createe anotaciones");
+                                    console.log(data.length);
+                                    console.log(data);
+                                    // $("#editor").remove();
+                                    //$("#carousel-indicators").empty();
+                                    //$('.altoAnotaciones').empty();
                                 },
-                                error:function(){
-                            }
-                            });*/
+                                error: function(jqXHR, textStatus, errorThrown) {
+                                    console.log(textStatus, errorThrown);
+                                    }
+                            });
                         }
+                      
                     </script>
                 </tr>
             </table>

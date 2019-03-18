@@ -124,12 +124,9 @@ class ContenidosController extends Controller
         $contenidos=DB::table('contenidos')->select('*')->where('codcontenido','=', $codcontenido)->get();
         $contenidos = json_decode($contenidos, true)[0];
         
-        
             $this->validate($request, [
                 'imagencontenido' => 'mimes:jpeg,jpg|image'
-            ]);
-            
-             
+            ]);     
            
         $imagencontenido = $contenidos['imagencontenido'];
         $audiocontenido = $contenidos['audiocontenido'];
@@ -144,29 +141,24 @@ class ContenidosController extends Controller
         $video = $request->file('videocontenido');
         $image = $request->file('imagencontenido');
             
-
-
         if($image)
         {
             $imagencontenido = $codcontenido . '.' . $image->getClientOriginalExtension();
             $image->move(public_path('images'), $imagencontenido);
         }
         
-    
         if($audio)
         {
             $audiocontenido = $codcontenido . '.' . $audio->getClientOriginalExtension();
             $audio->move(public_path('audio'), $audiocontenido);
         }
-        
-        
+
         if($video)
         {
             $videocontenido = $codcontenido . '.' . $video->getClientOriginalExtension();
             $video->move(public_path('video'), $videocontenido);
         }
-        
-            
+           
         $textocontenido = $request->get('textocontenido');
 
                 if(!$textocontenido)
