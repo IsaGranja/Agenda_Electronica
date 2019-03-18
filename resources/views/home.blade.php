@@ -136,6 +136,7 @@
                     glosarios(codtema+"-C1");
                     //console.log(codtema+"-C1");
                     anotaciones(codtema+"-C1");
+                    anotaciones1(codtema+"-C1");
                     
                     evaluaciones(codtema);
                     iconos();

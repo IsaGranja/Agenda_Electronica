@@ -557,6 +557,9 @@
                                     var i=data.length;
                                     
                                     if(i>0)
+                                        if(data[0].anotestudiante==null)
+                                        $('#comentarioEstudiante').val($('#comentarioEstudiante').val() + "");
+                                        else
                                         $('#comentarioEstudiante').val($('#comentarioEstudiante').val() + data[0].anotestudiante);
                                         //$('#comentarioEstudiante').append(data[i].anotestudiante)
                                 
