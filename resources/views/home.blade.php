@@ -177,7 +177,7 @@
                         bool=false;
                         var value1 = value.replace(/\,/g, "");//Reemplazar comas
                         value1 = value1.replace(/\./g, "");//Reemplazar puntos
-                        console.log(value1);
+                        //console.log(value1);
                           for(var i=0;i<data.length ;i++){
                             
                             

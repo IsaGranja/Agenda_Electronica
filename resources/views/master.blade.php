@@ -178,17 +178,19 @@
                         <img class="image-responsive imagen2 static" title="Video" id="video" src="{{ url('img/iconos/video/static.png') }}">
                             <img class="image-responsive imagen2" title="Video" id="video" src="{{ url('img/iconos/video/animat-video-color.gif') }}">
                             <div id="mimodal3" class="modal fade" role="dialog">
-                                <div id="mimodal3" class="modal-dialog imagen" style="width:950px; height:500px;">
-                                    <div class="modal-content" style="width:100%; height:100%;">
-                                        <div class="modal-header" style="width:100%;">
+                                <div id="mimodal3" class="modal-dialog imagen">
+                                    <div class="modal-content" >
+                                        <div class="modal-header" >
                                             <h1>Video</h1>    
                                             <button class="close" data-dismiss="modal">&times;</button>                                                
                                         </div>
-                                        <div class="modal-body" style="width:100%; height:100%; padding:10%">
-                                            <center>                                                                                        
-                                            <video id="videoclip" class="video-js vjs-default-skin" controls="controls" style="width:100%; height:100%;">
+                                        <div class="modal-body">
+                                            <center>
+                                            <div class="embed-responsive embed-responsive-16by9">                                                                                        
+                                            <video id="videoclip" class="video-js vjs-default-skin" controls="controls">
                                                 <source id="mp4video" src="" type="video/mp4"  />
-                                            </video>                              
+                                            </video>
+                                            </div>                              
                                         </div>
                                     </div>
                                 </div>
@@ -236,7 +238,7 @@
                                             <h1>Información adicional</h1>    
                                             <button class="close" data-dismiss="modal">&times;</button>                                                
                                         </div>
-                                        <div class="modal-body">
+                                        <div class="modal-body ">
                                             <img src="" class="recibir-info" width="100%" height="100%">
                                         </div>
                                     </div>
@@ -266,14 +268,30 @@
                         <img class="image-responsive imagen2 static" title="Talleres" id="talleres" src="{{ url('img/iconos/pencil/static.png') }}">
                             <img class="image-responsive imagen2" title="Talleres" id="talleres" src="{{ url('img/iconos/pencil/animat-pencil-color.gif') }}">
                             <div id="mimodal7" class="modal fade" role="dialog">
-                                <div id="mimodal7" class="modal-dialog imagen" >
-                                    <div class="modal-content">
-                                        <div class="modal-header">
+                                <div id="mimodal7" class="modal-dialog imagen" width="960px" height="100%">
+                                    <div class="modal-content" width="100%" height="100%">
+                                        <div class="modal-header"width="100%" height="100%">
                                             <h1>Talleres</h1>    
                                             <button class="close" data-dismiss="modal">&times;</button>                                                
                                         </div>
-                                        <div class="modal-body">
-                                            <img src="" class="recibir-talleres" width="100%" height="100%">
+                                        <div class="modal-body"width="100%" height="100%" style="overflow-y: scroll;">
+                                            <!--<img src="" class="recibir-talleres" width="100%" height="100%"style="overflow-x: scroll; overflow-y: scroll;">-->                                                                            
+                                                <center>
+                                                <table width="100%" height="100%">
+                                                    <tr width="100%" height="100%">
+                                                        <td width="100%" height="100%"> 
+                                                            <span class="label label-default">Ejercicio:</span>
+                                                            <iframe id="talCont" src="" width="100%" height="300px" allowfullscreen></iframe>                                                                                                                                                                                                        
+                                                        </td>                                                                                                            
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="100%" height="100%"> 
+                                                            <span class="label label-default">Solución:</span>                                                           
+                                                            <iframe id="solCont" src="" width="100%" height="300px" allowfullscreen></iframe>                                                                                                            
+                                                        </td>    
+                                                    </tr>                                                    
+                                                </table>                                                                                                              
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -354,8 +372,8 @@
                                     $valor="/video/"+$valor+".mp4";
                                     alert($valor);  
                                     //$('.recibir-video').attr('src', $valor); //aqui se coloca el video que desea cargar     
-                                    var videocontainer = document.getElementById('videoclip');
-                                    var videosource = document.getElementById('mp4video');
+                                    var videocontainer = document.getElementById('#videoclip');
+                                    var videosource = document.getElementById('#mp4video');
                                     videocontainer.pause();
                                     videosource.setAttribute('src', $valor);
                                     videocontainer.load();
@@ -372,14 +390,78 @@
                                 }else if(imagenID=="glosario"){
                                     $('.recibir-glosario').attr('src',"{{ url('img/glosario.ico') }}"); //aqui se coloca la infoAdicional que desea cargar
                                     $('#mimodal6').modal();  
-                                }else if(imagenID=="talleres"){
-                                    $('.recibir-talleres').attr('src',"{{ url('img/puceLogo.jpg') }}"); //aqui se coloca la infoAdicional que desea cargar
+                                }else if(imagenID=="talleres"){                                    
+                                    //$('.recibir-talleres').attr('src',"{{ url('img/puceLogo.jpg') }}"); //aqui se coloca la infoAdicional que desea cargar
+                                    //var x = document.createElement(".recibir-talleres");
+                                    //x.setAttribute("type", "file");
+                                    $taller="/taller/"+$valor+".pdf";
+                                    $solucion="/solucion/"+$valor+".pdf";
+                                    alert($taller);
+                                    alert($solucion);
+                                    var tallercontainer = document.getElementById('talCont'); 
+                                    var solucioncontainer = document.getElementById('solCont'); 
+                                    tallercontainer.setAttribute('src', $taller);
+                                    solucioncontainer.setAttribute('src', $solucion);
                                     $('#mimodal7').modal();  
                                 }
                             }                                
                         });
                     }
-                    function evaluaciones(codtema){        
+                    $('#carouselExampleModal').on('slid.bs.carousel', function (event) {  
+                        //var actual = $("#carouselExampleModal div").find("div.active").attr('id').toString();                     
+                        //alert(actual);                      
+                        var enunpreg = $(event.relatedTarget).attr('value').toString();
+                        var codtema = $(event.relatedTarget).attr('id').toString();                            
+                        //alert("enunpreg:"+enunpreg);
+                        //alert("codtema:"+codtema);
+                        pregxSlide(codtema,enunpreg);                  
+                        //anotaciones(valor);                      
+                        //glosarios(valor);                  
+                        //createAnotaciones(actual);
+                    });
+                    function pregxSlide(codigoTema,enunPreg){
+                        var respR = [];
+                        var retroR = [];   
+                        var respuestaSel = document.querySelector("input[id=opcionradios]:checked").value;
+                        var cont=0; 
+                        var dataString = {'codtema':codigoTema, 'enunpregevaluacion':enunPreg};
+                        console.log(dataString);                      
+                        $.ajax({
+                        type:'get',
+                        url:'{!!URL::to('json-evaluaciones1')!!}',
+                        data: dataString,                                               
+                        dataType:'json',
+                            success:function(data){
+                                for(var i=0;i<data.length ;i++){
+                                    respR[i]=data[i].respevaluacion;                                    
+                                    retroR[i]=data[i].retroevaluacion; 
+                                }
+                                //alert('adios');   
+                                alert("lol: "+respuestaSel);
+                                alert("Real:"+respR[0]);
+                                alert("Retrospectiva:"+retroR[0]);
+                            },
+                            error:function(e){
+                                alert('error');
+                            }
+                        });                                                
+                        for (var i = 0; i < respR.length; i++) {                            
+                            if (respR[i] === respuestaSel) {
+                                alert('felicidades');
+                                cont++;    
+                                break;
+                            }else{
+                                alert("Real:"+respR[i]);
+                                alert("Retrospectiva:"+retroR[i]);
+                                break;
+                            }
+                        }
+                    }
+                    function evaluaciones(codtema){     
+                        var respR = [];
+                        var retroR = []; 
+                        var enunpreg = []; 
+                        var tema=[];                        
                         $.ajax({
                         type:'get',
                         url:'{!!URL::to('json-evaluaciones')!!}',
@@ -389,30 +471,66 @@
                             console.log("eval");
                             console.log(data.length);
                             console.log(data);
+                            //$listas = (array)data;
+   
+                            //list($keys, $values) = array_divide($listas);
+
                             $('.modalInner, .modalIndicators, .modalPrev, .modalNext').empty();
                             for(var i=0;i<data.length ;i++){
                                 $('<li data-target="#carouselExampleModal" data-slide-to="'+i+'"></li>').appendTo('.modalIndicators');
-                                
-                                $('<div class="carousel-item modalItem" value="'+data[i].codtema+'"><div class="editor1" id="editor1" value="'+data[i].codtema+'" contenteditable="false">'+data[i].enunpregevaluacion+
-                                '<br><input type="radio" class ="evaluaciones" name="optionsRadios" id="optionsRadios1" value="'+data[i].op1evaluacion+'" checked="" onclick="check(); return false;" >'+ data[i].op1evaluacion+'<br>'+
-                                '<input type="radio" class ="evaluaciones" name="optionsRadios" id="optionsRadios2" value="'+data[i].op2evaluacion+'" checked="" onclick="check(); return false;" >'+ data[i].op2evaluacion+'<br>'+
-                                '<input type="radio" class ="evaluaciones" name="optionsRadios" id="optionsRadios3" value="'+data[i].op3evaluacion+'" checked="" onclick="check(); return false;" >'+ data[i].op3evaluacion+'<br>'+
-                                '<input type="radio" class ="evaluaciones" name="optionsRadios" id="optionsRadios4" value="'+data[i].op4evaluacion+'" checked="" onclick="check(); return false;" >'+ data[i].op4evaluacion+
-                                '</div></div>').appendTo('.modalInner');   
+                                respR[i]=data[i].respevaluacion;
+                                //alert("resp:"+respR[i]);
+                                retroR[i]=data[i].retroevaluacion; 
+                                enunpreg[i]=data[i].enunpregevaluacion; 
+                                tema[i]=data[i].codtema;                              
+                                //alert("retro:"+data[i].retroevaluacion);
+                                $('<div class="carousel-item modalItem" id="'+data[i].codtema+'" value="'+data[i].enunpregevaluacion+'"><div class="editor1" id="'+data[i].codtema+'" value="'+data[i].enunpregevaluacion+'" contenteditable="false">'+data[i].enunpregevaluacion+
+                                '<br><input type="radio" class ="evaluaciones" name="optionsRadios'+i+'" id="opcionradios" value="'+data[i].op1evaluacion+'" checked="" onclick="return false;" >'+ data[i].op1evaluacion+'<br>'+
+                                '<input type="radio" class ="evaluaciones" name="optionsRadios'+i+'" id="opcionradios" value="'+data[i].op2evaluacion+'" checked="" onclick="return false;" >'+ data[i].op2evaluacion+'<br>'+
+                                '<input type="radio" class ="evaluaciones" name="optionsRadios'+i+'" id="opcionradios" value="'+data[i].op3evaluacion+'" checked="" onclick="return false;" >'+ data[i].op3evaluacion+'<br>'+
+                                '<input type="radio" class ="evaluaciones" name="optionsRadios'+i+'" id="opcionradios" value="'+data[i].op4evaluacion+'" checked="" onclick="return false;" >'+ data[i].op4evaluacion+
+                                '</div></div>').appendTo('.modalInner');                        
                             }
                             $('#carouselExampleModal .modalItem').first().addClass('active');
                             $('#carouselExampleModal .modalIndicators > li').first().addClass('active');
                             $('<a href="#carouselExampleModal" data-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="sr-only">Previous</span></a>').appendTo('.modalPrev'); 
                             $('<a href="#carouselExampleModal" data-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="sr-only">Next</span></a>').appendTo('.modalNext');
                             $('#carouselExampleModal').carousel();
+                            /*$( document).ready(function() {
+                                document.querySelector('input[name=optionsRadios]:checked').checked = localStorage.checked
+                            });*/
+                            $("input[id=opcionradios]").click(function(){                               
+                                var enunpreg = $("#carouselExampleModal div").find("div.active").attr('value').toString();   
+                                var codtema = $("#carouselExampleModal div").find("div.active").attr('id').toString();                              
+                                //alert("enunpreg:"+enunpreg);
+                                //alert("codtema:"+codtema);
+                                pregxSlide(codtema,enunpreg); 
+                            });
+                             
                         },
                         error:function(){
                     }
                     });
                     }
-                    function check(){
-                        var lol= document.querySelector("input[name=optionsRadios]:checked").value;
-                        alert(lol);
+                    
+                    function check1(respuesta, retrospectiva){
+                        var respuestaSel = document.querySelector("input[id=opcionradios]:checked").value;
+                        var respuestaReal = respuesta;
+                        var retrospectivaReal = retrospectiva;
+                        var cont=0;
+                        //
+                        for (var i = 0; i < respuestaReal.length; i++) {                            
+                            if (respuestaReal[i] === respuestaSel) {
+                                alert('felicidades');
+                                cont++;    
+                                break;
+                            }else{
+                                alert("Real:"+respuestaReal[i]);
+                                alert("Retrospectiva:"+retrospectivaReal[i]);
+                                break;
+                            }
+                        }
+                        ///
                     } 
                     function anotaciones($codcontenido){
                         console.log("FUNCION ANOTACIONES");

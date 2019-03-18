@@ -82,7 +82,7 @@ class AnotacionesController extends Controller
 	{
 		$codtema=Input::get('codtema');
 		$contenidos=DB::table('contenidos')
-		->where('codtema','=',$codtema)
+		->where('codtema','=',$codtema)		
 		->orderby('codcontenido','ASC')
 		->get();
 
@@ -102,6 +102,19 @@ class AnotacionesController extends Controller
 		$codtema=Input::get('codtema');
 		$evaluaciones=DB::table('evaluaciones')
 		->where('codtema','=',$codtema)
+		->get();
+
+		return response()->json($evaluaciones);
+	}
+	public function findEvaluacionFunc1(Request $request)
+	{
+		$array = $request->all();
+		$codtema=$array['codtema'];
+		$codpregunta=$array['enunpregevaluacion'];
+		print_r($codpregunta);
+		$evaluaciones=DB::table('evaluaciones')
+		->where('codtema','=',$codtema)
+		->where('enunpregevaluacion','=',$codpregunta)
 		->get();
 
 		return response()->json($evaluaciones);

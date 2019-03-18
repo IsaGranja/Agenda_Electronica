@@ -171,6 +171,9 @@ Route::get('/json-temas', 'AnotacionesController@findTemaFunc');
 Route::get('/json-contenidos', 'AnotacionesController@findContenidoFunc');
 Route::get('/json-contenidosUnico', 'AnotacionesController@findContenido1Func');
 Route::get('/json-evaluaciones', 'AnotacionesController@findEvaluacionFunc');
+//
+Route::get('/json-evaluaciones1', 'AnotacionesController@findEvaluacionFunc1');
+//
 Route::get('/json-glosarios', 'AnotacionesController@findGlosarioFunc');
 Route::get('/json-anotaciones', 'AnotacionesController@findAnotacionesFunc');
 Route::post('/json-anotacionesCreate', 'AnotacionesController@store');
