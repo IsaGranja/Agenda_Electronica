@@ -172,7 +172,8 @@ function cambioTema(){
                 if(contenido.codtema==tema.codtema)
                 {
                     var texto=contenido.textocontenido;
-                    var option = $('<option></option>').attr("value", contenido.codcontenido).text($(texto).text());
+                    //alert(texto);
+                    var option = $('<option></option>').attr("value", contenido.codcontenido).html(texto);
                     $contenidoCombo.append(option);
                 }
         })
