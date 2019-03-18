@@ -232,7 +232,7 @@
                         <center>
                         <img class="image-responsive imagen2 static" title="Información Adicional" id="informacion_adicional" src="{{ url('img/iconos/lightbulb/static.png') }}">
                             <img class="image-responsive imagen2" title="Información Adicional" id="informacion_adicional" src="{{ url('img/iconos/lightbulb/animat-lightbulb-color.gif') }}">
-                            <div id="mimodal5" class="modal fade" role="dialog">
+                            <div id="mimodal5" class="modal fade" role="dialog" width="100%" height="300px">
                                 <div id="mimodal5" class="modal-dialog imagen">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -258,7 +258,8 @@
                                             <button class="close" data-dismiss="modal">&times;</button>                                                
                                         </div>
                                         <div class="modal-body">
-                                            <img src="" class="recibir-glosario" width="100%" height="100%">
+                                            <center>
+                                            <img src="" class="recibir-glosario" width="20%" height="20%">
                                         </div>
                                     </div>
                                 </div>
@@ -377,8 +378,8 @@
                                     $valor="/video/"+$valor+".mp4";
                                     alert($valor);  
                                     //$('.recibir-video').attr('src', $valor); //aqui se coloca el video que desea cargar     
-                                    var videocontainer = document.getElementById('#videoclip');
-                                    var videosource = document.getElementById('#mp4video');
+                                    var videocontainer = document.getElementById('videoclip');
+                                    var videosource = document.getElementById('mp4video');
                                     videocontainer.pause();
                                     videosource.setAttribute('src', $valor);
                                     videocontainer.load();
